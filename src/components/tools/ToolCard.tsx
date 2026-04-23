@@ -1,0 +1,67 @@
+import Link from 'next/link'
+import Image from 'next/image'
+import type { Tool } from '@/types'
+
+function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
+  const map = {
+    free:     'bg-[#D1FAE5] text-[#065F46]',
+    freemium: 'bg-[#DBEAFE] text-[#1E40AF]',
+    paid:     'bg-[#F3F4F6] text-[#374151]',
+    ltd:      'bg-[#FEF3C7] text-[#92400E]',
+  }
+  const labels = { free: 'Free', freemium: 'Freemium', paid: 'Paid', ltd: 'LTD' }
+  return (
+    <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${map[type]}`}>
+      {labels[type]}
+    </span>
+  )
+}
+
+export default function ToolCard({ tool }: { tool: Tool }) {
+  return (
+    <div className="bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300">
+      {/* Header row */}
+      <div className="flex items-start justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-[10px] bg-gray-50 flex items-center justify-center flex-shrink-0 overflow-hidden">
+            <Image
+              src={tool.logo_url}
+              alt={tool.name}
+              width={40}
+              height={40}
+              className="object-contain p-1"
+              unoptimized
+            />
+          </div>
+          <div>
+            <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
+            <div className="text-[12px] text-muted-foreground">{tool.category[0]?.name}</div>
+          </div>
+        </div>
+        <PricingBadge type={tool.pricing_type} />
+      </div>
+
+      {/* Description */}
+      <p className="text-[13px] text-muted-foreground leading-relaxed mb-4 line-clamp-2">
+        {tool.tagline}
+      </p>
+
+      {/* Footer row */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-1.5">
+          <span className="text-[#F59E0B] text-sm">{'★'.repeat(Math.floor(tool.rating))}{'☆'.repeat(5 - Math.floor(tool.rating))}</span>
+          <span className="text-[13px] font-semibold text-foreground">{tool.rating}</span>
+          <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k)</span>
+        </div>
+        <Link
+          href={`/go/${tool.slug}`}
+          target="_blank"
+          rel="noopener noreferrer sponsored"
+          className="text-[12px] font-semibold text-blue-600 hover:text-blue-700"
+        >
+          Visit →
+        </Link>
+      </div>
+    </div>
+  )
+}
