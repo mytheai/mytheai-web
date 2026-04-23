@@ -145,3 +145,20 @@
     @apply font-sans;
   }
 }
+
+@layer utilities {
+  .hero-bg {
+    background: linear-gradient(140deg, #F8FAFF 0%, #EEF4FF 50%, #F0FFFE 100%);
+  }
+  .dark .hero-bg {
+    background: linear-gradient(140deg, #0F1117 0%, #111827 50%, #0F1A17 100%);
+  }
+  .header-blur {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(250, 250, 250, 0.92);
+  }
+  .dark .header-blur {
+    background: rgba(15, 17, 23, 0.93);
+  }
+}

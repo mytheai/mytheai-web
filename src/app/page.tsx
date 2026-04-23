@@ -100,7 +100,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="py-12 md:py-24" style={{ background: 'linear-gradient(140deg, #F8FAFF 0%, #EEF4FF 50%, #F0FFFE 100%)' }}>
+      <section className="hero-bg py-12 md:py-24">
         <div className="max-w-3xl mx-auto px-4 md:px-5 text-center">
           <div
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-7 border"

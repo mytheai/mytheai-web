@@ -30,8 +30,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border" style={{ backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)', background: 'rgba(250,250,250,0.92)' }}>
-      <style>{`.dark header { background: rgba(15,17,23,0.93) !important; }`}</style>
+    <header className="header-blur sticky top-0 z-50 border-b border-border">
       <div className="max-w-7xl mx-auto px-4 md:px-5 flex items-center justify-between h-[60px]">
 
         {/* Logo */}
