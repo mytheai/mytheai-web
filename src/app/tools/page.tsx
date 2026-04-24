@@ -1,17 +1,19 @@
 import { Suspense } from 'react'
+import { unstable_cache } from 'next/cache'
 import ToolCard from '@/components/tools/ToolCard'
 import FilterBar from '@/components/tools/FilterBar'
 import { supabase } from '@/lib/supabase'
 import type { Tool } from '@/types'
 
-export const revalidate = 86400
+export const revalidate = 3600
 
 export const metadata = {
   title: 'All AI & SaaS Tools 2026 - Browse 500+ Tools | MytheAi',
   description: 'Browse and filter 500+ AI & SaaS tools by category, pricing, and rating. Find the right tool for your workflow.',
 }
 
-async function getTools(category?: string, pricing?: string): Promise<Tool[]> {
+const getTools = unstable_cache(
+  async (category?: string, pricing?: string): Promise<Tool[]> => {
   let query = supabase.from('tools').select('*').order('featured', { ascending: false }).order('rating', { ascending: false })
 
   if (category) {
@@ -52,7 +54,10 @@ async function getTools(category?: string, pricing?: string): Promise<Tool[]> {
     integrations: [],
     alternatives: [],
   }))
-}
+  },
+  ['tools-list'],
+  { revalidate: 3600 }
+)
 
 export default async function ToolsPage({
   searchParams,
