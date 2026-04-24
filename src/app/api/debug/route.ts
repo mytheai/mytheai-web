@@ -2,25 +2,23 @@ export async function GET() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-  // Test raw fetch — bypass supabase-js client entirely
-  let rawResult: unknown = null
-  let rawError: string | null = null
+  // Test 1: can Vercel fetch anything at all?
+  let publicFetch: string | null = null
   try {
-    const res = await fetch(`${url}/rest/v1/tools?select=slug,name&limit=10`, {
-      headers: {
-        apikey: key ?? '',
-        Authorization: `Bearer ${key}`,
-      },
-    })
-    rawResult = await res.json()
-  } catch (e) {
-    rawError = String(e)
-  }
+    const r = await fetch('https://httpbin.org/get', { signal: AbortSignal.timeout(5000) })
+    publicFetch = r.ok ? 'ok' : `http ${r.status}`
+  } catch (e) { publicFetch = String(e) }
 
-  return Response.json({
-    url: url?.slice(0, 40),
-    keyOk: key?.startsWith('eyJ'),
-    rawError,
-    rawResult,
-  })
+  // Test 2: raw Supabase REST call
+  let supabaseFetch: unknown = null
+  let supabaseError: string | null = null
+  try {
+    const r = await fetch(`${url}/rest/v1/tools?select=slug&limit=3`, {
+      headers: { apikey: key ?? '', Authorization: `Bearer ${key}` },
+      signal: AbortSignal.timeout(8000),
+    })
+    supabaseFetch = r.ok ? await r.json() : `http ${r.status}: ${await r.text()}`
+  } catch (e) { supabaseError = String(e) }
+
+  return Response.json({ publicFetch, supabaseFetch, supabaseError, keyOk: key?.startsWith('eyJ') })
 }
