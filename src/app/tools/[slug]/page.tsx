@@ -84,6 +84,7 @@ export async function generateMetadata(
   if (!tool) return { title: 'Tool not found | MytheAi' }
 
   const year = new Date().getFullYear()
+  const ogImageUrl = `https://mytheai.com/api/og?name=${encodeURIComponent(tool.name)}&tagline=${encodeURIComponent(tool.tagline)}&rating=${tool.rating}${tool.logo_url ? `&logo=${encodeURIComponent(tool.logo_url)}` : ''}`
   return {
     title: `${tool.name} Review ${year} — Pricing, Features & Alternatives | MytheAi`,
     description: tool.tagline,
@@ -91,6 +92,11 @@ export async function generateMetadata(
       title: `${tool.name} Review ${year} | MytheAi`,
       description: tool.tagline,
       url: `https://mytheai.com/tools/${slug}`,
+      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: [ogImageUrl],
     },
     alternates: { canonical: `https://mytheai.com/tools/${slug}` },
   }
