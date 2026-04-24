@@ -19,7 +19,7 @@ function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
 
 export default function ToolCard({ tool }: { tool: Tool }) {
   return (
-    <div className="bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300">
+    <div className="relative bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300">
       {/* Header row */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -46,6 +46,9 @@ export default function ToolCard({ tool }: { tool: Tool }) {
         {tool.tagline}
       </p>
 
+      {/* Clickable overlay → tool detail page */}
+      <Link href={`/tools/${tool.slug}`} className="absolute inset-0 rounded-xl" aria-label={`View ${tool.name} details`} />
+
       {/* Footer row */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
@@ -57,7 +60,7 @@ export default function ToolCard({ tool }: { tool: Tool }) {
           href={`/go/${tool.slug}`}
           target="_blank"
           rel="noopener noreferrer sponsored"
-          className="text-[12px] font-semibold text-blue-600 hover:text-blue-700"
+          className="relative z-10 text-[12px] font-semibold text-blue-600 hover:text-blue-700"
         >
           Visit →
         </Link>
