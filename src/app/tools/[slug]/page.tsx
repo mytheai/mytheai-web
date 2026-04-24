@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { createClient, createStaticClient } from '@/lib/supabase'
 import type { Metadata } from 'next'
 
 export const revalidate = 86400
@@ -32,6 +32,7 @@ interface ToolRow {
 // --- Data fetching ---
 
 async function getTool(slug: string): Promise<ToolRow | null> {
+  const supabase = await createClient()
   const { data, error } = await supabase
     .from('tools')
     .select('*')
@@ -42,8 +43,9 @@ async function getTool(slug: string): Promise<ToolRow | null> {
 }
 
 export async function generateStaticParams() {
+  const supabase = createStaticClient()
   const { data } = await supabase.from('tools').select('slug')
-  return (data ?? []).map(t => ({ slug: t.slug }))
+  return (data ?? []).map((t: { slug: string }) => ({ slug: t.slug }))
 }
 
 // --- Dynamic metadata ---

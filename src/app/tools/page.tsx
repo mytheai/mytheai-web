@@ -1,8 +1,7 @@
 import { Suspense } from 'react'
-import { unstable_cache } from 'next/cache'
 import ToolCard from '@/components/tools/ToolCard'
 import FilterBar from '@/components/tools/FilterBar'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase'
 import type { Tool } from '@/types'
 
 export const revalidate = 3600
@@ -12,16 +11,14 @@ export const metadata = {
   description: 'Browse and filter 500+ AI & SaaS tools by category, pricing, and rating. Find the right tool for your workflow.',
 }
 
-const getTools = unstable_cache(
-  async (category?: string, pricing?: string): Promise<Tool[]> => {
-  let query = supabase.from('tools').select('*').order('featured', { ascending: false }).order('rating', { ascending: false })
+async function getTools(category?: string, pricing?: string): Promise<Tool[]> {
+  const supabase = await createClient()
+  let query = supabase.from('tools').select('*')
+    .order('featured', { ascending: false })
+    .order('rating', { ascending: false })
 
-  if (category) {
-    query = query.contains('tags', [category])
-  }
-  if (pricing) {
-    query = query.eq('pricing_type', pricing)
-  }
+  if (category) query = query.contains('tags', [category])
+  if (pricing) query = query.eq('pricing_type', pricing)
 
   const { data, error } = await query
   if (error || !data) return []
@@ -54,10 +51,7 @@ const getTools = unstable_cache(
     integrations: [],
     alternatives: [],
   }))
-  },
-  ['tools-list'],
-  { revalidate: 3600 }
-)
+}
 
 export default async function ToolsPage({
   searchParams,
@@ -70,7 +64,6 @@ export default async function ToolsPage({
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
-      {/* Page header */}
       <div className="mb-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Directory</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
@@ -81,12 +74,10 @@ export default async function ToolsPage({
         </p>
       </div>
 
-      {/* Filters — client component needs Suspense for useSearchParams */}
       <Suspense fallback={<div className="h-20" />}>
         <FilterBar />
       </Suspense>
 
-      {/* Tool grid */}
       {tools.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {tools.map(tool => (
@@ -100,7 +91,6 @@ export default async function ToolsPage({
         </div>
       )}
 
-      {/* Tool count */}
       <p className="mt-8 text-[13px] text-muted-foreground">
         Showing {tools.length} tool{tools.length !== 1 ? 's' : ''}
         {category ? ` in ${category}` : ''}

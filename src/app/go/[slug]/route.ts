@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase'
 
 export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  const supabase = await createClient()
 
   const { data: tool } = await supabase
     .from('tools')
@@ -14,7 +15,6 @@ export async function GET(req: Request, { params }: { params: Promise<{ slug: st
     redirect('/tools')
   }
 
-  // Track click — fire and forget, don't block redirect
   const referrer = req.headers.get('referer') ?? ''
   supabase.from('tool_clicks').insert({ tool_slug: slug, referrer }).then(() => {})
 
