@@ -1,15 +1,22 @@
 import { redirect } from 'next/navigation'
-import { mockTools } from '@/data/mock'
+import { supabase } from '@/lib/supabase'
 
-export async function GET(_req: Request, { params }: { params: Promise<{ slug: string }> }) {
+export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const tool = mockTools.find(t => t.slug === slug)
+
+  const { data: tool } = await supabase
+    .from('tools')
+    .select('affiliate_url')
+    .eq('slug', slug)
+    .single()
 
   if (!tool) {
     redirect('/tools')
   }
 
-  // TODO: log click to Supabase tool_clicks table when DB is set up
+  // Track click — fire and forget, don't block redirect
+  const referrer = req.headers.get('referer') ?? ''
+  supabase.from('tool_clicks').insert({ tool_slug: slug, referrer }).then(() => {})
 
   redirect(tool.affiliate_url)
 }
