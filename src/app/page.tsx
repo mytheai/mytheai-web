@@ -1,16 +1,64 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {
-  mockEditorPicks,
-  mockCategories,
-  mockComparisons,
-  mockTrending,
-  mockFreeTools,
-  mockTools,
-} from '@/data/mock'
+import { createStaticClient } from '@/lib/supabase'
+import { mockCategories, mockComparisons } from '@/data/mock'
 import type { Tool } from '@/types'
 
-// ── Pricing badge ─────────────────────────────────────────────────────────────
+export const revalidate = 21600
+
+// ── Data fetching ─────────────────────────────────────────────────────────────
+
+interface ToolRow {
+  id: string
+  slug: string
+  name: string
+  tagline: string
+  logo_url: string | null
+  website_url: string | null
+  pricing_type: 'free' | 'freemium' | 'paid' | 'ltd'
+  pricing_free_tier: boolean
+  rating: number
+  review_count: number
+  tags: string[] | null
+  editor_pick: boolean
+  trending: boolean
+}
+
+async function getEditorPicks(): Promise<ToolRow[]> {
+  const supabase = createStaticClient()
+  const { data } = await supabase
+    .from('tools')
+    .select('id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending')
+    .eq('editor_pick', true)
+    .order('rating', { ascending: false })
+    .limit(3)
+  return data ?? []
+}
+
+async function getTrending(): Promise<ToolRow[]> {
+  const supabase = createStaticClient()
+  const { data } = await supabase
+    .from('tools')
+    .select('id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending')
+    .eq('trending', true)
+    .order('rating', { ascending: false })
+    .limit(6)
+  return data ?? []
+}
+
+async function getFreeTools(): Promise<ToolRow[]> {
+  const supabase = createStaticClient()
+  const { data } = await supabase
+    .from('tools')
+    .select('id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending')
+    .eq('pricing_free_tier', true)
+    .order('rating', { ascending: false })
+    .limit(4)
+  return data ?? []
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
 function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
   const map = {
     free:     'bg-[#D1FAE5] text-[#065F46]',
@@ -26,8 +74,15 @@ function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
   )
 }
 
-// ── Tool logo ─────────────────────────────────────────────────────────────────
-function ToolLogo({ url, name, size = 40 }: { url: string; name: string; size?: number }) {
+function ToolLogo({ url, name, size = 40 }: { url: string | null; name: string; size?: number }) {
+  if (!url) return (
+    <div
+      className="rounded-[10px] flex items-center justify-center bg-gray-100 flex-shrink-0 text-[13px] font-bold text-gray-400"
+      style={{ width: size, height: size }}
+    >
+      {name[0]}
+    </div>
+  )
   return (
     <div
       className="rounded-[10px] flex items-center justify-center bg-gray-50 flex-shrink-0 overflow-hidden"
@@ -38,7 +93,6 @@ function ToolLogo({ url, name, size = 40 }: { url: string; name: string; size?: 
   )
 }
 
-// ── Star rating ───────────────────────────────────────────────────────────────
 function Stars({ rating }: { rating: number }) {
   return (
     <span className="text-[#F59E0B] text-sm tracking-[-1px]">
@@ -47,7 +101,6 @@ function Stars({ rating }: { rating: number }) {
   )
 }
 
-// ── Section header ────────────────────────────────────────────────────────────
 function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, viewAllHref }: {
   eyebrow: string; eyebrowColor?: string; title: string; viewAll?: string; viewAllHref?: string
 }) {
@@ -66,14 +119,27 @@ function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, view
   )
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-export default function HomePage() {
+// ── Page ──────────────────────────────────────────────────────────────────────
+
+export default async function HomePage() {
+  const [editorPicks, trending, freeTools] = await Promise.all([
+    getEditorPicks(),
+    getTrending(),
+    getFreeTools(),
+  ])
+
   const rankColors = ['#F59E0B', '#9CA3AF', '#92400E']
 
   const top10Lists = [
     {
       emoji: '🧠', title: 'AI Assistants', count: 105,
-      items: mockTools.filter(t => t.category.some(c => c.slug === 'ai-assistants')).slice(0, 5),
+      items: [
+        { name: 'Claude', slug: 'claude', logo_url: 'https://www.google.com/s2/favicons?domain=claude.ai&sz=32', pricing_type: 'freemium' as const },
+        { name: 'ChatGPT', slug: 'chatgpt', logo_url: 'https://www.google.com/s2/favicons?domain=chatgpt.com&sz=32', pricing_type: 'freemium' as const },
+        { name: 'Gemini', slug: 'gemini', logo_url: 'https://www.google.com/s2/favicons?domain=gemini.google.com&sz=32', pricing_type: 'freemium' as const },
+        { name: 'Perplexity', slug: 'perplexity', logo_url: 'https://www.google.com/s2/favicons?domain=perplexity.ai&sz=32', pricing_type: 'freemium' as const },
+        { name: 'Mistral', slug: 'mistral', logo_url: 'https://www.google.com/s2/favicons?domain=mistral.ai&sz=32', pricing_type: 'freemium' as const },
+      ],
     },
     {
       emoji: '🎨', title: 'Image AI', count: 90,
@@ -170,44 +236,40 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14 space-y-12 md:space-y-16">
 
         {/* EDITOR'S PICKS */}
-        <section>
-          <SectionHeader eyebrow="Curated" title="Editor's Picks" viewAll="View all →" viewAllHref="/tools?filter=editor-picks" />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {mockEditorPicks.map(tool => (
-              <div
-                key={tool.id}
-                className="bg-card border border-border rounded-xl p-5 cursor-pointer transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <ToolLogo url={tool.logo_url} name={tool.name} />
-                    <div>
-                      <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
-                      <div className="text-[12px] text-muted-foreground">{tool.category[0]?.name}</div>
+        {editorPicks.length > 0 && (
+          <section>
+            <SectionHeader eyebrow="Curated" title="Editor's Picks" viewAll="View all →" viewAllHref="/tools?filter=editor-picks" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {editorPicks.map(tool => (
+                <Link
+                  key={tool.id}
+                  href={`/tools/${tool.slug}`}
+                  className="bg-card border border-border rounded-xl p-5 block transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <ToolLogo url={tool.logo_url} name={tool.name} />
+                      <div>
+                        <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
+                        <div className="text-[12px] text-muted-foreground">{tool.tags?.[0] ?? ''}</div>
+                      </div>
                     </div>
+                    <PricingBadge type={tool.pricing_type} />
                   </div>
-                  <PricingBadge type={tool.pricing_type} />
-                </div>
-                <p className="text-[13px] text-muted-foreground leading-relaxed mb-4 line-clamp-2">{tool.tagline}</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5">
-                    <Stars rating={tool.rating} />
-                    <span className="text-[13px] font-semibold text-foreground">{tool.rating}</span>
-                    <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k)</span>
+                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-4 line-clamp-2">{tool.tagline}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <Stars rating={tool.rating} />
+                      <span className="text-[13px] font-semibold text-foreground">{tool.rating.toFixed(1)}</span>
+                      <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k)</span>
+                    </div>
+                    <span className="text-[12px] font-semibold text-blue-600">Visit →</span>
                   </div>
-                  <Link
-                    href={`/go/${tool.slug}`}
-                    target="_blank"
-                    rel="noopener noreferrer sponsored"
-                    className="text-[12px] font-semibold text-blue-600 hover:text-blue-700"
-                  >
-                    Visit →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* BROWSE BY CATEGORY */}
         <section>
@@ -216,7 +278,7 @@ export default function HomePage() {
             {mockCategories.map(cat => (
               <Link
                 key={cat.id}
-                href={`/categories/${cat.slug}`}
+                href={`/tools?category=${cat.slug}`}
                 className="bg-card border border-border rounded-xl flex items-center gap-3 px-4 py-3 transition-all duration-150 hover:border-blue-300 hover:bg-[#EFF6FF] dark:hover:bg-[#1E3A5F] hover:-translate-y-px"
               >
                 <span className="text-2xl flex-shrink-0">{cat.emoji}</span>
@@ -256,7 +318,7 @@ export default function HomePage() {
                   ))}
                 </ol>
                 <Link
-                  href={`/top-10/${list.title.toLowerCase().replace(/ /g, '-')}`}
+                  href={`/tools?category=${list.title.toLowerCase().replace(/ /g, '-')}`}
                   className="mt-4 block text-center text-[12px] font-semibold py-2 rounded-lg border border-border hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-muted-foreground"
                 >
                   See all {list.count} →
@@ -271,12 +333,10 @@ export default function HomePage() {
           <SectionHeader eyebrow="Head-to-Head" title="Top Comparisons" viewAll="All 185+ →" viewAllHref="/compare" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {mockComparisons.map(cmp => {
-              const toolA = mockTools.find(t => t.slug === cmp.tool_a)
-              const toolB = mockTools.find(t => t.slug === cmp.tool_b)
-              const nameA = toolA?.name ?? cmp.tool_a
-              const nameB = toolB?.name ?? cmp.tool_b
-              const logoA = toolA?.logo_url ?? `https://www.google.com/s2/favicons?domain=${cmp.tool_a}.com&sz=64`
-              const logoB = toolB?.logo_url ?? `https://www.google.com/s2/favicons?domain=${cmp.tool_b}.com&sz=64`
+              const logoA = `https://www.google.com/s2/favicons?domain=${cmp.tool_a}.com&sz=64`
+              const logoB = `https://www.google.com/s2/favicons?domain=${cmp.tool_b}.com&sz=64`
+              const nameA = cmp.tool_a.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+              const nameB = cmp.tool_b.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
               return (
                 <Link
                   key={cmp.slug}
@@ -305,72 +365,76 @@ export default function HomePage() {
         </section>
 
         {/* TRENDING */}
-        <section>
-          <SectionHeader eyebrow="This Week" eyebrowColor="#F59E0B" title="Trending Tools" viewAll="View all →" viewAllHref="/tools?sort=trending" />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-            {mockTrending.map(({ rank, tool }) => (
-              <div
-                key={tool.id}
-                className="bg-card border border-border rounded-xl flex items-center gap-4 p-4 transition-all duration-150 hover:border-blue-300 hover:shadow-sm"
-              >
-                <span
-                  className="text-base font-bold w-5 text-center flex-shrink-0"
-                  style={{ color: rank === 1 ? '#F59E0B' : rank === 2 ? '#9CA3AF' : rank === 3 ? '#92400E' : '#D1D5DB' }}
+        {trending.length > 0 && (
+          <section>
+            <SectionHeader eyebrow="This Week" eyebrowColor="#F59E0B" title="Trending Tools" viewAll="View all →" viewAllHref="/tools?sort=trending" />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+              {trending.map((tool, i) => (
+                <div
+                  key={tool.id}
+                  className="bg-card border border-border rounded-xl flex items-center gap-4 p-4 transition-all duration-150 hover:border-blue-300 hover:shadow-sm"
                 >
-                  {rank}
-                </span>
-                <ToolLogo url={tool.logo_url} name={tool.name} size={34} />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-[13.5px] font-semibold text-foreground">{tool.name}</span>
-                    <PricingBadge type={tool.pricing_type} />
+                  <span
+                    className="text-base font-bold w-5 text-center flex-shrink-0"
+                    style={{ color: i === 0 ? '#F59E0B' : i === 1 ? '#9CA3AF' : i === 2 ? '#92400E' : '#D1D5DB' }}
+                  >
+                    {i + 1}
+                  </span>
+                  <ToolLogo url={tool.logo_url} name={tool.name} size={34} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="text-[13.5px] font-semibold text-foreground">{tool.name}</span>
+                      <PricingBadge type={tool.pricing_type} />
+                    </div>
+                    <div className="text-[12px] text-muted-foreground">
+                      {tool.tags?.[0] ?? ''} · {tool.rating.toFixed(1)} stars · {(tool.review_count / 1000).toFixed(1)}k reviews
+                    </div>
                   </div>
-                  <div className="text-[12px] text-muted-foreground">
-                    {tool.category[0]?.name} · {tool.rating} stars · {(tool.review_count / 1000).toFixed(1)}k reviews
-                  </div>
+                  <Link
+                    href={`/go/${tool.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    className="text-[12px] font-semibold text-blue-600 hover:text-blue-700 flex-shrink-0"
+                  >
+                    Visit →
+                  </Link>
                 </div>
-                <Link
-                  href={`/go/${tool.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer sponsored"
-                  className="text-[12px] font-semibold text-blue-600 hover:text-blue-700 flex-shrink-0"
-                >
-                  Visit →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* FREE TOOLS */}
-        <section>
-          <SectionHeader eyebrow="No Credit Card" eyebrowColor="#10B981" title="Free & Freemium Tools" viewAll="View all free →" viewAllHref="/tools?filter=free" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {mockFreeTools.map(tool => (
-              <div
-                key={tool.id}
-                className="bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300"
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <ToolLogo url={tool.logo_url} name={tool.name} />
-                  <div>
-                    <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
-                    <PricingBadge type={tool.pricing_type} />
-                  </div>
-                </div>
-                <p className="text-[13px] text-muted-foreground leading-relaxed mb-3 line-clamp-2">{tool.tagline}</p>
-                <Link
-                  href={`/go/${tool.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer sponsored"
-                  className="text-[12px] font-semibold text-blue-600 hover:text-blue-700"
+        {freeTools.length > 0 && (
+          <section>
+            <SectionHeader eyebrow="No Credit Card" eyebrowColor="#10B981" title="Free & Freemium Tools" viewAll="View all free →" viewAllHref="/tools?pricing=free" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {freeTools.map(tool => (
+                <div
+                  key={tool.id}
+                  className="bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300"
                 >
-                  Try free →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
+                  <div className="flex items-center gap-3 mb-3">
+                    <ToolLogo url={tool.logo_url} name={tool.name} />
+                    <div>
+                      <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
+                      <PricingBadge type={tool.pricing_type} />
+                    </div>
+                  </div>
+                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-3 line-clamp-2">{tool.tagline}</p>
+                  <Link
+                    href={`/go/${tool.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    className="text-[12px] font-semibold text-blue-600 hover:text-blue-700"
+                  >
+                    Try free →
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* NEWSLETTER */}
         <section>

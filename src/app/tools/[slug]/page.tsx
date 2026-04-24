@@ -26,6 +26,9 @@ interface ToolRow {
   trending: boolean
   editor_pick: boolean
   tags: string[] | null
+  pros: string[] | null
+  cons: string[] | null
+  use_cases: string[] | null
   updated_at: string
 }
 
@@ -235,6 +238,56 @@ export default async function ToolPage({
                 <p className="text-[15px] text-muted-foreground leading-relaxed">
                   {tool.tagline} Visit the official site to learn more about features, pricing, and integrations.
                 </p>
+              </section>
+            )}
+
+            {/* Pros & Cons */}
+            {((tool.pros && tool.pros.length > 0) || (tool.cons && tool.cons.length > 0)) && (
+              <section>
+                <h2 className="text-[18px] font-bold text-foreground mb-4">Pros & Cons</h2>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {tool.pros && tool.pros.length > 0 && (
+                    <div className="border border-border rounded-xl p-4 bg-card">
+                      <p className="text-[12px] font-bold uppercase tracking-wide text-[#10B981] mb-3">Pros</p>
+                      <ul className="space-y-2">
+                        {tool.pros.map((pro, i) => (
+                          <li key={i} className="flex items-start gap-2 text-[13px] text-foreground">
+                            <span className="text-[#10B981] mt-0.5 flex-shrink-0">✓</span>
+                            {pro}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {tool.cons && tool.cons.length > 0 && (
+                    <div className="border border-border rounded-xl p-4 bg-card">
+                      <p className="text-[12px] font-bold uppercase tracking-wide text-[#EF4444] mb-3">Cons</p>
+                      <ul className="space-y-2">
+                        {tool.cons.map((con, i) => (
+                          <li key={i} className="flex items-start gap-2 text-[13px] text-foreground">
+                            <span className="text-[#EF4444] mt-0.5 flex-shrink-0">✗</span>
+                            {con}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </section>
+            )}
+
+            {/* Use Cases */}
+            {tool.use_cases && tool.use_cases.length > 0 && (
+              <section>
+                <h2 className="text-[18px] font-bold text-foreground mb-3">Best Use Cases</h2>
+                <ul className="space-y-2">
+                  {tool.use_cases.map((uc, i) => (
+                    <li key={i} className="flex items-start gap-2 text-[14px] text-muted-foreground">
+                      <span className="text-blue-600 mt-0.5 flex-shrink-0">→</span>
+                      {uc}
+                    </li>
+                  ))}
+                </ul>
               </section>
             )}
 
