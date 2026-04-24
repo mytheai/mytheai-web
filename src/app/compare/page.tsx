@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { createStaticClient } from '@/lib/supabase'
 import type { Metadata } from 'next'
 
-export const revalidate = 86400
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'AI Tool Comparisons 2026 — Side-by-Side Reviews | MytheAi',
