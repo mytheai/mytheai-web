@@ -45,6 +45,29 @@ async function getTool(slug: string): Promise<ToolRow | null> {
   return data as ToolRow
 }
 
+interface AltTool {
+  id: string
+  slug: string
+  name: string
+  tagline: string
+  logo_url: string | null
+  pricing_type: string
+  rating: number
+}
+
+async function getAlternatives(currentSlug: string, tags: string[]): Promise<AltTool[]> {
+  if (!tags || tags.length === 0) return []
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from('tools')
+    .select('id, slug, name, tagline, logo_url, pricing_type, rating')
+    .contains('tags', [tags[0]])
+    .neq('slug', currentSlug)
+    .order('rating', { ascending: false })
+    .limit(3)
+  return (data ?? []) as AltTool[]
+}
+
 export async function generateStaticParams() {
   const supabase = createStaticClient()
   const { data } = await supabase.from('tools').select('slug')
@@ -109,6 +132,7 @@ export default async function ToolPage({
   const tool = await getTool(slug)
   if (!tool) notFound()
 
+  const alternatives = await getAlternatives(slug, tool.tags ?? [])
   const year = new Date().getFullYear()
   const updatedDate = new Date(tool.updated_at).toLocaleDateString('en-US', {
     month: 'long', year: 'numeric',
@@ -378,6 +402,35 @@ export default async function ToolPage({
             </p>
           </div>
         </div>
+
+        {/* Alternatives */}
+        {alternatives.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-border">
+            <h2 className="text-[18px] font-bold text-foreground mb-4">
+              Alternatives to {tool.name}
+            </h2>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {alternatives.map(alt => (
+                <Link
+                  key={alt.slug}
+                  href={`/tools/${alt.slug}`}
+                  className="flex items-start gap-3 p-4 rounded-xl border border-border bg-card hover:border-blue-300 transition-colors"
+                >
+                  {alt.logo_url && (
+                    <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      <Image src={alt.logo_url} alt={alt.name} width={28} height={28} unoptimized />
+                    </div>
+                  )}
+                  <div className="min-w-0">
+                    <p className="text-[13px] font-semibold text-foreground truncate">{alt.name}</p>
+                    <p className="text-[12px] text-muted-foreground line-clamp-2">{alt.tagline}</p>
+                    <p className="text-[11px] text-[#F59E0B] mt-1">★ {alt.rating.toFixed(1)}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Review title for SEO */}
         <div className="mt-12 pt-8 border-t border-border">

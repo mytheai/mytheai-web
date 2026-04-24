@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const CATEGORIES = [
   { slug: 'ai-assistants', emoji: '🧠', name: 'AI Assistants' },
@@ -26,6 +27,20 @@ export default function FilterBar() {
   const params = useSearchParams()
   const activeCategory = params.get('category') ?? ''
   const activePricing = params.get('pricing') ?? ''
+  const [search, setSearch] = useState(params.get('q') ?? '')
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const next = new URLSearchParams(params.toString())
+      if (search) {
+        next.set('q', search)
+      } else {
+        next.delete('q')
+      }
+      router.push(`/tools?${next.toString()}`)
+    }, 400)
+    return () => clearTimeout(timer)
+  }, [search]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function setFilter(key: string, value: string) {
     const next = new URLSearchParams(params.toString())
@@ -39,6 +54,14 @@ export default function FilterBar() {
 
   return (
     <div className="space-y-3 mb-8">
+      {/* Search input */}
+      <input
+        type="search"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+        placeholder="Search tools..."
+        className="w-full max-w-sm px-4 py-2 rounded-lg border border-border bg-card text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-colors"
+      />
       {/* Category filter */}
       <div className="flex flex-wrap gap-2">
         <button

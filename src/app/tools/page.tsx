@@ -11,7 +11,7 @@ export const metadata = {
   description: 'Browse and filter 500+ AI & SaaS tools by category, pricing, and rating. Find the right tool for your workflow.',
 }
 
-async function getTools(category?: string, pricing?: string): Promise<Tool[]> {
+async function getTools(category?: string, pricing?: string, q?: string): Promise<Tool[]> {
   const supabase = await createClient()
   let query = supabase.from('tools').select('*')
     .order('featured', { ascending: false })
@@ -19,6 +19,7 @@ async function getTools(category?: string, pricing?: string): Promise<Tool[]> {
 
   if (category) query = query.contains('tags', [category])
   if (pricing) query = query.eq('pricing_type', pricing)
+  if (q) query = query.or(`name.ilike.%${q}%,tagline.ilike.%${q}%`)
 
   const { data, error } = await query
   if (error || !data) return []
@@ -56,10 +57,10 @@ async function getTools(category?: string, pricing?: string): Promise<Tool[]> {
 export default async function ToolsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; pricing?: string }>
+  searchParams: Promise<{ category?: string; pricing?: string; q?: string }>
 }) {
-  const { category, pricing } = await searchParams
-  const tools = await getTools(category, pricing)
+  const { category, pricing, q } = await searchParams
+  const tools = await getTools(category, pricing, q)
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
@@ -93,6 +94,7 @@ export default async function ToolsPage({
 
       <p className="mt-8 text-[13px] text-muted-foreground">
         Showing {tools.length} tool{tools.length !== 1 ? 's' : ''}
+        {q ? ` for "${q}"` : ''}
         {category ? ` in ${category}` : ''}
         {pricing ? ` · ${pricing}` : ''}
       </p>
