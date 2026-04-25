@@ -250,6 +250,118 @@ const ArticleChatgptVsClaude = (
   </div>
 )
 
+// --- Article 3: How to Build Your AI Stack ---
+
+const ArticleHowToBuildYourAiStack = (
+  <div className="prose-article">
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
+      Most people build their AI stack the wrong way — they sign up for every tool they see on social
+      media, end up paying for five subscriptions that overlap, and still feel like they are not getting
+      the value they expected. The problem is not the tools. It is the order in which you choose them.
+    </p>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-8">
+      This guide walks you through a role-based, budget-aware approach to assembling an AI stack that
+      actually fits your workflow — without redundancy or wasted spend.
+    </p>
+
+    <h2 className="text-[20px] font-bold text-foreground mt-8 mb-3">Start with One Core Assistant</h2>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
+      Before adding any specialized tools, pick one general-purpose AI assistant and commit to it for
+      at least two weeks. This is the tool you will use for drafting, summarising, brainstorming, and
+      answering questions — the foundation everything else builds on.
+    </p>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
+      The two strongest options are{' '}
+      <Link href="/tools/claude" className="text-blue-600 hover:underline">Claude</Link> and{' '}
+      <Link href="/tools/chatgpt" className="text-blue-600 hover:underline">ChatGPT</Link>. Both have
+      capable free tiers. Claude tends to be stronger for long documents, analysis, and structured
+      writing. ChatGPT has a broader plugin ecosystem and built-in image generation. Pick one, learn
+      it well, and resist the urge to use both interchangeably — consistency builds skill faster.
+    </p>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-6">
+      If your work is research-heavy, add{' '}
+      <Link href="/tools/perplexity" className="text-blue-600 hover:underline">Perplexity AI</Link>{' '}
+      as a second tab — it searches the live web and cites every source, which makes it a better
+      research tool than any LLM used alone.
+    </p>
+
+    <h2 className="text-[20px] font-bold text-foreground mt-8 mb-3">Layer in Role-Specific Tools</h2>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-3">
+      Once your core assistant is part of your daily routine, add one tool per category based on your
+      role. The key word is one — resist stacking multiple tools in the same category until you have
+      outgrown the first.
+    </p>
+
+    <p className="text-[14px] font-semibold text-foreground mb-2">Marketers & Content Creators</p>
+    <ul className="space-y-2 mb-5 text-[15px] text-muted-foreground list-disc list-inside">
+      <li><Link href="/tools/grammarly" className="text-blue-600 hover:underline">Grammarly</Link> — editing and tone correction, free tier is genuinely sufficient for most needs</li>
+      <li><Link href="/tools/canva-ai" className="text-blue-600 hover:underline">Canva AI</Link> — visual content without a designer; AI image generation built in</li>
+      <li><Link href="/tools/surfer-seo" className="text-blue-600 hover:underline">Surfer SEO</Link> — if you publish content for search, this optimises as you write</li>
+    </ul>
+
+    <p className="text-[14px] font-semibold text-foreground mb-2">Developers</p>
+    <ul className="space-y-2 mb-5 text-[15px] text-muted-foreground list-disc list-inside">
+      <li><Link href="/tools/cursor" className="text-blue-600 hover:underline">Cursor</Link> — AI-native editor with full codebase context; the highest-leverage tool a developer can add</li>
+      <li><Link href="/tools/github-copilot" className="text-blue-600 hover:underline">GitHub Copilot</Link> — if you prefer staying in your current IDE, Copilot integrates without workflow disruption</li>
+    </ul>
+
+    <p className="text-[14px] font-semibold text-foreground mb-2">Founders & Operators</p>
+    <ul className="space-y-2 mb-5 text-[15px] text-muted-foreground list-disc list-inside">
+      <li><Link href="/tools/notion-ai" className="text-blue-600 hover:underline">Notion AI</Link> — if your team already runs on Notion, the AI layer adds serious leverage to your existing workspace</li>
+      <li><Link href="/tools/zapier" className="text-blue-600 hover:underline">Zapier</Link> or <Link href="/tools/make" className="text-blue-600 hover:underline">Make</Link> — automate repetitive handoffs between tools; Zapier for simplicity, Make for complex workflows</li>
+    </ul>
+
+    <p className="text-[14px] font-semibold text-foreground mb-2">Designers</p>
+    <ul className="space-y-2 mb-6 text-[15px] text-muted-foreground list-disc list-inside">
+      <li><Link href="/tools/figma" className="text-blue-600 hover:underline">Figma</Link> — still the standard for UI design; its AI features are catching up fast</li>
+      <li><Link href="/tools/midjourney" className="text-blue-600 hover:underline">Midjourney</Link> — for mood boards, concept exploration, and reference generation that clients can react to</li>
+    </ul>
+
+    <h2 className="text-[20px] font-bold text-foreground mt-8 mb-3">Budget Tiers: What to Pay For</h2>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-3">
+      Not every tool needs to be paid. Here is a practical framework:
+    </p>
+
+    <p className="text-[14px] font-semibold text-foreground mb-2">Free ($0/month)</p>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
+      Start here for every tool. Claude, ChatGPT, Perplexity, Grammarly, and Canva all have free tiers
+      that are genuinely useful. Do not pay for anything until you have hit a real limitation — running
+      out of credits, needing a feature locked behind paywall, or spending significant time working
+      around a restriction.
+    </p>
+
+    <p className="text-[14px] font-semibold text-foreground mb-2">Focused ($20–50/month)</p>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
+      One or two paid upgrades for tools you use every single day. A Claude Pro or ChatGPT Plus
+      subscription ($20/month) is the highest-ROI upgrade for most knowledge workers. A coding tool
+      like Cursor ($20/month) pays for itself in hours saved within the first week for most developers.
+    </p>
+
+    <p className="text-[14px] font-semibold text-foreground mb-2">Professional ($100–200/month)</p>
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-6">
+      Reserved for tools that directly generate revenue or save significant team time. SEO tools like{' '}
+      <Link href="/tools/semrush" className="text-blue-600 hover:underline">SEMrush</Link> or{' '}
+      <Link href="/tools/ahrefs" className="text-blue-600 hover:underline">Ahrefs</Link> fall here —
+      expensive per seat, but the organic traffic value justifies the cost if you publish consistently.
+      Automate the ROI calculation: if a tool saves 5 hours/month at your hourly rate, it has paid for itself.
+    </p>
+
+    <h2 className="text-[20px] font-bold text-foreground mt-8 mb-3">Three Rules to Avoid Tool Bloat</h2>
+    <ul className="space-y-3 mb-6 text-[15px] text-muted-foreground">
+      <li><strong className="text-foreground">One tool per job.</strong> If two tools in your stack do the same thing, cancel the one you use less. Overlap kills focus and burns budget.</li>
+      <li><strong className="text-foreground">Try before you pay.</strong> Almost every tool worth using has a free tier. Run the free version for at least two weeks before upgrading. If you forget to use it, you do not need it.</li>
+      <li><strong className="text-foreground">Audit quarterly.</strong> Set a reminder every three months to review what you are actually using. AI tools evolve fast — a tool you needed six months ago may now be redundant with a capability added to your core assistant.</li>
+    </ul>
+
+    <p className="text-[15px] text-muted-foreground leading-relaxed">
+      Browse tools by category to find what fits your role:{' '}
+      <Link href="/categories" className="text-blue-600 hover:underline">Browse all categories →</Link>
+      {' '}or filter by free tier:{' '}
+      <Link href="/tools?pricing=free" className="text-blue-600 hover:underline">Free AI tools →</Link>
+    </p>
+  </div>
+)
+
 // --- Article registry ---
 
 const ARTICLES: Article[] = [
@@ -270,6 +382,15 @@ const ARTICLES: Article[] = [
     date: 'April 15, 2026',
     readTime: '8 min read',
     content: ArticleChatgptVsClaude,
+  },
+  {
+    slug: 'how-to-build-your-ai-stack',
+    title: 'How to Build the Perfect AI Stack for Your Workflow',
+    excerpt: 'The right combination of AI tools can 10x your output. Here is how to pick tools that complement each other without overlapping — for any role or budget.',
+    category: 'Guide',
+    date: 'April 8, 2026',
+    readTime: '7 min read',
+    content: ArticleHowToBuildYourAiStack,
   },
 ]
 

@@ -39,7 +39,7 @@ const POSTS = [
     category: 'Guide',
     date: 'April 8, 2026',
     readTime: '7 min read',
-    live: false,
+    live: true,
   },
 ]
 
