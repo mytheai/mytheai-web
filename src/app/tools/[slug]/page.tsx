@@ -220,6 +220,9 @@ export default async function ToolPage({
                 <span className="text-[12px] font-semibold text-[#F59E0B]">🔥 Trending</span>
               )}
             </div>
+            <p className="text-[12px] text-muted-foreground mt-2">
+              Last verified: {updatedDate}
+            </p>
           </div>
         </div>
 
@@ -251,25 +254,23 @@ export default async function ToolPage({
           <div className="md:col-span-2 space-y-8">
 
             {/* Description */}
-            {tool.description ? (
-              <section>
-                <h2 className="text-[18px] font-bold text-foreground mb-3">
-                  About {tool.name}
-                </h2>
-                <p className="text-[15px] text-muted-foreground leading-relaxed">
-                  {tool.description}
-                </p>
-              </section>
-            ) : (
-              <section>
-                <h2 className="text-[18px] font-bold text-foreground mb-3">
-                  About {tool.name}
-                </h2>
-                <p className="text-[15px] text-muted-foreground leading-relaxed">
-                  {tool.tagline} Visit the official site to learn more about features, pricing, and integrations.
-                </p>
-              </section>
-            )}
+            <section>
+              <h2 className="text-[18px] font-bold text-foreground mb-3">
+                About {tool.name}
+              </h2>
+              {tool.description
+                ? (tool.description || '').split('\n\n').filter(Boolean).map((para, i) => (
+                    <p key={i} className="text-[15px] text-muted-foreground leading-relaxed mb-3 last:mb-0">
+                      {para}
+                    </p>
+                  ))
+                : (
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">
+                    {tool.tagline} Visit the official site to learn more about features, pricing, and integrations.
+                  </p>
+                )
+              }
+            </section>
 
             {/* Pros & Cons */}
             {((tool.pros && tool.pros.length > 0) || (tool.cons && tool.cons.length > 0)) && (

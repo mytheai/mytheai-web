@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const revalidate = 604800
 
@@ -20,6 +21,7 @@ const POSTS = [
     category: 'Roundup',
     date: 'April 20, 2026',
     readTime: '6 min read',
+    live: true,
   },
   {
     slug: 'chatgpt-vs-claude',
@@ -28,6 +30,7 @@ const POSTS = [
     category: 'Comparison',
     date: 'April 15, 2026',
     readTime: '8 min read',
+    live: true,
   },
   {
     slug: 'how-to-build-your-ai-stack',
@@ -36,6 +39,7 @@ const POSTS = [
     category: 'Guide',
     date: 'April 8, 2026',
     readTime: '7 min read',
+    live: false,
   },
 ]
 
@@ -90,9 +94,18 @@ export default function BlogPage() {
               {post.excerpt}
             </p>
 
-            <span className="text-[13px] font-semibold text-muted-foreground cursor-default">
-              Coming soon
-            </span>
+            {post.live ? (
+              <Link
+                href={`/blog/${post.slug}`}
+                className="text-[13px] font-semibold text-blue-600 hover:underline"
+              >
+                Read article →
+              </Link>
+            ) : (
+              <span className="text-[13px] font-semibold text-muted-foreground cursor-default">
+                Coming soon
+              </span>
+            )}
           </article>
         ))}
       </div>

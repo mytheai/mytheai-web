@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 const CATEGORIES = [
   { slug: 'ai-assistants', emoji: '🧠', name: 'AI Assistants' },
@@ -87,6 +88,12 @@ export default function FilterBar() {
             {cat.emoji} {cat.name}
           </button>
         ))}
+        <Link
+          href="/categories"
+          className="px-3 py-1.5 rounded-lg text-[13px] font-medium text-muted-foreground hover:text-blue-600 transition-colors"
+        >
+          Browse all →
+        </Link>
       </div>
 
       {/* Pricing filter */}
