@@ -73,11 +73,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!a || !b) return { title: 'Comparison not found | MytheAi' }
   const year = new Date().getFullYear()
   const title = `${a.name} vs ${b.name} (${year}) — Full Comparison | MytheAi`
+  const description = result.cmp.summary?.slice(0, 155) ?? `${a.name} vs ${b.name} — side-by-side feature and pricing comparison.`
+
+  const ogUrl = new URL('https://mytheai.com/api/og/compare')
+  ogUrl.searchParams.set('nameA', a.name)
+  ogUrl.searchParams.set('nameB', b.name)
+  if (a.logo_url) ogUrl.searchParams.set('logoA', a.logo_url)
+  if (b.logo_url) ogUrl.searchParams.set('logoB', b.logo_url)
+
   return {
     title,
-    description: result.cmp.summary?.slice(0, 155) ?? `${a.name} vs ${b.name} — side-by-side feature and pricing comparison.`,
+    description,
     alternates: { canonical: `https://mytheai.com/compare/${slug}` },
-    openGraph: { title, url: `https://mytheai.com/compare/${slug}` },
+    openGraph: { title, description, url: `https://mytheai.com/compare/${slug}`, images: [{ url: ogUrl.toString(), width: 1200, height: 630 }] },
+    twitter: { card: 'summary_large_image', title, description, images: [ogUrl.toString()] },
   }
 }
 

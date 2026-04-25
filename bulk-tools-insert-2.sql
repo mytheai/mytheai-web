@@ -21,14 +21,6 @@ insert into tools (slug, name, tagline, logo_url, website_url, affiliate_url, pr
  ARRAY['Landing page creation with AI assistance','Portfolio and personal site building','Startup marketing websites','Interactive prototypes for client presentations']),
 
 -- Productivity / Notes
-('notion-ai', 'Notion AI', 'AI writing and thinking assistant built directly into your Notion workspace.',
- 'https://www.google.com/s2/favicons?domain=notion.so&sz=64', 'https://notion.so', 'https://notion.so',
- 'freemium', true, 10, 4.6, 19200, false, false, true,
- ARRAY['productivity','writing-ai'],
- ARRAY['AI deeply integrated into notes and docs','Summarize, translate, and rewrite within workspace','Works across all Notion blocks and databases','No context switching between tools'],
- ARRAY['Requires Notion subscription for AI features','AI quality slightly below dedicated tools','Can slow down on large workspaces'],
- ARRAY['Summarizing meeting notes and documents','Drafting project plans and briefs','Translating content into other languages','Auto-filling databases from unstructured text']),
-
 ('airtable', 'Airtable', 'The flexible database-spreadsheet hybrid with AI for automations and data organization.',
  'https://www.google.com/s2/favicons?domain=airtable.com&sz=64', 'https://airtable.com', 'https://airtable.com',
  'freemium', true, 20, 4.5, 14600, false, false, false,
