@@ -23,11 +23,18 @@ const PRICING = [
   { value: 'ltd', label: 'LTD' },
 ]
 
+const SORT_OPTIONS = [
+  { value: '', label: 'Top Rated' },
+  { value: 'newest', label: 'Newest' },
+  { value: 'name', label: 'Name A-Z' },
+]
+
 export default function FilterBar() {
   const router = useRouter()
   const params = useSearchParams()
   const activeCategory = params.get('category') ?? ''
   const activePricing = params.get('pricing') ?? ''
+  const activeSort = params.get('sort') ?? ''
   const [search, setSearch] = useState(params.get('q') ?? '')
 
   useEffect(() => {
@@ -96,8 +103,8 @@ export default function FilterBar() {
         </Link>
       </div>
 
-      {/* Pricing filter */}
-      <div className="flex flex-wrap gap-2">
+      {/* Pricing filter + Sort */}
+      <div className="flex flex-wrap items-center gap-2">
         {PRICING.map(p => (
           <button
             key={p.value}
@@ -111,6 +118,19 @@ export default function FilterBar() {
             {p.label}
           </button>
         ))}
+        <span className="text-border mx-1 hidden sm:inline">|</span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-[12px] text-muted-foreground">Sort:</span>
+          <select
+            value={activeSort}
+            onChange={e => setFilter('sort', e.target.value)}
+            className="px-2 py-1 rounded-lg border border-border bg-card text-[12px] text-foreground focus:outline-none focus:border-blue-400 cursor-pointer"
+          >
+            {SORT_OPTIONS.map(o => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   )

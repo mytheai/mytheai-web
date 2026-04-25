@@ -46,6 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mytheai.com/blog/chatgpt-vs-claude', lastModified: new Date('2026-04-15'), changeFrequency: 'monthly', priority: 0.7 },
     { url: 'https://mytheai.com/blog/how-to-build-your-ai-stack', lastModified: new Date('2026-04-08'), changeFrequency: 'monthly', priority: 0.7 },
     { url: 'https://mytheai.com/blog/best-ai-tools-for-startups-2026', lastModified: new Date('2026-05-01'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: 'https://mytheai.com/blog/chatgpt-vs-claude-vs-gemini-2026', lastModified: new Date('2026-05-10'), changeFrequency: 'monthly', priority: 0.7 },
   ]
 
   return [

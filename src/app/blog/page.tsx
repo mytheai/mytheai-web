@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { readFileSync, readdirSync } from 'fs'
+import { join } from 'path'
+import matter from 'gray-matter'
 
 export const revalidate = 604800
 
@@ -13,51 +16,37 @@ export const metadata: Metadata = {
   },
 }
 
-const POSTS = [
-  {
-    slug: 'best-free-ai-tools-2026',
-    title: 'Best Free AI Tools in 2026 (No Credit Card Required)',
-    excerpt: 'A curated list of the best AI tools you can start using today for free — covering writing, image generation, coding, productivity, and more.',
-    category: 'Roundup',
-    date: 'April 20, 2026',
-    readTime: '6 min read',
-    live: true,
-  },
-  {
-    slug: 'chatgpt-vs-claude',
-    title: 'ChatGPT vs Claude: Which AI Assistant Is Better in 2026?',
-    excerpt: "We put OpenAI's ChatGPT and Anthropic's Claude head to head across writing, reasoning, coding, and pricing. Here's what we found.",
-    category: 'Comparison',
-    date: 'April 15, 2026',
-    readTime: '8 min read',
-    live: true,
-  },
-  {
-    slug: 'how-to-build-your-ai-stack',
-    title: 'How to Build the Perfect AI Stack for Your Workflow',
-    excerpt: 'The right combination of AI tools can 10x your output. Here is how to pick tools that complement each other without overlapping — for any role or budget.',
-    category: 'Guide',
-    date: 'April 8, 2026',
-    readTime: '7 min read',
-    live: true,
-  },
-  {
-    slug: 'best-ai-tools-for-startups-2026',
-    title: 'Best AI Tools for Startups in 2026 (Save Time & Money)',
-    excerpt: 'The exact AI tools top-performing startups use to outproduce larger teams — organised by stage and function, with free options at every level.',
-    category: 'Guide',
-    date: 'May 1, 2026',
-    readTime: '7 min read',
-    live: true,
-  },
-]
+const CONTENT_DIR = join(process.cwd(), 'content/blog')
+
+interface PostMeta {
+  slug: string
+  title: string
+  excerpt: string
+  category: string
+  date: string
+  readTime: string
+}
+
+function getAllPosts(): PostMeta[] {
+  try {
+    const files = readdirSync(CONTENT_DIR).filter(f => f.endsWith('.mdx'))
+    const posts = files.map(file => {
+      const slug = file.replace('.mdx', '')
+      const raw = readFileSync(join(CONTENT_DIR, file), 'utf-8')
+      const { data } = matter(raw)
+      return { slug, ...(data as Omit<PostMeta, 'slug'>) }
+    })
+    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  } catch {
+    return []
+  }
+}
 
 const CATEGORY_COLORS: Record<string, string> = {
   Roundup: '#DBEAFE',
   Comparison: '#FEF3C7',
   Guide: '#D1FAE5',
 }
-
 const CATEGORY_TEXT: Record<string, string> = {
   Roundup: '#1E40AF',
   Comparison: '#92400E',
@@ -65,6 +54,8 @@ const CATEGORY_TEXT: Record<string, string> = {
 }
 
 export default function BlogPage() {
+  const posts = getAllPosts()
+
   return (
     <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
@@ -79,7 +70,7 @@ export default function BlogPage() {
       </div>
 
       <div className="space-y-6">
-        {POSTS.map(post => (
+        {posts.map(post => (
           <article
             key={post.slug}
             className="border border-border rounded-xl p-6 bg-card hover:border-[#93C5FD] transition-colors"
@@ -87,7 +78,10 @@ export default function BlogPage() {
             <div className="flex items-center gap-3 mb-3">
               <span
                 className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                style={{ background: CATEGORY_COLORS[post.category], color: CATEGORY_TEXT[post.category] }}
+                style={{
+                  background: CATEGORY_COLORS[post.category] ?? '#F3F4F6',
+                  color: CATEGORY_TEXT[post.category] ?? '#374151',
+                }}
               >
                 {post.category}
               </span>
@@ -103,18 +97,12 @@ export default function BlogPage() {
               {post.excerpt}
             </p>
 
-            {post.live ? (
-              <Link
-                href={`/blog/${post.slug}`}
-                className="text-[13px] font-semibold text-blue-600 hover:underline"
-              >
-                Read article →
-              </Link>
-            ) : (
-              <span className="text-[13px] font-semibold text-muted-foreground cursor-default">
-                Coming soon
-              </span>
-            )}
+            <Link
+              href={`/blog/${post.slug}`}
+              className="text-[13px] font-semibold text-blue-600 hover:underline"
+            >
+              Read article →
+            </Link>
           </article>
         ))}
       </div>

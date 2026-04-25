@@ -4,6 +4,7 @@ import { createStaticClient } from '@/lib/supabase'
 import { mockCategories } from '@/data/mock'
 import { TOP10_LISTS } from '@/data/top10'
 import type { Tool } from '@/types'
+import NewsletterForm from '@/components/newsletter/NewsletterForm'
 
 export const revalidate = 21600
 
@@ -82,7 +83,7 @@ interface Top10ToolMeta { slug: string; name: string; logo_url: string | null; p
 
 async function getTop10Data() {
   const supabase = createStaticClient()
-  const listsToShow = TOP10_LISTS.slice(0, 3)
+  const listsToShow = TOP10_LISTS.slice(0, 6)
   const allSlugs = [...new Set(listsToShow.flatMap(l => l.slugs))]
   const { data } = await supabase.from('tools').select('slug,name,logo_url,pricing_type').in('slug', allSlugs)
   const toolMap: Record<string, Top10ToolMeta> = {}
@@ -447,16 +448,7 @@ export default async function HomePage() {
             <p className="text-[15px] text-muted-foreground mb-6 max-w-md mx-auto">
               New tools, honest reviews. Every Tuesday.
             </p>
-            <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="you@example.com"
-                className="flex-1 px-4 py-2.5 rounded-lg border border-[#BFDBFE] bg-white text-[14px] outline-none focus:border-blue-500"
-              />
-              <button className="px-5 py-2.5 rounded-lg text-white font-semibold text-[14px] bg-blue-600 hover:bg-blue-700 transition-colors whitespace-nowrap">
-                Subscribe
-              </button>
-            </div>
+            <NewsletterForm />
             <p className="text-[11px] text-muted-foreground mt-3">No spam. Unsubscribe anytime.</p>
           </div>
         </section>

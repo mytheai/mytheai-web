@@ -11,11 +11,17 @@ export const metadata = {
   description: 'Browse and filter 500+ AI & SaaS tools by category, pricing, and rating. Find the right tool for your workflow.',
 }
 
-async function getTools(category?: string, pricing?: string, q?: string): Promise<Tool[]> {
+async function getTools(category?: string, pricing?: string, q?: string, sort?: string): Promise<Tool[]> {
   const supabase = await createClient()
   let query = supabase.from('tools').select('*')
-    .order('featured', { ascending: false })
-    .order('rating', { ascending: false })
+
+  if (sort === 'newest') {
+    query = query.order('updated_at', { ascending: false })
+  } else if (sort === 'name') {
+    query = query.order('name', { ascending: true })
+  } else {
+    query = query.order('featured', { ascending: false }).order('rating', { ascending: false })
+  }
 
   if (category) query = query.contains('tags', [category])
   if (pricing) query = query.eq('pricing_type', pricing)
@@ -57,10 +63,10 @@ async function getTools(category?: string, pricing?: string, q?: string): Promis
 export default async function ToolsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; pricing?: string; q?: string }>
+  searchParams: Promise<{ category?: string; pricing?: string; q?: string; sort?: string }>
 }) {
-  const { category, pricing, q } = await searchParams
-  const tools = await getTools(category, pricing, q)
+  const { category, pricing, q, sort } = await searchParams
+  const tools = await getTools(category, pricing, q, sort)
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
