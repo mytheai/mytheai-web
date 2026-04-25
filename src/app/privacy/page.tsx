@@ -59,8 +59,8 @@ export default function PrivacyPage() {
           </p>
           <p>
             To exercise any rights or ask questions, email us at{' '}
-            <a href="mailto:hello@mytheai.com" className="text-[#2563EB] hover:underline">
-              hello@mytheai.com
+            <a href="mailto:info@mytheai.com" className="text-[#2563EB] hover:underline">
+              info@mytheai.com
             </a>.
           </p>
         </section>

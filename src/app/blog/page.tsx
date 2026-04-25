@@ -41,6 +41,15 @@ const POSTS = [
     readTime: '7 min read',
     live: true,
   },
+  {
+    slug: 'best-ai-tools-for-startups-2026',
+    title: 'Best AI Tools for Startups in 2026 (Save Time & Money)',
+    excerpt: 'The exact AI tools top-performing startups use to outproduce larger teams — organised by stage and function, with free options at every level.',
+    category: 'Guide',
+    date: 'May 1, 2026',
+    readTime: '7 min read',
+    live: true,
+  },
 ]
 
 const CATEGORY_COLORS: Record<string, string> = {

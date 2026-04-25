@@ -99,10 +99,10 @@ export default function AboutPage() {
         <p className="text-[15px] text-muted-foreground leading-relaxed">
           Questions, corrections, or tool suggestions? Reach us at{' '}
           <a
-            href="mailto:hello@mytheai.com"
+            href="mailto:info@mytheai.com"
             className="text-[#2563EB] hover:underline font-medium"
           >
-            hello@mytheai.com
+            info@mytheai.com
           </a>{' '}
           or use the{' '}
           <a href="/submit" className="text-[#2563EB] hover:underline font-medium">

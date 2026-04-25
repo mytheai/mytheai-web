@@ -191,7 +191,7 @@ export default async function HomePage() {
           </p>
 
           {/* Search */}
-          <div className="flex items-center gap-2 p-1.5 mb-5 max-w-lg mx-auto shadow-sm rounded-xl border border-border bg-card">
+          <form action="/tools" method="GET" className="flex items-center gap-2 p-1.5 mb-5 max-w-lg mx-auto shadow-sm rounded-xl border border-border bg-card">
             <span className="pl-2 text-muted-foreground">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
@@ -200,12 +200,13 @@ export default async function HomePage() {
             <input
               className="flex-1 py-2 px-1 text-sm bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
               type="text"
+              name="q"
               placeholder="Search 500+ AI & SaaS tools…"
             />
-            <button className="px-4 py-2 rounded-lg text-white text-sm font-semibold bg-blue-600 hover:bg-blue-700 transition-colors">
+            <button type="submit" className="px-4 py-2 rounded-lg text-white text-sm font-semibold bg-blue-600 hover:bg-blue-700 transition-colors">
               Search
             </button>
-          </div>
+          </form>
 
           {/* Quick links */}
           <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-2 text-[12.5px] text-muted-foreground">

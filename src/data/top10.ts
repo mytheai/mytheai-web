@@ -80,6 +80,30 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🎙️',
     slugs: ['elevenlabs', 'otter-ai', 'fireflies-ai', 'descript'],
   },
+  {
+    slug: 'best-ai-design-tools',
+    title: 'Best AI Design Tools',
+    description: 'The top AI-powered design tools for creating visuals, websites, and graphics — from professional UI designers to first-time creators.',
+    category: 'Design AI',
+    emoji: '🖌️',
+    slugs: ['figma', 'canva-ai', 'adobe-firefly', 'framer', 'midjourney'],
+  },
+  {
+    slug: 'best-ai-research-tools',
+    title: 'Best AI Research Tools',
+    description: 'The top AI tools for research, fact-finding, and knowledge synthesis — for academics, analysts, and curious professionals.',
+    category: 'Research AI',
+    emoji: '🔬',
+    slugs: ['perplexity', 'elicit', 'consensus', 'chatgpt', 'gemini'],
+  },
+  {
+    slug: 'best-ai-analytics-tools',
+    title: 'Best AI Analytics & BI Tools',
+    description: 'The top AI-powered analytics and business intelligence tools for turning data into insights without a data science degree.',
+    category: 'Analytics',
+    emoji: '📊',
+    slugs: ['tableau-ai', 'metabase', 'looker', 'hubspot', 'ahrefs'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {

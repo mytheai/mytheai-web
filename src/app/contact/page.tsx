@@ -12,8 +12,8 @@ const CONTACT_ITEMS = [
     icon: '✉️',
     title: 'General Enquiries',
     body: 'Questions about the platform, corrections to tool data, or anything else.',
-    cta: 'hello@mytheai.com',
-    href: 'mailto:hello@mytheai.com',
+    cta: 'info@mytheai.com',
+    href: 'mailto:info@mytheai.com',
   },
   {
     icon: '🔧',
@@ -26,15 +26,15 @@ const CONTACT_ITEMS = [
     icon: '🤝',
     title: 'Partnerships & Sponsorships',
     body: 'Interested in working with us? We offer sponsored content and directory placements — clearly labelled.',
-    cta: 'hello@mytheai.com',
-    href: 'mailto:hello@mytheai.com',
+    cta: 'info@mytheai.com',
+    href: 'mailto:info@mytheai.com',
   },
   {
     icon: '📰',
     title: 'Press',
     body: 'Media enquiries, data requests, or quotes for articles.',
-    cta: 'hello@mytheai.com',
-    href: 'mailto:hello@mytheai.com',
+    cta: 'info@mytheai.com',
+    href: 'mailto:info@mytheai.com',
   },
 ]
 
