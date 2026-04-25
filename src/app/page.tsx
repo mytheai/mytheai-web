@@ -67,7 +67,7 @@ async function getComparisons(): Promise<CompareCard[]> {
   const { data: cmps } = await supabase
     .from('comparisons')
     .select('slug,tool_a_slug,tool_b_slug,summary')
-    .limit(4)
+    .limit(6)
   if (!cmps || cmps.length === 0) return []
   const allSlugs = [...new Set(cmps.flatMap((c: CompareRow) => [c.tool_a_slug, c.tool_b_slug]))]
   const { data: tools } = await supabase.from('tools').select('slug,name,logo_url').in('slug', allSlugs)
