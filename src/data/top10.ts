@@ -3,6 +3,7 @@ export interface Top10List {
   title: string
   description: string
   category: string
+  emoji: string
   slugs: string[]  // ordered by rank
 }
 
@@ -12,6 +13,7 @@ export const TOP10_LISTS: Top10List[] = [
     title: 'Best AI Coding Tools',
     description: 'The top AI-powered coding assistants and editors ranked by developer adoption, code quality, and workflow integration.',
     category: 'Code AI',
+    emoji: '💻',
     slugs: ['cursor', 'github-copilot', 'tabnine', 'replit', 'mistral'],
   },
   {
@@ -19,6 +21,7 @@ export const TOP10_LISTS: Top10List[] = [
     title: 'Best AI Writing Tools',
     description: 'The top AI writing assistants for marketers, creators, and content teams — ranked by output quality, templates, and value.',
     category: 'Writing AI',
+    emoji: '✍️',
     slugs: ['grammarly', 'jasper', 'copy-ai', 'writesonic', 'surfer-seo'],
   },
   {
@@ -26,6 +29,7 @@ export const TOP10_LISTS: Top10List[] = [
     title: 'Best Free AI Tools',
     description: 'The best AI tools available completely free or with generous free tiers — no credit card required to get started.',
     category: 'Free Tools',
+    emoji: '🆓',
     slugs: ['claude', 'chatgpt', 'perplexity', 'grammarly', 'canva-ai'],
   },
   {
@@ -33,6 +37,7 @@ export const TOP10_LISTS: Top10List[] = [
     title: 'Best AI Image Generators',
     description: 'The top AI image generation tools ranked by image quality, style control, commercial licensing, and ease of use.',
     category: 'Image AI',
+    emoji: '🎨',
     slugs: ['midjourney', 'canva-ai', 'leonardo-ai', 'adobe-firefly', 'chatgpt'],
   },
   {
@@ -40,6 +45,7 @@ export const TOP10_LISTS: Top10List[] = [
     title: 'Best AI Video Tools',
     description: 'The top AI video creation and editing tools for content creators, marketers, and video professionals.',
     category: 'Video AI',
+    emoji: '🎬',
     slugs: ['runway', 'heygen', 'descript'],
   },
 ]

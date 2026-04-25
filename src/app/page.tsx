@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { createStaticClient } from '@/lib/supabase'
-import { mockCategories, mockComparisons } from '@/data/mock'
+import { mockCategories } from '@/data/mock'
+import { TOP10_LISTS } from '@/data/top10'
 import type { Tool } from '@/types'
 
 export const revalidate = 21600
@@ -55,6 +56,41 @@ async function getFreeTools(): Promise<ToolRow[]> {
     .order('rating', { ascending: false })
     .limit(4)
   return data ?? []
+}
+
+interface CompareRow { slug: string; tool_a_slug: string; tool_b_slug: string; summary: string | null }
+interface CompareToolMeta { slug: string; name: string; logo_url: string | null }
+interface CompareCard { cmp: CompareRow; toolA: CompareToolMeta; toolB: CompareToolMeta }
+
+async function getComparisons(): Promise<CompareCard[]> {
+  const supabase = createStaticClient()
+  const { data: cmps } = await supabase
+    .from('comparisons')
+    .select('slug,tool_a_slug,tool_b_slug,summary')
+    .limit(4)
+  if (!cmps || cmps.length === 0) return []
+  const allSlugs = [...new Set(cmps.flatMap((c: CompareRow) => [c.tool_a_slug, c.tool_b_slug]))]
+  const { data: tools } = await supabase.from('tools').select('slug,name,logo_url').in('slug', allSlugs)
+  const toolMap: Record<string, CompareToolMeta> = {}
+  for (const t of tools ?? []) toolMap[t.slug] = t
+  return cmps
+    .filter((c: CompareRow) => toolMap[c.tool_a_slug] && toolMap[c.tool_b_slug])
+    .map((c: CompareRow) => ({ cmp: c, toolA: toolMap[c.tool_a_slug], toolB: toolMap[c.tool_b_slug] }))
+}
+
+interface Top10ToolMeta { slug: string; name: string; logo_url: string | null; pricing_type: string }
+
+async function getTop10Data() {
+  const supabase = createStaticClient()
+  const listsToShow = TOP10_LISTS.slice(0, 3)
+  const allSlugs = [...new Set(listsToShow.flatMap(l => l.slugs))]
+  const { data } = await supabase.from('tools').select('slug,name,logo_url,pricing_type').in('slug', allSlugs)
+  const toolMap: Record<string, Top10ToolMeta> = {}
+  for (const t of data ?? []) toolMap[t.slug] = t
+  return listsToShow.map(list => ({
+    list,
+    tools: list.slugs.map(s => toolMap[s]).filter(Boolean) as Top10ToolMeta[],
+  }))
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -122,46 +158,15 @@ function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, view
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [editorPicks, trending, freeTools] = await Promise.all([
+  const [editorPicks, trending, freeTools, comparisons, top10Data] = await Promise.all([
     getEditorPicks(),
     getTrending(),
     getFreeTools(),
+    getComparisons(),
+    getTop10Data(),
   ])
 
   const rankColors = ['#F59E0B', '#9CA3AF', '#92400E']
-
-  const top10Lists = [
-    {
-      emoji: '🧠', title: 'AI Assistants', count: 105,
-      items: [
-        { name: 'Claude', slug: 'claude', logo_url: 'https://www.google.com/s2/favicons?domain=claude.ai&sz=32', pricing_type: 'freemium' as const },
-        { name: 'ChatGPT', slug: 'chatgpt', logo_url: 'https://www.google.com/s2/favicons?domain=chatgpt.com&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Gemini', slug: 'gemini', logo_url: 'https://www.google.com/s2/favicons?domain=gemini.google.com&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Perplexity', slug: 'perplexity', logo_url: 'https://www.google.com/s2/favicons?domain=perplexity.ai&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Mistral', slug: 'mistral', logo_url: 'https://www.google.com/s2/favicons?domain=mistral.ai&sz=32', pricing_type: 'freemium' as const },
-      ],
-    },
-    {
-      emoji: '🎨', title: 'Image AI', count: 90,
-      items: [
-        { name: 'Midjourney', slug: 'midjourney', logo_url: 'https://www.google.com/s2/favicons?domain=midjourney.com&sz=32', pricing_type: 'paid' as const },
-        { name: 'DALL·E 3', slug: 'dalle-3', logo_url: 'https://www.google.com/s2/favicons?domain=openai.com&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Leonardo AI', slug: 'leonardo-ai', logo_url: 'https://www.google.com/s2/favicons?domain=leonardo.ai&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Adobe Firefly', slug: 'adobe-firefly', logo_url: 'https://www.google.com/s2/favicons?domain=adobe.com&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Stable Diffusion', slug: 'stable-diffusion', logo_url: 'https://www.google.com/s2/favicons?domain=stability.ai&sz=32', pricing_type: 'free' as const },
-      ],
-    },
-    {
-      emoji: '💻', title: 'Code AI', count: 64,
-      items: [
-        { name: 'GitHub Copilot', slug: 'github-copilot', logo_url: 'https://www.google.com/s2/favicons?domain=github.com&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Cursor', slug: 'cursor', logo_url: 'https://www.google.com/s2/favicons?domain=cursor.com&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Vercel v0', slug: 'vercel-v0', logo_url: 'https://www.google.com/s2/favicons?domain=v0.dev&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Tabnine', slug: 'tabnine', logo_url: 'https://www.google.com/s2/favicons?domain=tabnine.com&sz=32', pricing_type: 'freemium' as const },
-        { name: 'Replit AI', slug: 'replit', logo_url: 'https://www.google.com/s2/favicons?domain=replit.com&sz=32', pricing_type: 'freemium' as const },
-      ],
-    },
-  ]
 
   return (
     <>
@@ -295,15 +300,14 @@ export default async function HomePage() {
         <section>
           <SectionHeader eyebrow="Ranked Lists" title="Top 10 AI Tools" viewAll="All Top 10 lists →" viewAllHref="/top-10" />
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {top10Lists.map(list => (
-              <div key={list.title} className="bg-card border border-border rounded-xl p-5">
+            {top10Data.map(({ list, tools }) => (
+              <div key={list.slug} className="bg-card border border-border rounded-xl p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-xl">{list.emoji}</span>
                   <h3 className="text-[15px] font-bold text-foreground">{list.title}</h3>
-                  <span className="ml-auto text-[11px] text-muted-foreground">{list.count} tools</span>
                 </div>
                 <ol className="space-y-2.5">
-                  {list.items.map((item, i) => (
+                  {tools.map((item, i) => (
                     <li key={item.slug} className="flex items-center gap-3">
                       <span
                         className="text-[12px] font-bold w-4 text-center"
@@ -311,17 +315,17 @@ export default async function HomePage() {
                       >
                         {i + 1}
                       </span>
-                      <Image src={item.logo_url} alt={item.name} width={20} height={20} className="w-5 h-5 rounded" unoptimized />
+                      <ToolLogo url={item.logo_url} name={item.name} size={20} />
                       <span className="text-[13px] text-foreground flex-1">{item.name}</span>
-                      <PricingBadge type={item.pricing_type} />
+                      <PricingBadge type={item.pricing_type as Tool['pricing_type']} />
                     </li>
                   ))}
                 </ol>
                 <Link
-                  href={`/tools?category=${list.title.toLowerCase().replace(/ /g, '-')}`}
+                  href={`/top-10/${list.slug}`}
                   className="mt-4 block text-center text-[12px] font-semibold py-2 rounded-lg border border-border hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-muted-foreground"
                 >
-                  See all {list.count} →
+                  See full list →
                 </Link>
               </div>
             ))}
@@ -329,15 +333,11 @@ export default async function HomePage() {
         </section>
 
         {/* TOP COMPARISONS */}
-        <section>
-          <SectionHeader eyebrow="Head-to-Head" title="Top Comparisons" viewAll="All 185+ →" viewAllHref="/compare" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {mockComparisons.map(cmp => {
-              const logoA = `https://www.google.com/s2/favicons?domain=${cmp.tool_a}.com&sz=64`
-              const logoB = `https://www.google.com/s2/favicons?domain=${cmp.tool_b}.com&sz=64`
-              const nameA = cmp.tool_a.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-              const nameB = cmp.tool_b.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-              return (
+        {comparisons.length > 0 && (
+          <section>
+            <SectionHeader eyebrow="Head-to-Head" title="Top Comparisons" viewAll="All comparisons →" viewAllHref="/compare" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {comparisons.map(({ cmp, toolA, toolB }) => (
                 <Link
                   key={cmp.slug}
                   href={`/compare/${cmp.slug}`}
@@ -345,13 +345,13 @@ export default async function HomePage() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <ToolLogo url={logoA} name={nameA} size={34} />
-                      <span className="text-[13px] font-semibold text-foreground">{nameA}</span>
+                      <ToolLogo url={toolA.logo_url} name={toolA.name} size={34} />
+                      <span className="text-[13px] font-semibold text-foreground">{toolA.name}</span>
                     </div>
                     <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#EFF6FF] text-blue-600">VS</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-[13px] font-semibold text-foreground">{nameB}</span>
-                      <ToolLogo url={logoB} name={nameB} size={34} />
+                      <span className="text-[13px] font-semibold text-foreground">{toolB.name}</span>
+                      <ToolLogo url={toolB.logo_url} name={toolB.name} size={34} />
                     </div>
                   </div>
                   <p className="text-[12px] text-muted-foreground">{cmp.summary}</p>
@@ -359,10 +359,10 @@ export default async function HomePage() {
                     Compare features & pricing →
                   </span>
                 </Link>
-              )
-            })}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* TRENDING */}
         {trending.length > 0 && (
