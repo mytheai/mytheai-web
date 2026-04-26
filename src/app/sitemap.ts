@@ -52,6 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mytheai.com/blog/best-ai-writing-tools-2026', lastModified: new Date('2026-04-26'), changeFrequency: 'monthly', priority: 0.7 },
     { url: 'https://mytheai.com/blog/best-ai-tools-for-developers-2026', lastModified: new Date('2026-04-26'), changeFrequency: 'monthly', priority: 0.7 },
     { url: 'https://mytheai.com/blog/chatgpt-alternatives-2026', lastModified: new Date('2026-05-01'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: 'https://mytheai.com/blog/best-ai-tools-for-marketers-2026', lastModified: new Date('2026-05-10'), changeFrequency: 'monthly', priority: 0.7 },
   ]
 
   return [
