@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import NewsletterForm from '@/components/newsletter/NewsletterForm'
 
 export default function Footer() {
   return (
@@ -85,6 +86,15 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* Newsletter */}
+        <div className="border-t border-border pt-8 pb-8">
+          <div className="max-w-md">
+            <p className="text-[13px] font-semibold text-foreground mb-1">Stay sharp — get the best AI tools weekly</p>
+            <p className="text-[12px] text-muted-foreground mb-3">No spam. Unsubscribe anytime.</p>
+            <NewsletterForm />
           </div>
         </div>
 
