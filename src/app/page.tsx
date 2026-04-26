@@ -455,14 +455,6 @@ export default async function HomePage() {
 
       </div>
 
-      {/* AFFILIATE DISCLOSURE */}
-      <div className="py-4 px-4 flex justify-center">
-        <div className="max-w-[90%] md:max-w-[50%] bg-[#FFFBEB] border border-amber-200 rounded-xl px-5 py-3 text-center">
-          <p className="text-[11.5px] text-amber-800 leading-relaxed">
-            <span className="font-semibold">Affiliate disclosure:</span> Some links on this page are affiliate links. We may earn a commission at no extra cost to you. Our rankings are never influenced by affiliate relationships.
-          </p>
-        </div>
-      </div>
     </>
   )
 }
