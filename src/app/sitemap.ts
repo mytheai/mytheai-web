@@ -55,6 +55,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mytheai.com/blog/best-ai-tools-for-marketers-2026', lastModified: new Date('2026-05-10'), changeFrequency: 'monthly', priority: 0.7 },
     { url: 'https://mytheai.com/blog/best-ai-image-generators-2026', lastModified: new Date('2026-05-10'), changeFrequency: 'monthly', priority: 0.7 },
     { url: 'https://mytheai.com/blog/best-ai-tools-for-students-2026', lastModified: new Date('2026-05-15'), changeFrequency: 'monthly', priority: 0.7 },
+    { url: 'https://mytheai.com/blog/best-ai-coding-assistants-2026', lastModified: new Date('2026-05-20'), changeFrequency: 'monthly', priority: 0.7 },
   ]
 
   return [

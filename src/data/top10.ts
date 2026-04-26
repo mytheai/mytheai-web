@@ -150,7 +150,15 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered tools for sales teams — from prospecting and enrichment to conversation intelligence and pipeline forecasting.',
     category: 'Sales',
     emoji: '💼',
-    slugs: ['clay', 'gong', 'hubspot', 'pipedrive', 'intercom'],
+    slugs: ['apollo', 'clay', 'gong', 'hubspot', 'pipedrive'],
+  },
+  {
+    slug: 'best-ai-note-taking-tools',
+    title: 'Best AI Note-Taking Tools',
+    description: 'The top AI-powered note-taking and meeting capture tools for individuals and teams who need to remember everything without taking notes.',
+    category: 'Productivity',
+    emoji: '📝',
+    slugs: ['notebooklm', 'otter-ai', 'fathom', 'mem-ai', 'tldv'],
   },
 ]
 
