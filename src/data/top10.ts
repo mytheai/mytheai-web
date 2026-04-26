@@ -14,7 +14,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered coding assistants and editors ranked by developer adoption, code quality, and workflow integration.',
     category: 'Code AI',
     emoji: '💻',
-    slugs: ['cursor', 'github-copilot', 'tabnine', 'replit', 'mistral'],
+    slugs: ['cursor', 'windsurf', 'github-copilot', 'bolt', 'replit'],
   },
   {
     slug: 'best-ai-writing-tools',
@@ -46,7 +46,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI video creation and editing tools for content creators, marketers, and video professionals.',
     category: 'Video AI',
     emoji: '🎬',
-    slugs: ['runway', 'heygen', 'descript', 'synthesia', 'loom'],
+    slugs: ['runway', 'luma-ai', 'kling', 'heygen', 'descript'],
   },
   {
     slug: 'best-seo-ai-tools',
@@ -78,7 +78,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI voice generation, transcription, and audio editing tools for creators, podcasters, and businesses.',
     category: 'Voice AI',
     emoji: '🎙️',
-    slugs: ['elevenlabs', 'otter-ai', 'fireflies-ai', 'descript'],
+    slugs: ['elevenlabs', 'murf', 'otter-ai', 'fireflies-ai', 'riverside'],
   },
   {
     slug: 'best-ai-design-tools',
@@ -94,7 +94,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for research, fact-finding, and knowledge synthesis — for academics, analysts, and curious professionals.',
     category: 'Research AI',
     emoji: '🔬',
-    slugs: ['perplexity', 'elicit', 'consensus', 'chatgpt', 'gemini'],
+    slugs: ['perplexity', 'notebooklm', 'elicit', 'consensus', 'julius-ai'],
   },
   {
     slug: 'best-ai-analytics-tools',
@@ -102,7 +102,23 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered analytics and business intelligence tools for turning data into insights without a data science degree.',
     category: 'Analytics',
     emoji: '📊',
-    slugs: ['tableau-ai', 'metabase', 'looker', 'hubspot', 'ahrefs'],
+    slugs: ['mixpanel', 'amplitude', 'julius-ai', 'tableau-ai', 'metabase'],
+  },
+  {
+    slug: 'best-ai-meeting-tools',
+    title: 'Best AI Meeting Tools',
+    description: 'The top AI tools for recording, transcribing, and summarising meetings — so you can focus on the conversation, not the notes.',
+    category: 'Productivity',
+    emoji: '🎤',
+    slugs: ['fathom', 'otter-ai', 'fireflies-ai', 'krisp', 'notebooklm'],
+  },
+  {
+    slug: 'best-ai-app-builders',
+    title: 'Best AI App Builders',
+    description: 'The top AI-powered tools for building web applications and software without writing code — from idea to deployed product.',
+    category: 'Code AI',
+    emoji: '🏗️',
+    slugs: ['lovable', 'bolt', 'cursor', 'windsurf', 'replit'],
   },
 ]
 
