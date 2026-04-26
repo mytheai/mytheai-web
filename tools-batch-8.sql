@@ -3,7 +3,7 @@
 -- DB: 103 → 113 after running
 -- Safe to re-run (ON CONFLICT DO NOTHING)
 
-INSERT INTO tools (slug, name, tagline, description, logo_url, website_url, affiliate_url, tags, pricing_type, pricing_free_tier, starting_price, rating, review_count, featured, trending, editor_pick, pros, cons, use_cases)
+INSERT INTO tools (slug, name, tagline, description, logo_url, website_url, affiliate_url, tags, pricing_type, pricing_free_tier, pricing_starting_price, rating, review_count, featured, trending, editor_pick, pros, cons, use_cases)
 VALUES
 
 (
