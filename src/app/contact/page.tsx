@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Contact MytheAi',
-  description: 'Get in touch with the MytheAi team — for corrections, tool submissions, partnership enquiries, or press.',
+  description: 'Get in touch with the MytheAi team: for corrections, tool submissions, partnership enquiries, or press.',
   alternates: { canonical: 'https://mytheai.com/contact' },
 }
 
@@ -25,7 +25,7 @@ const CONTACT_ITEMS = [
   {
     icon: '🤝',
     title: 'Partnerships & Sponsorships',
-    body: 'Interested in working with us? We offer sponsored content and directory placements — clearly labelled.',
+    body: 'Interested in working with us? We offer sponsored content and directory placements, clearly labelled.',
     cta: 'info@mytheai.com',
     href: 'mailto:info@mytheai.com',
   },

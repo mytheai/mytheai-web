@@ -4,7 +4,7 @@ import { createStaticClient } from '@/lib/supabase'
 export async function POST(request: NextRequest) {
   const body = await request.json()
 
-  // Honeypot check — bots fill this in, humans don't
+  // Honeypot check - bots fill this in, humans don't
   if (body.hp_field) {
     return NextResponse.json({ success: true }) // silent reject
   }

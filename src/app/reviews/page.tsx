@@ -6,11 +6,11 @@ import type { Metadata } from 'next'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'AI Tool Reviews 2026 — Expert Analysis & Ratings | MytheAi',
-  description: 'In-depth reviews of the best AI and SaaS tools. Honest ratings, verified pricing, pros & cons — updated regularly by our editorial team.',
+  title: 'AI Tool Reviews 2026: Expert Analysis & Ratings | MytheAi',
+  description: 'In-depth reviews of the best AI and SaaS tools. Honest ratings, verified pricing, pros and cons, updated regularly by our editorial team.',
   alternates: { canonical: 'https://mytheai.com/reviews' },
   openGraph: {
-    title: 'AI Tool Reviews 2026 — Expert Analysis & Ratings | MytheAi',
+    title: 'AI Tool Reviews 2026: Expert Analysis & Ratings | MytheAi',
     url: 'https://mytheai.com/reviews',
   },
 }
@@ -71,7 +71,7 @@ export default async function ReviewsPage() {
           AI Tool Reviews
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          {tools.length} tools reviewed — ranked by editorial rating. Each review covers pricing, pros & cons, and real use cases.
+          {tools.length} tools reviewed, ranked by editorial rating. Each review covers pricing, pros and cons, and real use cases.
         </p>
       </div>
 

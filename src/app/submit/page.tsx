@@ -82,7 +82,7 @@ export default function SubmitPage() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
 
-        {/* Honeypot — hidden from users, bots fill it in */}
+        {/* Honeypot - hidden from users, bots fill it in */}
         <input
           type="text"
           name="hp_field"
@@ -169,7 +169,7 @@ export default function SubmitPage() {
         {/* Email (optional) */}
         <div>
           <label className="block text-[13px] font-semibold text-foreground mb-1.5">
-            Your email <span className="text-[12px] font-normal text-muted-foreground">(optional — we&apos;ll notify you when it&apos;s added)</span>
+            Your email <span className="text-[12px] font-normal text-muted-foreground">(optional, we&apos;ll notify you when it&apos;s added)</span>
           </label>
           <input
             type="email"

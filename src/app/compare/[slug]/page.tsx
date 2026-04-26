@@ -72,8 +72,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const [a, b] = await Promise.all([getTool(result.cmp.tool_a_slug), getTool(result.cmp.tool_b_slug)])
   if (!a || !b) return { title: 'Comparison not found | MytheAi' }
   const year = new Date().getFullYear()
-  const title = `${a.name} vs ${b.name} (${year}) — Full Comparison | MytheAi`
-  const description = result.cmp.summary?.slice(0, 155) ?? `${a.name} vs ${b.name} — side-by-side feature and pricing comparison.`
+  const title = `${a.name} vs ${b.name} (${year}): Full Comparison | MytheAi`
+  const description = result.cmp.summary?.slice(0, 155) ?? `${a.name} vs ${b.name}: side-by-side feature and pricing comparison.`
 
   const ogUrl = new URL('https://mytheai.com/api/og/compare')
   ogUrl.searchParams.set('nameA', a.name)
@@ -137,7 +137,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${toolA.name} vs ${toolB.name} (${year}) — Full Comparison`,
+    headline: `${toolA.name} vs ${toolB.name} (${year}): Full Comparison`,
     description: cmp.summary,
     url: `https://mytheai.com/compare/${slug}`,
     dateModified: cmp.updated_at,

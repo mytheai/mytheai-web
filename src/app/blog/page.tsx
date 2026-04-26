@@ -7,11 +7,11 @@ import matter from 'gray-matter'
 export const revalidate = 604800
 
 export const metadata: Metadata = {
-  title: 'Blog — AI Tools Guides & News | MytheAi',
-  description: 'Guides, comparisons, and news about AI & SaaS tools. Learn how to build your AI stack, compare top tools, and stay ahead of the curve.',
+  title: 'Blog: AI Tools Guides & News | MytheAi',
+  description: 'Guides, comparisons, and news about AI and SaaS tools. Learn how to build your AI stack, compare top tools, and stay ahead of the curve.',
   alternates: { canonical: 'https://mytheai.com/blog' },
   openGraph: {
-    title: 'Blog — AI Tools Guides & News | MytheAi',
+    title: 'Blog: AI Tools Guides & News | MytheAi',
     url: 'https://mytheai.com/blog',
   },
 }
@@ -65,7 +65,7 @@ export default function BlogPage() {
           Blog
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          Guides, tool comparisons, and AI news — written for professionals who want signal, not noise.
+          Guides, tool comparisons, and AI news. Written for professionals who want signal, not noise.
         </p>
       </div>
 

@@ -19,7 +19,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-ai-writing-tools',
     title: 'Best AI Writing Tools',
-    description: 'The top AI writing assistants for marketers, creators, and content teams — ranked by output quality, templates, and value.',
+    description: 'The top AI writing assistants for marketers, creators, and content teams, ranked by output quality, templates, and value.',
     category: 'Writing AI',
     emoji: '✍️',
     slugs: ['grammarly', 'jasper', 'copy-ai', 'writesonic', 'surfer-seo'],
@@ -27,7 +27,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-free-ai-tools',
     title: 'Best Free AI Tools',
-    description: 'The best AI tools available completely free or with generous free tiers — no credit card required to get started.',
+    description: 'The best AI tools available completely free or with generous free tiers. No credit card required to get started.',
     category: 'Free Tools',
     emoji: '🆓',
     slugs: ['claude', 'chatgpt', 'perplexity', 'grammarly', 'canva-ai'],
@@ -51,7 +51,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-seo-ai-tools',
     title: 'Best AI SEO Tools',
-    description: 'The top AI-powered SEO tools for growing organic traffic — keyword research, content optimization, and competitive analysis.',
+    description: 'The top AI-powered SEO tools for growing organic traffic: keyword research, content optimization, and competitive analysis.',
     category: 'SEO & Marketing',
     emoji: '📈',
     slugs: ['semrush', 'ahrefs', 'surfer-seo', 'grammarly', 'jasper'],
@@ -59,7 +59,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-ai-productivity-tools',
     title: 'Best AI Productivity Tools',
-    description: 'The top AI tools for automating workflows, managing projects, and getting more done — for individuals and teams.',
+    description: 'The top AI tools for automating workflows, managing projects, and getting more done, for individuals and teams.',
     category: 'Productivity',
     emoji: '⚡',
     slugs: ['notion-ai', 'linear', 'zapier', 'make', 'airtable'],
@@ -83,7 +83,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-ai-design-tools',
     title: 'Best AI Design Tools',
-    description: 'The top AI-powered design tools for creating visuals, websites, and graphics — from professional UI designers to first-time creators.',
+    description: 'The top AI-powered design tools for creating visuals, websites, and graphics, from professional UI designers to first-time creators.',
     category: 'Design AI',
     emoji: '🖌️',
     slugs: ['figma', 'canva-ai', 'adobe-firefly', 'framer', 'midjourney'],
@@ -91,7 +91,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-ai-research-tools',
     title: 'Best AI Research Tools',
-    description: 'The top AI tools for research, fact-finding, and knowledge synthesis — for academics, analysts, and curious professionals.',
+    description: 'The top AI tools for research, fact-finding, and knowledge synthesis, for academics, analysts, and curious professionals.',
     category: 'Research AI',
     emoji: '🔬',
     slugs: ['perplexity', 'notebooklm', 'elicit', 'consensus', 'julius-ai'],
@@ -107,7 +107,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-ai-meeting-tools',
     title: 'Best AI Meeting Tools',
-    description: 'The top AI tools for recording, transcribing, and summarising meetings — so you can focus on the conversation, not the notes.',
+    description: 'The top AI tools for recording, transcribing, and summarising meetings, so you can focus on the conversation, not the notes.',
     category: 'Productivity',
     emoji: '🎤',
     slugs: ['fathom', 'otter-ai', 'fireflies-ai', 'krisp', 'notebooklm'],
@@ -115,7 +115,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-ai-app-builders',
     title: 'Best AI App Builders',
-    description: 'The top AI-powered tools for building web applications and software without writing code — from idea to deployed product.',
+    description: 'The top AI-powered tools for building web applications and software without writing code: from idea to deployed product.',
     category: 'Code AI',
     emoji: '🏗️',
     slugs: ['lovable', 'bolt', 'cursor', 'windsurf', 'replit'],
@@ -139,7 +139,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-ai-tools-for-students',
     title: 'Best AI Tools for Students',
-    description: 'The top free and affordable AI tools that give students a genuine academic edge — from research and writing to coding and presentations.',
+    description: 'The top free and affordable AI tools that give students a genuine academic edge: from research and writing to coding and presentations.',
     category: 'Education',
     emoji: '🎓',
     slugs: ['perplexity', 'notebooklm', 'grammarly', 'claude', 'github-copilot'],
@@ -147,7 +147,7 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-ai-sales-tools',
     title: 'Best AI Sales Tools',
-    description: 'The top AI-powered tools for sales teams — from prospecting and enrichment to conversation intelligence and pipeline forecasting.',
+    description: 'The top AI-powered tools for sales teams: from prospecting and enrichment to conversation intelligence and pipeline forecasting.',
     category: 'Sales',
     emoji: '💼',
     slugs: ['apollo', 'clay', 'gong', 'hubspot', 'pipedrive'],

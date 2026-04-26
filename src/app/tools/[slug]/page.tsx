@@ -86,7 +86,7 @@ export async function generateMetadata(
   const year = new Date().getFullYear()
   const ogImageUrl = `https://mytheai.com/api/og?name=${encodeURIComponent(tool.name)}&tagline=${encodeURIComponent(tool.tagline)}&rating=${tool.rating}${tool.logo_url ? `&logo=${encodeURIComponent(tool.logo_url)}` : ''}`
   return {
-    title: `${tool.name} Review ${year} — Pricing, Features & Alternatives | MytheAi`,
+    title: `${tool.name} Review ${year}: Pricing, Features & Alternatives | MytheAi`,
     description: tool.tagline,
     openGraph: {
       title: `${tool.name} Review ${year} | MytheAi`,
@@ -442,7 +442,7 @@ export default async function ToolPage({
         {/* Review title for SEO */}
         <div className="mt-12 pt-8 border-t border-border">
           <h2 className="text-[20px] font-bold text-foreground mb-2">
-            {tool.name} Review ({year}) — Is It Worth It?
+            {tool.name} Review ({year}): Is It Worth It?
           </h2>
           <p className="text-[15px] text-muted-foreground">
             {tool.name} is a <strong>{PRICING_LABELS[tool.pricing_type].toLowerCase()}</strong> tool

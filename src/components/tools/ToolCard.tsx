@@ -24,14 +24,18 @@ export default function ToolCard({ tool }: { tool: Tool }) {
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-[10px] bg-gray-50 flex items-center justify-center flex-shrink-0 overflow-hidden">
-            <Image
-              src={tool.logo_url}
-              alt={tool.name}
-              width={40}
-              height={40}
-              className="object-contain p-1"
-              unoptimized
-            />
+            {tool.logo_url ? (
+              <Image
+                src={tool.logo_url}
+                alt={tool.name}
+                width={40}
+                height={40}
+                className="object-contain p-1"
+                unoptimized
+              />
+            ) : (
+              <span className="text-[14px] font-bold text-gray-400">{tool.name.charAt(0).toUpperCase()}</span>
+            )}
           </div>
           <div>
             <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>

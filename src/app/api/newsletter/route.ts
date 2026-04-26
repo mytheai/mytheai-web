@@ -36,7 +36,7 @@ export async function POST(req: Request) {
         audienceId: process.env.RESEND_AUDIENCE_ID,
       })
     } catch {
-      // Non-fatal — subscriber is stored in Supabase
+      // Non-fatal - subscriber is stored in Supabase
     }
   }
 

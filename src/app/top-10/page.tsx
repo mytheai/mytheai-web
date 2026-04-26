@@ -5,8 +5,8 @@ import type { Metadata } from 'next'
 export const revalidate = 604800
 
 export const metadata: Metadata = {
-  title: 'Best AI Tools — Top 10 Lists 2026 | MytheAi',
-  description: 'Editorial top 10 lists for every AI tool category — code, writing, image, video, and free tools. Ranked by merit, not affiliate rate.',
+  title: 'Best AI Tools: Top 10 Lists 2026 | MytheAi',
+  description: 'Editorial top 10 lists for every AI tool category: code, writing, image, video, and free tools. Ranked by merit, not affiliate rate.',
   alternates: { canonical: 'https://mytheai.com/top-10' },
 }
 
@@ -47,7 +47,7 @@ export default function Top10HubPage() {
       </div>
 
       <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
-        <strong>Editorial note:</strong> All rankings are based on independent editorial review — rating, review count, feature quality, and value. Affiliate relationships never influence placement.
+        <strong>Editorial note:</strong> All rankings are based on independent editorial review: rating, review count, feature quality, and value. Affiliate relationships never influence placement.
       </div>
     </div>
   )

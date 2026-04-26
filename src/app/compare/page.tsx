@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'AI Tool Comparisons 2026 — Side-by-Side Reviews | MytheAi',
+  title: 'AI Tool Comparisons 2026: Side-by-Side Reviews | MytheAi',
   description: 'Compare the top AI tools head-to-head. Honest side-by-side breakdowns of pricing, features, and use cases.',
   alternates: { canonical: 'https://mytheai.com/compare' },
 }
@@ -99,7 +99,7 @@ export default async function ComparePage({
           AI Tool Comparisons
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          Honest side-by-side breakdowns — no affiliate bias.
+          Honest side-by-side breakdowns. No affiliate bias.
         </p>
       </div>
 

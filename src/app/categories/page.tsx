@@ -5,11 +5,11 @@ import type { Metadata } from 'next'
 export const revalidate = 604800
 
 export const metadata: Metadata = {
-  title: 'AI Tool Categories — Browse by Type | MytheAi',
-  description: 'Browse AI and SaaS tools by category — writing, image, video, code, SEO, productivity, analytics, and more.',
+  title: 'AI Tool Categories: Browse by Type | MytheAi',
+  description: 'Browse AI and SaaS tools by category: writing, image, video, code, SEO, productivity, analytics, and more.',
   alternates: { canonical: 'https://mytheai.com/categories' },
   openGraph: {
-    title: 'AI Tool Categories — Browse by Type | MytheAi',
+    title: 'AI Tool Categories: Browse by Type | MytheAi',
     url: 'https://mytheai.com/categories',
   },
 }

@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const cat = mockCategories.find(c => c.slug === slug)
   if (!cat) return { title: 'Category not found | MytheAi' }
   const year = new Date().getFullYear()
-  const title = `Best ${cat.name} Tools ${year} — Reviewed & Ranked | MytheAi`
-  const description = `Discover the best ${cat.name.toLowerCase()} tools. Reviewed and ranked by editorial merit — not affiliate rates.`
+  const title = `Best ${cat.name} Tools ${year}: Reviewed & Ranked | MytheAi`
+  const description = `Discover the best ${cat.name.toLowerCase()} tools. Reviewed and ranked by editorial merit, not affiliate rates.`
   return {
     title,
     description,

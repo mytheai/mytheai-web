@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!list) return { title: 'Not found | MytheAi' }
   const year = new Date().getFullYear()
   return {
-    title: `${list.title} ${year} — Top ${list.slugs.length} Picks | MytheAi`,
+    title: `${list.title} ${year}: Top ${list.slugs.length} Picks | MytheAi`,
     description: list.description,
     alternates: { canonical: `https://mytheai.com/top-10/${slug}` },
     openGraph: {
@@ -174,7 +174,7 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
 
         {/* Disclosure */}
         <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
-          <strong>Disclosure:</strong> Some links on this page are affiliate links. We may earn a commission at no extra cost to you. Rankings are based on editorial merit — affiliate relationships never influence placement.
+          <strong>Disclosure:</strong> Some links on this page are affiliate links. We may earn a commission at no extra cost to you. Rankings are based on editorial merit. Affiliate relationships never influence placement.
         </div>
 
         <Link href="/tools" className="inline-block mt-6 text-[13px] text-blue-600 hover:underline">

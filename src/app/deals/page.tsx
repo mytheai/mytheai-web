@@ -7,7 +7,7 @@ export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'Best Free & Freemium AI Tools 2026 | MytheAi',
-  description: 'The best AI tools with a free tier — no credit card required to get started. Ranked by rating.',
+  description: 'The best AI tools with a free tier. No credit card required to get started. Ranked by rating.',
   alternates: { canonical: 'https://mytheai.com/deals' },
   openGraph: {
     title: 'Best Free & Freemium AI Tools 2026 | MytheAi',
@@ -65,7 +65,7 @@ export default async function DealsPage() {
           Best AI Tools With a Free Tier
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          {tools.length} tools you can start using today — no credit card required.
+          {tools.length} tools you can start using today. No credit card required.
         </p>
       </div>
 

@@ -26,10 +26,10 @@ export default function PrivacyPage() {
             MytheAi collects minimal data to operate the platform:
           </p>
           <ul className="space-y-2 list-disc list-inside">
-            <li><span className="font-medium text-foreground">Analytics data</span> — page views, referral source, and general device type via Vercel Analytics. No personal identifiers are stored.</li>
-            <li><span className="font-medium text-foreground">Affiliate click data</span> — when you click an affiliate link, we record the tool slug and referrer URL (but not your identity) for commission attribution.</li>
-            <li><span className="font-medium text-foreground">Tool submissions</span> — if you submit a tool via our form, we collect your submission details and optionally an email address for follow-up.</li>
-            <li><span className="font-medium text-foreground">Newsletter</span> — if you subscribe, we collect your email address only.</li>
+            <li><span className="font-medium text-foreground">Analytics data</span>:page views, referral source, and general device type via Vercel Analytics. No personal identifiers are stored.</li>
+            <li><span className="font-medium text-foreground">Affiliate click data</span>:when you click an affiliate link, we record the tool slug and referrer URL (but not your identity) for commission attribution.</li>
+            <li><span className="font-medium text-foreground">Tool submissions</span>:if you submit a tool via our form, we collect your submission details and optionally an email address for follow-up.</li>
+            <li><span className="font-medium text-foreground">Newsletter</span>:if you subscribe, we collect your email address only.</li>
           </ul>
         </section>
 
@@ -46,9 +46,9 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-[18px] font-bold text-foreground mb-3">3. Third-Party Services</h2>
           <ul className="space-y-2 list-disc list-inside">
-            <li><span className="font-medium text-foreground">Vercel</span> — hosts the platform. May log IP addresses as part of infrastructure operation. See <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#2563EB] hover:underline">Vercel&apos;s Privacy Policy</a>.</li>
-            <li><span className="font-medium text-foreground">Supabase</span> — stores tool and category data. No personal data is stored in Supabase.</li>
-            <li><span className="font-medium text-foreground">Affiliate networks</span> — when you follow an affiliate link, the destination site has its own data collection practices governed by their privacy policy.</li>
+            <li><span className="font-medium text-foreground">Vercel</span>:hosts the platform. May log IP addresses as part of infrastructure operation. See <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#2563EB] hover:underline">Vercel&apos;s Privacy Policy</a>.</li>
+            <li><span className="font-medium text-foreground">Supabase</span>:stores tool and category data. No personal data is stored in Supabase.</li>
+            <li><span className="font-medium text-foreground">Affiliate networks</span>:when you follow an affiliate link, the destination site has its own data collection practices governed by their privacy policy.</li>
           </ul>
         </section>
 
