@@ -20,6 +20,7 @@ interface ReviewRow {
   name: string
   tagline: string
   logo_url: string | null
+  website_url: string | null
   rating: number
   review_count: number
   pricing_type: string
@@ -31,7 +32,7 @@ async function getReviewedTools(): Promise<ReviewRow[]> {
   const supabase = createStaticClient()
   const { data } = await supabase
     .from('tools')
-    .select('slug, name, tagline, logo_url, rating, review_count, pricing_type, tags, updated_at')
+    .select('slug, name, tagline, logo_url, website_url, rating, review_count, pricing_type, tags, updated_at')
     .order('rating', { ascending: false })
     .limit(30)
 
@@ -78,7 +79,7 @@ export default async function ReviewsPage() {
       <div className="space-y-3">
         {tools.map((tool, index) => {
           const badge = pricingLabel(tool.pricing_type)
-          const logoSrc = tool.logo_url || `https://www.google.com/s2/favicons?domain=${tool.slug}.com&sz=64`
+          const logoSrc = tool.logo_url || (tool.website_url ? (() => { try { return `https://www.google.com/s2/favicons?domain=${new URL(tool.website_url!).hostname}&sz=64` } catch { return null } })() : null)
           return (
             <div key={tool.slug} className="flex items-center gap-4 border border-border rounded-xl p-4 bg-card hover:border-[#93C5FD] transition-colors">
               {/* Rank */}
@@ -87,15 +88,12 @@ export default async function ReviewsPage() {
               </span>
 
               {/* Logo */}
-              <div className="logo-sm flex-shrink-0" style={{ background: '#f0f0f0' }}>
-                <Image
-                  src={logoSrc}
-                  alt={tool.name}
-                  width={34}
-                  height={34}
-                  unoptimized
-                  className="rounded"
-                />
+              <div className="logo-sm flex-shrink-0 flex items-center justify-center" style={{ background: '#f0f0f0' }}>
+                {logoSrc ? (
+                  <Image src={logoSrc} alt={tool.name} width={34} height={34} unoptimized className="rounded" />
+                ) : (
+                  <span className="text-[13px] font-bold text-gray-400">{tool.name[0]}</span>
+                )}
               </div>
 
               {/* Info */}

@@ -23,6 +23,7 @@ interface ToolMeta {
   slug: string
   name: string
   logo_url: string | null
+  website_url: string | null
   rating: number
   tags: string[]
 }
@@ -50,10 +51,22 @@ async function getComparisons(): Promise<CompareRow[]> {
 async function getToolsMeta(slugs: string[]): Promise<Record<string, ToolMeta>> {
   if (slugs.length === 0) return {}
   const supabase = createStaticClient()
-  const { data } = await supabase.from('tools').select('slug,name,logo_url,rating,tags').in('slug', slugs)
+  const { data } = await supabase.from('tools').select('slug,name,logo_url,website_url,rating,tags').in('slug', slugs)
   const map: Record<string, ToolMeta> = {}
   for (const t of data ?? []) map[t.slug] = t as ToolMeta
   return map
+}
+
+function getLogoSrc(tool: ToolMeta): string | null {
+  if (tool.logo_url) return tool.logo_url
+  if (tool.website_url) {
+    try {
+      return `https://www.google.com/s2/favicons?domain=${new URL(tool.website_url).hostname}&sz=64`
+    } catch {
+      return null
+    }
+  }
+  return null
 }
 
 function getCategory(tool: ToolMeta): string {
@@ -149,21 +162,25 @@ export default async function ComparePage({
             >
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2 flex-1 min-w-0">
-                  {a.logo_url && (
-                    <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      <Image src={a.logo_url} alt={a.name} width={28} height={28} unoptimized />
-                    </div>
-                  )}
+                  <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    {getLogoSrc(a) ? (
+                      <Image src={getLogoSrc(a)!} alt={a.name} width={28} height={28} unoptimized />
+                    ) : (
+                      <span className="text-[13px] font-bold text-gray-400">{a.name[0]}</span>
+                    )}
+                  </div>
                   <span className="text-[14px] font-semibold text-foreground truncate">{a.name}</span>
                 </div>
                 <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#2563EB] flex-shrink-0">VS</span>
                 <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
                   <span className="text-[14px] font-semibold text-foreground truncate text-right">{b.name}</span>
-                  {b.logo_url && (
-                    <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      <Image src={b.logo_url} alt={b.name} width={28} height={28} unoptimized />
-                    </div>
-                  )}
+                  <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    {getLogoSrc(b) ? (
+                      <Image src={getLogoSrc(b)!} alt={b.name} width={28} height={28} unoptimized />
+                    ) : (
+                      <span className="text-[13px] font-bold text-gray-400">{b.name[0]}</span>
+                    )}
+                  </div>
                 </div>
               </div>
               {c.summary && (

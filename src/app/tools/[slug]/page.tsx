@@ -51,8 +51,21 @@ interface AltTool {
   name: string
   tagline: string
   logo_url: string | null
+  website_url: string | null
   pricing_type: string
   rating: number
+}
+
+function getAltLogoSrc(alt: AltTool): string | null {
+  if (alt.logo_url) return alt.logo_url
+  if (alt.website_url) {
+    try {
+      return `https://www.google.com/s2/favicons?domain=${new URL(alt.website_url).hostname}&sz=64`
+    } catch {
+      return null
+    }
+  }
+  return null
 }
 
 async function getAlternatives(currentSlug: string, tags: string[]): Promise<AltTool[]> {
@@ -60,7 +73,7 @@ async function getAlternatives(currentSlug: string, tags: string[]): Promise<Alt
   const supabase = await createClient()
   const { data } = await supabase
     .from('tools')
-    .select('id, slug, name, tagline, logo_url, pricing_type, rating')
+    .select('id, slug, name, tagline, logo_url, website_url, pricing_type, rating')
     .contains('tags', [tags[0]])
     .neq('slug', currentSlug)
     .order('rating', { ascending: false })
@@ -185,17 +198,18 @@ export default async function ToolPage({
 
         {/* Hero */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-5 mb-8">
-          {tool.logo_url && (
-            <div className="w-16 h-16 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-              <Image
-                src={tool.logo_url}
-                alt={tool.name}
-                width={48}
-                height={48}
-                unoptimized
-              />
-            </div>
-          )}
+          {(() => {
+            const src = tool.logo_url || (tool.website_url ? (() => { try { return `https://www.google.com/s2/favicons?domain=${new URL(tool.website_url!).hostname}&sz=64` } catch { return null } })() : null)
+            return (
+              <div className="w-16 h-16 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                {src ? (
+                  <Image src={src} alt={tool.name} width={48} height={48} unoptimized />
+                ) : (
+                  <span className="text-[22px] font-bold text-gray-400">{tool.name[0]}</span>
+                )}
+              </div>
+            )
+          })()}
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-1">
               <h1 className="text-[26px] md:text-[32px] font-extrabold tracking-tight text-foreground">
@@ -417,24 +431,29 @@ export default async function ToolPage({
               Alternatives to {tool.name}
             </h2>
             <div className="grid sm:grid-cols-3 gap-3">
-              {alternatives.map(alt => (
+              {alternatives.map(alt => {
+                const altLogo = getAltLogoSrc(alt)
+                return (
                 <Link
                   key={alt.slug}
                   href={`/tools/${alt.slug}`}
                   className="flex items-start gap-3 p-4 rounded-xl border border-border bg-card hover:border-blue-300 transition-colors"
                 >
-                  {alt.logo_url && (
-                    <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      <Image src={alt.logo_url} alt={alt.name} width={28} height={28} unoptimized />
-                    </div>
-                  )}
+                  <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    {altLogo ? (
+                      <Image src={altLogo} alt={alt.name} width={28} height={28} unoptimized />
+                    ) : (
+                      <span className="text-[13px] font-bold text-gray-400">{alt.name[0]}</span>
+                    )}
+                  </div>
                   <div className="min-w-0">
                     <p className="text-[13px] font-semibold text-foreground truncate">{alt.name}</p>
                     <p className="text-[12px] text-muted-foreground line-clamp-2">{alt.tagline}</p>
                     <p className="text-[11px] text-[#F59E0B] mt-1">★ {alt.rating.toFixed(1)}</p>
                   </div>
                 </Link>
-              ))}
+                )
+              })}
             </div>
           </div>
         )}

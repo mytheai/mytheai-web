@@ -60,7 +60,7 @@ async function getFreeTools(): Promise<ToolRow[]> {
 }
 
 interface CompareRow { slug: string; tool_a_slug: string; tool_b_slug: string; summary: string | null }
-interface CompareToolMeta { slug: string; name: string; logo_url: string | null }
+interface CompareToolMeta { slug: string; name: string; logo_url: string | null; website_url: string | null }
 interface CompareCard { cmp: CompareRow; toolA: CompareToolMeta; toolB: CompareToolMeta }
 
 async function getComparisons(): Promise<CompareCard[]> {
@@ -71,7 +71,7 @@ async function getComparisons(): Promise<CompareCard[]> {
     .limit(6)
   if (!cmps || cmps.length === 0) return []
   const allSlugs = [...new Set(cmps.flatMap((c: CompareRow) => [c.tool_a_slug, c.tool_b_slug]))]
-  const { data: tools } = await supabase.from('tools').select('slug,name,logo_url').in('slug', allSlugs)
+  const { data: tools } = await supabase.from('tools').select('slug,name,logo_url,website_url').in('slug', allSlugs)
   const toolMap: Record<string, CompareToolMeta> = {}
   for (const t of tools ?? []) toolMap[t.slug] = t
   return cmps
@@ -79,13 +79,13 @@ async function getComparisons(): Promise<CompareCard[]> {
     .map((c: CompareRow) => ({ cmp: c, toolA: toolMap[c.tool_a_slug], toolB: toolMap[c.tool_b_slug] }))
 }
 
-interface Top10ToolMeta { slug: string; name: string; logo_url: string | null; pricing_type: string }
+interface Top10ToolMeta { slug: string; name: string; logo_url: string | null; pricing_type: string; website_url: string | null }
 
 async function getTop10Data() {
   const supabase = createStaticClient()
   const listsToShow = TOP10_LISTS.slice(0, 6)
   const allSlugs = [...new Set(listsToShow.flatMap(l => l.slugs))]
-  const { data } = await supabase.from('tools').select('slug,name,logo_url,pricing_type').in('slug', allSlugs)
+  const { data } = await supabase.from('tools').select('slug,name,logo_url,pricing_type,website_url').in('slug', allSlugs)
   const toolMap: Record<string, Top10ToolMeta> = {}
   for (const t of data ?? []) toolMap[t.slug] = t
   return listsToShow.map(list => ({
@@ -111,8 +111,22 @@ function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
   )
 }
 
-function ToolLogo({ url, name, size = 40 }: { url: string | null; name: string; size?: number }) {
-  if (!url) return (
+function getLogoSrc(logoUrl: string | null, websiteUrl?: string | null): string | null {
+  if (logoUrl) return logoUrl
+  if (websiteUrl) {
+    try {
+      const hostname = new URL(websiteUrl).hostname
+      return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`
+    } catch {
+      return null
+    }
+  }
+  return null
+}
+
+function ToolLogo({ url, websiteUrl, name, size = 40 }: { url: string | null; websiteUrl?: string | null; name: string; size?: number }) {
+  const src = getLogoSrc(url, websiteUrl)
+  if (!src) return (
     <div
       className="rounded-[10px] flex items-center justify-center bg-gray-100 flex-shrink-0 text-[13px] font-bold text-gray-400"
       style={{ width: size, height: size }}
@@ -125,7 +139,7 @@ function ToolLogo({ url, name, size = 40 }: { url: string | null; name: string; 
       className="rounded-[10px] flex items-center justify-center bg-gray-50 flex-shrink-0 overflow-hidden"
       style={{ width: size, height: size }}
     >
-      <Image src={url} alt={name} width={size} height={size} className="object-contain p-1" unoptimized />
+      <Image src={src} alt={name} width={size} height={size} className="object-contain p-1" unoptimized />
     </div>
   )
 }
@@ -245,7 +259,7 @@ export default async function HomePage() {
         {/* EDITOR'S PICKS */}
         {editorPicks.length > 0 && (
           <section>
-            <SectionHeader eyebrow="Curated" title="Editor's Picks" viewAll="View all →" viewAllHref="/tools?filter=editor-picks" />
+            <SectionHeader eyebrow="Curated" title="Editor's Picks" viewAll="View all →" viewAllHref="/tools" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {editorPicks.map(tool => (
                 <Link
@@ -255,7 +269,7 @@ export default async function HomePage() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <ToolLogo url={tool.logo_url} name={tool.name} />
+                      <ToolLogo url={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} />
                       <div>
                         <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
                         <div className="text-[12px] text-muted-foreground">{tool.tags?.[0] ?? ''}</div>
@@ -317,7 +331,7 @@ export default async function HomePage() {
                       >
                         {i + 1}
                       </span>
-                      <ToolLogo url={item.logo_url} name={item.name} size={20} />
+                      <ToolLogo url={item.logo_url} websiteUrl={item.website_url} name={item.name} size={20} />
                       <span className="text-[13px] text-foreground flex-1">{item.name}</span>
                       <PricingBadge type={item.pricing_type as Tool['pricing_type']} />
                     </li>
@@ -347,13 +361,13 @@ export default async function HomePage() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <ToolLogo url={toolA.logo_url} name={toolA.name} size={34} />
+                      <ToolLogo url={toolA.logo_url} websiteUrl={toolA.website_url} name={toolA.name} size={34} />
                       <span className="text-[13px] font-semibold text-foreground">{toolA.name}</span>
                     </div>
                     <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#EFF6FF] text-blue-600">VS</span>
                     <div className="flex items-center gap-2">
                       <span className="text-[13px] font-semibold text-foreground">{toolB.name}</span>
-                      <ToolLogo url={toolB.logo_url} name={toolB.name} size={34} />
+                      <ToolLogo url={toolB.logo_url} websiteUrl={toolB.website_url} name={toolB.name} size={34} />
                     </div>
                   </div>
                   <p className="text-[12px] text-muted-foreground">{cmp.summary}</p>
@@ -369,7 +383,7 @@ export default async function HomePage() {
         {/* TRENDING */}
         {trending.length > 0 && (
           <section>
-            <SectionHeader eyebrow="This Week" eyebrowColor="#F59E0B" title="Trending Tools" viewAll="View all →" viewAllHref="/tools?sort=trending" />
+            <SectionHeader eyebrow="This Week" eyebrowColor="#F59E0B" title="Trending Tools" viewAll="View all →" viewAllHref="/tools" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {trending.map((tool, i) => (
                 <div
@@ -382,7 +396,7 @@ export default async function HomePage() {
                   >
                     {i + 1}
                   </span>
-                  <ToolLogo url={tool.logo_url} name={tool.name} size={34} />
+                  <ToolLogo url={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={34} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
                       <span className="text-[13.5px] font-semibold text-foreground">{tool.name}</span>
@@ -417,7 +431,7 @@ export default async function HomePage() {
                   className="bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <ToolLogo url={tool.logo_url} name={tool.name} />
+                    <ToolLogo url={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} />
                     <div>
                       <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
                       <PricingBadge type={tool.pricing_type} />
