@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import Link from 'next/link'
 import ToolCard from '@/components/tools/ToolCard'
 import FilterBar from '@/components/tools/FilterBar'
 import { createClient } from '@/lib/supabase'
@@ -11,9 +12,27 @@ export const metadata = {
   description: 'Browse and filter 500+ AI & SaaS tools by category, pricing, and rating. Find the right tool for your workflow.',
 }
 
-async function getTools(category?: string, pricing?: string, q?: string, sort?: string): Promise<Tool[]> {
+const PAGE_SIZE = 24
+
+function buildPageUrl(
+  params: { category?: string; pricing?: string; q?: string; sort?: string },
+  page: number
+) {
+  const url = new URLSearchParams()
+  if (params.category) url.set('category', params.category)
+  if (params.pricing) url.set('pricing', params.pricing)
+  if (params.q) url.set('q', params.q)
+  if (params.sort) url.set('sort', params.sort)
+  if (page > 1) url.set('page', String(page))
+  const str = url.toString()
+  return `/tools${str ? `?${str}` : ''}`
+}
+
+async function getTools(
+  category?: string, pricing?: string, q?: string, sort?: string, page = 1
+): Promise<{ tools: Tool[]; total: number }> {
   const supabase = await createClient()
-  let query = supabase.from('tools').select('*')
+  let query = supabase.from('tools').select('*', { count: 'exact' })
 
   if (sort === 'newest') {
     query = query.order('updated_at', { ascending: false })
@@ -27,10 +46,11 @@ async function getTools(category?: string, pricing?: string, q?: string, sort?: 
   if (pricing) query = query.eq('pricing_type', pricing)
   if (q) query = query.or(`name.ilike.%${q}%,tagline.ilike.%${q}%`)
 
-  const { data, error } = await query
-  if (error || !data) return []
+  const offset = (page - 1) * PAGE_SIZE
+  const { data, error, count } = await query.range(offset, offset + PAGE_SIZE - 1)
+  if (error || !data) return { tools: [], total: 0 }
 
-  return data.map(row => ({
+  const tools = data.map(row => ({
     id: row.id,
     slug: row.slug,
     name: row.name,
@@ -58,15 +78,20 @@ async function getTools(category?: string, pricing?: string, q?: string, sort?: 
     integrations: [],
     alternatives: [],
   }))
+
+  return { tools, total: count ?? 0 }
 }
 
 export default async function ToolsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; pricing?: string; q?: string; sort?: string }>
+  searchParams: Promise<{ category?: string; pricing?: string; q?: string; sort?: string; page?: string }>
 }) {
-  const { category, pricing, q, sort } = await searchParams
-  const tools = await getTools(category, pricing, q, sort)
+  const { category, pricing, q, sort, page: pageParam } = await searchParams
+  const page = Math.max(1, parseInt(pageParam ?? '1') || 1)
+  const { tools, total } = await getTools(category, pricing, q, sort, page)
+  const totalPages = Math.ceil(total / PAGE_SIZE)
+  const filterParams = { category, pricing, q, sort }
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
@@ -98,12 +123,41 @@ export default async function ToolsPage({
         </div>
       )}
 
-      <p className="mt-8 text-[13px] text-muted-foreground">
-        Showing {tools.length} tool{tools.length !== 1 ? 's' : ''}
-        {q ? ` for "${q}"` : ''}
-        {category ? ` in ${category}` : ''}
-        {pricing ? ` · ${pricing}` : ''}
-      </p>
+      <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-[13px] text-muted-foreground">
+          Showing {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, total)} of {total} tool{total !== 1 ? 's' : ''}
+          {q ? ` for "${q}"` : ''}
+          {category ? ` in ${category}` : ''}
+        </p>
+
+        {totalPages > 1 && (
+          <div className="flex items-center gap-2">
+            {page > 1 ? (
+              <Link
+                href={buildPageUrl(filterParams, page - 1)}
+                className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground hover:border-blue-300 hover:text-blue-600 transition-colors"
+              >
+                ← Previous
+              </Link>
+            ) : (
+              <span className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground opacity-40 cursor-not-allowed">← Previous</span>
+            )}
+            <span className="text-[13px] text-muted-foreground px-2">
+              Page {page} of {totalPages}
+            </span>
+            {page < totalPages ? (
+              <Link
+                href={buildPageUrl(filterParams, page + 1)}
+                className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground hover:border-blue-300 hover:text-blue-600 transition-colors"
+              >
+                Next →
+              </Link>
+            ) : (
+              <span className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground opacity-40 cursor-not-allowed">Next →</span>
+            )}
+          </div>
+        )}
+      </div>
 
     </div>
   )

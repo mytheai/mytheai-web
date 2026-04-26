@@ -29,6 +29,23 @@ function getArticle(slug: string): (ArticleFrontmatter & { content: string }) | 
   }
 }
 
+function getRelatedPosts(currentSlug: string, currentCategory: string): (ArticleFrontmatter & { slug: string })[] {
+  try {
+    const files = readdirSync(CONTENT_DIR).filter(f => f.endsWith('.mdx'))
+    return files
+      .map(file => {
+        const slug = file.replace('.mdx', '')
+        const raw = readFileSync(join(CONTENT_DIR, file), 'utf-8')
+        const { data } = matter(raw)
+        return { slug, ...(data as ArticleFrontmatter) }
+      })
+      .filter(p => p.slug !== currentSlug && p.category === currentCategory)
+      .slice(0, 2)
+  } catch {
+    return []
+  }
+}
+
 const CATEGORY_COLORS: Record<string, string> = {
   Roundup: '#DBEAFE',
   Comparison: '#FEF3C7',
@@ -99,6 +116,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const article = getArticle(slug)
   if (!article) notFound()
 
+  const related = getRelatedPosts(slug, article.category)
+
   return (
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
@@ -144,6 +163,35 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </article>
 
       <hr className="border-border mt-12 mb-8" />
+
+      {/* Related posts */}
+      {related.length > 0 && (
+        <div className="mb-10">
+          <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-4">Related Articles</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {related.map(post => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="block border border-border rounded-xl p-4 bg-card hover:border-[#93C5FD] transition-colors"
+              >
+                <span
+                  className="text-[10px] font-semibold px-2 py-0.5 rounded-full inline-block mb-2"
+                  style={{
+                    background: CATEGORY_COLORS[post.category] ?? '#F3F4F6',
+                    color: CATEGORY_TEXT[post.category] ?? '#374151',
+                  }}
+                >
+                  {post.category}
+                </span>
+                <p className="text-[14px] font-bold text-foreground leading-snug mb-1">{post.title}</p>
+                <p className="text-[12px] text-muted-foreground line-clamp-2">{post.excerpt}</p>
+                <p className="text-[11px] text-muted-foreground mt-2">{post.readTime}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Footer CTA */}
       <div className="flex flex-col sm:flex-row gap-3">
