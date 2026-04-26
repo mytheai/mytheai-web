@@ -136,6 +136,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📱',
     slugs: ['hootsuite', 'buffer', 'typefully', 'canva-ai', 'jasper'],
   },
+  {
+    slug: 'best-ai-tools-for-students',
+    title: 'Best AI Tools for Students',
+    description: 'The top free and affordable AI tools that give students a genuine academic edge — from research and writing to coding and presentations.',
+    category: 'Education',
+    emoji: '🎓',
+    slugs: ['perplexity', 'notebooklm', 'grammarly', 'claude', 'github-copilot'],
+  },
+  {
+    slug: 'best-ai-sales-tools',
+    title: 'Best AI Sales Tools',
+    description: 'The top AI-powered tools for sales teams — from prospecting and enrichment to conversation intelligence and pipeline forecasting.',
+    category: 'Sales',
+    emoji: '💼',
+    slugs: ['clay', 'gong', 'hubspot', 'pipedrive', 'intercom'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
