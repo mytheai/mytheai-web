@@ -93,6 +93,7 @@ export default async function ReviewsPage() {
                   alt={tool.name}
                   width={34}
                   height={34}
+                  unoptimized
                   className="rounded"
                 />
               </div>
