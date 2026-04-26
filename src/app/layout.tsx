@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -42,6 +43,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <Analytics />
+        <Script
+          src="https://plausible.io/js/script.outbound-links.file-downloads.js"
+          data-domain="mytheai.com"
+          strategy="afterInteractive"
+          defer
+        />
       </body>
     </html>
   )
