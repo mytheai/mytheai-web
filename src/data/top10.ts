@@ -184,6 +184,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📊',
     slugs: ['gamma', 'beautiful-ai', 'pitch', 'microsoft-designer', 'adobe-express'],
   },
+  {
+    slug: 'best-ai-tools-for-small-businesses',
+    title: 'Best AI Tools for Small Businesses',
+    description: 'The top AI tools helping small businesses compete with larger teams on writing, marketing, customer support, and operations.',
+    category: 'Business',
+    emoji: '🏢',
+    slugs: ['claude', 'jasper', 'grammarly', 'hubspot', 'zapier'],
+  },
+  {
+    slug: 'best-ai-document-tools',
+    title: 'Best AI Document Tools',
+    description: 'The top AI tools for reading, summarising, and chatting with documents and PDFs - turning long files into instant answers.',
+    category: 'Productivity',
+    emoji: '📄',
+    slugs: ['notebooklm', 'chatpdf', 'readwise', 'adobe-acrobat-ai', 'claude'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
