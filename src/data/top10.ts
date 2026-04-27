@@ -368,6 +368,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📈',
     slugs: ['gong-io', 'outreach', 'salesloft', 'lemlist', 'apollo'],
   },
+  {
+    slug: 'best-ai-marketing-tools',
+    title: 'Best AI Marketing Tools',
+    description: 'The top AI tools for marketing teams in 2026 - from content generation and social media management to email automation and brand monitoring.',
+    category: 'Marketing',
+    emoji: '📣',
+    slugs: ['jasper', 'hootsuite', 'buffer', 'anyword', 'canva-ai'],
+  },
+  {
+    slug: 'best-ai-social-media-tools',
+    title: 'Best AI Social Media Tools',
+    description: 'The top AI-powered social media management, scheduling, and content creation tools for marketers, agencies, and creators who want to grow faster with less effort.',
+    category: 'Marketing',
+    emoji: '📱',
+    slugs: ['hootsuite', 'buffer', 'sprout-social', 'later', 'predis-ai'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
