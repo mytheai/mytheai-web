@@ -2,188 +2,99 @@
 -- 10 AI developer infrastructure & workflow tools
 -- DB: 252 → 262 tools
 -- ON CONFLICT (slug) DO NOTHING - safe to re-run
--- Run BEFORE compare-batch-22.sql if any compare pairs reference these slugs
+-- Run BEFORE session36-flags.sql
 
-INSERT INTO tools (slug, name, tagline, description, website_url, logo_url, pricing_type, pricing_starting_price, rating, review_count, category, tags, featured, trending, editor_pick) VALUES
+INSERT INTO tools (slug, name, tagline, description, logo_url, website_url, affiliate_url, tags, pricing_type, pricing_free_tier, pricing_starting_price, rating, review_count, featured, trending, editor_pick, pros, cons, use_cases)
+VALUES
 
-('vercel-v0',
- 'v0 by Vercel',
- 'Generate production-ready UI from a text description',
- 'v0 by Vercel is an AI-powered UI generation tool that converts plain English descriptions into production-ready React and Tailwind CSS components. Describe what you want - a pricing table, a dashboard widget, a login form - and v0 generates clean, deployable code in seconds. Unlike screenshot-to-code tools, v0 produces components that integrate directly into existing Next.js and React projects without manual cleanup. The generated code follows Vercel design conventions and works with shadcn/ui, making it instantly usable in production codebases.
+('vercel-v0', 'v0 by Vercel', 'Generate production-ready UI from a text description',
+'v0 by Vercel is an AI-powered UI generation tool that converts plain English descriptions into production-ready React and Tailwind CSS components. Describe what you want - a pricing table, a dashboard widget, a login form - and v0 generates clean, deployable code in seconds. Unlike screenshot-to-code tools, v0 produces components that integrate directly into existing Next.js and React projects without manual cleanup. The generated code follows Vercel design conventions and works with shadcn/ui, making it instantly usable in production codebases. v0 is particularly valuable for frontend developers who know what they want but want to skip the boilerplate, and for full-stack engineers who spend too much time on UI work when their real value is in the backend. Non-technical founders have used it to generate credible mockups and prototypes that communicate design intent to engineering teams. The tool operates on a credit system within the Vercel dashboard. Basic generation is free; Premium plans unlock higher usage and advanced models. It integrates natively with Vercel deployment, making the path from generated component to live feature remarkably short.',
+'https://www.google.com/s2/favicons?domain=v0.dev&sz=64',
+'https://v0.dev', 'https://v0.dev',
+ARRAY['code-ai', 'ui-generation', 'react', 'developer-tools'], 'freemium', true, 0.00, 4.6, 890, false, false, false,
+ARRAY['Generates production-ready React and Tailwind code from text descriptions', 'Integrates natively with Next.js and Vercel deployment', 'Free credit tier allows meaningful prototyping without a subscription'],
+ARRAY['Credit-based model limits heavy usage on free tier', 'Output strongly favours Vercel and shadcn/ui ecosystem', 'Complex multi-page layouts require multiple iterations'],
+ARRAY['Rapid UI prototyping for Next.js and React projects', 'Generating component first-drafts before a designer is hired', 'Non-technical founders building mockups for engineering handoff']),
 
-v0 is particularly valuable for frontend developers who know what they want but want to skip the boilerplate, and for full-stack engineers who spend too much time on UI work when their real value is in the backend. Non-technical founders have used it to generate credible mockups and prototypes that communicate design intent to engineering teams.
+('devin-ai', 'Devin', 'The first fully autonomous AI software engineer',
+'Devin, built by Cognition AI, is the first fully autonomous AI software engineer. Unlike AI code assistants that help developers write code, Devin operates independently - it reads a GitHub issue, plans a solution, writes the code, runs tests, debugs failures, and submits a pull request with minimal human intervention. It uses its own browser, terminal, and code editor within a sandboxed environment, handling complete software engineering tasks from start to finish. Devin is designed for tasks like bug fixes, feature implementations, codebase refactoring, and API integrations that would typically require a junior to mid-level engineer. It is not a replacement for senior engineering judgment, but it removes the queue of routine engineering work that slows down product teams. Enterprise and growth-stage companies use Devin to extend their engineering capacity without headcount. The pricing reflects its positioning as a serious engineering tool rather than a developer toy - suited for teams where engineering time is genuinely the bottleneck. Devin integrates with GitHub, Slack, and standard CI/CD pipelines.',
+'https://www.google.com/s2/favicons?domain=devin.ai&sz=64',
+'https://devin.ai', 'https://devin.ai',
+ARRAY['code-ai', 'ai-agent', 'autonomous-coding', 'developer-tools'], 'paid', false, 500.00, 4.2, 340, false, false, false,
+ARRAY['Operates fully autonomously from GitHub issue to pull request', 'Handles complete engineering tasks without constant human input', 'Integrates with GitHub, Slack, and standard CI/CD pipelines'],
+ARRAY['Premium pricing at $500/month puts it out of reach for individuals and small teams', 'Best for routine and well-specified tasks - not a replacement for senior engineering judgment', 'Requires clear issue specifications for reliable autonomous execution'],
+ARRAY['Automating bug fixes and routine feature implementations', 'Extending engineering capacity without additional headcount', 'Running background engineering tasks in parallel with the main team']),
 
-The tool operates on a credit system within the Vercel dashboard. Basic generation is free; Premium plans unlock higher usage and advanced models. It integrates natively with Vercel deployment, making the path from generated component to live feature remarkably short.',
- 'https://v0.dev',
- NULL,
- 'freemium',
- 0.00,
- 4.6,
- 890,
- 'code-ai',
- ARRAY['code-ai', 'ui-generation', 'react', 'frontend'],
- false, false, false),
+('e2b', 'E2B', 'Sandboxed code execution infrastructure for AI applications',
+'E2B (Execute to Build) provides cloud sandboxes for running AI-generated code safely. When you build an AI application that executes code - a coding assistant, a data analysis agent, or an autonomous programmer - you need a secure environment where that code can run without risk to your production infrastructure. E2B provides that infrastructure as a service, offering isolated virtual machines that spin up in milliseconds and are designed specifically for AI workloads. Developers building AI coding tools, autonomous agents, or data science applications use E2B to handle the execution layer. Instead of building and maintaining sandboxed environments from scratch, teams integrate E2B''s SDK and get managed, scalable execution infrastructure. The sandboxes support multiple programming languages, have internet access when needed, and can be customised with dependencies pre-installed. E2B is a developer-first product used primarily by teams building AI-native applications. It has become a standard component in AI agent architectures where code execution is required. The free tier covers development and prototyping; production workloads move to usage-based pricing.',
+'https://www.google.com/s2/favicons?domain=e2b.dev&sz=64',
+'https://e2b.dev', 'https://e2b.dev',
+ARRAY['code-ai', 'ai-agent', 'developer-tools', 'infrastructure'], 'freemium', true, 0.00, 4.3, 520, false, false, false,
+ARRAY['Sandboxes spin up in milliseconds for low-latency code execution', 'Supports multiple programming languages with customisable dependencies', 'Managed infrastructure eliminates the need to build and maintain your own sandboxes'],
+ARRAY['Developer-facing product - not suited for non-technical users', 'Production costs scale with usage and can grow quickly at high volume', 'Requires SDK integration into your application rather than a standalone tool'],
+ARRAY['Running AI-generated code safely in coding assistant applications', 'Providing secure execution environments for autonomous AI agents', 'Data science and analysis pipelines that need isolated execution']),
 
-('devin-ai',
- 'Devin',
- 'The world''s first fully autonomous AI software engineer',
- 'Devin, built by Cognition AI, is positioned as the world''s first fully autonomous AI software engineer. Unlike AI code assistants that help developers write code, Devin operates independently - it can read a GitHub issue, plan a solution, write the code, run tests, debug failures, and submit a pull request with minimal human intervention. It uses its own browser, terminal, and code editor within a sandboxed environment, handling complete software engineering tasks from start to finish.
+('gitpod', 'Gitpod', 'Instant, automated cloud development environments',
+'Gitpod transforms how development environments are created and maintained by making them automated, reproducible, and cloud-hosted. Instead of spending hours configuring a local development environment every time you join a project or onboard a new developer, Gitpod provisions a ready-to-code environment directly from your Git repository in seconds. Open a GitHub, GitLab, or Bitbucket repository, click a button, and a complete development environment - with all dependencies pre-installed and configured - opens in your browser or connects to your local VS Code. AI features in Gitpod include intelligent environment configuration and Gitpod Flex, which lets teams define their dev environment in code and share it across the entire engineering team. Every developer gets an identical, fresh environment for every task, eliminating the classic "works on my machine" problem. Gitpod is used by engineering teams from open-source projects to enterprise teams with compliance requirements. The free tier covers individual developers and small projects; Teams and Enterprise plans add more powerful machines and self-hosted deployment.',
+'https://www.google.com/s2/favicons?domain=gitpod.io&sz=64',
+'https://gitpod.io', 'https://gitpod.io',
+ARRAY['code-ai', 'cloud-ide', 'developer-tools', 'devops'], 'freemium', true, 0.00, 4.4, 1240, false, false, false,
+ARRAY['Provisions a complete dev environment from a Git repo in seconds', 'Dev environments defined as code - identical setup for every team member', 'Works in the browser or connects to local VS Code with no local config required'],
+ARRAY['Performance of cloud environments can lag local machines for compute-heavy tasks', 'Free tier has usage limits that restrict longer development sessions', 'Teams with complex local tooling may need significant setup to migrate'],
+ARRAY['Onboarding new developers to a codebase without environment setup time', 'Regulated teams that need code to run in controlled cloud environments', 'Open-source projects where contributors need instant, reproducible environments']),
 
-Devin is designed for tasks like bug fixes, feature implementations, codebase refactoring, and API integrations that would typically require a junior to mid-level engineer. It is not a replacement for senior engineering judgment, but it removes the queue of routine engineering work that slows down product teams.
+('langsmith', 'LangSmith', 'Debug, test, and monitor LLM applications in production',
+'LangSmith is LangChain''s platform for building, testing, and monitoring production LLM applications. When you build an AI application using language models, prompts behave non-deterministically - the same input can produce different outputs, and diagnosing why a model gave a bad response requires deep observability into the full chain of calls. LangSmith provides that observability layer: it traces every LLM call, shows the exact prompt sent, the response received, and the cost and latency of each step. Beyond debugging, LangSmith includes a prompt playground for iterating on prompt engineering, a dataset management system for creating test suites, and an evaluation framework for measuring whether model changes improve or regress application quality. Teams use it to catch regressions before deploying prompt updates, monitor production applications for quality degradation, and benchmark different model versions against each other. LangSmith works with any LLM framework through its tracing SDK, not just LangChain. The free tier covers development and small-scale monitoring; production deployments move to paid plans based on trace volume.',
+'https://www.google.com/s2/favicons?domain=smith.langchain.com&sz=64',
+'https://smith.langchain.com', 'https://smith.langchain.com',
+ARRAY['code-ai', 'llm-ops', 'ai-monitoring', 'developer-tools'], 'freemium', true, 0.00, 4.5, 870, false, false, false,
+ARRAY['Full trace visibility into every LLM call, prompt, response, cost, and latency', 'Evaluation framework catches prompt regressions before production deployment', 'Works with any LLM framework via the tracing SDK, not just LangChain'],
+ARRAY['Most useful for teams already building with LangChain - some friction for other frameworks', 'Advanced evaluation features require setting up test datasets and scoring functions', 'Trace volume pricing can become significant at high production scale'],
+ARRAY['Debugging unexpected LLM outputs and tracing multi-step agent behaviour', 'Running A/B tests on prompt changes before deploying to production', 'Monitoring production LLM applications for quality degradation and cost spikes']),
 
-Enterprise and growth-stage companies use Devin to extend their engineering capacity without headcount. The pricing reflects its positioning as a serious engineering tool rather than a developer toy - it operates at a premium price point suited for teams where engineering time is genuinely the bottleneck. Devin integrates with GitHub, Slack, and standard CI/CD pipelines.',
- 'https://devin.ai',
- NULL,
- 'paid',
- 500.00,
- 4.2,
- 340,
- 'code-ai',
- ARRAY['code-ai', 'ai-agent', 'autonomous-coding', 'software-engineering'],
- false, false, false),
+('agentops', 'AgentOps', 'Observability and testing platform for AI agents',
+'AgentOps is an observability, testing, and monitoring platform built specifically for AI agents. As AI applications have moved from single LLM calls to multi-step agent workflows - where one model call triggers tool use, which triggers another model call, which produces an action - debugging and monitoring have become significantly harder. AgentOps tracks every step of an agent session, recording costs, latency, errors, and the full decision trace so developers can understand exactly what their agents did and why. The platform includes session replays that let developers rewind and inspect any point in an agent''s execution, cost dashboards that show where token spend is going across agent runs, and failure detection that flags when agents get stuck in loops or hit unexpected errors. Teams building autonomous agents on frameworks like CrewAI, AutoGen, LangChain, and custom architectures use AgentOps as their monitoring layer. For AI product teams moving from prototype to production, AgentOps answers whether your agents are actually working as intended in the real world.',
+'https://www.google.com/s2/favicons?domain=agentops.ai&sz=64',
+'https://agentops.ai', 'https://agentops.ai',
+ARRAY['code-ai', 'ai-agent', 'llm-ops', 'ai-monitoring'], 'freemium', true, 0.00, 4.2, 380, false, false, false,
+ARRAY['Session replays let developers rewind and inspect any step of an agent run', 'Cost dashboards surface where token spend is concentrated across agent executions', 'Supports CrewAI, AutoGen, LangChain, and custom agent frameworks out of the box'],
+ARRAY['Relatively new product with a smaller community than LangSmith', 'Most value is unlocked for multi-step agent workflows rather than simple LLM calls', 'Dashboard and alerting features are still maturing compared to general observability tools'],
+ARRAY['Monitoring production AI agents for loops, failures, and unexpected behaviour', 'Debugging multi-step agent workflows where standard logging is insufficient', 'Tracking and optimising token costs across autonomous agent runs']),
 
-('e2b',
- 'E2B',
- 'Sandboxed code execution infrastructure for AI apps',
- 'E2B (Execute to Build) provides cloud sandboxes for running AI-generated code safely. When you build an AI application that executes code - a coding assistant, a data analysis agent, or an autonomous programmer - you need a secure environment where that code can run without risk to your production infrastructure. E2B provides that infrastructure as a service, offering isolated virtual machines that spin up in milliseconds and are designed specifically for AI workloads.
+('dify', 'Dify', 'Open-source platform for building AI-powered applications',
+'Dify is an open-source LLM application development platform that makes it possible to build AI-powered workflows, chatbots, and agents without extensive machine learning expertise. It provides a visual interface for composing AI pipelines - connecting LLM calls, retrieval-augmented generation steps, tool integrations, and conditional logic into working applications. Think of it as a no-code and low-code layer on top of the raw LLM API that handles the complex orchestration work. Teams use Dify to build internal AI tools, customer-facing chatbots, document processing pipelines, and AI agents that integrate with existing business systems. Because it is open-source and self-hostable, it is particularly popular with enterprises that have data residency requirements or want full control over their AI infrastructure. Dify supports all major model providers including OpenAI, Anthropic, and open-source models via Ollama, and includes built-in tools for RAG, web search, code execution, and custom API integrations. The platform has grown rapidly among teams who found LangChain too developer-intensive but needed more control than no-code tools provide.',
+'https://www.google.com/s2/favicons?domain=dify.ai&sz=64',
+'https://dify.ai', 'https://dify.ai',
+ARRAY['code-ai', 'ai-agent', 'llm-platform', 'open-source'], 'freemium', true, 0.00, 4.5, 1560, false, false, false,
+ARRAY['Visual pipeline builder makes AI workflow creation accessible without deep LLM expertise', 'Self-hostable with full data residency control for compliance-sensitive teams', 'Supports all major model providers including open-source models via Ollama'],
+ARRAY['Self-hosted deployment requires DevOps capability to maintain and update', 'Visual builder can become complex for highly conditional or branching workflows', 'Cloud version has usage limits; heavy workloads require self-hosting or paid plans'],
+ARRAY['Building internal AI tools and chatbots without writing LLM orchestration code', 'Document processing and RAG pipelines for knowledge base applications', 'Self-hosted AI workflows for organisations with data residency requirements']),
 
-Developers building AI coding tools, autonomous agents, or data science applications use E2B to handle the execution layer. Instead of building and maintaining sandboxed environments from scratch, teams integrate E2B''s SDK and get managed, scalable execution infrastructure. The sandboxes support multiple programming languages, have internet access when needed, and can be customised with dependencies pre-installed.
+('flowise', 'Flowise', 'Open-source visual builder for LLM flows and AI agents',
+'Flowise is an open-source drag-and-drop tool for building AI workflows and LLM applications. Where tools like LangChain require writing code to compose AI pipelines, Flowise provides a visual canvas where developers can connect components - LLM nodes, vector stores, document loaders, tools, and agents - to create working AI applications through a graphical interface. The resulting flows can be deployed as APIs, integrated into web applications, or used to power chatbots. The tool has a large library of pre-built nodes covering most common AI use cases: RAG over documents, conversational agents, web scraping, database connections, and integration with external APIs. Custom nodes can be added through JavaScript, making it extensible for teams with specific requirements. Flowise is self-hosted and free to use, making it attractive for companies that want to run AI infrastructure on their own servers. A cloud version with managed deployment is available for teams who want to avoid infrastructure work. It is widely used for internal tooling, customer support automation, and rapid prototyping of AI features.',
+'https://www.google.com/s2/favicons?domain=flowiseai.com&sz=64',
+'https://flowiseai.com', 'https://flowiseai.com',
+ARRAY['code-ai', 'visual-builder', 'llm-platform', 'open-source'], 'free', true, 0.00, 4.4, 980, false, false, false,
+ARRAY['Completely free and open-source with no usage limits when self-hosted', 'Large library of pre-built nodes for the most common LLM workflow patterns', 'Flows deploy as APIs that integrate directly into existing web applications'],
+ARRAY['Self-hosting requires server setup and ongoing maintenance', 'Visual builder can become unwieldy for very complex multi-step agent flows', 'Community support only for self-hosted version; commercial support requires paid plan'],
+ARRAY['Rapid prototyping of AI chatbots and document Q&A applications', 'Building RAG pipelines over internal knowledge bases without writing orchestration code', 'Internal tooling and customer support automation for teams that need self-hosted AI']),
 
-E2B is a developer-first product used primarily by teams building AI-native applications rather than end users. It has become a standard component in AI agent architectures where code execution is required. The free tier covers development and prototyping; production workloads move to usage-based pricing.',
- 'https://e2b.dev',
- NULL,
- 'freemium',
- 0.00,
- 4.3,
- 520,
- 'code-ai',
- ARRAY['code-ai', 'ai-agent', 'sandboxed-execution', 'developer-tools'],
- false, false, false),
+('n8n', 'n8n', 'Workflow automation for technical teams with AI built in',
+'n8n is an open-source workflow automation platform that sits between no-code tools like Zapier and full custom code. Where Zapier handles simple linear automations for non-technical users, n8n handles complex automations with branching logic, data transformation, custom code execution, and self-hosting for teams with privacy or compliance requirements. It connects over 400 services and provides native AI nodes for building AI-augmented automations. The AI features in n8n include built-in LLM nodes that connect to OpenAI, Anthropic, and other providers, vector store integrations for RAG workflows, and AI agent nodes that can plan and execute multi-step tasks autonomously. Teams use n8n to build AI pipelines that process documents, enrich CRM data with AI insights, automate customer communication, and connect internal tools in ways that standard no-code platforms cannot handle. n8n is self-hosted by default, making it popular with developers and companies that cannot send sensitive data to cloud automation platforms. The pricing model is significantly more cost-effective than Zapier for high-volume, complex automations.',
+'https://www.google.com/s2/favicons?domain=n8n.io&sz=64',
+'https://n8n.io', 'https://n8n.io',
+ARRAY['productivity', 'automation', 'developer-tools', 'open-source'], 'freemium', true, 0.00, 4.6, 2100, false, false, false,
+ARRAY['Handles complex automations with branching logic that Zapier cannot express cleanly', 'Self-hostable with no per-task pricing - significantly cheaper than Zapier at scale', 'Native AI nodes for LLM calls, RAG, and autonomous agent workflows built in'],
+ARRAY['Steeper learning curve than Zapier - requires comfort with technical concepts', 'Self-hosting requires server infrastructure and ongoing maintenance', 'Smaller app integration library than Zapier (400+ vs 6000+)'],
+ARRAY['Complex business process automation with conditional logic and data transformation', 'AI-augmented workflows that process documents, enrich data, or generate content at scale', 'Self-hosted automation for organisations that cannot use cloud platforms for compliance reasons']),
 
-('gitpod',
- 'Gitpod',
- 'Instant, automated cloud development environments',
- 'Gitpod transforms how development environments are created and maintained by making them automated, reproducible, and cloud-hosted. Instead of spending hours configuring a local development environment every time you join a project or onboard a new developer, Gitpod provisions a ready-to-code environment directly from your Git repository in seconds. Open a GitHub, GitLab, or Bitbucket repository, click a button, and a complete development environment - with all dependencies pre-installed and configured - opens in your browser or connects to your local VS Code.
-
-AI features in Gitpod include intelligent environment configuration and Gitpod Flex, which lets teams define their dev environment in code and share it across the entire engineering team. Every developer gets an identical, fresh environment for every task, eliminating the classic "works on my machine" problem that consumes enormous debugging time.
-
-Gitpod is used by engineering teams ranging from open-source projects to enterprise development teams with compliance requirements around where code is executed. The free tier covers individual developers and small projects. Teams and Enterprise plans add more powerful machines, longer timeouts, and self-hosted deployment options.',
- 'https://gitpod.io',
- NULL,
- 'freemium',
- 0.00,
- 4.4,
- 1240,
- 'code-ai',
- ARRAY['code-ai', 'cloud-ide', 'developer-tools', 'devops'],
- false, false, false),
-
-('langsmith',
- 'LangSmith',
- 'Debug, test, and monitor LLM applications in production',
- 'LangSmith is LangChain''s platform for building, testing, and monitoring production LLM applications. When you build an AI application using language models, prompts behave non-deterministically - the same input can produce different outputs, and diagnosing why a model gave a bad response requires deep observability into the full chain of calls. LangSmith provides that observability layer: traces every LLM call, shows the exact prompt sent, the response received, and the cost and latency of each step.
-
-Beyond debugging, LangSmith includes a prompt playground for iterating on prompt engineering, a dataset management system for creating test suites, and an evaluation framework for measuring whether model changes improve or regress application quality. Teams use it to catch regressions before deploying prompt updates, monitor production applications for quality degradation, and benchmark different model versions against each other.
-
-LangSmith has become a standard tool in AI engineering teams building on LangChain, but it works with any LLM framework through its tracing SDK. The free tier covers development and small-scale monitoring; production deployments move to paid plans based on trace volume.',
- 'https://smith.langchain.com',
- NULL,
- 'freemium',
- 0.00,
- 4.5,
- 870,
- 'code-ai',
- ARRAY['code-ai', 'llm-ops', 'ai-monitoring', 'developer-tools'],
- false, false, false),
-
-('agentops',
- 'AgentOps',
- 'Observability and testing platform for AI agents',
- 'AgentOps is an observability, testing, and monitoring platform built specifically for AI agents. As AI applications have moved from single LLM calls to multi-step agent workflows - where one model call triggers tool use, which triggers another model call, which produces an action - debugging and monitoring have become significantly harder. AgentOps tracks every step of an agent session, recording costs, latency, errors, and the full decision trace so developers can understand exactly what their agents did and why.
-
-The platform includes session replays that let developers rewind and inspect any point in an agent''s execution, cost dashboards that show where token spend is going across agent runs, and failure detection that flags when agents get stuck in loops or hit unexpected errors. Teams building autonomous agents on frameworks like CrewAI, AutoGen, LangChain, and custom agent architectures use AgentOps as their monitoring layer.
-
-For AI product teams moving from prototype to production, AgentOps answers the question of whether your agents are actually working as intended in the real world. The free tier covers development; production monitoring scales with usage.',
- 'https://agentops.ai',
- NULL,
- 'freemium',
- 0.00,
- 4.2,
- 380,
- 'code-ai',
- ARRAY['code-ai', 'ai-agent', 'llm-ops', 'ai-monitoring'],
- false, false, false),
-
-('dify',
- 'Dify',
- 'Open-source platform for building AI-powered applications',
- 'Dify is an open-source LLM application development platform that makes it possible to build AI-powered workflows, chatbots, and agents without extensive machine learning expertise. It provides a visual interface for composing AI pipelines - connecting LLM calls, retrieval-augmented generation (RAG) steps, tool integrations, and conditional logic into working applications. Think of it as a no-code and low-code layer on top of the raw LLM API that handles the complex orchestration work.
-
-Teams use Dify to build internal AI tools, customer-facing chatbots, document processing pipelines, and AI agents that integrate with existing business systems. Because it is open-source and self-hostable, it is particularly popular with enterprises that have data residency requirements or want full control over their AI infrastructure. The cloud version is available for teams who want managed deployment.
-
-Dify supports all major model providers (OpenAI, Anthropic, open-source models via Ollama) and includes built-in tools for RAG, web search, code execution, and custom API integrations. The platform has grown rapidly among teams who found LangChain too developer-intensive but needed more control than no-code tools provide.',
- 'https://dify.ai',
- NULL,
- 'freemium',
- 0.00,
- 4.5,
- 1560,
- 'code-ai',
- ARRAY['code-ai', 'ai-agent', 'llm-platform', 'open-source'],
- false, false, false),
-
-('flowise',
- 'Flowise',
- 'Open-source visual builder for LLM flows and AI agents',
- 'Flowise is an open-source drag-and-drop tool for building AI workflows and LLM applications. Where tools like LangChain require writing code to compose AI pipelines, Flowise provides a visual canvas where developers can connect components - LLM nodes, vector stores, document loaders, tools, and agents - to create working AI applications through a graphical interface. The resulting flows can be deployed as APIs, integrated into web applications, or used to power chatbots.
-
-The tool has a large library of pre-built nodes covering most common AI use cases: RAG over documents, conversational agents, web scraping, database connections, and integration with external APIs. Custom nodes can be added through JavaScript, making it extensible for teams with specific requirements.
-
-Flowise is self-hosted and free to use, which makes it attractive for companies that want to run AI infrastructure on their own servers. A cloud version with managed deployment is available for teams who want to avoid infrastructure work. It is widely used for internal tooling, customer support automation, and rapid prototyping of AI features before committing to a fully custom implementation.',
- 'https://flowiseai.com',
- NULL,
- 'free',
- 0.00,
- 4.4,
- 980,
- 'code-ai',
- ARRAY['code-ai', 'visual-builder', 'llm-platform', 'open-source'],
- false, false, false),
-
-('n8n',
- 'n8n',
- 'Workflow automation for technical teams with AI superpowers',
- 'n8n is an open-source workflow automation platform that sits between no-code tools like Zapier and full custom code. Where Zapier handles simple linear automations for non-technical users, n8n handles complex automations with branching logic, data transformation, custom code execution, and self-hosting for teams with privacy or compliance requirements. It connects over 400 services and provides native AI nodes for building AI-augmented automations.
-
-The AI features in n8n include built-in LLM nodes that connect to OpenAI, Anthropic, and other providers, vector store integrations for RAG workflows, and AI agent nodes that can plan and execute multi-step tasks autonomously. Teams use n8n to build AI pipelines that process documents, enrich CRM data with AI insights, automate customer communication, and connect internal tools in ways that standard no-code platforms cannot handle.
-
-n8n is self-hosted by default, making it popular with developers, DevOps teams, and companies that cannot send sensitive data to cloud automation platforms. The cloud version provides managed hosting for teams that prefer not to maintain their own infrastructure. The pricing model is significantly more cost-effective than Zapier for high-volume, complex automations.',
- 'https://n8n.io',
- NULL,
- 'freemium',
- 0.00,
- 4.6,
- 2100,
- 'productivity',
- ARRAY['productivity', 'automation', 'developer-tools', 'open-source'],
- false, false, false),
-
-('val-town',
- 'Val Town',
- 'Write, run, and deploy serverless functions from your browser',
- 'Val Town is a social platform for writing, running, and sharing serverless functions directly in the browser. Each "val" is a small piece of JavaScript or TypeScript that runs on Val Town''s infrastructure - no configuration, no deployment steps, no cloud console. Write a function, hit run, and it is live. Vals can be scheduled as crons, triggered via HTTP endpoints, or run in response to emails, making them instantly useful for automations, webhooks, and small utilities.
-
-The social layer makes Val Town distinctive: vals are public by default and searchable, meaning developers can find and fork working examples of common patterns - sending emails, scraping websites, calling APIs, processing webhooks - rather than writing them from scratch. The community has built thousands of reusable vals covering most standard automation tasks.
-
-AI features include an AI assistant that helps write vals from plain English descriptions, and the ability to call AI APIs directly from vals for processing pipelines. Val Town is used by developers, data engineers, and technical founders who want the power of serverless functions without the overhead of AWS Lambda or Vercel Functions setup. The free tier covers most individual and hobby use cases; Pro unlocks private vals and higher execution limits.',
- 'https://val.town',
- NULL,
- 'freemium',
- 0.00,
- 4.3,
- 640,
- 'code-ai',
- ARRAY['code-ai', 'serverless', 'developer-tools', 'automation'],
- false, false, false)
+('val-town', 'Val Town', 'Write, run, and deploy serverless functions from your browser',
+'Val Town is a social platform for writing, running, and sharing serverless functions directly in the browser. Each "val" is a small piece of JavaScript or TypeScript that runs on Val Town''s infrastructure - no configuration, no deployment steps, no cloud console. Write a function, hit run, and it is live. Vals can be scheduled as crons, triggered via HTTP endpoints, or run in response to emails, making them instantly useful for automations, webhooks, and small utilities. The social layer makes Val Town distinctive: vals are public by default and searchable, meaning developers can find and fork working examples of common patterns - sending emails, scraping websites, calling APIs, processing webhooks - rather than writing them from scratch. The community has built thousands of reusable vals covering most standard automation tasks. AI features include an AI assistant that helps write vals from plain English descriptions, and the ability to call AI APIs directly from vals for lightweight processing pipelines. Val Town suits developers who want serverless functions without the setup overhead of AWS Lambda or Vercel Functions.',
+'https://www.google.com/s2/favicons?domain=val.town&sz=64',
+'https://val.town', 'https://val.town',
+ARRAY['code-ai', 'serverless', 'developer-tools', 'automation'], 'freemium', true, 0.00, 4.3, 640, false, false, false,
+ARRAY['Zero-configuration serverless functions - write and run in the browser instantly', 'Searchable community library of thousands of reusable vals for common tasks', 'AI assistant generates vals from plain English descriptions for rapid prototyping'],
+ARRAY['Public-by-default model is not suited for private or sensitive business logic', 'JavaScript and TypeScript only - no support for other languages', 'Free tier limits on run duration and frequency for heavier scheduled tasks'],
+ARRAY['Quick serverless automations, webhooks, and cron jobs without infrastructure setup', 'Forking and adapting community-built vals for common integration patterns', 'Lightweight AI processing pipelines that call LLM APIs without a backend server'])
 
 ON CONFLICT (slug) DO NOTHING;
