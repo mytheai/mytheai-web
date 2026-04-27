@@ -272,6 +272,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🎙️',
     slugs: ['descript', 'riverside', 'podcastle', 'castmagic', 'adobe-podcast'],
   },
+  {
+    slug: 'best-ai-legal-tools',
+    title: 'Best AI Tools for Legal Teams',
+    description: 'The top AI tools for lawyers, legal operations teams, and corporate legal departments - from contract review and research to e-signatures and CLM platforms.',
+    category: 'Business',
+    emoji: '⚖️',
+    slugs: ['harvey-ai', 'spellbook-ai', 'contractbook', 'detangle-ai', 'docusign-ai'],
+  },
+  {
+    slug: 'best-ai-tools-for-content-creators',
+    title: 'Best AI Tools for Content Creators',
+    description: 'The top AI tools for video creators, podcasters, writers, and social media managers - from content generation and editing to repurposing and distribution.',
+    category: 'Marketing',
+    emoji: '🎬',
+    slugs: ['capcut', 'opus-clip', 'descript', 'canva-ai', 'castmagic'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
