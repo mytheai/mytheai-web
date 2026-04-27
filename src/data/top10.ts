@@ -240,6 +240,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🛒',
     slugs: ['klaviyo', 'jasper', 'tidio', 'canva-ai', 'semrush'],
   },
+  {
+    slug: 'best-ai-music-tools',
+    title: 'Best AI Music Generation Tools',
+    description: 'The top AI tools for generating original music, songs, and audio - from royalty-free background tracks to complete songs with vocals, ranked by output quality and ease of use.',
+    category: 'Audio AI',
+    emoji: '🎵',
+    slugs: ['suno', 'udio', 'soundraw', 'mubert', 'stable-audio'],
+  },
+  {
+    slug: 'best-ai-tools-for-finance',
+    title: 'Best AI Tools for Finance Teams',
+    description: 'The top AI tools for financial planning, data analysis, document processing, and reporting - helping finance professionals move faster without growing headcount.',
+    category: 'Business',
+    emoji: '💰',
+    slugs: ['julius-ai', 'claude', 'grammarly', 'zapier', 'notion-ai'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
