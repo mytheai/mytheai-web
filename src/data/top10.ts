@@ -384,6 +384,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📱',
     slugs: ['hootsuite', 'buffer', 'sprout-social', 'later', 'predis-ai'],
   },
+  {
+    slug: 'best-ai-email-marketing-tools',
+    title: 'Best AI Email Marketing Tools',
+    description: 'The top AI-powered email marketing platforms for e-commerce, newsletters, and B2B teams - from predictive segmentation and automated flows to AI-generated content and revenue attribution.',
+    category: 'Marketing',
+    emoji: '✉️',
+    slugs: ['omnisend', 'mailerlite', 'klaviyo', 'activecampaign', 'mailchimp'],
+  },
+  {
+    slug: 'best-ai-productivity-tools',
+    title: 'Best AI Productivity Tools',
+    description: 'The top AI tools for individual and team productivity - from intelligent task management and calendar scheduling to AI email clients and smart scheduling assistants.',
+    category: 'Productivity',
+    emoji: '⚡',
+    slugs: ['motion', 'reclaim-ai', 'notion-ai', 'todoist', 'clockwise'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
