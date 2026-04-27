@@ -102,7 +102,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered analytics and business intelligence tools for turning data into insights without a data science degree.',
     category: 'Analytics',
     emoji: '📊',
-    slugs: ['mixpanel', 'amplitude', 'julius-ai', 'tableau-ai', 'metabase'],
+    slugs: ['mixpanel', 'amplitude', 'julius-ai', 'tableau', 'metabase'],
   },
   {
     slug: 'best-ai-meeting-tools',
@@ -159,6 +159,30 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Productivity',
     emoji: '📝',
     slugs: ['notebooklm', 'otter-ai', 'fathom', 'mem-ai', 'tldv'],
+  },
+  {
+    slug: 'best-ai-tools-for-educators',
+    title: 'Best AI Tools for Teachers & Educators',
+    description: 'The top AI tools for lesson planning, grading, student engagement, and research, ranked by educational impact and ease of use.',
+    category: 'Education',
+    emoji: '🎓',
+    slugs: ['magicschool-ai', 'notebooklm', 'gamma', 'beautiful-ai', 'claude'],
+  },
+  {
+    slug: 'best-ai-podcast-tools',
+    title: 'Best AI Podcast Tools',
+    description: 'The top AI tools for recording, editing, transcribing, and repurposing podcast content, ranked by audio quality and workflow efficiency.',
+    category: 'Podcasting',
+    emoji: '🎙️',
+    slugs: ['podcastle', 'castmagic', 'riverside', 'otter-ai', 'descript'],
+  },
+  {
+    slug: 'best-ai-presentation-tools',
+    title: 'Best AI Presentation Tools',
+    description: 'The top AI-powered tools for building slide decks, pitch decks, and visual presentations - from templates to fully generated decks.',
+    category: 'Productivity',
+    emoji: '📊',
+    slugs: ['gamma', 'beautiful-ai', 'pitch', 'microsoft-designer', 'adobe-express'],
   },
 ]
 

@@ -1,4 +1,7 @@
 import { MetadataRoute } from 'next'
+import { readdirSync, readFileSync } from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
 import { createStaticClient } from '@/lib/supabase'
 import { mockCategories } from '@/data/mock'
 import { TOP10_LISTS } from '@/data/top10'
@@ -41,23 +44,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  const blogUrls: MetadataRoute.Sitemap = [
-    { url: 'https://mytheai.com/blog/best-free-ai-tools-2026', lastModified: new Date('2026-04-20'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/chatgpt-vs-claude', lastModified: new Date('2026-04-15'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/how-to-build-your-ai-stack', lastModified: new Date('2026-04-08'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-tools-for-startups-2026', lastModified: new Date('2026-04-18'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/chatgpt-vs-claude-vs-gemini-2026', lastModified: new Date('2026-04-22'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-tools-for-content-creators-2026', lastModified: new Date('2026-04-12'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-video-tools-2026', lastModified: new Date('2026-04-10'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-writing-tools-2026', lastModified: new Date('2026-04-09'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-tools-for-developers-2026', lastModified: new Date('2026-04-16'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/chatgpt-alternatives-2026', lastModified: new Date('2026-04-20'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-tools-for-marketers-2026', lastModified: new Date('2026-04-14'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-image-generators-2026', lastModified: new Date('2026-04-12'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-tools-for-students-2026', lastModified: new Date('2026-04-24'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-coding-assistants-2026', lastModified: new Date('2026-04-26'), changeFrequency: 'monthly', priority: 0.7 },
-    { url: 'https://mytheai.com/blog/best-ai-tools-for-freelancers-2026', lastModified: new Date('2026-04-27'), changeFrequency: 'monthly', priority: 0.7 },
-  ]
+  const blogDir = path.join(process.cwd(), 'content/blog')
+  const blogFiles = readdirSync(blogDir).filter(f => f.endsWith('.mdx'))
+  const blogUrls: MetadataRoute.Sitemap = blogFiles.map(file => {
+    const slug = file.replace('.mdx', '')
+    const src = readFileSync(path.join(blogDir, file), 'utf-8')
+    const { data } = matter(src)
+    return {
+      url: `https://mytheai.com/blog/${slug}`,
+      lastModified: data.date ? new Date(data.date) : new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }
+  })
 
   return [
     { url: 'https://mytheai.com', lastModified: new Date(), changeFrequency: 'daily', priority: 1 },

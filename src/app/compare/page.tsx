@@ -29,17 +29,17 @@ interface ToolMeta {
 }
 
 const TAG_LABELS: Record<string, string> = {
-  'ai-assistant': 'AI Assistants',
-  'writing-ai':   'Writing',
-  'image-ai':     'Image',
-  'video-ai':     'Video',
-  'code-ai':      'Code',
-  'voice-ai':     'Voice',
-  'productivity': 'Productivity',
-  'analytics':    'Analytics',
-  'seo':          'SEO',
-  'content':      'Content',
-  'research':     'Research',
+  'ai-assistants':  'AI Assistants',
+  'writing-ai':     'Writing',
+  'image-ai':       'Image',
+  'video-ai':       'Video',
+  'code-ai':        'Code',
+  'voice-audio':    'Voice',
+  'productivity':   'Productivity',
+  'analytics':      'Analytics',
+  'seo-marketing':  'SEO',
+  'content':        'Content',
+  'research':       'Research',
 }
 
 async function getComparisons(): Promise<CompareRow[]> {

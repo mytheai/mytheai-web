@@ -169,11 +169,12 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
           <div className="flex items-center gap-4 w-full max-w-lg">
             {/* Tool A */}
             <div className="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-card">
-              {toolA.logo_url && (
-                <div className="w-12 h-12 rounded-xl border border-border bg-white flex items-center justify-center overflow-hidden">
-                  <Image src={toolA.logo_url} alt={toolA.name} width={40} height={40} unoptimized />
-                </div>
-              )}
+              <div className="w-12 h-12 rounded-xl border border-border bg-white flex items-center justify-center overflow-hidden">
+                {toolA.logo_url
+                  ? <Image src={toolA.logo_url} alt={toolA.name} width={40} height={40} unoptimized />
+                  : <span className="text-[15px] font-bold text-gray-400">{toolA.name.charAt(0).toUpperCase()}</span>
+                }
+              </div>
               <p className="text-[14px] font-bold text-foreground">{toolA.name}</p>
               <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${PRICING_COLORS[toolA.pricing_type]}`}>
                 {PRICING_LABELS[toolA.pricing_type]}
@@ -186,11 +187,12 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
 
             {/* Tool B */}
             <div className="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-card">
-              {toolB.logo_url && (
-                <div className="w-12 h-12 rounded-xl border border-border bg-white flex items-center justify-center overflow-hidden">
-                  <Image src={toolB.logo_url} alt={toolB.name} width={40} height={40} unoptimized />
-                </div>
-              )}
+              <div className="w-12 h-12 rounded-xl border border-border bg-white flex items-center justify-center overflow-hidden">
+                {toolB.logo_url
+                  ? <Image src={toolB.logo_url} alt={toolB.name} width={40} height={40} unoptimized />
+                  : <span className="text-[15px] font-bold text-gray-400">{toolB.name.charAt(0).toUpperCase()}</span>
+                }
+              </div>
               <p className="text-[14px] font-bold text-foreground">{toolB.name}</p>
               <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${PRICING_COLORS[toolB.pricing_type]}`}>
                 {PRICING_LABELS[toolB.pricing_type]}

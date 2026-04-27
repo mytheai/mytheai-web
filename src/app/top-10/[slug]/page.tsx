@@ -14,6 +14,7 @@ interface ToolRow {
   name: string
   tagline: string
   logo_url: string | null
+  website_url: string | null
   pricing_type: string
   pricing_free_tier: boolean
   pricing_starting_price: number | null
@@ -27,7 +28,7 @@ interface ToolRow {
 async function getToolsForList(slugs: string[]): Promise<ToolRow[]> {
   const supabase = createStaticClient()
   const { data } = await supabase.from('tools')
-    .select('slug,name,tagline,logo_url,pricing_type,pricing_free_tier,pricing_starting_price,rating,review_count,trending')
+    .select('slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,pricing_starting_price,rating,review_count,trending')
     .in('slug', slugs)
   if (!data) return []
   return slugs
@@ -71,6 +72,18 @@ const PRICING_COLORS: Record<string, string> = {
 }
 
 const RANK_COLORS = ['#F59E0B', '#9CA3AF', '#92400E']
+
+function getLogoSrc(tool: ToolRow): string | null {
+  if (tool.logo_url) return tool.logo_url
+  if (tool.website_url) {
+    try {
+      return `https://www.google.com/s2/favicons?domain=${new URL(tool.website_url).hostname}&sz=64`
+    } catch {
+      return null
+    }
+  }
+  return null
+}
 
 // --- Page ---
 
@@ -140,11 +153,12 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
                 </div>
 
                 {/* Logo */}
-                {tool.logo_url && (
-                  <div className="w-11 h-11 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    <Image src={tool.logo_url} alt={tool.name} width={36} height={36} unoptimized />
-                  </div>
-                )}
+                <div className="w-11 h-11 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                  {getLogoSrc(tool)
+                    ? <Image src={getLogoSrc(tool)!} alt={tool.name} width={36} height={36} unoptimized />
+                    : <span className="text-[14px] font-bold text-gray-400">{tool.name.charAt(0).toUpperCase()}</span>
+                  }
+                </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
