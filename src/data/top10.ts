@@ -224,6 +224,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🔬',
     slugs: ['perplexity', 'notebooklm', 'scispace', 'elicit', 'consensus'],
   },
+  {
+    slug: 'best-ai-transcription-tools',
+    title: 'Best AI Transcription Tools',
+    description: 'The top AI-powered transcription and speech-to-text tools for meetings, interviews, podcasts, and video content - ranked by accuracy, speed, and speaker identification.',
+    category: 'Voice AI',
+    emoji: '📝',
+    slugs: ['otter-ai', 'fireflies-ai', 'fathom', 'avoma', 'tldv'],
+  },
+  {
+    slug: 'best-ai-tools-for-ecommerce',
+    title: 'Best AI Tools for E-commerce',
+    description: 'The top AI tools helping online stores write product content, automate customer support, optimise email marketing, and increase conversion rates.',
+    category: 'Business',
+    emoji: '🛒',
+    slugs: ['klaviyo', 'jasper', 'tidio', 'canva-ai', 'semrush'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
