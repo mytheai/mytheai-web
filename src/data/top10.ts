@@ -320,6 +320,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '⚙️',
     slugs: ['cursor', 'github-copilot', 'vercel-v0', 'gitpod', 'langsmith'],
   },
+  {
+    slug: 'best-ai-agent-tools',
+    title: 'Best AI Agent Tools',
+    description: 'The top platforms and frameworks for building, deploying, and monitoring autonomous AI agents - from LLM orchestration to agent infrastructure and observability.',
+    category: 'Code AI',
+    emoji: '🤖',
+    slugs: ['devin-ai', 'n8n', 'dify', 'agentops', 'langsmith'],
+  },
+  {
+    slug: 'best-no-code-ai-tools',
+    title: 'Best No-Code AI Tools',
+    description: 'The top no-code and low-code platforms for building apps, automations, and workflows without writing code - from web apps to internal tools and AI-powered builders.',
+    category: 'Productivity',
+    emoji: '🏗️',
+    slugs: ['lovable', 'bubble', 'retool', 'webflow', 'glide'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
