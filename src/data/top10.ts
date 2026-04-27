@@ -256,6 +256,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '💰',
     slugs: ['julius-ai', 'claude', 'grammarly', 'zapier', 'notion-ai'],
   },
+  {
+    slug: 'best-ai-tools-for-hr',
+    title: 'Best AI Tools for HR Teams',
+    description: 'The top AI tools helping HR professionals automate recruiting, improve onboarding, handle communications, and analyse people data - freeing time for human-first work.',
+    category: 'Business',
+    emoji: '👥',
+    slugs: ['clay', 'notion-ai', 'loom', 'fireflies-ai', 'zapier'],
+  },
+  {
+    slug: 'best-ai-podcast-production-tools',
+    title: 'Best AI Podcast Production Tools',
+    description: 'The top AI tools for recording, editing, transcribing, and repurposing podcast content - from solo creators to professional production teams.',
+    category: 'Podcasting',
+    emoji: '🎙️',
+    slugs: ['descript', 'riverside', 'podcastle', 'castmagic', 'adobe-podcast'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
