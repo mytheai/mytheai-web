@@ -352,6 +352,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📋',
     slugs: ['notion-ai', 'linear', 'mixpanel', 'amplitude', 'figma'],
   },
+  {
+    slug: 'best-ai-crm-tools',
+    title: 'Best AI CRM Tools',
+    description: 'The top AI-powered CRM platforms for managing pipelines, automating data entry, and closing more deals - from modern lightweight CRMs to full enterprise platforms.',
+    category: 'Business',
+    emoji: '🏢',
+    slugs: ['hubspot', 'pipedrive', 'attio', 'close-crm', 'apollo'],
+  },
+  {
+    slug: 'best-ai-sales-tools',
+    title: 'Best AI Sales Tools',
+    description: 'The top AI tools for sales teams - from conversation intelligence and deal forecasting to multichannel outreach automation and email personalisation.',
+    category: 'Business',
+    emoji: '📈',
+    slugs: ['gong-io', 'outreach', 'salesloft', 'lemlist', 'apollo'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
