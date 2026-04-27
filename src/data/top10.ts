@@ -288,6 +288,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🎬',
     slugs: ['capcut', 'opus-clip', 'descript', 'canva-ai', 'castmagic'],
   },
+  {
+    slug: 'best-ai-tools-for-freelancers',
+    title: 'Best AI Tools for Freelancers',
+    description: 'The top AI tools helping freelancers write better, work faster, and win more clients - covering writing, design, productivity, and client communication.',
+    category: 'Business',
+    emoji: '💼',
+    slugs: ['claude', 'grammarly', 'notion-ai', 'canva-ai', 'zapier'],
+  },
+  {
+    slug: 'best-ai-code-assistants',
+    title: 'Best AI Code Assistants',
+    description: 'The top AI-powered code completion and coding assistant tools for developers - from inline completions and chat to autonomous multi-file editing.',
+    category: 'Code AI',
+    emoji: '🤖',
+    slugs: ['github-copilot', 'cursor', 'tabnine', 'codeium', 'phind'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
