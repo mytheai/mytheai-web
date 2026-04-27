@@ -336,6 +336,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🏗️',
     slugs: ['lovable', 'bubble', 'retool', 'webflow', 'glide'],
   },
+  {
+    slug: 'best-ai-customer-support-tools',
+    title: 'Best AI Customer Support Tools',
+    description: 'The top AI-powered customer support and helpdesk platforms for reducing ticket volume, speeding up resolution, and delivering better customer experiences at scale.',
+    category: 'Business',
+    emoji: '🎧',
+    slugs: ['zendesk', 'freshdesk', 'helpscout', 'gorgias', 'intercom'],
+  },
+  {
+    slug: 'best-ai-tools-for-product-managers',
+    title: 'Best AI Tools for Product Managers',
+    description: 'The top AI tools helping product managers prioritise roadmaps, analyse user behaviour, write specs, and ship products faster - from discovery through delivery.',
+    category: 'Productivity',
+    emoji: '📋',
+    slugs: ['notion-ai', 'linear', 'mixpanel', 'amplitude', 'figma'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
