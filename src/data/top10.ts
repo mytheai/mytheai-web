@@ -304,6 +304,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🤖',
     slugs: ['github-copilot', 'cursor', 'tabnine', 'codeium', 'phind'],
   },
+  {
+    slug: 'best-ai-tools-for-startups',
+    title: 'Best AI Tools for Startups',
+    description: 'The top AI tools early-stage and growth-stage startups use to outproduce larger teams - organised by function and budget.',
+    category: 'Business',
+    emoji: '🚀',
+    slugs: ['claude', 'notion-ai', 'linear', 'jasper', 'canva-ai'],
+  },
+  {
+    slug: 'best-ai-developer-tools',
+    title: 'Best AI Developer Tools',
+    description: 'The top AI tools for software developers - from code generation and debugging to infrastructure, deployment, and workflow automation.',
+    category: 'Code AI',
+    emoji: '⚙️',
+    slugs: ['cursor', 'github-copilot', 'vercel-v0', 'gitpod', 'langsmith'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
