@@ -200,6 +200,30 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📄',
     slugs: ['notebooklm', 'chatpdf', 'readwise', 'adobe-acrobat-ai', 'claude'],
   },
+  {
+    slug: 'best-ai-voice-generators',
+    title: 'Best AI Voice Generators',
+    description: 'The top AI text-to-speech and voice generation tools for creators, businesses, and developers - ranked by voice quality, language support, and value.',
+    category: 'Voice AI',
+    emoji: '🗣️',
+    slugs: ['elevenlabs', 'play-ht', 'wellsaid', 'murf', 'riverside'],
+  },
+  {
+    slug: 'best-ai-video-generators',
+    title: 'Best AI Video Generators',
+    description: 'The top AI text-to-video and image-to-video generation tools for creators and marketers - ranked by video quality, motion realism, and prompt accuracy.',
+    category: 'Video AI',
+    emoji: '🎬',
+    slugs: ['runway', 'luma-ai', 'kling', 'hailuo', 'pika'],
+  },
+  {
+    slug: 'best-ai-research-assistants',
+    title: 'Best AI Research Assistants',
+    description: 'The top AI tools for academic research, literature review, and knowledge discovery - helping researchers and students work through complex information faster.',
+    category: 'Research',
+    emoji: '🔬',
+    slugs: ['perplexity', 'notebooklm', 'scispace', 'elicit', 'consensus'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
