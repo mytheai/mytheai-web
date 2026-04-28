@@ -616,6 +616,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🛡️',
     slugs: ['snyk', 'aikido-security', 'socket-dev', 'cycode', 'detectify'],
   },
+  {
+    slug: 'best-ai-fintech-tools',
+    title: 'Best AI Fintech Tools for Business',
+    description: 'The top AI-powered finance operations platforms for startups and growing companies - covering corporate expense management, accounts payable automation, and global supplier payments.',
+    category: 'Business',
+    emoji: '💳',
+    slugs: ['ramp', 'brex', 'pilot', 'tipalti', 'stampli'],
+  },
+  {
+    slug: 'best-ai-bookkeeping-tools',
+    title: 'Best AI Bookkeeping Tools',
+    description: 'The top AI-powered bookkeeping services and accounting automation platforms for startups and small businesses - from venture-grade GAAP financials to daily AI-updated books.',
+    category: 'Business',
+    emoji: '📒',
+    slugs: ['pilot', 'bench', 'zeni', 'docyt', 'ramp'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
