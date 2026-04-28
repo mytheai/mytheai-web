@@ -60,6 +60,12 @@ const SORT_OPTIONS = [
   { value: 'name',    label: 'Name A-Z' },
 ]
 
+const MIN_RATING_OPTIONS = [
+  { value: '',    label: 'All Ratings' },
+  { value: '4',   label: '★★★★+ (4.0+)' },
+  { value: '4.5', label: '★★★★★ (4.5+)' },
+]
+
 const SELECT_CLS =
   'h-9 px-3 rounded-lg border border-border bg-surface text-[13px] text-foreground focus:outline-none focus:border-blue-400 cursor-pointer transition-colors'
 
@@ -68,6 +74,7 @@ interface SearchFilterBarProps {
   showCategory?: boolean
   showPricing?: boolean
   showSort?: boolean
+  showMinRating?: boolean
   searchPlaceholder?: string
 }
 
@@ -76,17 +83,19 @@ export default function SearchFilterBar({
   showCategory,
   showPricing,
   showSort,
+  showMinRating,
   searchPlaceholder = 'Search...',
 }: SearchFilterBarProps) {
   const router = useRouter()
   const params = useSearchParams()
 
-  const activeCategory = params.get('category') ?? ''
-  const activePricing  = params.get('pricing')  ?? ''
-  const activeSort     = params.get('sort')     ?? ''
+  const activeCategory  = params.get('category')   ?? ''
+  const activePricing   = params.get('pricing')    ?? ''
+  const activeSort      = params.get('sort')       ?? ''
+  const activeMinRating = params.get('min_rating') ?? ''
   const [search, setSearch] = useState(params.get('q') ?? '')
 
-  const hasFilters = !!(search || activeCategory || activePricing || activeSort)
+  const hasFilters = !!(search || activeCategory || activePricing || activeSort || activeMinRating)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -133,7 +142,7 @@ export default function SearchFilterBar({
       </div>
 
       {/* Divider */}
-      {(showCategory || showPricing || showSort) && (
+      {(showCategory || showPricing || showSort || showMinRating) && (
         <div className="hidden sm:block w-px h-6 bg-border" />
       )}
 
@@ -172,6 +181,19 @@ export default function SearchFilterBar({
           className={SELECT_CLS}
         >
           {SORT_OPTIONS.map(o => (
+            <option key={o.value} value={o.value}>{o.label}</option>
+          ))}
+        </select>
+      )}
+
+      {/* Min Rating */}
+      {showMinRating && (
+        <select
+          value={activeMinRating}
+          onChange={e => setFilter('min_rating', e.target.value)}
+          className={SELECT_CLS}
+        >
+          {MIN_RATING_OPTIONS.map(o => (
             <option key={o.value} value={o.value}>{o.label}</option>
           ))}
         </select>

@@ -30,22 +30,16 @@ interface ReviewRow {
   updated_at: string
 }
 
-async function getReviewedTools(q?: string, pricing?: string, sort?: string): Promise<ReviewRow[]> {
+async function getReviewedTools(q?: string, category?: string, min_rating?: string): Promise<ReviewRow[]> {
   const supabase = createStaticClient()
   let query = supabase
     .from('tools')
     .select('slug, name, tagline, logo_url, website_url, rating, review_count, pricing_type, tags, updated_at')
-
-  if (sort === 'newest') {
-    query = query.order('updated_at', { ascending: false })
-  } else if (sort === 'name') {
-    query = query.order('name', { ascending: true })
-  } else {
-    query = query.order('rating', { ascending: false })
-  }
+    .order('rating', { ascending: false })
 
   if (q) query = query.or(`name.ilike.%${q}%,tagline.ilike.%${q}%`)
-  if (pricing) query = query.eq('pricing_type', pricing)
+  if (category) query = query.contains('tags', [category])
+  if (min_rating) query = query.gte('rating', parseFloat(min_rating))
 
   query = query.limit(60)
 
@@ -77,10 +71,10 @@ function formatDate(iso: string) {
 export default async function ReviewsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; pricing?: string; sort?: string }>
+  searchParams: Promise<{ q?: string; category?: string; min_rating?: string }>
 }) {
-  const { q, pricing, sort } = await searchParams
-  const tools = await getReviewedTools(q, pricing, sort)
+  const { q, category, min_rating } = await searchParams
+  const tools = await getReviewedTools(q, category, min_rating)
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
@@ -98,8 +92,8 @@ export default async function ReviewsPage({
       <Suspense fallback={<div className="h-16" />}>
         <SearchFilterBar
           basePath="/reviews"
-          showPricing
-          showSort
+          showCategory
+          showMinRating
           searchPlaceholder="Search reviews..."
         />
       </Suspense>
