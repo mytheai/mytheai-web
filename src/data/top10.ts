@@ -584,6 +584,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '👥',
     slugs: ['rippling', 'bamboohr', 'beamery', 'eightfold', 'metaview'],
   },
+  {
+    slug: 'best-ai-content-writing-tools',
+    title: 'Best AI Content Writing Tools',
+    description: 'The top specialized AI writing platforms for content teams in 2026 - covering e-commerce copy, content operations, fact-verified long-form, all-in-one marketing content, and enterprise writing governance.',
+    category: 'Writing',
+    emoji: '✍️',
+    slugs: ['narrato', 'hypotenuse-ai', 'longshot-ai', 'cohesive-ai', 'simplified'],
+  },
+  {
+    slug: 'best-ai-tools-for-writers',
+    title: 'Best AI Tools for Writers',
+    description: 'The top AI writing assistants for individual writers in 2026 - from fiction novelists and creative writers to journalists, brand writers, and content creators who need AI that matches their voice.',
+    category: 'Writing',
+    emoji: '🖊️',
+    slugs: ['sudowrite', 'reword', 'wordtune', 'grammarly', 'notion-ai'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
