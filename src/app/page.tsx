@@ -10,22 +10,67 @@ import NewsletterForm from '@/components/newsletter/NewsletterForm'
 export const revalidate = 21600
 
 export const metadata: Metadata = {
-  title: 'MytheAi - Best AI & SaaS Tools 2026 | Reviews, Comparisons & Rankings',
-  description: 'Find the best AI tools for your workflow. Compare 400+ AI & SaaS tools with honest rankings, verified pricing, and expert reviews. No pay-to-rank.',
+  title: 'MytheAi - Find the Best AI Tools 2026 | Honest Reviews & Comparisons',
+  description: 'Discover and compare 500+ AI & SaaS tools. Honest expert reviews, side-by-side comparisons, verified pricing. No pay-to-rank. Find the right AI tool in seconds.',
   alternates: { canonical: 'https://mytheai.com/' },
   openGraph: {
-    title: 'MytheAi - Discover the Best AI Tools 2026',
-    description: 'Find, compare and choose from 400+ AI & SaaS tools. Expert reviews, side-by-side comparisons, verified pricing.',
+    title: 'MytheAi - Find the Best AI Tools 2026',
+    description: 'Discover and compare 500+ AI & SaaS tools. Honest reviews, side-by-side comparisons, verified pricing. No pay-to-rank.',
     url: 'https://mytheai.com/',
+    type: 'website',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MytheAi - AI & SaaS Tools Directory' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MytheAi - Best AI Tools 2026',
-    description: 'Find, compare and choose from 400+ AI & SaaS tools. Expert reviews, verified pricing.',
+    title: 'MytheAi - Find the Best AI Tools 2026',
+    description: 'Discover and compare 500+ AI & SaaS tools. Honest reviews, verified pricing. No pay-to-rank.',
     images: ['/og-image.png'],
   },
 }
+
+// ── JSON-LD Structured Data ───────────────────────────────────────────────────
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://mytheai.com/#website',
+      name: 'MytheAi',
+      url: 'https://mytheai.com',
+      description: 'Discover and compare 500+ AI & SaaS tools with honest reviews and side-by-side comparisons.',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: 'https://mytheai.com/tools?q={search_term_string}',
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': 'https://mytheai.com/#organization',
+      name: 'MytheAi',
+      url: 'https://mytheai.com',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://mytheai.com/og-image.png',
+      },
+    },
+  ],
+}
+
+// ── Role cards (static, no DB needed) ────────────────────────────────────────
+
+const ROLES = [
+  { emoji: '💻', title: 'Developer', desc: 'Coding & AI agents', href: '/top-10/best-code-ai-tools' },
+  { emoji: '📣', title: 'Marketer', desc: 'Content & campaigns', href: '/top-10/best-ai-tools-for-marketers' },
+  { emoji: '✍️', title: 'Creator', desc: 'Video, audio & writing', href: '/top-10/best-ai-tools-for-content-creators' },
+  { emoji: '🎓', title: 'Student', desc: 'Research & learning', href: '/top-10/best-ai-tools-for-students' },
+  { emoji: '🚀', title: 'Founder', desc: 'Build & grow faster', href: '/top-10/best-ai-tools-for-startups' },
+  { emoji: '🎨', title: 'Designer', desc: 'Generate & design', href: '/top-10/best-ai-design-tools' },
+]
 
 // ── Data fetching ─────────────────────────────────────────────────────────────
 
@@ -67,42 +112,11 @@ async function getTrending(): Promise<ToolRow[]> {
   return data ?? []
 }
 
-async function getFreeTools(): Promise<ToolRow[]> {
-  const supabase = createStaticClient()
-  const { data } = await supabase
-    .from('tools')
-    .select('id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending')
-    .eq('pricing_free_tier', true)
-    .order('rating', { ascending: false })
-    .limit(4)
-  return data ?? []
-}
-
-interface CompareRow { slug: string; tool_a_slug: string; tool_b_slug: string; summary: string | null }
-interface CompareToolMeta { slug: string; name: string; logo_url: string | null; website_url: string | null }
-interface CompareCard { cmp: CompareRow; toolA: CompareToolMeta; toolB: CompareToolMeta }
-
-async function getComparisons(): Promise<CompareCard[]> {
-  const supabase = createStaticClient()
-  const { data: cmps } = await supabase
-    .from('comparisons')
-    .select('slug,tool_a_slug,tool_b_slug,summary')
-    .limit(6)
-  if (!cmps || cmps.length === 0) return []
-  const allSlugs = [...new Set(cmps.flatMap((c: CompareRow) => [c.tool_a_slug, c.tool_b_slug]))]
-  const { data: tools } = await supabase.from('tools').select('slug,name,logo_url,website_url').in('slug', allSlugs)
-  const toolMap: Record<string, CompareToolMeta> = {}
-  for (const t of tools ?? []) toolMap[t.slug] = t
-  return cmps
-    .filter((c: CompareRow) => toolMap[c.tool_a_slug] && toolMap[c.tool_b_slug])
-    .map((c: CompareRow) => ({ cmp: c, toolA: toolMap[c.tool_a_slug], toolB: toolMap[c.tool_b_slug] }))
-}
-
 interface Top10ToolMeta { slug: string; name: string; logo_url: string | null; pricing_type: string; website_url: string | null }
 
 async function getTop10Data() {
   const supabase = createStaticClient()
-  const listsToShow = TOP10_LISTS.slice(0, 6)
+  const listsToShow = TOP10_LISTS.slice(0, 3)
   const allSlugs = [...new Set(listsToShow.flatMap(l => l.slugs))]
   const { data } = await supabase.from('tools').select('slug,name,logo_url,pricing_type,website_url').in('slug', allSlugs)
   const toolMap: Record<string, Top10ToolMeta> = {}
@@ -147,7 +161,7 @@ function ToolLogo({ url, websiteUrl, name, size = 40 }: { url: string | null; we
   const src = getLogoSrc(url, websiteUrl)
   if (!src) return (
     <div
-      className="rounded-[10px] flex items-center justify-center bg-gray-100 flex-shrink-0 text-[13px] font-bold text-gray-400"
+      className="rounded-[10px] flex items-center justify-center bg-gray-100 dark:bg-gray-800 flex-shrink-0 text-[13px] font-bold text-gray-400"
       style={{ width: size, height: size }}
     >
       {name[0]}
@@ -155,7 +169,7 @@ function ToolLogo({ url, websiteUrl, name, size = 40 }: { url: string | null; we
   )
   return (
     <div
-      className="rounded-[10px] flex items-center justify-center bg-gray-50 flex-shrink-0 overflow-hidden"
+      className="rounded-[10px] flex items-center justify-center bg-gray-50 dark:bg-gray-800 flex-shrink-0 overflow-hidden"
       style={{ width: size, height: size }}
     >
       <Image src={src} alt={name} width={size} height={size} className="object-contain p-1" unoptimized />
@@ -192,11 +206,9 @@ function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, view
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [editorPicks, trending, freeTools, comparisons, top10Data] = await Promise.all([
+  const [editorPicks, trending, top10Data] = await Promise.all([
     getEditorPicks(),
     getTrending(),
-    getFreeTools(),
-    getComparisons(),
     getTop10Data(),
   ])
 
@@ -204,67 +216,76 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="hero-bg py-12 md:py-24">
-        <div className="max-w-3xl mx-auto px-4 md:px-5 text-center">
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium mb-7 border"
-            style={{ background: '#EFF6FF', borderColor: '#BFDBFE', color: '#1D4ED8' }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse bg-blue-600" />
-            500+ tools reviewed · Updated weekly
-          </div>
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* ── HERO: Search First ────────────────────────────────────────────── */}
+      <section className="hero-bg py-10 md:py-20">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+
           <h1
-            className="text-[34px] sm:text-[42px] md:text-[58px] font-extrabold leading-[1.08] mb-5 text-foreground"
+            className="text-[34px] sm:text-[44px] md:text-[56px] font-extrabold leading-[1.08] mb-6 text-foreground"
             style={{ letterSpacing: '-0.03em' }}
           >
-            The AI Tools You<br /><span className="text-blue-600">Actually Need</span>
+            Find the AI Tool<br />
+            <span className="text-blue-600">You Actually Need</span>
           </h1>
-          <p className="text-[16px] md:text-[17px] leading-relaxed mb-8 text-muted-foreground max-w-2xl mx-auto">
-            Honest reviews, real comparisons, curated picks. No fluff, no pay-to-rank.
-          </p>
 
-          {/* Search */}
-          <form action="/tools" method="GET" className="flex items-center gap-2 p-1.5 mb-5 max-w-lg mx-auto shadow-sm rounded-xl border border-border bg-card">
-            <span className="pl-2 text-muted-foreground">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          {/* Search bar - primary CTA */}
+          <form
+            action="/tools"
+            method="GET"
+            className="flex items-center gap-2 p-1.5 mb-4 shadow-md rounded-xl border border-border bg-card"
+            role="search"
+          >
+            <span className="pl-3 text-muted-foreground flex-shrink-0">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
               </svg>
             </span>
             <input
-              className="flex-1 py-2 px-1 text-sm bg-transparent outline-none text-foreground placeholder:text-muted-foreground"
-              type="text"
+              className="flex-1 py-3.5 px-1 text-[15px] bg-transparent outline-none text-foreground placeholder:text-muted-foreground min-w-0"
+              type="search"
               name="q"
-              placeholder="Search 500+ AI & SaaS tools…"
+              placeholder="Try: AI for writing emails, free video tools..."
+              autoComplete="off"
+              aria-label="Search AI tools"
             />
-            <button type="submit" className="px-4 py-2 rounded-lg text-white text-sm font-semibold bg-blue-600 hover:bg-blue-700 transition-colors">
+            <button
+              type="submit"
+              className="px-5 py-2.5 rounded-lg text-white text-[14px] font-semibold bg-blue-600 hover:bg-blue-700 active:bg-blue-800 transition-colors flex-shrink-0"
+            >
               Search
             </button>
           </form>
 
-          {/* Quick links */}
-          <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-2 text-[12.5px] text-muted-foreground">
+          <p className="text-[14px] text-muted-foreground mb-5">
+            Honest reviews. Real comparisons. No pay-to-rank.
+          </p>
+
+          {/* Quick search pills */}
+          <div className="flex flex-wrap justify-center items-center gap-2 text-[12px] text-muted-foreground">
             <span className="font-medium">Popular:</span>
-            {['ChatGPT alternatives', 'AI image generators', 'Free coding tools', 'Best SEO tools'].map(t => (
+            {['ChatGPT alternatives', 'Free AI tools', 'AI for coding', 'Best SEO tools'].map(q => (
               <Link
-                key={t}
-                href={`/tools?q=${encodeURIComponent(t)}`}
+                key={q}
+                href={`/tools?q=${encodeURIComponent(q)}`}
                 className="px-3 py-1 rounded-full border border-border bg-card hover:border-blue-300 hover:text-blue-600 transition-colors"
               >
-                {t}
+                {q}
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── TRUST BAR ────────────────────────────────────────────────────── */}
-      <div className="bg-card border-y border-border overflow-x-auto">
-        <div
-          className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-start md:justify-between gap-6 text-xs font-medium text-muted-foreground"
-          style={{ minWidth: 'max-content', marginLeft: 'auto', marginRight: 'auto' }}
-        >
-          {['500+ tools reviewed', 'Updated weekly', 'Affiliate-disclosed', 'No pay-to-rank', '185+ comparisons'].map(t => (
+      {/* ── TRUST BAR - 3 signals ─────────────────────────────────────────── */}
+      <div className="bg-card border-y border-border">
+        <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-center gap-6 md:gap-12 text-xs font-medium text-muted-foreground flex-wrap">
+          {['500+ tools reviewed', 'No pay-to-rank', 'Updated weekly'].map(t => (
             <span key={t} className="flex items-center gap-1.5 whitespace-nowrap">
               <span style={{ color: '#10B981' }}>✓</span> {t}
             </span>
@@ -275,10 +296,30 @@ export default async function HomePage() {
       {/* ── MAIN CONTENT ─────────────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14 space-y-12 md:space-y-16">
 
+        {/* BROWSE BY CATEGORY - primary navigation after search */}
+        <section aria-label="Browse by category">
+          <SectionHeader eyebrow="Explore" title="Browse by Category" viewAll="All categories →" viewAllHref="/categories" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {mockCategories.map(cat => (
+              <Link
+                key={cat.id}
+                href={`/tools?category=${cat.slug}`}
+                className="bg-card border border-border rounded-xl flex items-center gap-3 px-4 py-3 transition-all duration-150 hover:border-blue-300 hover:bg-[#EFF6FF] dark:hover:bg-[#1E3A5F] hover:-translate-y-px"
+              >
+                <span className="text-2xl flex-shrink-0" aria-hidden="true">{cat.emoji}</span>
+                <div className="min-w-0">
+                  <div className="text-[13px] font-semibold text-foreground truncate">{cat.name}</div>
+                  <div className="text-[12px] text-muted-foreground">{cat.tool_count} tools</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* EDITOR'S PICKS */}
         {editorPicks.length > 0 && (
-          <section>
-            <SectionHeader eyebrow="Curated" title="Editor's Picks" viewAll="View all →" viewAllHref="/tools" />
+          <section aria-label="Editor's picks">
+            <SectionHeader eyebrow="Curated" title="Editor's Picks" viewAll="View all tools →" viewAllHref="/tools" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {editorPicks.map(tool => (
                 <Link
@@ -303,7 +344,7 @@ export default async function HomePage() {
                       <span className="text-[13px] font-semibold text-foreground">{tool.rating.toFixed(1)}</span>
                       <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k)</span>
                     </div>
-                    <span className="text-[12px] font-semibold text-blue-600">Visit →</span>
+                    <span className="text-[12px] font-semibold text-blue-600">View →</span>
                   </div>
                 </Link>
               ))}
@@ -311,98 +352,28 @@ export default async function HomePage() {
           </section>
         )}
 
-        {/* BROWSE BY CATEGORY */}
-        <section>
-          <SectionHeader eyebrow="Explore" title="Browse by Category" viewAll="All categories →" viewAllHref="/categories" />
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {mockCategories.map(cat => (
+        {/* FIND TOOLS FOR YOUR ROLE */}
+        <section aria-label="Find tools by role">
+          <SectionHeader eyebrow="Your Workflow" title="Find Tools For Your Role" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            {ROLES.map(role => (
               <Link
-                key={cat.id}
-                href={`/tools?category=${cat.slug}`}
-                className="bg-card border border-border rounded-xl flex items-center gap-3 px-4 py-3 transition-all duration-150 hover:border-blue-300 hover:bg-[#EFF6FF] dark:hover:bg-[#1E3A5F] hover:-translate-y-px"
+                key={role.title}
+                href={role.href}
+                className="flex flex-col items-center text-center p-4 md:p-5 rounded-xl border border-border bg-card hover:border-blue-300 hover:bg-[#EFF6FF] dark:hover:bg-[#1E3A5F] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md"
               >
-                <span className="text-2xl flex-shrink-0">{cat.emoji}</span>
-                <div className="min-w-0">
-                  <div className="text-[13px] font-semibold text-foreground truncate">{cat.name}</div>
-                  <div className="text-[12px] text-muted-foreground">{cat.tool_count} tools</div>
-                </div>
+                <span className="text-3xl mb-2" aria-hidden="true">{role.emoji}</span>
+                <span className="text-[13px] font-semibold text-foreground">{role.title}</span>
+                <span className="text-[11px] text-muted-foreground mt-0.5 leading-tight">{role.desc}</span>
               </Link>
             ))}
           </div>
         </section>
 
-        {/* TOP 10 LISTS */}
-        <section>
-          <SectionHeader eyebrow="Ranked Lists" title="Top 10 AI Tools" viewAll="All Top 10 lists →" viewAllHref="/top-10" />
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {top10Data.map(({ list, tools }) => (
-              <div key={list.slug} className="bg-card border border-border rounded-xl p-5">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-xl">{list.emoji}</span>
-                  <h3 className="text-[15px] font-bold text-foreground">{list.title}</h3>
-                </div>
-                <ol className="space-y-2.5">
-                  {tools.map((item, i) => (
-                    <li key={item.slug} className="flex items-center gap-3">
-                      <span
-                        className="text-[12px] font-bold w-4 text-center"
-                        style={{ color: i < 3 ? rankColors[i] : '#D1D5DB' }}
-                      >
-                        {i + 1}
-                      </span>
-                      <ToolLogo url={item.logo_url} websiteUrl={item.website_url} name={item.name} size={20} />
-                      <span className="text-[13px] text-foreground flex-1">{item.name}</span>
-                      <PricingBadge type={item.pricing_type as Tool['pricing_type']} />
-                    </li>
-                  ))}
-                </ol>
-                <Link
-                  href={`/top-10/${list.slug}`}
-                  className="mt-4 block text-center text-[12px] font-semibold py-2 rounded-lg border border-border hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-muted-foreground"
-                >
-                  See full list →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* TOP COMPARISONS */}
-        {comparisons.length > 0 && (
-          <section>
-            <SectionHeader eyebrow="Head-to-Head" title="Top Comparisons" viewAll="All comparisons →" viewAllHref="/compare" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {comparisons.map(({ cmp, toolA, toolB }) => (
-                <Link
-                  key={cmp.slug}
-                  href={`/compare/${cmp.slug}`}
-                  className="bg-card border border-border rounded-xl p-4 flex flex-col gap-3 transition-all duration-150 hover:border-blue-600 hover:shadow-md"
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <ToolLogo url={toolA.logo_url} websiteUrl={toolA.website_url} name={toolA.name} size={34} />
-                      <span className="text-[13px] font-semibold text-foreground">{toolA.name}</span>
-                    </div>
-                    <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#EFF6FF] text-blue-600">VS</span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[13px] font-semibold text-foreground">{toolB.name}</span>
-                      <ToolLogo url={toolB.logo_url} websiteUrl={toolB.website_url} name={toolB.name} size={34} />
-                    </div>
-                  </div>
-                  <p className="text-[12px] text-muted-foreground">{cmp.summary}</p>
-                  <span className="text-[12px] font-semibold px-3 py-1.5 rounded-lg text-center block bg-[#F3F4F6] text-[#374151]">
-                    Compare features & pricing →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* TRENDING */}
+        {/* TRENDING NOW */}
         {trending.length > 0 && (
-          <section>
-            <SectionHeader eyebrow="This Week" eyebrowColor="#F59E0B" title="Trending Tools" viewAll="View all →" viewAllHref="/tools" />
+          <section aria-label="Trending AI tools">
+            <SectionHeader eyebrow="This Week" eyebrowColor="#F59E0B" title="Trending Now" viewAll="View all →" viewAllHref="/tools" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {trending.map((tool, i) => (
                 <div
@@ -412,26 +383,25 @@ export default async function HomePage() {
                   <span
                     className="text-base font-bold w-5 text-center flex-shrink-0"
                     style={{ color: i === 0 ? '#F59E0B' : i === 1 ? '#9CA3AF' : i === 2 ? '#92400E' : '#D1D5DB' }}
+                    aria-label={`Rank ${i + 1}`}
                   >
                     {i + 1}
                   </span>
-                  <ToolLogo url={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={34} />
+                  <ToolLogo url={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={36} />
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-0.5">
+                    <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                       <span className="text-[13.5px] font-semibold text-foreground">{tool.name}</span>
                       <PricingBadge type={tool.pricing_type} />
                     </div>
-                    <div className="text-[12px] text-muted-foreground">
+                    <div className="text-[12px] text-muted-foreground truncate">
                       {tool.tags?.[0] ?? ''} · {tool.rating.toFixed(1)} stars · {(tool.review_count / 1000).toFixed(1)}k reviews
                     </div>
                   </div>
                   <Link
-                    href={`/go/${tool.slug}`}
-                    target="_blank"
-                    rel="noopener noreferrer sponsored"
-                    className="text-[12px] font-semibold text-blue-600 hover:text-blue-700 flex-shrink-0"
+                    href={`/tools/${tool.slug}`}
+                    className="text-[12px] font-semibold text-blue-600 hover:text-blue-700 flex-shrink-0 min-h-[44px] flex items-center"
                   >
-                    Visit →
+                    View →
                   </Link>
                 </div>
               ))}
@@ -439,55 +409,59 @@ export default async function HomePage() {
           </section>
         )}
 
-        {/* FREE TOOLS */}
-        {freeTools.length > 0 && (
-          <section>
-            <SectionHeader eyebrow="No Credit Card" eyebrowColor="#10B981" title="Free & Freemium Tools" viewAll="View all free →" viewAllHref="/tools?pricing=free" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {freeTools.map(tool => (
-                <div
-                  key={tool.id}
-                  className="bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300"
+        {/* TOP 10 LISTS - SEO anchor pages */}
+        <section aria-label="Top 10 AI tool lists">
+          <SectionHeader eyebrow="Ranked Lists" title="Top 10 AI Tools" viewAll="All Top 10 lists →" viewAllHref="/top-10" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {top10Data.map(({ list, tools }) => (
+              <div key={list.slug} className="bg-card border border-border rounded-xl p-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-xl" aria-hidden="true">{list.emoji}</span>
+                  <h3 className="text-[15px] font-bold text-foreground">{list.title}</h3>
+                </div>
+                <ol className="space-y-2.5">
+                  {tools.map((item, i) => (
+                    <li key={item.slug} className="flex items-center gap-3">
+                      <span
+                        className="text-[12px] font-bold w-4 text-center flex-shrink-0"
+                        style={{ color: i < 3 ? rankColors[i] : '#D1D5DB' }}
+                      >
+                        {i + 1}
+                      </span>
+                      <ToolLogo url={item.logo_url} websiteUrl={item.website_url} name={item.name} size={20} />
+                      <span className="text-[13px] text-foreground flex-1 truncate">{item.name}</span>
+                      <PricingBadge type={item.pricing_type as Tool['pricing_type']} />
+                    </li>
+                  ))}
+                </ol>
+                <Link
+                  href={`/top-10/${list.slug}`}
+                  className="mt-4 block text-center text-[12px] font-semibold py-2.5 rounded-lg border border-border hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-muted-foreground"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <ToolLogo url={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} />
-                    <div>
-                      <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
-                      <PricingBadge type={tool.pricing_type} />
-                    </div>
-                  </div>
-                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-3 line-clamp-2">{tool.tagline}</p>
-                  <Link
-                    href={`/go/${tool.slug}`}
-                    target="_blank"
-                    rel="noopener noreferrer sponsored"
-                    className="text-[12px] font-semibold text-blue-600 hover:text-blue-700"
-                  >
-                    Try free →
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+                  See full list →
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
 
-        {/* NEWSLETTER */}
-        <section>
-          <div className="bg-[#EFF6FF] border border-[#BFDBFE] rounded-2xl p-8 md:p-12 text-center">
-            <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-2">Stay Sharp</p>
-            <h2 className="text-[22px] md:text-[28px] font-extrabold tracking-tight text-foreground mb-3">
-              The Best AI Tools, Every Week
-            </h2>
-            <p className="text-[15px] text-muted-foreground mb-6 max-w-md mx-auto">
-              New tools, honest reviews. Every Tuesday.
-            </p>
-            <NewsletterForm />
-            <p className="text-[11px] text-muted-foreground mt-3">No spam. Unsubscribe anytime.</p>
+        {/* NEWSLETTER - compact horizontal layout */}
+        <section aria-label="Newsletter signup">
+          <div className="bg-[#EFF6FF] dark:bg-[#1e3a8a]/20 border border-[#BFDBFE] dark:border-[#1e3a8a] rounded-2xl px-6 py-7 md:px-10 md:py-8 flex flex-col md:flex-row items-center justify-between gap-5">
+            <div className="text-center md:text-left">
+              <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Stay Sharp</p>
+              <h2 className="text-[18px] md:text-[20px] font-extrabold tracking-tight text-foreground">
+                Weekly AI Tool Picks
+              </h2>
+              <p className="text-[13px] text-muted-foreground mt-1">New tools, honest reviews. Every Tuesday. No spam.</p>
+            </div>
+            <div className="w-full md:w-auto md:min-w-[320px] flex-shrink-0">
+              <NewsletterForm />
+            </div>
           </div>
         </section>
 
       </div>
-
     </>
   )
 }
