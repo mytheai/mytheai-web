@@ -696,6 +696,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🖌️',
     slugs: ['diagram', 'magician', 'galileo-ai', 'locofy', 'subframe'],
   },
+  {
+    slug: 'best-ai-proposal-tools',
+    title: 'Best AI Proposal Tools 2026',
+    description: 'The top AI-powered proposal tools for 2026 - from all-in-one document automation platforms with e-signature and CRM integration, to interactive web-based proposals and agency-focused proposal management software.',
+    category: 'Business',
+    emoji: '📄',
+    slugs: ['pandadoc', 'proposify', 'qwilr', 'better-proposals', 'oneflow'],
+  },
+  {
+    slug: 'best-contract-management-tools',
+    title: 'Best AI Contract Management Tools 2026',
+    description: 'The top AI-powered contract management and CLM platforms for 2026 - from live negotiation documents and structured contract repositories to enterprise legal operations platforms with playbook-based AI review.',
+    category: 'Business',
+    emoji: '📝',
+    slugs: ['juro', 'ironclad', 'contractbook', 'oneflow', 'pandadoc'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
