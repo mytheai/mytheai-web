@@ -448,6 +448,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '✨',
     slugs: ['midjourney', 'adobe-firefly', 'canva-ai', 'ideogram', 'flux'],
   },
+  {
+    slug: 'best-ai-seo-content-tools',
+    title: 'Best AI SEO Content Tools',
+    description: 'The top AI tools for researching, writing, and optimising SEO content - from content graders and brief generators to all-in-one platforms that take you from keyword to published article.',
+    category: 'Marketing',
+    emoji: '📝',
+    slugs: ['surfer-seo', 'frase', 'clearscope', 'marketmuse', 'scalenut'],
+  },
+  {
+    slug: 'best-ai-project-management-tools',
+    title: 'Best AI Project Management Tools',
+    description: 'The top AI-powered project management platforms for task tracking, sprint planning, resource allocation, and team collaboration - from lean startup tools to enterprise PM suites.',
+    category: 'Productivity',
+    emoji: '📋',
+    slugs: ['asana', 'linear', 'clickup', 'monday', 'notion-ai'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
