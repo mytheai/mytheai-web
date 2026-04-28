@@ -536,6 +536,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🏠',
     slugs: ['notion-ai', 'loom', 'otter-ai', 'zapier', 'claude'],
   },
+  {
+    slug: 'best-ai-healthcare-tools',
+    title: 'Best AI Tools for Healthcare',
+    description: 'The top AI tools transforming clinical documentation, diagnosis support, radiology triage, and healthcare administration for physicians and health systems in 2026.',
+    category: 'Business',
+    emoji: '🏥',
+    slugs: ['nabla', 'glass-health', 'aidoc', 'doximity', 'abridge'],
+  },
+  {
+    slug: 'best-ai-tools-for-doctors',
+    title: 'Best AI Tools for Physicians',
+    description: 'The top AI tools built specifically for physicians - from ambient documentation that writes clinical notes automatically to clinical reasoning assistants and professional networking.',
+    category: 'Business',
+    emoji: '🩺',
+    slugs: ['nabla', 'suki-ai', 'glass-health', 'doximity', 'regard'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
