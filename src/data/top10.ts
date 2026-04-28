@@ -568,6 +568,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🧬',
     slugs: ['akkio', 'obviously-ai', 'rows', 'polymer', 'gigasheet'],
   },
+  {
+    slug: 'best-ai-recruiting-tools',
+    title: 'Best AI Recruiting Tools',
+    description: 'The top AI-powered recruiting platforms for 2026 - from structured hiring ATS and candidate CRMs to talent sourcing intelligence, automated interview scheduling, and AI interview notes.',
+    category: 'Business',
+    emoji: '🎯',
+    slugs: ['ashby', 'greenhouse', 'lever', 'goodtime', 'seekout'],
+  },
+  {
+    slug: 'best-ai-hr-tools',
+    title: 'Best AI HR Tools',
+    description: 'The top AI-powered HR and workforce management platforms for 2026 - covering HRIS, onboarding automation, skills-based hiring, talent intelligence, and interview quality improvement.',
+    category: 'Business',
+    emoji: '👥',
+    slugs: ['rippling', 'bamboohr', 'beamery', 'eightfold', 'metaview'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
