@@ -10,8 +10,19 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://mytheai.com/top-10' },
 }
 
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Best AI Tools: Top 10 Lists 2026',
+  description: 'Editorial top 10 lists for every AI tool category: code, writing, image, video, and free tools. Ranked by merit, not affiliate rate.',
+  url: 'https://mytheai.com/top-10',
+  publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+}
+
 export default function Top10HubPage() {
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
     <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-10">
@@ -50,5 +61,6 @@ export default function Top10HubPage() {
         <strong>Editorial note:</strong> All rankings are based on independent editorial review: rating, review count, feature quality, and value. Affiliate relationships never influence placement.
       </div>
     </div>
+    </>
   )
 }

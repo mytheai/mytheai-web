@@ -53,10 +53,21 @@ const CATEGORY_TEXT: Record<string, string> = {
   Guide: '#065F46',
 }
 
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'MytheAi Blog: AI Tools Guides & News',
+  description: 'Guides, comparisons, and news about AI and SaaS tools. Learn how to build your AI stack, compare top tools, and stay ahead of the curve.',
+  url: 'https://mytheai.com/blog',
+  publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+}
+
 export default function BlogPage() {
   const posts = getAllPosts()
 
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
     <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-10">
@@ -114,5 +125,6 @@ export default function BlogPage() {
         </p>
       </div>
     </div>
+    </>
   )
 }

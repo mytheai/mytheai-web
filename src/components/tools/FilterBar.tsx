@@ -5,14 +5,53 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 const CATEGORIES = [
+  // Core AI
   { slug: 'ai-assistants', emoji: '🧠', name: 'AI Assistants' },
-  { slug: 'writing-ai', emoji: '✍️', name: 'Writing AI' },
+  { slug: 'writing-ai', emoji: '✍️', name: 'Writing' },
   { slug: 'image-ai', emoji: '🎨', name: 'Image AI' },
+  { slug: 'image-generation', emoji: '🖼️', name: 'Image Gen' },
   { slug: 'video-ai', emoji: '🎬', name: 'Video AI' },
+  { slug: 'video-generation', emoji: '🎞️', name: 'Video Gen' },
   { slug: 'code-ai', emoji: '💻', name: 'Code AI' },
+  { slug: 'design', emoji: '🖌️', name: 'Design' },
+  { slug: 'voice-audio', emoji: '🎙️', name: 'Voice & Audio' },
+  { slug: 'audio-ai', emoji: '🔊', name: 'Audio AI' },
+  { slug: 'ai-agent', emoji: '🤖', name: 'AI Agents' },
+  { slug: 'machine-learning', emoji: '🧬', name: 'Machine Learning' },
+  // Business & Marketing
   { slug: 'seo-marketing', emoji: '📈', name: 'SEO & Marketing' },
+  { slug: 'marketing', emoji: '📢', name: 'Marketing' },
+  { slug: 'content', emoji: '📝', name: 'Content' },
+  { slug: 'email-marketing', emoji: '📧', name: 'Email Marketing' },
+  { slug: 'social-media', emoji: '📱', name: 'Social Media' },
+  { slug: 'sales', emoji: '💼', name: 'Sales' },
+  { slug: 'crm', emoji: '🤝', name: 'CRM' },
+  // Productivity & Collaboration
   { slug: 'productivity', emoji: '⚡', name: 'Productivity' },
+  { slug: 'automation', emoji: '🔄', name: 'Automation' },
+  { slug: 'project-management', emoji: '📋', name: 'Project Mgmt' },
+  { slug: 'scheduling', emoji: '📅', name: 'Scheduling' },
+  { slug: 'team-collaboration', emoji: '👥', name: 'Collaboration' },
+  // Data & Developer
   { slug: 'analytics', emoji: '📊', name: 'Analytics' },
+  { slug: 'data-analysis', emoji: '📉', name: 'Data Analysis' },
+  { slug: 'business-intelligence', emoji: '🔮', name: 'Business Intel' },
+  { slug: 'developer-tools', emoji: '🛠️', name: 'Dev Tools' },
+  { slug: 'no-code', emoji: '🧩', name: 'No-Code' },
+  { slug: 'databases', emoji: '🗄️', name: 'Databases' },
+  { slug: 'spreadsheets', emoji: '🗂️', name: 'Spreadsheets' },
+  { slug: 'open-source', emoji: '🔓', name: 'Open Source' },
+  { slug: 'security', emoji: '🔒', name: 'Security' },
+  // Support & Operations
+  { slug: 'customer-support', emoji: '💬', name: 'Customer Support' },
+  { slug: 'operations', emoji: '⚙️', name: 'Operations' },
+  // Research & Media
+  { slug: 'research', emoji: '🔍', name: 'Research' },
+  { slug: 'podcasting', emoji: '🎧', name: 'Podcasting' },
+  // Industry Verticals
+  { slug: 'education', emoji: '🎓', name: 'Education' },
+  { slug: 'healthcare', emoji: '🏥', name: 'Healthcare' },
+  { slug: 'legal-ai', emoji: '⚖️', name: 'Legal AI' },
 ]
 
 const PRICING = [

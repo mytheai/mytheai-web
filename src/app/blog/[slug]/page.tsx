@@ -197,7 +197,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <MDXRemote source={article.content} components={mdxComponents} />
       </article>
 
-      <hr className="border-border mt-12 mb-8" />
+      {/* Compare tools CTA */}
+      <div className="mt-10 p-5 rounded-xl border border-[#BFDBFE] bg-[#EFF6FF]">
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#1E40AF] mb-1">Compare AI Tools</p>
+        <p className="text-[14px] text-[#1E40AF] mb-3">
+          Evaluating tools mentioned in this article? See our in-depth side-by-side comparisons.
+        </p>
+        <Link
+          href="/compare"
+          className="inline-block px-4 py-2 rounded-lg bg-blue-600 text-white text-[13px] font-semibold hover:bg-blue-700 transition-colors"
+        >
+          Browse all comparisons →
+        </Link>
+      </div>
+
+      <hr className="border-border mt-10 mb-8" />
 
       {/* Related posts */}
       {related.length > 0 && (

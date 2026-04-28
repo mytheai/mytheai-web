@@ -157,6 +157,34 @@ export default async function ToolPage({
     month: 'long', year: 'numeric',
   })
 
+  // FAQ data
+  const faqs = [
+    {
+      q: `Is ${tool.name} free?`,
+      a: tool.pricing_type === 'free'
+        ? `Yes, ${tool.name} is completely free to use with no paid tiers.`
+        : tool.pricing_free_tier
+        ? `${tool.name} offers a free tier with limited features. Paid plans start from $${tool.pricing_starting_price ?? 'varies'}/month.`
+        : `${tool.name} does not have a free plan. Paid plans start from $${tool.pricing_starting_price ?? 'varies'}/month - check the official site for current pricing.`,
+    },
+    {
+      q: `What is ${tool.name} best for?`,
+      a: tool.use_cases && tool.use_cases.length > 0
+        ? `${tool.name} is best suited for: ${tool.use_cases.slice(0, 3).join(', ')}.`
+        : `${tool.name} is a ${PRICING_LABELS[tool.pricing_type].toLowerCase()} tool rated ${tool.rating.toFixed(1)}/5 by ${tool.review_count.toLocaleString()} users.`,
+    },
+    {
+      q: `How does ${tool.name} compare to alternatives?`,
+      a: `${tool.name} holds a rating of ${tool.rating.toFixed(1)}/5 from ${tool.review_count.toLocaleString()} reviews. Browse our comparison pages to see detailed side-by-side breakdowns against similar tools.`,
+    },
+    ...(tool.pricing_starting_price
+      ? [{
+          q: `What does ${tool.name} cost?`,
+          a: `${tool.name} starts at $${tool.pricing_starting_price}/month${tool.pricing_free_tier ? ' and includes a free tier' : ''}. Pricing may vary by plan and region - always verify on the official site.`,
+        }]
+      : []),
+  ]
+
   // JSON-LD structured data
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -178,11 +206,25 @@ export default async function ToolPage({
     } : undefined,
   }
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">
@@ -457,6 +499,24 @@ export default async function ToolPage({
             </div>
           </div>
         )}
+
+        {/* FAQ */}
+        <div className="mt-12 pt-8 border-t border-border">
+          <h2 className="text-[20px] font-bold text-foreground mb-5">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <details key={i} className="border border-border rounded-xl bg-card group">
+                <summary className="flex items-center justify-between p-4 cursor-pointer text-[14px] font-semibold text-foreground list-none hover:text-blue-600 transition-colors">
+                  {faq.q}
+                  <span className="text-muted-foreground text-[10px] ml-3 flex-shrink-0 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <p className="px-4 pb-4 text-[14px] text-muted-foreground leading-relaxed">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
 
         {/* Review title for SEO */}
         <div className="mt-12 pt-8 border-t border-border">

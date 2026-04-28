@@ -104,7 +104,18 @@ export default async function ComparePage({
       })
     : comparisons
 
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'AI Tool Comparisons 2026: Side-by-Side Reviews',
+    description: 'Compare the top AI tools head-to-head. Honest side-by-side breakdowns of pricing, features, and use cases.',
+    url: 'https://mytheai.com/compare',
+    publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+  }
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
     <div className="max-w-5xl mx-auto px-4 md:px-5 py-10 md:py-14">
       <div className="mb-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Head-to-Head</p>
@@ -199,5 +210,6 @@ export default async function ComparePage({
         </div>
       )}
     </div>
+    </>
   )
 }
