@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { TOP10_LISTS } from '@/data/top10'
+import Top10Grid from './Top10Grid'
 import type { Metadata } from 'next'
 
 export const revalidate = 604800
@@ -35,27 +35,7 @@ export default function Top10HubPage() {
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        {TOP10_LISTS.map(list => (
-          <Link
-            key={list.slug}
-            href={`/top-10/${list.slug}`}
-            className="flex items-start gap-4 p-5 rounded-xl border border-border bg-card hover:border-blue-300 transition-colors"
-          >
-            <span className="text-3xl flex-shrink-0">{list.emoji}</span>
-            <div className="min-w-0">
-              <p className="text-[15px] font-bold text-foreground mb-1">{list.title}</p>
-              <p className="text-[13px] text-muted-foreground line-clamp-2 mb-2">{list.description}</p>
-              <div className="flex items-center gap-3">
-                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#1E40AF]">
-                  {list.category}
-                </span>
-                <span className="text-[12px] text-blue-600 font-medium">Top {list.slugs.length} →</span>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <Top10Grid items={TOP10_LISTS} />
 
       <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
         <strong>Editorial note:</strong> All rankings are based on independent editorial review: rating, review count, feature quality, and value. Affiliate relationships never influence placement.

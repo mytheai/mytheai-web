@@ -1,9 +1,11 @@
+import { Suspense } from 'react'
 import { createStaticClient } from '@/lib/supabase'
 import ToolCard from '@/components/tools/ToolCard'
+import SearchFilterBar from '@/components/tools/SearchFilterBar'
 import type { Tool } from '@/types'
 import type { Metadata } from 'next'
 
-export const revalidate = 86400
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Best Free & Freemium AI Tools 2026 | MytheAi',
@@ -15,13 +17,18 @@ export const metadata: Metadata = {
   },
 }
 
-async function getFreeTools(): Promise<Tool[]> {
+async function getFreeTools(q?: string, category?: string): Promise<Tool[]> {
   const supabase = createStaticClient()
-  const { data } = await supabase
+  let query = supabase
     .from('tools')
     .select('*')
     .eq('pricing_free_tier', true)
     .order('rating', { ascending: false })
+
+  if (q) query = query.or(`name.ilike.%${q}%,tagline.ilike.%${q}%`)
+  if (category) query = query.contains('tags', [category])
+
+  const { data } = await query
 
   return (data ?? []).map(row => ({
     id: row.id,
@@ -53,8 +60,13 @@ async function getFreeTools(): Promise<Tool[]> {
   }))
 }
 
-export default async function DealsPage() {
-  const tools = await getFreeTools()
+export default async function DealsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string; category?: string }>
+}) {
+  const { q, category } = await searchParams
+  const tools = await getFreeTools(q, category)
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
@@ -69,11 +81,26 @@ export default async function DealsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {tools.map(tool => (
-          <ToolCard key={tool.slug} tool={tool} />
-        ))}
-      </div>
+      <Suspense fallback={<div className="h-16" />}>
+        <SearchFilterBar
+          basePath="/deals"
+          showCategory
+          searchPlaceholder="Search free & freemium tools..."
+        />
+      </Suspense>
+
+      {tools.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {tools.map(tool => (
+            <ToolCard key={tool.slug} tool={tool} />
+          ))}
+        </div>
+      ) : (
+        <div className="py-16 text-center">
+          <p className="text-muted-foreground text-[15px]">No tools found for this filter.</p>
+          <a href="/deals" className="mt-3 inline-block text-blue-600 text-[14px] hover:underline">Clear filters</a>
+        </div>
+      )}
 
       <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
         <strong>Note:</strong> Free tiers may have usage limits. Always verify current pricing on the tool&apos;s website before committing.

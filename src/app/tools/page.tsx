@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import ToolCard from '@/components/tools/ToolCard'
-import FilterBar from '@/components/tools/FilterBar'
+import SearchFilterBar from '@/components/tools/SearchFilterBar'
 import { createClient } from '@/lib/supabase'
 import type { Tool } from '@/types'
 
@@ -106,8 +106,14 @@ export default async function ToolsPage({
         </p>
       </div>
 
-      <Suspense fallback={<div className="h-20" />}>
-        <FilterBar />
+      <Suspense fallback={<div className="h-16" />}>
+        <SearchFilterBar
+          basePath="/tools"
+          showCategory
+          showPricing
+          showSort
+          searchPlaceholder="Search 480+ AI tools..."
+        />
       </Suspense>
 
       {tools.length > 0 ? (
