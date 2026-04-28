@@ -648,6 +648,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📚',
     slugs: ['articulate', 'ispring', 'cornerstone', 'skilljar', 'litmos'],
   },
+  {
+    slug: 'best-ai-knowledge-management-tools',
+    title: 'Best AI Knowledge Management Tools',
+    description: 'The top AI-powered knowledge management platforms for teams in 2026 - from verified company wikis that surface answers inside Slack and Salesforce, to clean team knowledge bases and professional documentation platforms.',
+    category: 'Productivity',
+    emoji: '🧠',
+    slugs: ['guru', 'slab', 'document360', 'gitbook', 'nuclino'],
+  },
+  {
+    slug: 'best-ai-meeting-tools',
+    title: 'Best AI Meeting Tools',
+    description: 'The top AI meeting assistants and conversation intelligence platforms for 2026 - from automatic transcription and smart summaries to sales call coaching, engagement scoring, and searchable meeting libraries.',
+    category: 'Productivity',
+    emoji: '🎙️',
+    slugs: ['grain', 'read-ai', 'fathom', 'otter-ai', 'avoma'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
