@@ -600,6 +600,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🖊️',
     slugs: ['sudowrite', 'reword', 'wordtune', 'grammarly', 'notion-ai'],
   },
+  {
+    slug: 'best-ai-cybersecurity-tools',
+    title: 'Best AI Cybersecurity Tools',
+    description: 'The top AI-powered cybersecurity platforms for 2026 - covering developer security, cloud security posture management, supply chain protection, vulnerability management, and application security.',
+    category: 'Security',
+    emoji: '🔐',
+    slugs: ['snyk', 'wiz', 'aikido-security', 'socket-dev', 'orca-security'],
+  },
+  {
+    slug: 'best-ai-developer-security-tools',
+    title: 'Best AI Developer Security Tools',
+    description: 'The top AI security tools built for development teams in 2026 - from code scanning and dependency vulnerability management to supply chain security and application security posture management.',
+    category: 'Security',
+    emoji: '🛡️',
+    slugs: ['snyk', 'aikido-security', 'socket-dev', 'cycode', 'detectify'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
