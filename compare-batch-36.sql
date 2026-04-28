@@ -4,7 +4,7 @@
 -- Safe to re-run: ON CONFLICT DO NOTHING + WHERE NOT EXISTS guards
 
 -- 1. slidebean vs pitch
-INSERT INTO comparisons (slug, tool_a, tool_b, summary, winner, updated_at)
+INSERT INTO comparisons (slug, tool_a_slug, tool_b_slug, summary, winner, updated_at)
 SELECT 'slidebean-vs-pitch', 'slidebean', 'pitch',
   'Slidebean is an AI pitch deck builder designed specifically for startup founders, using investor data to structure decks and tracking who reads them. Pitch is a collaborative presentation tool favoured by design-conscious teams for building polished branded decks with real-time collaboration. Slidebean wins for solo founders who need investor-ready structure fast; Pitch wins for teams that prioritise design quality and collaborative review.',
   NULL,
@@ -25,7 +25,7 @@ WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'slidebean-vs-pitch')
   AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'slidebean-vs-pitch');
 
 -- 2. prezi vs gamma
-INSERT INTO comparisons (slug, tool_a, tool_b, summary, winner, updated_at)
+INSERT INTO comparisons (slug, tool_a_slug, tool_b_slug, summary, winner, updated_at)
 SELECT 'prezi-vs-gamma', 'prezi', 'gamma',
   'Prezi pioneered non-linear zooming presentations where content lives on a single canvas rather than sequential slides. Gamma is an AI-first tool that generates polished linear presentations from text prompts in seconds. Prezi wins for presenters who need non-linear narrative and audience-responsive storytelling; Gamma wins for speed and AI-generated first drafts of conventional presentations.',
   NULL,
@@ -46,7 +46,7 @@ WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'prezi-vs-gamma')
   AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'prezi-vs-gamma');
 
 -- 3. visme vs canva-ai
-INSERT INTO comparisons (slug, tool_a, tool_b, summary, winner, updated_at)
+INSERT INTO comparisons (slug, tool_a_slug, tool_b_slug, summary, winner, updated_at)
 SELECT 'visme-vs-canva-ai', 'visme', 'canva-ai',
   'Visme is a multi-format visual content platform covering presentations, infographics, reports, and data visualisations with strong chart and brand kit features. Canva AI is the dominant design platform with the broadest template library, most integrations, and highest brand recognition. Canva wins for general design versatility and team adoption; Visme wins for data-rich visual content and infographic depth.',
   NULL,
@@ -67,7 +67,7 @@ WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'visme-vs-canva-ai')
   AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'visme-vs-canva-ai');
 
 -- 4. storydoc vs beautiful-ai
-INSERT INTO comparisons (slug, tool_a, tool_b, summary, winner, updated_at)
+INSERT INTO comparisons (slug, tool_a_slug, tool_b_slug, summary, winner, updated_at)
 SELECT 'storydoc-vs-beautiful-ai', 'storydoc', 'beautiful-ai',
   'Storydoc creates interactive web-based sales decks with detailed engagement analytics showing exactly how prospects engage with each slide. Beautiful.ai is a smart slide editor where layouts adapt automatically as content is added, eliminating manual design work. Storydoc wins for sales teams tracking prospect engagement; Beautiful.ai wins for teams wanting fast, consistently designed decks without design overhead.',
   NULL,
@@ -88,7 +88,7 @@ WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'storydoc-vs-beautiful-ai')
   AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'storydoc-vs-beautiful-ai');
 
 -- 5. mentimeter vs genially
-INSERT INTO comparisons (slug, tool_a, tool_b, summary, winner, updated_at)
+INSERT INTO comparisons (slug, tool_a_slug, tool_b_slug, summary, winner, updated_at)
 SELECT 'mentimeter-vs-genially', 'mentimeter', 'genially',
   'Mentimeter is a live audience engagement platform built for synchronised real-time polling during presentations - audience members respond on their devices and results appear live on the presenter''s screen. Genially creates interactive visual content where elements respond to clicks and hover actions, suited for self-paced exploration. Mentimeter wins for live synchronised audience engagement; Genially wins for asynchronous interactive content.',
   NULL,
