@@ -9,42 +9,30 @@ interface Props {
 }
 
 export default function Top10Grid({ items }: Props) {
-  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('')
 
-  const q = search.toLowerCase().trim()
-  const filtered = q
-    ? items.filter(
-        list =>
-          list.title.toLowerCase().includes(q) ||
-          list.category.toLowerCase().includes(q) ||
-          list.description.toLowerCase().includes(q)
-      )
-    : items
+  const categories = [...new Set(items.map(i => i.category))].sort()
+  const filtered = category ? items.filter(i => i.category === category) : items
 
   return (
     <>
-      {/* Search bar */}
+      {/* Filter bar */}
       <div className="flex items-center gap-2 p-3 mb-8 rounded-xl border border-border bg-surface shadow-sm">
-        <div className="relative flex-1">
-          <svg
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-            width="14" height="14" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-          >
-            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            type="search"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Search top 10 lists..."
-            className="w-full h-9 pl-8 pr-3 rounded-lg border border-border bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-colors"
-          />
-        </div>
-        {search && (
+        <select
+          value={category}
+          onChange={e => setCategory(e.target.value)}
+          className="flex-1 h-9 px-3 rounded-lg border border-border bg-surface text-[13px] text-foreground focus:outline-none focus:border-blue-400 cursor-pointer transition-colors"
+        >
+          <option value="">All Categories</option>
+          {categories.map(c => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+
+        {category && (
           <button
-            onClick={() => setSearch('')}
-            aria-label="Clear search"
+            onClick={() => setCategory('')}
+            aria-label="Clear filter"
             className="flex items-center justify-center w-8 h-8 rounded-lg border border-border text-muted-foreground hover:border-red-300 hover:text-red-500 transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -79,12 +67,12 @@ export default function Top10Grid({ items }: Props) {
         </div>
       ) : (
         <div className="py-16 text-center">
-          <p className="text-muted-foreground text-[15px]">No lists found for &quot;{search}&quot;.</p>
+          <p className="text-muted-foreground text-[15px]">No lists found for &quot;{category}&quot;.</p>
           <button
-            onClick={() => setSearch('')}
+            onClick={() => setCategory('')}
             className="mt-3 inline-block text-blue-600 text-[14px] hover:underline"
           >
-            Clear search
+            Clear filter
           </button>
         </div>
       )}
