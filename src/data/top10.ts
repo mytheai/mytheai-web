@@ -161,14 +161,6 @@ export const TOP10_LISTS: Top10List[] = [
     slugs: ['notebooklm', 'otter-ai', 'fathom', 'mem-ai', 'tldv'],
   },
   {
-    slug: 'best-ai-tools-for-educators',
-    title: 'Best AI Tools for Teachers & Educators',
-    description: 'The top AI tools for lesson planning, grading, student engagement, and research, ranked by educational impact and ease of use.',
-    category: 'Education',
-    emoji: '🎓',
-    slugs: ['magicschool-ai', 'notebooklm', 'gamma', 'beautiful-ai', 'claude'],
-  },
-  {
     slug: 'best-ai-podcast-tools',
     title: 'Best AI Podcast Tools',
     description: 'The top AI tools for recording, editing, transcribing, and repurposing podcast content, ranked by audio quality and workflow efficiency.',
@@ -508,9 +500,25 @@ export const TOP10_LISTS: Top10List[] = [
     slug: 'best-ai-tools-for-educators',
     title: 'Best AI Tools for Teachers & Educators',
     description: 'The top AI tools for K-12 and higher education - from AI tutoring assistants and lesson plan generators to interactive classroom platforms and curriculum differentiation tools.',
-    category: 'Productivity',
+    category: 'Education',
     emoji: '🎓',
     slugs: ['notebooklm', 'gamma', 'claude', 'perplexity', 'grammarly'],
+  },
+  {
+    slug: 'best-ai-tools-for-teachers',
+    title: 'Best AI Teaching Tools',
+    description: 'The top AI tools built specifically for K-12 teachers - covering lesson planning, reading differentiation, formative assessment, interactive slides, and safe classroom AI deployment.',
+    category: 'Education',
+    emoji: '📚',
+    slugs: ['khanmigo', 'schoolai', 'curipod', 'brisk-teaching', 'diffit'],
+  },
+  {
+    slug: 'best-ai-presentation-tools',
+    title: 'Best AI Presentation Tools',
+    description: 'The top AI-powered presentation and slide tools for creating polished decks faster - from auto-generated pitch decks and interactive slides to visual storytelling platforms.',
+    category: 'Productivity',
+    emoji: '📊',
+    slugs: ['pitch', 'gamma', 'beautiful-ai', 'canva-ai', 'decktopus'],
   },
 ]
 

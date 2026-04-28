@@ -1,0 +1,162 @@
+-- tools-batch-36.sql
+-- 10 AI presentation and slide creation tools
+-- Target: DB ~382 -> ~392 tools
+-- Safe to re-run: ON CONFLICT (slug) DO NOTHING
+
+INSERT INTO tools (
+  slug, name, tagline, description, logo_url, website_url, affiliate_url,
+  tags, pricing_type, pricing_free_tier, pricing_starting_price,
+  rating, review_count, featured, trending, editor_pick, pros, cons, use_cases
+) VALUES
+
+('slidebean',
+ 'Slidebean',
+ 'AI pitch deck builder with investor-ready templates and analytics',
+ 'Slidebean is an AI-powered pitch deck and presentation builder designed specifically for startups and founders raising funding. The core workflow separates content from design: users write their slides in a structured content editor, and Slidebean''s AI automatically applies professional design layouts, typography, and formatting. This approach means founders spend time on the narrative and numbers rather than slide formatting. Slidebean includes a library of pitch deck frameworks based on successful funding rounds, covering standard sections like problem, solution, traction, team, and financials. Each template is informed by patterns from thousands of real decks. Beyond creation, Slidebean offers deck analytics - tracking views, time spent per slide, and engagement drop-off - giving founders visibility into which parts of their pitch are holding investor attention. The platform also offers a paid pitch deck review service where startup advisors give direct feedback on deck structure and content. Slidebean is used by thousands of early-stage startups and has become a go-to resource in the founder community for structured, design-ready fundraising decks.',
+ 'https://www.google.com/s2/favicons?domain=slidebean.com&sz=64',
+ 'https://slidebean.com',
+ 'https://slidebean.com',
+ ARRAY['productivity', 'content'],
+ 'freemium', true, 8.00,
+ 4.3, 820, false, false, false,
+ ARRAY['Separates content and design - focus on narrative, not formatting', 'Investor-validated pitch deck frameworks', 'Deck analytics show per-slide engagement and drop-off', 'Built-in pitch deck review service from startup advisors', 'Large template library based on real funded startups'],
+ ARRAY['Primarily designed for pitch decks rather than general presentations', 'Design customisation is more limited than PowerPoint or Keynote', 'Advanced analytics and full design features require paid plan'],
+ ARRAY['Fundraising pitch deck creation for early-stage startups', 'Investor presentation tracking and engagement analytics', 'Demo day and accelerator presentation preparation']
+),
+
+('prezi',
+ 'Prezi',
+ 'Non-linear AI presentation platform with zoom and spatial storytelling',
+ 'Prezi is a presentation platform built around a fundamentally different structure than slide-based tools. Rather than a linear sequence of slides, Prezi organises content on a single large canvas that the presenter navigates through zooming and panning. This non-linear structure allows for spatial relationships between ideas - zooming into a detail, pulling back to show context, branching into sub-topics and returning to the main narrative - which creates a more dynamic and memorable presentation experience. Prezi''s AI features include an AI presentation generator that builds a full canvas layout from a topic prompt, as well as smart templates designed for common presentation scenarios like sales pitches, educational lectures, and status updates. The platform also includes Prezi Video, which places the presenter''s webcam feed over slide content for video presentations and webinars, with the ability to hold and interact with virtual objects on screen. Prezi is particularly effective for complex topics where showing relationships between ideas matters - system diagrams, strategic overviews, and cause-and-effect narratives - where linear slide decks lose the connective tissue between concepts.',
+ 'https://www.google.com/s2/favicons?domain=prezi.com&sz=64',
+ 'https://prezi.com',
+ 'https://prezi.com',
+ ARRAY['productivity', 'content'],
+ 'freemium', true, 0.00,
+ 4.1, 1240, false, false, false,
+ ARRAY['Non-linear canvas structure shows relationships between ideas', 'Prezi Video places presenter over slides for engaging video presentations', 'AI presentation generator from topic prompt', 'Effective for complex, interconnected topics', 'Free public presentations available'],
+ ARRAY['Non-linear format requires more preparation than linear slides', 'Zoom-heavy presentations can cause motion discomfort for some viewers', 'Offline access requires paid plan'],
+ ARRAY['Complex topic presentations where relationships between ideas matter', 'Video presentations and webinars with Prezi Video', 'Sales and educational presentations requiring dynamic storytelling']
+),
+
+('visme',
+ 'Visme',
+ 'Visual content platform for presentations, infographics, and reports',
+ 'Visme is a visual content creation platform covering presentations, infographics, data visualisations, reports, and branded social media assets. Where most presentation tools focus narrowly on slide decks, Visme''s broader remit makes it useful for marketing teams and content creators who need to produce multiple visual formats from a single platform. The AI features include an AI slide generator that builds complete presentations from a text prompt, an AI image generator for creating custom visuals without leaving the editor, and an AI text writer for generating content for individual slides. Visme''s data visualisation capabilities are a standout feature: users can connect to live data sources and create dynamic charts, maps, and interactive infographics that update automatically rather than requiring manual rebuilding. The brand kit system stores logos, colours, and fonts centrally and applies them consistently across every asset created in the workspace. For marketing teams producing diverse visual content - presentations for clients, infographics for social, data reports for leadership - Visme consolidates production into a single tool. The template library covers hundreds of formats across all major use cases, with consistently high design quality.',
+ 'https://www.google.com/s2/favicons?domain=visme.co&sz=64',
+ 'https://visme.co',
+ 'https://visme.co',
+ ARRAY['productivity', 'design'],
+ 'freemium', true, 0.00,
+ 4.3, 970, false, false, false,
+ ARRAY['Multi-format: presentations, infographics, reports, and social assets', 'Live data connections for dynamic charts and visualisations', 'AI slide generator, image creator, and text writer', 'Brand kit ensures visual consistency across all assets', 'Large high-quality template library across formats'],
+ ARRAY['Broader scope than dedicated slide tools - steeper learning curve', 'Full feature set requires paid plan', 'Infographic and data viz depth may be underused by pure presentation users'],
+ ARRAY['Marketing team content production across multiple visual formats', 'Data-driven presentations and reports with live chart connections', 'Branded visual content for teams with multiple output types']
+),
+
+('genially',
+ 'Genially',
+ 'Interactive presentation and content creator with embedded interactivity',
+ 'Genially is a content creation platform specialising in interactive presentations, educational materials, and visual communications with embedded interactivity. The defining feature is the ability to add interactive elements - clickable hotspots, animated layers, embedded video, navigation menus, and gamified quizzes - directly into any slide or document without coding. This goes beyond the click-to-next-slide model of most presentations and creates materials where viewers actively explore content rather than passively consuming it. In education, Genially is widely used for creating interactive lessons, escape room games, timelines, and choice-board activities where students navigate through branching content. In marketing and corporate communications, it is used for interactive reports, product catalogues, and training materials that hold attention more effectively than static slides. The AI content generator builds full presentations from a prompt, and the template library is extensive with particular depth in educational and gamified formats. Genially presentations are web-based and shared via link, which removes the compatibility issues that come with file-based formats. The free plan allows unlimited creations with Genially branding, making it one of the most accessible interactive presentation tools available.',
+ 'https://www.google.com/s2/favicons?domain=genially.com&sz=64',
+ 'https://genially.com',
+ 'https://genially.com',
+ ARRAY['productivity', 'education'],
+ 'freemium', true, 0.00,
+ 4.4, 780, false, false, false,
+ ARRAY['Deep interactivity - hotspots, layers, gamification without coding', 'Strong educational templates for escape rooms, timelines, choice boards', 'Web-based sharing removes file compatibility issues', 'Unlimited creations on free plan', 'AI content generator for full presentations from a prompt'],
+ ARRAY['Interactivity features have a learning curve compared to simple slide tools', 'Some advanced interactions require paid plan', 'Less suited to simple linear presentations than specialised slide tools'],
+ ARRAY['Interactive educational lessons and gamified learning activities', 'Corporate training materials with embedded branching and quizzes', 'Interactive reports and product catalogues for marketing teams']
+),
+
+('storydoc',
+ 'Storydoc',
+ 'AI deck builder for sales and marketing with built-in engagement analytics',
+ 'Storydoc is an AI-powered presentation builder focused on sales decks, marketing proposals, and investor materials where tracking recipient engagement is as important as the design itself. Every Storydoc presentation is a web-based document with built-in analytics: senders see who opened the deck, how much time was spent on each slide, which sections received the most attention, and whether the deck was forwarded. This engagement data helps sales teams understand which prospects are actively evaluating versus not engaging, and which parts of a proposal are landing versus being skipped. The AI generates full slide decks from a prompt or uploaded document, with smart templates for sales proposals, case studies, one-pagers, and investor decks. Storydoc''s output is interactive by default - decks include CTA buttons, embedded video, interactive pricing tables, and calendar booking links that reduce the friction between reading a proposal and taking action. The design quality is consistently high and optimised for the polished, professional look that sales and client-facing documents require. For B2B sales teams managing multiple active deals, the engagement analytics alone justify adoption over traditional file-based slide tools.',
+ 'https://www.google.com/s2/favicons?domain=storydoc.com&sz=64',
+ 'https://storydoc.com',
+ 'https://storydoc.com',
+ ARRAY['productivity', 'content'],
+ 'paid', false, 40.00,
+ 4.4, 510, false, true, false,
+ ARRAY['Per-slide engagement analytics - track exactly what recipients read', 'Interactive decks with CTAs, calendars, and pricing tables embedded', 'AI deck generation from prompt or uploaded document', 'High-quality templates for sales, proposals, and investor materials', 'Web-based format with no file sending or version issues'],
+ ARRAY['No free plan - paid from first use', 'Analytics and full features require business plan', 'Less suited to education or internal team presentations'],
+ ARRAY['B2B sales proposals and pitch decks with engagement tracking', 'Marketing case studies and one-pagers shared with prospects', 'Investor materials with real-time open and engagement data']
+),
+
+('mmhmm',
+ 'mmhmm',
+ 'Virtual video presenter tool that places you inside your slides',
+ 'mmhmm is a virtual presenter tool that places the presenter''s webcam feed directly inside slide content during video calls and recordings. Rather than screen-sharing a slide deck and appearing in a small corner box, mmhmm composites the presenter and slides together - the presenter can appear at different sizes, move to different positions on screen, hold virtual objects, and create visual interactions between themselves and the content. This creates a fundamentally different video presentation experience where the presenter is part of the slide rather than a detached talking head. mmhmm works with Zoom, Google Meet, Microsoft Teams, and most video conferencing tools as a virtual camera source, requiring no special setup from viewers. The platform includes a library of scene templates, backgrounds, and transitions designed for engaging video presentations and recordings. For creating prerecorded course videos, client demos, and marketing content, mmhmm allows a single person to produce polished presenter-in-slide video without studio equipment. It is particularly effective for educators and trainers who want students to maintain visual connection with the presenter while following along with content.',
+ 'https://www.google.com/s2/favicons?domain=mmhmm.app&sz=64',
+ 'https://mmhmm.app',
+ 'https://mmhmm.app',
+ ARRAY['productivity', 'content'],
+ 'freemium', true, 0.00,
+ 4.0, 620, false, false, false,
+ ARRAY['Presenter composited inside slides - not a separate corner box', 'Works with Zoom, Meet, and Teams as a virtual camera', 'Scene templates for polished video presentation without a studio', 'Effective for prerecorded course and training videos', 'Free plan for basic video presentations'],
+ ARRAY['Primarily useful for video presentations - less useful for in-person or screen share', 'Some features require Mac; Windows support is more limited', 'Requires setup as a virtual camera - small friction for first use'],
+ ARRAY['Video calls and webinars where presenter and slides need to share equal screen space', 'Prerecorded online course videos with embedded presenter', 'Client demos and product walkthroughs with visual presenter presence']
+),
+
+('mentimeter',
+ 'Mentimeter',
+ 'Interactive presentation platform with live audience polling and quizzes',
+ 'Mentimeter is an interactive presentation platform that turns any slide deck into a live audience participation experience. Presenters embed polling questions, word clouds, open text submissions, quizzes, scales, and ranking activities into their presentations, and audience members respond in real time from their phones. Results appear live on the presenter''s screen during the session, creating a dynamic interaction that works equally well in rooms of 10 or 1,000. Mentimeter is designed for business presentations, corporate training, educational lectures, and events where audience engagement matters. The word cloud feature, where audience members submit their own words and responses appear in a growing real-time visualisation, is one of the most widely recognised interactive presentation elements in use today. The AI features include slide generation from a prompt and AI-assisted question creation. Mentimeter integrates with PowerPoint and Google Slides for adding interactive elements to existing presentations without rebuilding in a new tool. For corporate training, town halls, conferences, and university lectures where audience participation traditionally falls to hand-raising or static polls, Mentimeter provides a scalable engagement layer that works regardless of audience size or physical layout.',
+ 'https://www.google.com/s2/favicons?domain=mentimeter.com&sz=64',
+ 'https://mentimeter.com',
+ 'https://mentimeter.com',
+ ARRAY['productivity', 'education'],
+ 'freemium', true, 0.00,
+ 4.5, 1580, false, true, false,
+ ARRAY['Real-time audience polling, word clouds, and quizzes at any scale', 'Works for audiences of 10 to 1,000 from a single link', 'Integrates with PowerPoint and Google Slides', 'Live result visualisations appear during the presentation', 'Word cloud feature is widely recognised for audience engagement'],
+ ARRAY['Advanced question types and unlimited responses require paid plan', 'Less useful for small team meetings where live chat is sufficient', 'Results are session-based - analysis requires exporting or paid plan'],
+ ARRAY['Corporate town halls and all-hands meetings with live audience feedback', 'University lectures and training sessions with real-time polling', 'Conference and event presentations with large audience engagement']
+),
+
+('zoho-show',
+ 'Zoho Show',
+ 'AI-powered collaborative presentation software in the Zoho ecosystem',
+ 'Zoho Show is the presentation software component of the Zoho productivity suite, offering collaborative slide creation with AI-powered generation, real-time co-editing, and deep integration with other Zoho business tools. The AI features include a slide generator that creates complete presentations from a topic prompt, an AI outline tool for structuring presentation narratives, and a text rewriter for improving slide copy. Zoho Show supports real-time collaboration with multiple editors working simultaneously, with change tracking and version history. The broadcast mode allows presenters to stream live presentations to remote attendees directly from within Zoho Show without needing a video conferencing tool for simple lecture scenarios. For organisations already using Zoho CRM, Zoho Desk, or other Zoho products, Show integrates natively - sales teams can pull CRM data directly into slides, and presentations can be linked to contacts and deals. Import compatibility covers PowerPoint and Google Slides files without significant formatting loss. Zoho Show is included in the Zoho Workplace and Zoho One bundles, making it a cost-effective choice for businesses already in the Zoho ecosystem rather than those adopting a standalone presentation tool.',
+ 'https://www.google.com/s2/favicons?domain=zoho.com&sz=64',
+ 'https://www.zoho.com/show/',
+ 'https://www.zoho.com/show/',
+ ARRAY['productivity'],
+ 'freemium', true, 0.00,
+ 4.0, 430, false, false, false,
+ ARRAY['Real-time collaboration with version history and change tracking', 'AI slide generator and text rewriter built in', 'Native integration with Zoho CRM and other Zoho business tools', 'Broadcast mode for streaming live presentations', 'Included in Zoho Workplace bundle at no extra cost'],
+ ARRAY['Less well known than Google Slides or PowerPoint - limited community resources', 'Best value only for teams already in the Zoho ecosystem', 'Template library smaller than dedicated presentation platforms'],
+ ARRAY['Collaborative slide creation for Zoho ecosystem businesses', 'Sales presentation creation with CRM data integration', 'Remote team presentations with broadcast mode delivery']
+),
+
+('ludus',
+ 'Ludus',
+ 'Collaborative slide design tool for creative teams and agencies',
+ 'Ludus is a browser-based presentation design tool built for creative teams, agencies, and design-conscious presenters who find PowerPoint and Google Slides too restrictive. The editor supports advanced typography controls, custom animations, video backgrounds, embedded code, and full CSS customisation of individual slides - giving designers a level of creative control not available in consumer slide tools. Ludus integrates directly with design tools: Adobe Creative Cloud assets, Figma files, and Unsplash images can be embedded and linked rather than exported and re-imported, keeping design assets in sync. The collaboration features include real-time editing, commenting, and presentation versioning. Ludus stores all presentations in the cloud as web documents, which eliminates file-sharing and version management overhead for agencies managing multiple client presentations simultaneously. The learning curve is steeper than most slide tools, but for creative teams producing client presentations that represent their design quality, the additional control justifies the investment. Ludus is particularly well suited to brand agencies, design studios, and creative leads who need presentations to match the quality of their other design work.',
+ 'https://www.google.com/s2/favicons?domain=ludus.one&sz=64',
+ 'https://ludus.one',
+ 'https://ludus.one',
+ ARRAY['productivity', 'design'],
+ 'paid', false, 14.00,
+ 4.1, 280, false, false, false,
+ ARRAY['Full CSS control and advanced typography for design-quality slides', 'Direct Figma and Adobe CC asset integration', 'Real-time collaboration with version control', 'Embedded code and video background support', 'Cloud-based with no file management overhead'],
+ ARRAY['Steeper learning curve than consumer slide tools', 'No free plan - paid from first use', 'Less suitable for non-designers who want quick template-driven results'],
+ ARRAY['Agency and client presentation production where design quality matters', 'Brand presentations requiring consistent visual identity with design tool integration', 'Creative team slide decks that require CSS-level visual control']
+),
+
+('slides-ai',
+ 'SlidesAI',
+ 'AI presentation generator that creates Google Slides from any text or document',
+ 'SlidesAI is a Google Workspace add-on that generates complete Google Slides presentations from any text, document, or topic prompt directly inside Google Slides. Users paste in a block of text, a document summary, or a topic description, and SlidesAI creates a full slide deck within Google Slides - with layouts, headings, bullet points, and suggested images - without leaving the Google ecosystem. This makes it particularly useful for teams and individuals already working entirely in Google Workspace who want AI-generated presentations without adopting a new platform or export workflow. The tool handles the initial structure and content distribution across slides, which is the most time-consuming part of converting a document or set of notes into a presentable deck. Users can customise the generated output using all standard Google Slides editing tools and share via existing Google Drive permissions. SlidesAI supports over 100 languages for multilingual presentation generation. For educators, consultants, and business users who regularly convert reports, meeting notes, or written content into slide presentations, SlidesAI reduces a 30-minute formatting task to under 2 minutes. The Google Workspace integration means no login friction, no new file format, and no change to existing sharing workflows.',
+ 'https://www.google.com/s2/favicons?domain=slidesai.io&sz=64',
+ 'https://www.slidesai.io',
+ 'https://www.slidesai.io',
+ ARRAY['productivity', 'content'],
+ 'freemium', true, 0.00,
+ 4.1, 640, false, false, false,
+ ARRAY['Generates Google Slides directly inside Google Workspace', 'Converts documents and text into structured presentations in seconds', 'No new platform to learn - uses Google Slides editor', 'Supports 100+ languages for multilingual presentation generation', 'Free tier available for basic use'],
+ ARRAY['Output is Google Slides only - no PowerPoint or other formats', 'Generated slides need manual editing for accuracy and tone', 'Advanced features and higher slide counts require paid plan'],
+ ARRAY['Converting documents, reports, or notes into slide presentations', 'Rapid deck creation for Google Workspace teams', 'Multilingual presentation generation for global teams']
+)
+
+ON CONFLICT (slug) DO NOTHING;
