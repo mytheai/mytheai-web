@@ -416,6 +416,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📊',
     slugs: ['mixpanel', 'amplitude', 'posthog', 'hotjar', 'heap'],
   },
+  {
+    slug: 'best-product-analytics-tools',
+    title: 'Best Product Analytics Tools',
+    description: 'The leading product analytics platforms for understanding in-app user behaviour, measuring feature adoption, and making data-driven decisions about what to build next.',
+    category: 'Analytics',
+    emoji: '🔬',
+    slugs: ['mixpanel', 'amplitude', 'posthog', 'heap', 'june-so'],
+  },
+  {
+    slug: 'best-ai-image-generators',
+    title: 'Best AI Image Generators',
+    description: 'The top AI image generation tools for creating stunning visuals from text prompts - from photorealistic renders to artistic styles and commercial-safe content.',
+    category: 'Design',
+    emoji: '🎨',
+    slugs: ['midjourney', 'ideogram', 'flux', 'stability-ai', 'adobe-firefly'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
