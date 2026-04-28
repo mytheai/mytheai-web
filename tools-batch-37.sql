@@ -1,14 +1,12 @@
--- tools-batch-37.sql
+﻿-- tools-batch-37.sql
 -- 10 AI Healthcare / Medical Tools
 -- DB target: ~392 -> ~402 tools
 -- Safe to re-run: ON CONFLICT (slug) DO NOTHING
 
 INSERT INTO tools (
   slug, name, tagline, description, logo_url, website_url, affiliate_url,
-  category, pricing_type, free_tier, pricing_starting_price, rating, review_count,
-  featured, trending, editor_pick,
-  pros, cons, use_cases,
-  created_at
+  tags, pricing_type, pricing_free_tier, pricing_starting_price,
+  rating, review_count, featured, trending, editor_pick, pros, cons, use_cases
 ) VALUES
 
 (
@@ -29,7 +27,6 @@ INSERT INTO tools (
   ARRAY['Generates structured SOAP notes automatically from conversation', 'Integrates directly with Epic, Cerner, and major EHR systems', 'Supports 85+ medical specialties and multiple languages', 'HIPAA compliant with local audio processing option', 'Significantly reduces post-visit documentation time'],
   ARRAY['Subscription cost adds to existing EHR licensing expenses', 'AI accuracy requires physician review before signing off', 'Initial specialty-specific training period needed for best output'],
   ARRAY['Automated clinical note generation during patient consultations', 'After-visit summary creation for patient communication', 'Referral letter drafting from consultation transcripts'],
-  NOW()
 ),
 
 (
@@ -50,7 +47,6 @@ INSERT INTO tools (
   ARRAY['Enterprise Epic integration at health system scale', 'Trained specifically on medical language for clinical accuracy', 'Partnership validation from UPMC, Stanford, and major systems', 'Generates both clinician notes and patient-facing summaries', 'Ambient operation requires no mid-consultation interaction'],
   ARRAY['Enterprise pricing and procurement  -  not available for individual physicians', 'Implementation requires IT coordination with health system', 'Less flexibility for solo practices or small groups'],
   ARRAY['Health system-wide clinical documentation automation', 'Epic EHR workflow integration for physician groups', 'Patient after-visit summary generation at scale'],
-  NOW()
 ),
 
 (
@@ -71,7 +67,6 @@ INSERT INTO tools (
   ARRAY['Interactive voice commands for EHR navigation during consultations', 'Learns individual physician style over time', 'Integrates with 30+ EHR systems including Epic and Cerner', 'HIPAA compliant with Google infrastructure backing', 'Reduces typing burden across note creation and EHR navigation'],
   ARRAY['Voice-first approach requires adjustment for physicians used to typing', 'Custom pricing  -  no public per-seat rate', 'Command accuracy depends on environment noise levels'],
   ARRAY['Voice-driven clinical note creation and dictation', 'EHR navigation and patient record retrieval by voice', 'Post-consultation documentation for high-volume practices'],
-  NOW()
 ),
 
 (
@@ -92,7 +87,6 @@ INSERT INTO tools (
   ARRAY['Real-time clinical decision support during live consultations', 'Validated in emergency dispatch for cardiac arrest detection', 'Pattern recognition flags missed red flags and follow-up questions', 'Deployed at scale across European health systems', 'Generates structured documentation alongside decision support'],
   ARRAY['Enterprise deployment model  -  not suited for individual practice', 'Real-time AI guidance requires clinician trust in the system', 'Implementation and training investment required'],
   ARRAY['Emergency medical dispatch with AI triage support', 'Primary care consultation support for diagnostic consistency', 'Health system-wide protocol adherence monitoring'],
-  NOW()
 ),
 
 (
@@ -113,7 +107,6 @@ INSERT INTO tools (
   ARRAY['Built specifically for inpatient hospital medicine workflows', 'Reads entire chart context to generate accurate progress notes', 'Surfaces diagnostic considerations from complex chart data', 'Epic integration for direct note insertion', 'Reduces daily progress note writing time for hospitalists'],
   ARRAY['Focused on inpatient/hospitalist medicine  -  limited outpatient utility', 'Enterprise procurement model  -  not for individual use', 'AI note review still requires physician sign-off for accuracy'],
   ARRAY['Daily hospital progress note generation for hospitalists', 'Complex inpatient chart review and documentation', 'Discharge summary drafting from full admission chart'],
-  NOW()
 ),
 
 (
@@ -134,7 +127,6 @@ INSERT INTO tools (
   ARRAY['Structured differential diagnosis with ranked reasoning', 'Accessible without EHR integration  -  runs in browser and mobile', 'Useful for both clinical practice and medical education', 'AI explains reasoning behind each differential entry', 'Free tier available for individual use'],
   ARRAY['Not a documentation tool  -  separate from note generation', 'AI reasoning requires physician validation for clinical decisions', 'Limited integration with EHR workflows'],
   ARRAY['Differential diagnosis generation for complex patient presentations', 'Clinical assessment and plan drafting from case summaries', 'Medical education and resident training support'],
-  NOW()
 ),
 
 (
@@ -155,7 +147,6 @@ INSERT INTO tools (
   ARRAY['Enterprise-grade with Microsoft Azure infrastructure', 'Deep Epic, Cerner, and Oracle Health EHR integration', 'Deployed at major US health systems with proven scale', 'Built on Dragon dictation platform trusted for 20+ years', 'Supports 50+ medical specialties with tailored note templates'],
   ARRAY['Enterprise-only procurement  -  not available for individual physicians', 'Custom pricing without transparency  -  lengthy sales process', 'Microsoft ecosystem dependency for optimal deployment'],
   ARRAY['Enterprise health system ambient documentation deployment', 'Specialty-specific clinical note generation at scale', 'EHR workflow integration for large physician groups'],
-  NOW()
 ),
 
 (
@@ -176,7 +167,6 @@ INSERT INTO tools (
   ARRAY['FDA-cleared for multiple critical imaging indications', 'Deployed in 1,000+ hospitals with real-world validation', 'Triage prioritisation prevents critical findings being missed', 'Integrates with PACS systems used in radiology departments', 'Near real-time background processing alongside normal workflow'],
   ARRAY['Requires PACS integration and radiology IT involvement', 'Enterprise pricing  -  not accessible for individual radiologists', 'AI triage does not replace formal radiologist interpretation'],
   ARRAY['Critical finding triage in CT, MRI, and X-ray workflow', 'Pulmonary embolism and intracranial haemorrhage prioritisation', 'Incidental finding monitoring across large imaging volumes'],
-  NOW()
 ),
 
 (
@@ -197,7 +187,6 @@ INSERT INTO tools (
   ARRAY['Used by 80%+ of US physicians  -  no new platform adoption needed', 'AI clinical letter and referral drafting built in', 'HIPAA-compliant messaging and video calling included', 'Verified physician network ensures professional context', 'Free tier covers most individual physician needs'],
   ARRAY['US-only  -  limited utility for international medical professionals', 'AI tools are supplements to the network, not a dedicated AI platform', 'Advanced AI features require paid subscription'],
   ARRAY['Clinical letter and referral drafting for US physicians', 'Secure physician-to-physician care coordination messaging', 'Prior authorisation letter generation from case details'],
-  NOW()
 ),
 
 (
@@ -218,7 +207,6 @@ INSERT INTO tools (
   ARRAY['Purpose-built for prior authorisation  -  not a repurposed general tool', 'Automates clinical evidence extraction for PA submissions', 'Works for both health system submitters and payer reviewers', 'Reduces prior auth delays and associated treatment wait times', 'Integrates with EHR systems for automated data extraction'],
   ARRAY['US healthcare-specific workflow  -  limited international applicability', 'Enterprise procurement required  -  no self-serve access', 'ROI dependent on prior auth volume  -  less valuable for low-volume practices'],
   ARRAY['Prior authorisation submission automation for health systems', 'Clinical evidence extraction and justification drafting', 'Payer-side prior auth review acceleration'],
-  NOW()
 )
 
 ON CONFLICT (slug) DO NOTHING;
