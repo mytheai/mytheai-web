@@ -400,6 +400,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '⚡',
     slugs: ['motion', 'reclaim-ai', 'notion-ai', 'todoist', 'clockwise'],
   },
+  {
+    slug: 'best-ai-scheduling-tools',
+    title: 'Best AI Scheduling Tools',
+    description: 'The top AI-powered scheduling and calendar tools for protecting focus time, automating task planning, and making meeting booking effortless for both sides.',
+    category: 'Productivity',
+    emoji: '📅',
+    slugs: ['motion', 'reclaim-ai', 'clockwise', 'cal-com', 'savvycal'],
+  },
+  {
+    slug: 'best-ai-analytics-tools',
+    title: 'Best AI Analytics Tools',
+    description: 'The top AI-powered product analytics, web analytics, and customer data platforms for understanding user behaviour, measuring retention, and making data-driven decisions.',
+    category: 'Analytics',
+    emoji: '📊',
+    slugs: ['mixpanel', 'amplitude', 'posthog', 'hotjar', 'heap'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
