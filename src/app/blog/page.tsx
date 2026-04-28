@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { readFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import BlogGrid from './BlogGrid'
+import type { PostMeta } from './BlogGrid'
 
 export const revalidate = 604800
 
@@ -18,15 +19,6 @@ export const metadata: Metadata = {
 
 const CONTENT_DIR = join(process.cwd(), 'content/blog')
 
-interface PostMeta {
-  slug: string
-  title: string
-  excerpt: string
-  category: string
-  date: string
-  readTime: string
-}
-
 function getAllPosts(): PostMeta[] {
   try {
     const files = readdirSync(CONTENT_DIR).filter(f => f.endsWith('.mdx'))
@@ -40,17 +32,6 @@ function getAllPosts(): PostMeta[] {
   } catch {
     return []
   }
-}
-
-const CATEGORY_COLORS: Record<string, string> = {
-  Roundup: '#DBEAFE',
-  Comparison: '#FEF3C7',
-  Guide: '#D1FAE5',
-}
-const CATEGORY_TEXT: Record<string, string> = {
-  Roundup: '#1E40AF',
-  Comparison: '#92400E',
-  Guide: '#065F46',
 }
 
 const collectionSchema = {
@@ -80,43 +61,7 @@ export default function BlogPage() {
         </p>
       </div>
 
-      <div className="space-y-6">
-        {posts.map(post => (
-          <article
-            key={post.slug}
-            className="border border-border rounded-xl p-6 bg-card hover:border-[#93C5FD] transition-colors"
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <span
-                className="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                style={{
-                  background: CATEGORY_COLORS[post.category] ?? '#F3F4F6',
-                  color: CATEGORY_TEXT[post.category] ?? '#374151',
-                }}
-              >
-                {post.category}
-              </span>
-              <span className="text-[12px] text-muted-foreground">{post.date}</span>
-              <span className="text-[12px] text-muted-foreground">·</span>
-              <span className="text-[12px] text-muted-foreground">{post.readTime}</span>
-            </div>
-
-            <h2 className="text-[18px] font-bold text-foreground mb-2 leading-snug">
-              {post.title}
-            </h2>
-            <p className="text-[14px] text-muted-foreground leading-relaxed mb-4">
-              {post.excerpt}
-            </p>
-
-            <Link
-              href={`/blog/${post.slug}`}
-              className="text-[13px] font-semibold text-blue-600 hover:underline"
-            >
-              Read article →
-            </Link>
-          </article>
-        ))}
-      </div>
+      <BlogGrid posts={posts} />
 
       <div className="mt-12 border border-border rounded-xl p-6 bg-card text-center">
         <p className="text-[14px] font-semibold text-foreground mb-1">More articles coming soon</p>
