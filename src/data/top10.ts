@@ -496,6 +496,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🎬',
     slugs: ['descript', 'capcut', 'veed-io', 'opus-clip', 'kapwing'],
   },
+  {
+    slug: 'best-ai-avatar-tools',
+    title: 'Best AI Avatar Video Tools',
+    description: 'The top AI avatar video platforms for creating professional presenter-led videos without a camera - from enterprise training and multilingual marketing to social content and interactive digital humans.',
+    category: 'Video',
+    emoji: '🎭',
+    slugs: ['heygen', 'synthesia', 'colossyan', 'elai-io', 'd-id'],
+  },
+  {
+    slug: 'best-ai-tools-for-educators',
+    title: 'Best AI Tools for Teachers & Educators',
+    description: 'The top AI tools for K-12 and higher education - from AI tutoring assistants and lesson plan generators to interactive classroom platforms and curriculum differentiation tools.',
+    category: 'Productivity',
+    emoji: '🎓',
+    slugs: ['notebooklm', 'gamma', 'claude', 'perplexity', 'grammarly'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {

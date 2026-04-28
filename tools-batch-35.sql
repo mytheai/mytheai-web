@@ -1,0 +1,162 @@
+-- tools-batch-35.sql
+-- 10 AI EdTech / educator tools
+-- Target: DB ~372 -> ~382 tools
+-- Safe to re-run: ON CONFLICT (slug) DO NOTHING
+
+INSERT INTO tools (
+  slug, name, tagline, description, logo_url, website_url, affiliate_url,
+  tags, pricing_type, pricing_free_tier, pricing_starting_price,
+  rating, review_count, featured, trending, editor_pick, pros, cons, use_cases
+) VALUES
+
+('khanmigo',
+ 'Khanmigo',
+ 'AI tutor and teaching assistant from Khan Academy',
+ 'Khanmigo is the AI-powered tutor and teaching assistant built by Khan Academy. For students, it acts as a Socratic tutor - guiding them to answers through questions rather than simply providing solutions, which reinforces understanding rather than bypassing it. The AI walks through math problems step-by-step, helps students analyse texts, practice essay writing, and prepare for standardised tests, all within the context of Khan Academy''s curriculum library. For teachers, Khanmigo functions as a planning assistant: it generates lesson plans, creates discussion prompts, drafts rubrics, and builds quiz questions from uploaded content. Because it is built on Khan Academy''s existing learning data, the AI stays grounded in age-appropriate pedagogy and curriculum alignment. Khanmigo supports SAT prep through a partnership with College Board, and the student-facing version is designed with safeguards for use with minors - making it one of the few AI tutoring tools that schools can deploy without significant parent and compliance concerns. It is one of the most trusted AI tools in the K-12 education space.',
+ 'https://www.google.com/s2/favicons?domain=khanmigo.ai&sz=64',
+ 'https://khanmigo.ai',
+ 'https://khanmigo.ai',
+ ARRAY['education', 'ai-assistants'],
+ 'paid', false, 4.00,
+ 4.6, 890, true, true, false,
+ ARRAY['Socratic method keeps students thinking rather than copying', 'Built on Khan Academy''s trusted curriculum library', 'Teacher tools for lesson planning and rubric creation', 'SAT prep partnership with College Board', 'Designed with safeguards for student use'],
+ ARRAY['Only available to Khan Academy users', 'Paid subscription required for full access', 'Less flexible than general AI tools for off-curriculum topics'],
+ ARRAY['K-12 student homework help and concept explanation', 'SAT and ACT test preparation', 'Teacher lesson planning and assessment creation']
+),
+
+('schoolai',
+ 'SchoolAI',
+ 'AI learning assistant designed for safe classroom use',
+ 'SchoolAI is an AI platform built specifically for the K-12 classroom, with student and teacher-facing tools that prioritise safety, curriculum alignment, and teacher oversight. Teachers create AI-powered learning spaces for students - configuring the AI''s behaviour, topics, and guardrails before students access it. Students interact with the AI through guided learning activities, writing support, comprehension checks, and tutoring conversations, while teachers monitor progress and flag interactions from a central dashboard. The platform''s safety architecture is one of its core selling points: student conversations are filtered, teachers maintain full visibility, and the system is designed to comply with COPPA and FERPA requirements. SchoolAI integrates with Google Classroom and Microsoft Teams for easy assignment distribution. For schools concerned about students using uncontrolled AI tools, SchoolAI provides a structured alternative that keeps the AI within the teacher''s pedagogical framework. Adoption has grown rapidly since 2024 as districts look for AI tools they can actually deploy within compliance constraints.',
+ 'https://www.google.com/s2/favicons?domain=schoolai.com&sz=64',
+ 'https://schoolai.com',
+ 'https://schoolai.com',
+ ARRAY['education', 'ai-assistants'],
+ 'freemium', true, 0.00,
+ 4.4, 540, false, true, false,
+ ARRAY['Teacher oversight dashboard with full conversation visibility', 'COPPA and FERPA compliant design', 'Free tier available for individual teachers', 'Google Classroom and Microsoft Teams integration', 'Configurable AI guardrails per assignment'],
+ ARRAY['Requires teacher setup before students can use', 'Advanced features require paid plan', 'Less powerful than general AI for open-ended tasks'],
+ ARRAY['Controlled AI tutoring for K-12 classrooms', 'Writing and comprehension support under teacher supervision', 'Compliant AI deployment for school districts']
+),
+
+('curipod',
+ 'Curipod',
+ 'AI lesson builder that creates interactive slides in seconds',
+ 'Curipod is an AI-powered lesson creation tool that generates complete, interactive slide decks for classroom instruction from a single topic prompt. Enter a subject, grade level, and learning objective, and Curipod builds a full lesson including explanatory slides, discussion prompts, polls, drawing activities, and exit ticket questions. The resulting lesson is interactive: students join from their devices and respond to activities in real time, with responses displayed on the teacher''s screen. Curipod integrates direct formative assessment into the slide content - word clouds, multiple choice polls, and open response activities - so teachers get immediate feedback on student understanding without a separate quiz tool. The platform is designed to reduce teacher preparation time significantly: a lesson that would take 60-90 minutes to build from scratch can be generated, reviewed, and customised in under 10 minutes. Curipod is popular in secondary and higher education settings where teachers need engaging content quickly and want built-in interactivity without complex authoring tools.',
+ 'https://www.google.com/s2/favicons?domain=curipod.com&sz=64',
+ 'https://curipod.com',
+ 'https://curipod.com',
+ ARRAY['education', 'content'],
+ 'freemium', true, 0.00,
+ 4.3, 620, false, true, false,
+ ARRAY['Generates full interactive lessons from a single prompt', 'Built-in formative assessment activities', 'Students join from any device without accounts', 'Real-time response display during class', 'Free tier covers most individual teacher needs'],
+ ARRAY['AI generation quality varies by subject area', 'Customisation requires manual editing after generation', 'Advanced analytics on paid plan only'],
+ ARRAY['Rapid interactive lesson creation for classroom instruction', 'Real-time student polling and formative assessment', 'Engaging slide-based content for any curriculum topic']
+),
+
+('diffit',
+ 'Diffit',
+ 'AI tool for differentiating reading materials by grade level',
+ 'Diffit is an AI-powered differentiation tool that adapts reading materials, texts, and articles to different grade levels and language proficiency levels. Teachers paste in an article, URL, or topic, and Diffit generates multiple versions of the same content - simplified for struggling readers, grade-level for most students, and enriched for advanced learners - each with comprehension questions tailored to the reading level. The tool is designed around one of the most time-consuming parts of teaching: differentiating the same content for students with different reading abilities. Diffit handles the adaptation automatically, producing vocabulary lists, comprehension checks, and discussion questions alongside each text version. The platform supports English language learners by generating content in multiple languages and at reduced complexity levels. It also creates graphic organisers, fill-in-the-blank activities, and multiple choice assessments from the adapted texts. For teachers in mixed-ability classrooms, Diffit addresses a genuine pain point - producing materials that challenge advanced students while keeping content accessible to those reading below grade level - without doubling preparation time.',
+ 'https://www.google.com/s2/favicons?domain=diffit.me&sz=64',
+ 'https://diffit.me',
+ 'https://diffit.me',
+ ARRAY['education', 'content'],
+ 'freemium', true, 0.00,
+ 4.4, 480, false, true, false,
+ ARRAY['Adapts texts to multiple grade levels automatically', 'Generates comprehension questions at each reading level', 'Supports English language learners with multilingual output', 'Creates vocabulary lists and graphic organisers', 'Free tier available for individual teachers'],
+ ARRAY['Works best with text-based content, less useful for other formats', 'Subject-specific vocabulary may need manual review', 'Advanced features require paid subscription'],
+ ARRAY['Differentiating reading materials for mixed-ability classrooms', 'Adapting articles and texts for English language learners', 'Creating levelled comprehension activities from any source text']
+),
+
+('brisk-teaching',
+ 'Brisk Teaching',
+ 'AI Chrome extension that helps teachers work faster inside Google tools',
+ 'Brisk Teaching is a Chrome extension that adds AI-powered teacher tools directly inside Google Docs, Google Slides, Google Forms, YouTube, and other browser-based tools teachers already use daily. Rather than switching to a separate app, teachers activate Brisk from within their existing workflow: highlight a student essay in Google Docs and get instant detailed feedback, open a YouTube video and generate a comprehension quiz, paste an article and create a levelled reading activity. Core features include instant student feedback generation, rubric creation, lesson plan drafts, quiz generation from any web content, and a voice-to-note tool for capturing verbal feedback quickly. Brisk is designed for zero workflow disruption - it meets teachers inside the tools they already use rather than requiring adoption of a new platform. The extension has been adopted rapidly in Google Workspace for Education environments, where teachers can activate it without IT involvement. For busy classroom teachers who want AI productivity without learning a new system, Brisk is one of the lowest-friction entry points available.',
+ 'https://www.google.com/s2/favicons?domain=briskteaching.com&sz=64',
+ 'https://briskteaching.com',
+ 'https://briskteaching.com',
+ ARRAY['education', 'productivity'],
+ 'freemium', true, 0.00,
+ 4.5, 710, false, true, false,
+ ARRAY['Works inside Google Docs, Slides, and Forms without switching apps', 'Instant student feedback generation from selected text', 'Quiz creation from any YouTube video or web article', 'Zero workflow disruption for Google Workspace schools', 'Free tier covers most classroom use cases'],
+ ARRAY['Requires Chrome browser and Google Workspace', 'Less useful for non-Google school environments', 'Some features are per-use credits on the free plan'],
+ ARRAY['Generating instant feedback on student writing in Google Docs', 'Creating quizzes and comprehension activities from YouTube videos', 'Drafting lesson plans and rubrics without leaving the browser']
+),
+
+('classpoint',
+ 'ClassPoint',
+ 'AI-powered interactive teaching add-in for PowerPoint',
+ 'ClassPoint is a PowerPoint add-in that transforms existing PowerPoint presentations into interactive classroom experiences. Teachers add interactive question slides - multiple choice, short answer, image upload, draggable activities, and word cloud responses - directly into their PowerPoint files, and students participate from their phones or laptops without creating accounts. ClassPoint''s AI features include automatic quiz generation from any PowerPoint slide content, gamification tools that award points and display leaderboards during class, and a saved class roster for tracking participation over time. The tool is built specifically for teachers who already have PowerPoint presentations and want to add engagement without rebuilding content in a new platform. It also includes an AI-powered slide search that finds relevant images and content suggestions based on the slide topic. ClassPoint is popular in higher education and corporate training settings where PowerPoint is the established presentation standard and instructors want student engagement without abandoning their existing material library.',
+ 'https://www.google.com/s2/favicons?domain=classpoint.io&sz=64',
+ 'https://classpoint.io',
+ 'https://classpoint.io',
+ ARRAY['education', 'productivity'],
+ 'freemium', true, 0.00,
+ 4.3, 560, false, false, false,
+ ARRAY['Works inside PowerPoint without rebuilding existing presentations', 'AI quiz generation from slide content', 'Students join without creating accounts', 'Gamification with points and leaderboards', 'Free tier available for individuals'],
+ ARRAY['Requires Microsoft PowerPoint (desktop or web)', 'Not suitable for non-PowerPoint teaching environments', 'Advanced analytics on paid plan only'],
+ ARRAY['Adding interactivity to existing PowerPoint-based lessons', 'Formative assessment during lectures and presentations', 'Gamified classroom engagement with existing course materials']
+),
+
+('conker',
+ 'Conker',
+ 'AI quiz and formative assessment generator for educators',
+ 'Conker is an AI-powered quiz and assessment generator designed for teachers who need to create formative assessment quickly from any source material. Paste a topic, upload a document, or enter a learning objective, and Conker generates multiple choice, true/false, short answer, and open response questions in seconds. The generated quizzes can be shared directly with students via link - no student accounts required - with responses collected and summarised for the teacher. Conker supports Google Classroom import for distributing assignments within existing class structures. The AI customisation options let teachers adjust question difficulty, target specific learning objectives, and generate questions in different Bloom''s Taxonomy levels. Unlike more complex LMS platforms, Conker focuses narrowly on the quiz creation and delivery workflow, making it one of the fastest tools for generating and deploying a formative check with minimal setup. For teachers who frequently run quick comprehension checks, exit tickets, or unit review activities, Conker''s speed and simplicity are the core value proposition.',
+ 'https://www.google.com/s2/favicons?domain=conker.ai&sz=64',
+ 'https://conker.ai',
+ 'https://conker.ai',
+ ARRAY['education', 'content'],
+ 'freemium', true, 0.00,
+ 4.2, 390, false, false, false,
+ ARRAY['Generates quizzes from any topic or uploaded document', 'Multiple question types including Bloom''s Taxonomy levels', 'Students join via link without creating accounts', 'Google Classroom integration for assignment distribution', 'Very fast from prompt to shareable quiz'],
+ ARRAY['Narrowly focused on quiz creation only', 'Limited analytics compared to full LMS platforms', 'Advanced question customisation requires paid plan'],
+ ARRAY['Quick formative assessment and exit ticket creation', 'Review quiz generation for unit tests and exams', 'Comprehension checks from reading materials or lecture content']
+),
+
+('almanack-ai',
+ 'Almanack',
+ 'AI lesson planning and curriculum resource generator for teachers',
+ 'Almanack is an AI lesson planning assistant that helps teachers generate curriculum-aligned lesson plans, worksheets, assessments, and classroom resources from simple prompts. Teachers enter a topic, grade level, curriculum standard, and duration, and Almanack produces a complete lesson plan with learning objectives, activity sequences, discussion questions, and differentiation suggestions. The platform includes a library of editable templates for different lesson types - direct instruction, inquiry-based learning, project-based learning, and flipped classroom models. Almanack''s worksheet generator creates printable student-facing materials including graphic organisers, reading guides, vocabulary activities, and practice problems. The tool is designed to reduce curriculum planning time, particularly for new teachers and those covering unfamiliar subjects. Almanack aligns to Common Core, Next Generation Science Standards, and other major curriculum frameworks, allowing teachers to specify standards and generate content that maps to assessment requirements. For teachers juggling multiple preps or subjects, the ability to generate a full week of lesson plans in under an hour is a practical and immediate time-saving benefit.',
+ 'https://www.google.com/s2/favicons?domain=almanack.ai&sz=64',
+ 'https://almanack.ai',
+ 'https://almanack.ai',
+ ARRAY['education', 'productivity'],
+ 'freemium', true, 0.00,
+ 4.2, 340, false, false, false,
+ ARRAY['Generates full curriculum-aligned lesson plans from simple prompts', 'Supports Common Core and NGSS standards alignment', 'Creates printable worksheets and student-facing materials', 'Templates for multiple pedagogical approaches', 'Free tier covers individual teacher needs'],
+ ARRAY['US curriculum standards focus may limit international use', 'Generated content needs teacher review and customisation', 'Less established than larger EdTech platforms'],
+ ARRAY['Rapid lesson planning aligned to curriculum standards', 'Worksheet and resource creation for new or unfamiliar subjects', 'Full unit planning for teachers covering multiple preps']
+),
+
+('synthesis-tutor',
+ 'Synthesis',
+ 'AI maths and problem-solving tutor designed for children',
+ 'Synthesis is an AI-powered maths and problem-solving platform originally developed for students at SpaceX''s school programme and now available publicly. The platform takes a games-based approach to mathematical thinking: rather than drill-and-practice exercises, Synthesis presents students with adaptive puzzles, strategy challenges, and collaborative problem-solving scenarios that build numerical reasoning, logical thinking, and mathematical intuition. The AI adapts in real time to student performance, adjusting difficulty and presenting new challenge types based on individual progress. Synthesis covers arithmetic through pre-algebra, with particular depth in areas where students typically struggle: fractions, percentages, estimation, and multi-step word problems. Parent and teacher dashboards show session data, skill progression, and engagement metrics. Synthesis is positioned as a supplement to school maths rather than a replacement, with 3-4 sessions per week delivering noticeable gains in mathematical confidence. The platform has strong efficacy data and significant word-of-mouth adoption among parents and homeschooling families. It is one of the more pedagogically differentiated AI maths tools available for ages 6-14.',
+ 'https://www.google.com/s2/favicons?domain=synthesis.com&sz=64',
+ 'https://synthesis.com',
+ 'https://synthesis.com',
+ ARRAY['education', 'ai-assistants'],
+ 'paid', false, 22.00,
+ 4.6, 820, true, true, false,
+ ARRAY['Games-based approach builds mathematical reasoning rather than rote memory', 'Adaptive difficulty adjusts in real time to each student', 'Strong efficacy data and independent research backing', 'Parent and teacher dashboards with detailed progress tracking', 'Originally developed for SpaceX school programme'],
+ ARRAY['Paid subscription with no free tier', 'Primarily covers maths - not a general-purpose tutor', 'Best results require consistent 3-4 sessions per week'],
+ ARRAY['Supplementary maths tutoring for ages 6-14', 'Building mathematical confidence and problem-solving skills', 'Homeschooling maths curriculum supplement']
+),
+
+('nearpod',
+ 'Nearpod',
+ 'Interactive lesson platform with AI content creation for teachers',
+ 'Nearpod is a student engagement platform that lets teachers run synchronised interactive lessons from any device. Teachers present slides while students follow along on their own devices, participating in polls, quizzes, virtual field trips, simulations, collaborative boards, and drawing activities embedded directly in the lesson flow. The AI-powered features include lesson generation from a topic prompt, quiz creation from uploaded materials, and a library of pre-built interactive lessons across K-12 subjects. Nearpod''s virtual reality integration is a standout feature: 3D scenes and 360-degree field trips can be embedded in lessons for immersive exploration of geographic locations, historical sites, and scientific environments. The platform integrates with Google Classroom, Canvas, Schoology, and most major LMS platforms, fitting into existing school technology stacks without additional configuration. Nearpod has been widely adopted in US schools and has a large teacher-created content library that makes it easy to find ready-made lessons without starting from scratch. For districts looking for a student engagement platform with broad subject coverage and strong LMS compatibility, Nearpod is one of the most established options in the market.',
+ 'https://www.google.com/s2/favicons?domain=nearpod.com&sz=64',
+ 'https://nearpod.com',
+ 'https://nearpod.com',
+ ARRAY['education', 'productivity'],
+ 'freemium', true, 0.00,
+ 4.4, 980, false, false, false,
+ ARRAY['Synchronised interactive lessons with real-time student participation', 'VR and 360-degree field trip integration', 'Large library of pre-built teacher-created lessons', 'Integrates with Google Classroom, Canvas, and Schoology', 'Free tier supports up to 40 students per session'],
+ ARRAY['Full feature set requires school or district subscription', 'Students need devices during the lesson', 'AI generation features less developed than specialist lesson-building tools'],
+ ARRAY['Interactive classroom instruction with real-time student responses', 'Virtual field trips and immersive content delivery', 'Formative assessment embedded in live lesson presentations']
+)
+
+ON CONFLICT (slug) DO NOTHING;
