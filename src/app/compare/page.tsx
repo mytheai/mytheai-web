@@ -2,7 +2,7 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { createStaticClient } from '@/lib/supabase'
-import SearchFilterBar from '@/components/tools/SearchFilterBar'
+import CompareFilterBar from '@/components/tools/CompareFilterBar'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
@@ -79,30 +79,42 @@ function getCategory(tool: ToolMeta): string {
 export default async function ComparePage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; q?: string }>
+  searchParams: Promise<{ category?: string; tool_a?: string; tool_b?: string }>
 }) {
-  const { category, q } = await searchParams
+  const { category, tool_a, tool_b } = await searchParams
   const comparisons = await getComparisons()
   const allSlugs = [...new Set(comparisons.flatMap(c => [c.tool_a_slug, c.tool_b_slug]))]
   const tools = await getToolsMeta(allSlugs)
 
-  // Derive categories from tool_a's primary tag
-  const categoryCounts: Record<string, number> = {}
+  // Unique tool options sorted alphabetically for dropdowns
+  const toolOptions = allSlugs
+    .filter(s => tools[s])
+    .map(s => ({ slug: s, name: tools[s].name }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+
+  // Derive unique categories
+  const categorySet = new Set<string>()
   for (const c of comparisons) {
     const a = tools[c.tool_a_slug]
-    if (!a) continue
-    const cat = getCategory(a)
-    categoryCounts[cat] = (categoryCounts[cat] ?? 0) + 1
+    if (a) categorySet.add(getCategory(a))
   }
+  const categoryOptions = [...categorySet].sort()
 
-  // Apply search filter (match tool names via compare slug)
-  const qLower = (q ?? '').toLowerCase().trim()
+  // Filter: tool_a = any comparison involving that tool
+  //         tool_b = further narrow to comparisons involving both tools
   const filtered = comparisons.filter(c => {
     const a = tools[c.tool_a_slug]
     const b = tools[c.tool_b_slug]
     if (!a || !b) return false
     if (category && getCategory(a) !== category) return false
-    if (qLower && !c.slug.includes(qLower) && !a.name.toLowerCase().includes(qLower) && !b.name.toLowerCase().includes(qLower)) return false
+    if (tool_a) {
+      const involvesA = c.tool_a_slug === tool_a || c.tool_b_slug === tool_a
+      if (!involvesA) return false
+    }
+    if (tool_b) {
+      const involvesB = c.tool_a_slug === tool_b || c.tool_b_slug === tool_b
+      if (!involvesB) return false
+    }
     return true
   })
 
@@ -130,10 +142,9 @@ export default async function ComparePage({
         </div>
 
         <Suspense fallback={<div className="h-16" />}>
-          <SearchFilterBar
-            basePath="/compare"
-            showCategory
-            searchPlaceholder="Search comparisons... (e.g. claude, notion)"
+          <CompareFilterBar
+            toolOptions={toolOptions}
+            categoryOptions={categoryOptions}
           />
         </Suspense>
 
