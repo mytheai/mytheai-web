@@ -632,6 +632,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📒',
     slugs: ['pilot', 'bench', 'zeni', 'docyt', 'ramp'],
   },
+  {
+    slug: 'best-lms-platforms',
+    title: 'Best LMS Platforms',
+    description: 'The top learning management systems for corporate training, employee onboarding, and skills development in 2026 - from SMB-friendly platforms to AI-native enterprise LMS solutions.',
+    category: 'Education',
+    emoji: '🎓',
+    slugs: ['talentlms', 'docebo', 'learnupon', 'absorb-lms', '360learning'],
+  },
+  {
+    slug: 'best-ai-elearning-authoring-tools',
+    title: 'Best AI E-Learning Authoring Tools',
+    description: 'The top e-learning authoring tools and platforms for creating interactive corporate training courses, compliance programmes, and customer education content in 2026.',
+    category: 'Education',
+    emoji: '📚',
+    slugs: ['articulate-360', 'ispring-suite', 'cornerstone-ondemand', 'skilljar', 'sap-litmos'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
