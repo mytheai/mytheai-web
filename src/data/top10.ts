@@ -464,6 +464,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📋',
     slugs: ['asana', 'linear', 'clickup', 'monday', 'notion-ai'],
   },
+  {
+    slug: 'best-ai-tools-for-agencies',
+    title: 'Best AI Tools for Agencies',
+    description: 'The top AI tools for marketing, creative, and digital agencies - from AI writing and design to SEO, project management, and client reporting automation.',
+    category: 'Productivity',
+    emoji: '🏢',
+    slugs: ['jasper', 'canva-ai', 'semrush', 'zapier', 'descript'],
+  },
+  {
+    slug: 'best-open-source-ai-tools',
+    title: 'Best Open-Source AI Tools',
+    description: 'The top open-source AI and productivity tools that can be self-hosted for full data control - from project management and team communication to LLM orchestration and analytics.',
+    category: 'Coding',
+    emoji: '🔓',
+    slugs: ['plane-so', 'huly', 'n8n', 'flowise', 'posthog'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
