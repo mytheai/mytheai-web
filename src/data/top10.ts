@@ -480,6 +480,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🔓',
     slugs: ['plane-so', 'huly', 'n8n', 'flowise', 'posthog'],
   },
+  {
+    slug: 'best-ai-customer-success-tools',
+    title: 'Best AI Customer Success Tools',
+    description: 'The top AI-powered customer support and success platforms for reducing ticket volume, automating Tier-1 resolution, and delivering faster, more personalised service at scale.',
+    category: 'Business',
+    emoji: '🎧',
+    slugs: ['chatwoot', 'kustomer', 'plain', 'forethought', 'capacity'],
+  },
+  {
+    slug: 'best-ai-video-editing-tools',
+    title: 'Best AI Video Editing Tools',
+    description: 'The top AI-powered video editing platforms for creators, marketers, and teams - from text-based editing and automatic silence removal to short-form repurposing and subtitle generation.',
+    category: 'Video',
+    emoji: '🎬',
+    slugs: ['descript', 'capcut', 'veed-io', 'opus-clip', 'kapwing'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
