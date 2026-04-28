@@ -432,6 +432,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🎨',
     slugs: ['midjourney', 'ideogram', 'flux', 'stability-ai', 'adobe-firefly'],
   },
+  {
+    slug: 'best-ai-seo-tools',
+    title: 'Best AI SEO Tools',
+    description: 'The top AI-powered SEO tools for keyword research, content optimisation, technical SEO automation, and building topical authority in 2026.',
+    category: 'Marketing',
+    emoji: '🔍',
+    slugs: ['surfer-seo', 'ahrefs', 'semrush', 'clearscope', 'marketmuse'],
+  },
+  {
+    slug: 'best-ai-creative-tools',
+    title: 'Best AI Creative Tools',
+    description: 'The top AI tools for creative professionals - image generation, design, video creation, and visual content production for designers, marketers, and content creators.',
+    category: 'Design',
+    emoji: '✨',
+    slugs: ['midjourney', 'adobe-firefly', 'canva-ai', 'ideogram', 'flux'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
