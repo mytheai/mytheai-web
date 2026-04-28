@@ -680,6 +680,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📞',
     slugs: ['chorus', 'modjo', 'grain', 'read-ai', 'tactiq'],
   },
+  {
+    slug: 'best-ai-design-tools',
+    title: 'Best AI Design Tools 2026',
+    description: 'The top AI-powered design tools for 2026 - from website builders that generate complete sites from a text prompt, to UI generators, design-to-code platforms, and open-source Figma alternatives.',
+    category: 'Design',
+    emoji: '🎨',
+    slugs: ['framer', 'galileo-ai', 'uizard', 'relume', 'penpot'],
+  },
+  {
+    slug: 'best-figma-ai-plugins',
+    title: 'Best AI Plugins for Figma 2026',
+    description: 'The top AI-powered Figma plugins and design-adjacent tools for 2026 - covering UI generation, design-to-code handoff, icon creation, UX copy writing, and automated layer cleanup inside the Figma workflow.',
+    category: 'Design',
+    emoji: '🖌️',
+    slugs: ['diagram', 'magician', 'galileo-ai', 'locofy', 'subframe'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
