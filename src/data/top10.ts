@@ -552,6 +552,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🩺',
     slugs: ['nabla', 'suki-ai', 'glass-health', 'doximity', 'regard'],
   },
+  {
+    slug: 'best-ai-data-analysis-tools',
+    title: 'Best AI Data Analysis Tools',
+    description: 'The top AI-powered data analysis tools for business teams in 2026 - covering no-code machine learning, natural language SQL, AI spreadsheets, collaborative notebooks, and big data exploration without requiring coding skills.',
+    category: 'Analytics',
+    emoji: '📉',
+    slugs: ['deepnote', 'rows', 'outerbase', 'formula-bot', 'akkio'],
+  },
+  {
+    slug: 'best-no-code-ml-tools',
+    title: 'Best No-Code Machine Learning Tools',
+    description: 'The top no-code machine learning platforms that let business teams build predictive models, run automated analysis, and deploy AI without writing a single line of code.',
+    category: 'Analytics',
+    emoji: '🧬',
+    slugs: ['akkio', 'obviously-ai', 'rows', 'polymer', 'gigasheet'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
