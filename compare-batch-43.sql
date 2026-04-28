@@ -2,17 +2,19 @@
 -- 5 LMS / E-Learning comparison pairs
 -- All tools from tools-batch-43 (confirmed in DB)
 -- Run AFTER tools-batch-43 confirmed in Supabase
+-- Actual slugs: articulate, ispring, talentlms, absorb-lms, docebo, 360learning,
+--               skilljar, learnupon, litmos, cornerstone
 
--- 1. articulate-360-vs-ispring-suite
+-- 1. articulate-vs-ispring
 INSERT INTO comparisons (slug, tool_a_slug, tool_b_slug, summary, winner, updated_at)
-SELECT 'articulate-360-vs-ispring-suite', 'articulate-360', 'ispring-suite',
+SELECT 'articulate-vs-ispring', 'articulate', 'ispring',
   'Articulate 360 is the industry-standard e-learning authoring suite used by professional instructional designers worldwide. iSpring Suite converts PowerPoint presentations into interactive courses with dialogue simulations, making it ideal for teams already comfortable with PowerPoint. Articulate wins on depth and interactivity; iSpring wins on approachability and price. The choice comes down to whether your L&D team includes dedicated instructional designers (Articulate) or relies on subject matter experts working in familiar tools (iSpring).',
   NULL,
   NOW()
-WHERE NOT EXISTS (SELECT 1 FROM comparisons WHERE slug = 'articulate-360-vs-ispring-suite');
+WHERE NOT EXISTS (SELECT 1 FROM comparisons WHERE slug = 'articulate-vs-ispring');
 
 INSERT INTO comparison_criteria (comparison_slug, name, tool_a_score, tool_b_score, notes)
-SELECT 'articulate-360-vs-ispring-suite', name, tool_a_score, tool_b_score, notes FROM (VALUES
+SELECT 'articulate-vs-ispring', name, tool_a_score, tool_b_score, notes FROM (VALUES
   ('Authoring Depth', 5, 3, 'Articulate Storyline 360 supports custom JavaScript, triggers, and complex branching scenarios that iSpring cannot match. iSpring is limited to PowerPoint-based interactivity.'),
   ('Ease of Use', 3, 5, 'iSpring works inside PowerPoint - zero new interface to learn. Articulate Storyline has a significant learning curve; Rise 360 is simpler but less powerful.'),
   ('SCORM / xAPI Output', 5, 5, 'Both tools export industry-standard SCORM 1.2, SCORM 2004, and xAPI packages that load into any LMS.'),
@@ -21,8 +23,8 @@ SELECT 'articulate-360-vs-ispring-suite', name, tool_a_score, tool_b_score, note
   ('Template Library', 4, 3, 'Articulate Content Library includes 9 million stock assets. iSpring relies on PowerPoint templates and its own smaller asset library.'),
   ('Bundled LMS', 2, 4, 'Articulate does not include an LMS - content must be hosted on a third-party platform. iSpring Suite bundles iSpring Learn LMS for an additional fee.')
 ) AS t(name, tool_a_score, tool_b_score, notes)
-WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'articulate-360-vs-ispring-suite')
-  AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'articulate-360-vs-ispring-suite');
+WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'articulate-vs-ispring')
+  AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'articulate-vs-ispring');
 
 -- 2. docebo-vs-360learning
 INSERT INTO comparisons (slug, tool_a_slug, tool_b_slug, summary, winner, updated_at)
@@ -87,16 +89,16 @@ SELECT 'skilljar-vs-learnupon', name, tool_a_score, tool_b_score, notes FROM (VA
 WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'skilljar-vs-learnupon')
   AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'skilljar-vs-learnupon');
 
--- 5. cornerstone-ondemand-vs-docebo
+-- 5. cornerstone-vs-docebo
 INSERT INTO comparisons (slug, tool_a_slug, tool_b_slug, summary, winner, updated_at)
-SELECT 'cornerstone-ondemand-vs-docebo', 'cornerstone-ondemand', 'docebo',
+SELECT 'cornerstone-vs-docebo', 'cornerstone', 'docebo',
   'Cornerstone OnDemand is a legacy enterprise talent management suite with one of the broadest content libraries and most comprehensive HR module sets available. Docebo is a modern, AI-native LMS that delivers faster implementation, a cleaner user experience, and more sophisticated learning recommendations. Cornerstone wins on breadth and HR integration depth for large enterprises with dedicated LMS administrators; Docebo wins on AI, UX, and speed to value for organisations that want modern learning without a 6-month implementation project.',
   NULL,
   NOW()
-WHERE NOT EXISTS (SELECT 1 FROM comparisons WHERE slug = 'cornerstone-ondemand-vs-docebo');
+WHERE NOT EXISTS (SELECT 1 FROM comparisons WHERE slug = 'cornerstone-vs-docebo');
 
 INSERT INTO comparison_criteria (comparison_slug, name, tool_a_score, tool_b_score, notes)
-SELECT 'cornerstone-ondemand-vs-docebo', name, tool_a_score, tool_b_score, notes FROM (VALUES
+SELECT 'cornerstone-vs-docebo', name, tool_a_score, tool_b_score, notes FROM (VALUES
   ('AI Learning Features', 3, 5, 'Docebo Shape generates courses from documents, Flow embeds learning in daily tools, and its recommendation engine personalises paths continuously. Cornerstone AI is improving but remains less sophisticated than Docebo.'),
   ('Content Library', 5, 4, 'Cornerstone Content Anytime provides 60,000 courses from major providers. Docebo has an extensive marketplace but Cornerstone wins on sheer library breadth.'),
   ('Talent Management Suite', 5, 2, 'Cornerstone includes performance management, succession planning, recruitment, and workforce analytics alongside the LMS. Docebo is LMS-first and does not cover the broader talent lifecycle.'),
@@ -105,5 +107,5 @@ SELECT 'cornerstone-ondemand-vs-docebo', name, tool_a_score, tool_b_score, notes
   ('Social and Informal Learning', 3, 5, 'Docebo Communities enables social learning, user-generated content, and informal knowledge sharing. Cornerstone supports communities but social learning is less central to its architecture.'),
   ('Mid-Market Suitability', 2, 4, 'Docebo serves companies from 200 to 50,000 employees effectively. Cornerstone is optimised for large enterprises - complexity and cost are barriers for mid-market buyers.')
 ) AS t(name, tool_a_score, tool_b_score, notes)
-WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'cornerstone-ondemand-vs-docebo')
-  AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'cornerstone-ondemand-vs-docebo');
+WHERE EXISTS (SELECT 1 FROM comparisons WHERE slug = 'cornerstone-vs-docebo')
+  AND NOT EXISTS (SELECT 1 FROM comparison_criteria WHERE comparison_slug = 'cornerstone-vs-docebo');

@@ -646,7 +646,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top e-learning authoring tools and platforms for creating interactive corporate training courses, compliance programmes, and customer education content in 2026.',
     category: 'Education',
     emoji: '📚',
-    slugs: ['articulate-360', 'ispring-suite', 'cornerstone-ondemand', 'skilljar', 'sap-litmos'],
+    slugs: ['articulate', 'ispring', 'cornerstone', 'skilljar', 'litmos'],
   },
 ]
 
