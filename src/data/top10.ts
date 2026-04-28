@@ -664,6 +664,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🎙️',
     slugs: ['grain', 'read-ai', 'fathom', 'otter-ai', 'avoma'],
   },
+  {
+    slug: 'best-ai-meeting-assistants',
+    title: 'Best AI Meeting Assistants 2026',
+    description: 'The top AI meeting assistants for 2026 - lightweight tools that automatically transcribe, summarise, and distribute meeting notes without requiring a separate app or complex setup.',
+    category: 'Productivity',
+    emoji: '🤖',
+    slugs: ['jamie', 'meetgeek', 'sembly-ai', 'notta', 'airgram'],
+  },
+  {
+    slug: 'best-sales-call-intelligence-tools',
+    title: 'Best Sales Call Intelligence Tools 2026',
+    description: 'The top sales conversation intelligence platforms for 2026 - AI tools that record, transcribe, and analyse sales calls to identify coaching opportunities, track objections, and improve win rates.',
+    category: 'Sales',
+    emoji: '📞',
+    slugs: ['chorus', 'modjo', 'grain', 'read-ai', 'tactiq'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
