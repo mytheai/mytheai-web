@@ -520,6 +520,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📊',
     slugs: ['pitch', 'gamma', 'beautiful-ai', 'canva-ai', 'decktopus'],
   },
+  {
+    slug: 'best-ai-tools-for-presentations',
+    title: 'Best AI Slide and Deck Builders',
+    description: 'The top AI presentation builders for creating investor pitch decks, sales proposals, and interactive slide decks - from startup-focused pitch builders to live audience engagement platforms.',
+    category: 'Productivity',
+    emoji: '🖥️',
+    slugs: ['slidebean', 'storydoc', 'prezi', 'visme', 'genially'],
+  },
+  {
+    slug: 'best-ai-tools-for-remote-work',
+    title: 'Best AI Tools for Remote Teams',
+    description: 'The top AI tools for distributed and remote teams - covering async video communication, meeting transcription, workflow automation, and collaborative knowledge management.',
+    category: 'Productivity',
+    emoji: '🏠',
+    slugs: ['notion-ai', 'loom', 'otter-ai', 'zapier', 'claude'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
