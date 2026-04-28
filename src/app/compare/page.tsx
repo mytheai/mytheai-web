@@ -79,9 +79,9 @@ function getCategory(tool: ToolMeta): string {
 export default async function ComparePage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; tool_a?: string; tool_b?: string }>
+  searchParams: Promise<{ category?: string; tool_a?: string }>
 }) {
-  const { category, tool_a, tool_b } = await searchParams
+  const { category, tool_a } = await searchParams
   const comparisons = await getComparisons()
   const allSlugs = [...new Set(comparisons.flatMap(c => [c.tool_a_slug, c.tool_b_slug]))]
   const tools = await getToolsMeta(allSlugs)
@@ -110,10 +110,6 @@ export default async function ComparePage({
     if (tool_a) {
       const involvesA = c.tool_a_slug === tool_a || c.tool_b_slug === tool_a
       if (!involvesA) return false
-    }
-    if (tool_b) {
-      const involvesB = c.tool_a_slug === tool_b || c.tool_b_slug === tool_b
-      if (!involvesB) return false
     }
     return true
   })

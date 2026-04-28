@@ -112,7 +112,6 @@ export default function CompareFilterBar({ toolOptions, categoryOptions }: Props
   const params = useSearchParams()
 
   const toolA = params.get('tool_a') ?? ''
-  const toolB = params.get('tool_b') ?? ''
   const category = params.get('category') ?? ''
 
   function update(key: string, value: string) {
@@ -122,7 +121,7 @@ export default function CompareFilterBar({ toolOptions, categoryOptions }: Props
     router.push(`/compare?${p.toString()}`)
   }
 
-  const hasFilters = toolA || toolB || category
+  const hasFilters = toolA || category
 
   return (
     <div className="flex flex-wrap items-center gap-2 p-3 mb-8 rounded-xl border border-border bg-surface shadow-sm">
@@ -130,18 +129,7 @@ export default function CompareFilterBar({ toolOptions, categoryOptions }: Props
         value={toolA}
         onChange={v => update('tool_a', v)}
         options={toolOptions}
-        placeholder="Search Tool A..."
-      />
-
-      <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#EFF6FF] text-[#2563EB] flex-shrink-0 select-none">
-        VS
-      </span>
-
-      <ToolCombobox
-        value={toolB}
-        onChange={v => update('tool_b', v)}
-        options={toolOptions}
-        placeholder="Search Tool B..."
+        placeholder="Search tool..."
       />
 
       {categoryOptions.length > 0 && (
