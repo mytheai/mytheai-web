@@ -98,6 +98,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const article = getArticle(slug)
   if (!article) return {}
+  const ogImage = `https://mytheai.com/api/og/blog?title=${encodeURIComponent(article.title)}&category=${encodeURIComponent(article.category)}`
   return {
     title: `${article.title} | MytheAi Blog`,
     description: article.excerpt,
@@ -107,6 +108,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: article.excerpt,
       url: `https://mytheai.com/blog/${slug}`,
       type: 'article',
+      images: [{ url: ogImage, width: 1200, height: 630, alt: article.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${article.title} | MytheAi Blog`,
+      description: article.excerpt,
+      images: [ogImage],
     },
   }
 }
@@ -118,7 +126,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const related = getRelatedPosts(slug, article.category)
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.excerpt,
+    url: `https://mytheai.com/blog/${slug}`,
+    datePublished: article.date,
+    dateModified: article.date,
+    author: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'MytheAi',
+      url: 'https://mytheai.com',
+      logo: { '@type': 'ImageObject', url: 'https://mytheai.com/og-image.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://mytheai.com/blog/${slug}` },
+    image: `https://mytheai.com/api/og/blog?title=${encodeURIComponent(article.title)}&category=${encodeURIComponent(article.category)}`,
+    articleSection: article.category,
+  }
+
   return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       {/* Breadcrumb */}
@@ -154,6 +184,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {article.excerpt}
         </p>
       </header>
+
+      {/* Affiliate disclosure */}
+      <div className="mb-8 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
+        <strong>Disclosure:</strong> Some links in this article are affiliate links. We may earn a commission at no extra cost to you. Our editorial rankings are never influenced by affiliate relationships.
+      </div>
 
       <hr className="border-border mb-8" />
 
@@ -209,5 +244,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </Link>
       </div>
     </div>
+    </>
   )
 }

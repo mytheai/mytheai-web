@@ -47,6 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const list = getList(slug)
   if (!list) return { title: 'Not found | MytheAi' }
   const year = new Date().getFullYear()
+  const ogImage = `https://mytheai.com/api/og/blog?title=${encodeURIComponent(list.title + ' ' + year)}&category=${encodeURIComponent('Top 10')}`
   return {
     title: `${list.title} ${year}: Top ${list.slugs.length} Picks | MytheAi`,
     description: list.description,
@@ -55,6 +56,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: `${list.title} ${year} | MytheAi`,
       description: list.description,
       url: `https://mytheai.com/top-10/${slug}`,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: list.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${list.title} ${year} | MytheAi`,
+      description: list.description,
+      images: [ogImage],
     },
   }
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import type { Metadata } from 'next'
 import { createStaticClient } from '@/lib/supabase'
 import { mockCategories } from '@/data/mock'
 import { TOP10_LISTS } from '@/data/top10'
@@ -7,6 +8,24 @@ import type { Tool } from '@/types'
 import NewsletterForm from '@/components/newsletter/NewsletterForm'
 
 export const revalidate = 21600
+
+export const metadata: Metadata = {
+  title: 'MytheAi - Best AI & SaaS Tools 2026 | Reviews, Comparisons & Rankings',
+  description: 'Find the best AI tools for your workflow. Compare 400+ AI & SaaS tools with honest rankings, verified pricing, and expert reviews. No pay-to-rank.',
+  alternates: { canonical: 'https://mytheai.com/' },
+  openGraph: {
+    title: 'MytheAi - Discover the Best AI Tools 2026',
+    description: 'Find, compare and choose from 400+ AI & SaaS tools. Expert reviews, side-by-side comparisons, verified pricing.',
+    url: 'https://mytheai.com/',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MytheAi - AI & SaaS Tools Directory' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MytheAi - Best AI Tools 2026',
+    description: 'Find, compare and choose from 400+ AI & SaaS tools. Expert reviews, verified pricing.',
+    images: ['/og-image.png'],
+  },
+}
 
 // ── Data fetching ─────────────────────────────────────────────────────────────
 
