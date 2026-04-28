@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { createStaticClient } from '@/lib/supabase'
 import ToolCard from '@/components/tools/ToolCard'
-import SearchFilterBar from '@/components/tools/SearchFilterBar'
+import DealsFilterBar from '@/components/tools/DealsFilterBar'
 import type { Tool } from '@/types'
 import type { Metadata } from 'next'
 
@@ -17,16 +17,42 @@ export const metadata: Metadata = {
   },
 }
 
-async function getFreeTools(q?: string, category?: string): Promise<Tool[]> {
+async function getToolOptions(): Promise<{ slug: string; name: string }[]> {
   const supabase = createStaticClient()
-  let query = supabase
+  const { data } = await supabase
     .from('tools')
-    .select('*')
+    .select('slug, name')
     .eq('pricing_free_tier', true)
-    .order('rating', { ascending: false })
+    .order('name')
+  return (data ?? []).map(r => ({ slug: r.slug as string, name: r.name as string }))
+}
 
-  if (q) query = query.or(`name.ilike.%${q}%,tagline.ilike.%${q}%`)
+async function getFreeTools(
+  tool?: string,
+  discount?: string,
+  max_price?: string,
+  category?: string,
+): Promise<Tool[]> {
+  const supabase = createStaticClient()
+  let query = supabase.from('tools').select('*').order('rating', { ascending: false })
+
+  if (tool) {
+    query = query.eq('slug', tool)
+  } else if (discount === 'lifetime') {
+    query = query.eq('pricing_type', 'ltd')
+  } else {
+    query = query.eq('pricing_free_tier', true)
+  }
+
   if (category) query = query.contains('tags', [category])
+
+  if (max_price === 'under-20') {
+    query = query.not('pricing_starting_price', 'is', null).lte('pricing_starting_price', 20)
+  } else if (max_price === 'under-50') {
+    query = query.not('pricing_starting_price', 'is', null).lte('pricing_starting_price', 50)
+  } else if (max_price === 'under-100') {
+    query = query.not('pricing_starting_price', 'is', null).lte('pricing_starting_price', 100)
+  }
 
   const { data } = await query
 
@@ -63,10 +89,13 @@ async function getFreeTools(q?: string, category?: string): Promise<Tool[]> {
 export default async function DealsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; category?: string }>
+  searchParams: Promise<{ tool?: string; discount?: string; max_price?: string; category?: string }>
 }) {
-  const { q, category } = await searchParams
-  const tools = await getFreeTools(q, category)
+  const { tool, discount, max_price, category } = await searchParams
+  const [tools, toolOptions] = await Promise.all([
+    getFreeTools(tool, discount, max_price, category),
+    getToolOptions(),
+  ])
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
@@ -82,11 +111,7 @@ export default async function DealsPage({
       </div>
 
       <Suspense fallback={<div className="h-16" />}>
-        <SearchFilterBar
-          basePath="/deals"
-          showCategory
-          searchPlaceholder="Search free & freemium tools..."
-        />
+        <DealsFilterBar toolOptions={toolOptions} />
       </Suspense>
 
       {tools.length > 0 ? (
