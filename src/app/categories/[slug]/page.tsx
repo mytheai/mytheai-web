@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { createStaticClient } from '@/lib/supabase'
 import { mockCategories } from '@/data/mock'
-import ToolCard from '@/components/tools/ToolCard'
+import CategoryToolsFilter from '@/components/tools/CategoryToolsFilter'
 import type { Tool } from '@/types'
 import type { Metadata } from 'next'
 
@@ -133,20 +133,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           </p>
         </div>
 
-        {tools.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {tools.map(tool => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16 border border-border rounded-xl bg-card">
-            <p className="text-[15px] text-muted-foreground mb-4">No tools yet in this category.</p>
-            <Link href="/tools" className="text-blue-600 text-[14px] hover:underline">
-              Browse all tools →
-            </Link>
-          </div>
-        )}
+        <CategoryToolsFilter tools={tools} />
 
         <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
           <strong>Editorial note:</strong> Rankings are based on rating, review count, and feature quality. Affiliate relationships never influence placement.
