@@ -688,6 +688,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🖱️',
     slugs: ['maze', 'lyssna', 'lookback', 'userlytics', 'playbook-ux'],
   },
+  {
+    slug: 'best-translation-tools',
+    title: 'Best AI Translation Tools 2026',
+    description: 'The top AI-powered translation management systems for global product and marketing teams in 2026 - from developer-first TMS platforms with Git integration to no-code website localization and enterprise multi-stage translation workflows.',
+    category: 'Productivity',
+    emoji: '🌐',
+    slugs: ['phrase', 'lokalise', 'crowdin', 'weglot', 'transifex'],
+  },
+  {
+    slug: 'best-website-localization-tools',
+    title: 'Best Website Localization Tools 2026',
+    description: 'The top website and content localization platforms for 2026 - covering no-code website translation, developer-friendly CMS integrations, and multi-language content management for global marketing teams.',
+    category: 'Productivity',
+    emoji: '🗺️',
+    slugs: ['weglot', 'lokalise', 'crowdin', 'transifex', 'poeditor'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
