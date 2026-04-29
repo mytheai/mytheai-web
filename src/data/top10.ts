@@ -656,6 +656,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📝',
     slugs: ['juro', 'ironclad', 'contractbook', 'oneflow', 'pandadoc'],
   },
+  {
+    slug: 'best-ux-research-tools',
+    title: 'Best UX Research Tools 2026',
+    description: 'The top AI-powered user research platforms for product and design teams in 2026 - from insight repositories and rapid prototype testing to in-product continuous feedback and high-quality moderated interview tools.',
+    category: 'Productivity',
+    emoji: '🔬',
+    slugs: ['dovetail', 'maze', 'sprig', 'lyssna', 'lookback'],
+  },
+  {
+    slug: 'best-usability-testing-tools',
+    title: 'Best Usability Testing Tools 2026',
+    description: 'The top usability testing platforms for validating product designs and prototypes in 2026 - from rapid unmoderated tests with large participant panels to moderated sessions and enterprise-scale video analysis.',
+    category: 'Productivity',
+    emoji: '🖱️',
+    slugs: ['maze', 'lyssna', 'lookback', 'userlytics', 'playbook-ux'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
