@@ -1,0 +1,13 @@
+{
+  "name": "MytheAi",
+  "short_name": "MytheAi",
+  "description": "Discover and compare 500+ AI & SaaS tools. Honest reviews, verified pricing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#2563EB",
+  "icons": [
+    { "src": "/api/logo", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }
+  ]
+}

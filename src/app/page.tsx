@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     description: 'Discover and compare 500+ AI & SaaS tools. Honest reviews, side-by-side comparisons, verified pricing. No pay-to-rank.',
     url: 'https://mytheai.com/',
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MytheAi - AI & SaaS Tools Directory' }],
+    images: [{ url: '/api/og/site', width: 1200, height: 630, alt: 'MytheAi - AI & SaaS Tools Directory' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'MytheAi - Find the Best AI Tools 2026',
     description: 'Discover and compare 500+ AI & SaaS tools. Honest reviews, verified pricing. No pay-to-rank.',
-    images: ['/og-image.png'],
+    images: ['/api/og/site'],
   },
 }
 
@@ -55,7 +55,9 @@ const jsonLd = {
       url: 'https://mytheai.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://mytheai.com/og-image.png',
+        url: 'https://mytheai.com/api/logo',
+        width: 512,
+        height: 512,
       },
     },
   ],

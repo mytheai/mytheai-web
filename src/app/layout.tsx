@@ -23,14 +23,22 @@ export const metadata: Metadata = {
     locale: 'en_US',
     title: 'MytheAi - Best AI & SaaS Tools 2026 | Reviews, Comparisons & Rankings',
     description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, side-by-side comparisons, verified pricing - no pay-to-rank.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'MytheAi - AI & SaaS Tools Directory' }],
+    images: [{ url: '/api/og/site', width: 1200, height: 630, alt: 'MytheAi - AI & SaaS Tools Directory' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'MytheAi - Best AI & SaaS Tools 2026',
     description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, verified pricing - no pay-to-rank.',
-    images: ['/og-image.png'],
+    images: ['/api/og/site'],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/api/logo', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [{ url: '/api/logo', sizes: '180x180', type: 'image/png' }],
+  },
+  manifest: '/manifest.json',
   robots: { index: true, follow: true },
 }
 
@@ -39,7 +47,12 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'MytheAi',
   url: 'https://mytheai.com',
-  logo: 'https://mytheai.com/og-image.png',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://mytheai.com/api/logo',
+    width: 512,
+    height: 512,
+  },
   description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, verified pricing - no pay-to-rank.',
   contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'hello@mytheai.com' },
 }

@@ -139,7 +139,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       '@type': 'Organization',
       name: 'MytheAi',
       url: 'https://mytheai.com',
-      logo: { '@type': 'ImageObject', url: 'https://mytheai.com/og-image.png' },
+      logo: { '@type': 'ImageObject', url: 'https://mytheai.com/api/logo', width: 512, height: 512 },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://mytheai.com/blog/${slug}` },
     image: `https://mytheai.com/api/og/blog?title=${encodeURIComponent(article.title)}&category=${encodeURIComponent(article.category)}`,
