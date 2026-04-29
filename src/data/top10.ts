@@ -657,6 +657,22 @@ export const TOP10_LISTS: Top10List[] = [
     slugs: ['juro', 'ironclad', 'contractbook', 'oneflow', 'pandadoc'],
   },
   {
+    slug: 'best-customer-success-platforms',
+    title: 'Best Customer Success Platforms 2026',
+    description: 'The top AI-powered customer success platforms for SaaS companies in 2026 - from enterprise CS with deep playbook engines and Salesforce integration, to modern PLG-friendly platforms built for growth-stage teams.',
+    category: 'Business',
+    emoji: '🏆',
+    slugs: ['gainsight', 'totango', 'churnzero', 'planhat', 'vitally'],
+  },
+  {
+    slug: 'best-product-onboarding-tools',
+    title: 'Best Product Onboarding Tools 2026',
+    description: 'The top product onboarding and customer success platforms for SaaS teams in 2026 - covering in-app guided onboarding, product adoption tracking, automated lifecycle playbooks, and health score-driven CS workflows.',
+    category: 'Business',
+    emoji: '🚀',
+    slugs: ['userpilot', 'vitally', 'gainsight', 'planhat', 'custify'],
+  },
+  {
     slug: 'best-ux-research-tools',
     title: 'Best UX Research Tools 2026',
     description: 'The top AI-powered user research platforms for product and design teams in 2026 - from insight repositories and rapid prototype testing to in-product continuous feedback and high-quality moderated interview tools.',
