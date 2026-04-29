@@ -126,6 +126,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const related = getRelatedPosts(slug, article.category)
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://mytheai.com/blog' },
+      { '@type': 'ListItem', position: 3, name: article.title, item: `https://mytheai.com/blog/${slug}` },
+    ],
+  }
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -149,6 +159,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       {/* Breadcrumb */}

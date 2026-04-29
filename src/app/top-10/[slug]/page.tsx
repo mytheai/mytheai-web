@@ -118,9 +118,20 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
     })),
   }
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
+      { '@type': 'ListItem', position: 2, name: 'Top 10 Lists', item: 'https://mytheai.com/top-10' },
+      { '@type': 'ListItem', position: 3, name: list.title, item: `https://mytheai.com/top-10/${slug}` },
+    ],
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
@@ -141,7 +152,10 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
           <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-3">
             {list.title} ({year})
           </h1>
-          <p className="text-[15px] text-muted-foreground leading-relaxed">{list.description}</p>
+          <p className="text-[15px] text-muted-foreground leading-relaxed mb-3">{list.description}</p>
+          <p className="text-[12px] text-muted-foreground">
+            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+          </p>
         </div>
 
         {/* Ranked list */}

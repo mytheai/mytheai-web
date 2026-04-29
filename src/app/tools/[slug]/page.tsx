@@ -216,6 +216,16 @@ export default async function ToolPage({
     })),
   }
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
+      { '@type': 'ListItem', position: 2, name: 'Tools', item: 'https://mytheai.com/tools' },
+      { '@type': 'ListItem', position: 3, name: tool.name, item: `https://mytheai.com/tools/${slug}` },
+    ],
+  }
+
   return (
     <>
       <script
@@ -225,6 +235,10 @@ export default async function ToolPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">

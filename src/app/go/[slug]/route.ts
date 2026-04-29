@@ -16,7 +16,18 @@ export async function GET(req: Request, { params }: { params: Promise<{ slug: st
   }
 
   const referrer = req.headers.get('referer') ?? ''
-  supabase.from('tool_clicks').insert({ tool_slug: slug, referrer }).then(() => {})
+  void supabase.from('tool_clicks').insert({ tool_slug: slug, referrer })
 
-  redirect(tool.affiliate_url)
+  let dest = tool.affiliate_url
+  try {
+    const url = new URL(tool.affiliate_url)
+    url.searchParams.set('utm_source', 'mytheai')
+    url.searchParams.set('utm_medium', 'affiliate')
+    url.searchParams.set('utm_campaign', slug)
+    dest = url.toString()
+  } catch {
+    // affiliate_url is not a valid absolute URL - redirect as-is
+  }
+
+  redirect(dest)
 }
