@@ -4,9 +4,15 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'www.google.com', pathname: '/s2/favicons**' },
+      { protocol: 'https', hostname: 'logo.clearbit.com' },
       { protocol: 'https', hostname: '**.supabase.co' },
       { protocol: 'https', hostname: '**.supabase.in' },
     ],
+  },
+  async redirects() {
+    return [
+      { source: '/compare/zapier-vs-make', destination: '/compare/zapier-vs-make-com', permanent: true },
+    ]
   },
   async headers() {
     return [

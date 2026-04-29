@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
+import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
 import { createClient, createStaticClient } from '@/lib/supabase'
 import type { Metadata } from 'next'
@@ -56,17 +56,6 @@ interface AltTool {
   rating: number
 }
 
-function getAltLogoSrc(alt: AltTool): string | null {
-  if (alt.logo_url) return alt.logo_url
-  if (alt.website_url) {
-    try {
-      return `https://www.google.com/s2/favicons?domain=${new URL(alt.website_url).hostname}&sz=64`
-    } catch {
-      return null
-    }
-  }
-  return null
-}
 
 async function getAlternatives(currentSlug: string, tags: string[]): Promise<AltTool[]> {
   if (!tags || tags.length === 0) return []
@@ -254,18 +243,9 @@ export default async function ToolPage({
 
         {/* Hero */}
         <div className="flex flex-col sm:flex-row sm:items-start gap-5 mb-8">
-          {(() => {
-            const src = tool.logo_url || (tool.website_url ? (() => { try { return `https://www.google.com/s2/favicons?domain=${new URL(tool.website_url!).hostname}&sz=64` } catch { return null } })() : null)
-            return (
-              <div className="w-16 h-16 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                {src ? (
-                  <Image src={src} alt={tool.name} width={48} height={48} unoptimized />
-                ) : (
-                  <span className="text-[22px] font-bold text-gray-400">{tool.name[0]}</span>
-                )}
-              </div>
-            )
-          })()}
+          <div className="w-16 h-16 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+            <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={48} letterClassName="text-[22px] font-bold text-gray-400" />
+          </div>
           <div className="flex-1 min-w-0">
             <div className="flex flex-wrap items-center gap-2 mb-1">
               <h1 className="text-[26px] md:text-[32px] font-extrabold tracking-tight text-foreground">
@@ -525,20 +505,14 @@ export default async function ToolPage({
               Alternatives to {tool.name}
             </h2>
             <div className="grid sm:grid-cols-3 gap-3">
-              {alternatives.map(alt => {
-                const altLogo = getAltLogoSrc(alt)
-                return (
+              {alternatives.map(alt => (
                 <Link
                   key={alt.slug}
                   href={`/tools/${alt.slug}`}
                   className="flex items-start gap-3 p-4 rounded-xl border border-border bg-card hover:border-blue-300 transition-colors"
                 >
                   <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    {altLogo ? (
-                      <Image src={altLogo} alt={alt.name} width={28} height={28} unoptimized />
-                    ) : (
-                      <span className="text-[13px] font-bold text-gray-400">{alt.name[0]}</span>
-                    )}
+                    <LogoImage src={alt.logo_url} websiteUrl={alt.website_url} name={alt.name} size={28} letterClassName="text-[13px] font-bold text-gray-400" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[13px] font-semibold text-foreground truncate">{alt.name}</p>
@@ -546,8 +520,7 @@ export default async function ToolPage({
                     <p className="text-[11px] text-[#F59E0B] mt-1">★ {alt.rating.toFixed(1)}</p>
                   </div>
                 </Link>
-                )
-              })}
+              ))}
             </div>
           </div>
         )}

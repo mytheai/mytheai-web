@@ -1,18 +1,19 @@
--- fix-logos.sql v4
--- 1. Fix Microsoft Copilot logo (use microsoft.com parent domain)
--- 2. Delete Tome (site shut down in 2025)
+-- fix-logos.sql
+-- Updates logo_url for all tools to use Clearbit Logo API.
+-- Clearbit returns high-quality 200x200px PNG company logos.
+-- URL pattern: https://logo.clearbit.com/{domain}
+-- Run in Supabase SQL Editor.
 
 UPDATE tools
-SET logo_url = 'https://www.google.com/s2/favicons?domain=microsoft.com&sz=64'
-WHERE slug = 'copilot-microsoft';
+SET logo_url = 'https://logo.clearbit.com/' ||
+  substring(website_url FROM 'https?://(?:www\.)?([^/?#]+)')
+WHERE website_url IS NOT NULL
+  AND website_url ~ 'https?://'
+  AND length(trim(website_url)) > 0
+  AND substring(website_url FROM 'https?://(?:www\.)?([^/?#]+)') IS NOT NULL;
 
-UPDATE tools
-SET logo_url = 'https://www.google.com/s2/favicons?domain=microsoft.com&sz=64'
-WHERE slug = 'microsoft-365-copilot';
-
--- Remove Tome: product shut down, no longer valid
-DELETE FROM tools WHERE slug = 'tome';
-
--- Verify Microsoft Copilot logo updated
-SELECT slug, name, logo_url FROM tools
-WHERE slug IN ('copilot-microsoft', 'microsoft-365-copilot');
+-- Verify sample results
+SELECT slug, name, logo_url, website_url
+FROM tools
+ORDER BY rating DESC
+LIMIT 20;

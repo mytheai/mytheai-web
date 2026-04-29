@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
+import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
 import { createClient, createStaticClient } from '@/lib/supabase'
 import type { Metadata } from 'next'
@@ -30,6 +30,7 @@ interface ToolRow {
   name: string
   tagline: string
   logo_url: string | null
+  website_url: string | null
   pricing_type: string
   pricing_free_tier: boolean
   pricing_starting_price: number | null
@@ -52,7 +53,7 @@ async function getComparison(slug: string) {
 async function getTool(slug: string): Promise<ToolRow | null> {
   const supabase = await createClient()
   const { data } = await supabase.from('tools')
-    .select('slug,name,tagline,logo_url,pricing_type,pricing_free_tier,pricing_starting_price,rating,review_count')
+    .select('slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,pricing_starting_price,rating,review_count')
     .eq('slug', slug).single()
   return data as ToolRow | null
 }
@@ -181,10 +182,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
             {/* Tool A */}
             <div className="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-card">
               <div className="w-12 h-12 rounded-xl border border-border bg-white flex items-center justify-center overflow-hidden">
-                {toolA.logo_url
-                  ? <Image src={toolA.logo_url} alt={toolA.name} width={40} height={40} unoptimized />
-                  : <span className="text-[15px] font-bold text-gray-400">{toolA.name.charAt(0).toUpperCase()}</span>
-                }
+                <LogoImage src={toolA.logo_url} websiteUrl={toolA.website_url} name={toolA.name} size={40} letterClassName="text-[15px] font-bold text-gray-400" />
               </div>
               <p className="text-[14px] font-bold text-foreground">{toolA.name}</p>
               <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${PRICING_COLORS[toolA.pricing_type]}`}>
@@ -199,10 +197,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
             {/* Tool B */}
             <div className="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-card">
               <div className="w-12 h-12 rounded-xl border border-border bg-white flex items-center justify-center overflow-hidden">
-                {toolB.logo_url
-                  ? <Image src={toolB.logo_url} alt={toolB.name} width={40} height={40} unoptimized />
-                  : <span className="text-[15px] font-bold text-gray-400">{toolB.name.charAt(0).toUpperCase()}</span>
-                }
+                <LogoImage src={toolB.logo_url} websiteUrl={toolB.website_url} name={toolB.name} size={40} letterClassName="text-[15px] font-bold text-gray-400" />
               </div>
               <p className="text-[14px] font-bold text-foreground">{toolB.name}</p>
               <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${PRICING_COLORS[toolB.pricing_type]}`}>

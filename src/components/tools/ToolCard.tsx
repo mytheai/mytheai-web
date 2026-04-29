@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import LogoImage from '@/components/ui/LogoImage'
 import type { Tool } from '@/types'
 
 function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
@@ -17,39 +17,20 @@ function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
   )
 }
 
-function getLogoSrc(tool: Tool): string | null {
-  if (tool.logo_url) return tool.logo_url
-  if (tool.website_url) {
-    try {
-      const hostname = new URL(tool.website_url).hostname
-      return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`
-    } catch {
-      return null
-    }
-  }
-  return null
-}
-
 export default function ToolCard({ tool }: { tool: Tool }) {
-  const logoSrc = getLogoSrc(tool)
   return (
     <div className="relative bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300">
       {/* Header row */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-[10px] bg-gray-50 flex items-center justify-center flex-shrink-0 overflow-hidden">
-            {logoSrc ? (
-              <Image
-                src={logoSrc}
-                alt={tool.name}
-                width={40}
-                height={40}
-                className="object-contain p-1"
-                unoptimized
-              />
-            ) : (
-              <span className="text-[14px] font-bold text-gray-400">{tool.name.charAt(0).toUpperCase()}</span>
-            )}
+            <LogoImage
+              src={tool.logo_url}
+              websiteUrl={tool.website_url}
+              name={tool.name}
+              size={40}
+              className="object-contain p-1"
+            />
           </div>
           <div>
             <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>

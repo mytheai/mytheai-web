@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
+import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
 import { createStaticClient } from '@/lib/supabase'
 import { TOP10_LISTS, getList } from '@/data/top10'
@@ -81,17 +81,6 @@ const PRICING_COLORS: Record<string, string> = {
 
 const RANK_COLORS = ['#F59E0B', '#9CA3AF', '#92400E']
 
-function getLogoSrc(tool: ToolRow): string | null {
-  if (tool.logo_url) return tool.logo_url
-  if (tool.website_url) {
-    try {
-      return `https://www.google.com/s2/favicons?domain=${new URL(tool.website_url).hostname}&sz=64`
-    } catch {
-      return null
-    }
-  }
-  return null
-}
 
 // --- Page ---
 
@@ -176,10 +165,7 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
 
                 {/* Logo */}
                 <div className="w-11 h-11 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  {getLogoSrc(tool)
-                    ? <Image src={getLogoSrc(tool)!} alt={tool.name} width={36} height={36} unoptimized />
-                    : <span className="text-[14px] font-bold text-gray-400">{tool.name.charAt(0).toUpperCase()}</span>
-                  }
+                  <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={36} />
                 </div>
 
                 {/* Info */}
