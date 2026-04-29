@@ -4,242 +4,107 @@
 -- All slugs verified fresh (not in any prior batch file)
 -- Run after tools-batch-52.sql
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'salesforce-einstein',
-  'Salesforce Einstein',
-  'AI built into Salesforce CRM for predictions, automation, and intelligent selling',
-  E'Salesforce Einstein is the AI layer built directly into Salesforce CRM, adding predictive intelligence, generative AI, and automation across every core Sales Cloud, Service Cloud, and Marketing Cloud workflow. Rather than being a standalone AI product, Einstein is embedded at the point of action: it surfaces next-best-action recommendations in the sales rep''s pipeline view, predicts which leads are most likely to convert based on historical CRM data, generates email drafts from a deal summary, and flags accounts showing churn signals in the service console.\n\nEinstein Copilot, Salesforce''s conversational AI assistant, can answer natural language questions about pipeline health, summarise account activity, update records from a chat prompt, and generate personalised outreach sequences. The forecast accuracy tools predict quarterly attainment with confidence ranges, giving sales leaders earlier warning of pipeline gaps than standard CRM roll-ups provide. Einstein for Flow extends automation into business processes, allowing revenue operations teams to trigger complex multi-step workflows from AI-detected signals without custom code.\n\nBecause Einstein lives inside Salesforce rather than being an add-on integration, it benefits from the full context of the CRM: account history, activity logs, email threads, support cases, and product usage data all feed the models. For companies already standardised on Salesforce, Einstein provides AI capabilities without the integration overhead of third-party tools. Pricing is add-on based and scales significantly with enterprise features.',
-  'https://logo.clearbit.com/salesforce.com',
-  'https://salesforce.com/artificial-intelligence',
-  'https://salesforce.com/artificial-intelligence',
-  ARRAY['sales', 'crm'],
-  'paid', false, 25,
-  4.4, 8700, false, false, false,
-  ARRAY['Native Salesforce integration - no separate tool to manage', 'Einstein Copilot handles natural language CRM queries and record updates', 'Predictive lead scoring uses full CRM history, not just recent activity', 'Forecast accuracy tools improve quarterly pipeline visibility'],
-  ARRAY['Significant additional cost on top of Salesforce base licensing', 'Requires clean, consistent CRM data to deliver reliable predictions', 'Some Einstein features require premium Sales Cloud or Service Cloud editions', 'Steep learning curve for non-Salesforce-native teams'],
-  ARRAY['AI-assisted lead scoring and opportunity prioritisation', 'Generative email drafts and outreach sequences from deal context', 'Automated pipeline health reporting for sales leadership'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'salesforce-einstein');
+INSERT INTO tools (slug, name, tagline, description, website_url, affiliate_url, pricing_type, pricing_free_tier, pricing_starting_price, rating, review_count, featured, trending, editor_pick, tags, pros, cons, use_cases, updated_at)
+VALUES
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'freshsales',
-  'Freshsales',
-  'AI-powered CRM for growing sales teams with built-in phone, email, and chat',
-  E'Freshsales is the sales CRM within the Freshworks product suite, combining contact management, deal pipeline, built-in calling, email sequences, and AI-powered lead scoring in a single platform. Freddy AI, Freshworks'' proprietary AI engine, drives the intelligent features: it scores leads based on engagement signals and profile fit, predicts deal health, surfaces next-best-action recommendations for each open opportunity, and generates personalised email content from deal context.\n\nThe built-in communication layer is a genuine differentiator - sales reps can make calls, send emails, and manage WhatsApp conversations without leaving the CRM. Auto-activity capture logs calls, emails, and meeting notes automatically, reducing the manual data entry that kills CRM adoption in most teams. Freshsales also includes deal pipeline management with drag-and-drop stage updates, customisable sales sequences for automated outreach, and a CPQ (Configure-Price-Quote) module for teams that need proposal generation within the CRM workflow.\n\nFor growing B2B sales teams that want a modern, AI-assisted CRM without Salesforce complexity and pricing, Freshsales occupies a strong middle ground. The free plan covers up to 3 users with basic contact and deal management. Paid plans unlock Freddy AI scoring, sequences, and reporting. Freshsales integrates with Slack, G Suite, Microsoft 365, and the rest of the Freshworks product ecosystem including Freshdesk for unified support data.',
-  'https://logo.clearbit.com/freshsales.io',
-  'https://freshsales.io',
-  'https://freshsales.io',
-  ARRAY['sales', 'crm'],
-  'freemium', true, 15,
-  4.3, 4200, false, true, false,
-  ARRAY['Freddy AI lead scoring and deal health predictions out of the box', 'Built-in phone, email, and WhatsApp in a single CRM interface', 'Auto-activity capture reduces manual CRM data entry significantly', 'Free plan covers 3 users with core CRM functionality'],
-  ARRAY['Freddy AI quality improves with more data - less useful in early-stage companies', 'CPQ and advanced features require higher-tier plans', 'Reporting customisation is less flexible than Salesforce or HubSpot', 'Primarily B2B - less suitable for high-volume transactional sales'],
-  ARRAY['AI-scored lead and opportunity prioritisation for inside sales teams', 'Multi-channel outreach sequences combining email, phone, and WhatsApp', 'Unified CRM for SMBs that want to avoid Salesforce complexity'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'freshsales');
+('salesforce-einstein', 'Salesforce Einstein', 'AI built into Salesforce CRM for predictions, automation, and intelligent selling',
+ E'Salesforce Einstein is the AI layer built directly into Salesforce CRM, adding predictive intelligence, generative AI, and automation across every core Sales Cloud, Service Cloud, and Marketing Cloud workflow. Rather than being a standalone AI product, Einstein is embedded at the point of action: it surfaces next-best-action recommendations in the sales rep''s pipeline view, predicts which leads are most likely to convert based on historical CRM data, generates email drafts from a deal summary, and flags accounts showing churn signals in the service console.\n\nEinstein Copilot, Salesforce''s conversational AI assistant, can answer natural language questions about pipeline health, summarise account activity, update records from a chat prompt, and generate personalised outreach sequences. The forecast accuracy tools predict quarterly attainment with confidence ranges, giving sales leaders earlier warning of pipeline gaps than standard CRM roll-ups provide. Einstein for Flow extends automation into business processes, allowing revenue operations teams to trigger complex multi-step workflows from AI-detected signals without custom code.\n\nBecause Einstein lives inside Salesforce rather than being an add-on integration, it benefits from the full context of the CRM: account history, activity logs, email threads, support cases, and product usage data all feed the models. For companies already standardised on Salesforce, Einstein provides AI capabilities without the integration overhead of third-party tools. Pricing is add-on based and scales significantly with enterprise features.',
+ 'https://salesforce.com/artificial-intelligence', 'https://salesforce.com/artificial-intelligence',
+ 'paid', false, 25, 4.4, 8700, false, false, false,
+ ARRAY['crm', 'sales', 'ai-assistants'],
+ ARRAY['Native Salesforce integration - no separate tool to manage', 'Einstein Copilot handles natural language CRM queries and record updates', 'Predictive lead scoring uses full CRM history, not just recent activity', 'Forecast accuracy tools improve quarterly pipeline visibility'],
+ ARRAY['Significant additional cost on top of Salesforce base licensing', 'Requires clean, consistent CRM data to deliver reliable predictions', 'Some Einstein features require premium Sales Cloud or Service Cloud editions', 'Steep learning curve for non-Salesforce-native teams'],
+ ARRAY['AI-assisted lead scoring and opportunity prioritisation', 'Generative email drafts and outreach sequences from deal context', 'Automated pipeline health reporting for sales leadership'],
+ NOW()),
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'zoho-crm',
-  'Zoho CRM',
-  'Full-featured CRM with Zia AI for predictions, anomaly detection, and workflow automation',
-  E'Zoho CRM is a full-featured CRM platform serving over 250,000 businesses globally, with Zia - Zoho''s AI assistant - embedded across the product to add predictive intelligence, conversational AI, and anomaly detection to standard CRM workflows. Zia analyses sales patterns to predict which deals will close and which are at risk, surfaces the optimal time to contact each prospect based on their engagement history, detects anomalies in sales data that indicate pipeline problems, and provides a chat interface for querying CRM data in plain language.\n\nThe platform covers the full sales workflow: lead management with automatic lead scoring, deal pipeline with AI-recommended next actions, built-in telephony, email integration, and a workflow automation engine that rivals dedicated automation platforms in depth. Canvas, Zoho''s CRM layout builder, allows teams to design completely custom CRM interfaces without developer assistance - a significant advantage for non-standard sales processes.\n\nZoho CRM sits at the intersection of enterprise feature depth and SMB pricing. The free edition supports 3 users and covers core CRM functionality. Paid plans from $14/user/month unlock Zia AI, advanced automation, and analytics. Zoho''s platform strategy means CRM data flows natively into Zoho Analytics, Zoho Books, Zoho Desk, and 40+ other Zoho products - a meaningful advantage for companies already in the Zoho ecosystem. For businesses not on Salesforce or HubSpot, Zoho CRM offers the broadest feature set at the most competitive price point.',
-  'https://logo.clearbit.com/zoho.com',
-  'https://zoho.com/crm',
-  'https://zoho.com/crm',
-  ARRAY['sales', 'crm'],
-  'freemium', true, 14,
-  4.2, 6100, false, false, false,
-  ARRAY['Zia AI provides lead scoring, anomaly detection, and conversational CRM queries', 'Free plan for 3 users with core lead and deal management', 'Canvas layout builder enables custom CRM interfaces without code', 'Native integration with 40+ Zoho products for full business suite coverage'],
-  ARRAY['UI has more visual complexity than modern CRMs like Attio or HubSpot', 'Zia AI requires consistent data quality to deliver reliable predictions', 'Advanced reporting requires Zoho Analytics as a separate add-on', 'Customer support quality varies significantly by plan tier'],
-  ARRAY['Mid-market B2B sales teams wanting Salesforce-level features at SMB pricing', 'Businesses already in the Zoho ecosystem seeking native CRM integration', 'Teams that need deep workflow automation within the CRM without external tools'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'zoho-crm');
+('freshsales', 'Freshsales', 'AI-powered CRM for growing sales teams with built-in phone, email, and chat',
+ E'Freshsales is the sales CRM within the Freshworks product suite, combining contact management, deal pipeline, built-in calling, email sequences, and AI-powered lead scoring in a single platform. Freddy AI, Freshworks'' proprietary AI engine, drives the intelligent features: it scores leads based on engagement signals and profile fit, predicts deal health, surfaces next-best-action recommendations for each open opportunity, and generates personalised email content from deal context.\n\nThe built-in communication layer is a genuine differentiator - sales reps can make calls, send emails, and manage WhatsApp conversations without leaving the CRM. Auto-activity capture logs calls, emails, and meeting notes automatically, reducing the manual data entry that kills CRM adoption in most teams. Freshsales also includes deal pipeline management with drag-and-drop stage updates, customisable sales sequences for automated outreach, and a CPQ (Configure-Price-Quote) module for teams that need proposal generation within the CRM workflow.\n\nFor growing B2B sales teams that want a modern, AI-assisted CRM without Salesforce complexity and pricing, Freshsales occupies a strong middle ground. The free plan covers up to 3 users with basic contact and deal management. Paid plans unlock Freddy AI scoring, sequences, and reporting. Freshsales integrates with Slack, G Suite, Microsoft 365, and the rest of the Freshworks product ecosystem including Freshdesk for unified support data.',
+ 'https://freshsales.io', 'https://freshsales.io',
+ 'freemium', true, 15, 4.3, 4200, false, true, false,
+ ARRAY['crm', 'sales', 'ai-assistants'],
+ ARRAY['Freddy AI lead scoring and deal health predictions out of the box', 'Built-in phone, email, and WhatsApp in a single CRM interface', 'Auto-activity capture reduces manual CRM data entry significantly', 'Free plan covers 3 users with core CRM functionality'],
+ ARRAY['Freddy AI quality improves with more data - less useful in early-stage companies', 'CPQ and advanced features require higher-tier plans', 'Reporting customisation is less flexible than Salesforce or HubSpot', 'Primarily B2B - less suitable for high-volume transactional sales'],
+ ARRAY['AI-scored lead and opportunity prioritisation for inside sales teams', 'Multi-channel outreach sequences combining email, phone, and WhatsApp', 'Unified CRM for SMBs that want to avoid Salesforce complexity'],
+ NOW()),
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'folk',
-  'Folk',
-  'Modern relationship CRM that syncs your contacts and builds itself from your network',
-  E'Folk is a modern CRM built around the reality of how business relationships actually work - spread across email, LinkedIn, Slack, Twitter, and dozens of other touchpoints rather than neatly entered into a database. The platform pulls contact data automatically from Gmail, Outlook, LinkedIn, and other sources, enriches it with company information, and creates a unified contact record without manual entry. AI features include automatic contact enrichment, personalised email generation from contact context, and smart grouping that suggests which contacts belong in the same pipeline or list.\n\nFolk''s interface is closer to a collaborative contact database than a traditional CRM - deliberately lighter and more visual than Salesforce or HubSpot. Contact views can be displayed as a board, list, or table. Tags and custom fields allow flexible categorisation. The email sequences module handles personalised outreach directly from Folk with tracking and auto-follow-up. A Chrome extension captures contacts from LinkedIn and websites in one click.\n\nThe CRM is particularly well-suited to founders, investors, business development professionals, and sales teams that rely on relationship quality rather than volume. It won''t replace Salesforce for large SDR teams with complex reporting requirements, but for small teams that need a CRM that actually gets used rather than avoided, Folk''s low-friction approach drives adoption where traditional CRMs fail. Starts at $20/user/month with a free 14-day trial.',
-  'https://logo.clearbit.com/folk.app',
-  'https://folk.app',
-  'https://folk.app',
-  ARRAY['crm', 'sales'],
-  'paid', false, 20,
-  4.5, 1870, false, true, false,
-  ARRAY['Auto-imports and enriches contacts from Gmail, LinkedIn, and other sources', 'AI personalised email generation from contact and company context', 'Chrome extension captures contacts from LinkedIn in one click', 'Clean, visual interface drives CRM adoption where traditional tools fail'],
-  ARRAY['Less suited to high-volume SDR teams needing complex sales process management', 'Reporting is basic compared to enterprise CRMs', 'No built-in telephony - requires external calling integrations', 'Pipeline management is functional but not as deep as Pipedrive or Close'],
-  ARRAY['Founders and investors managing relationship networks across multiple channels', 'Business development teams tracking partner and prospect relationships', 'Small sales teams that need a CRM people will actually open and update'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'folk');
+('zoho-crm', 'Zoho CRM', 'Full-featured CRM with Zia AI for predictions, anomaly detection, and workflow automation',
+ E'Zoho CRM is a full-featured CRM platform serving over 250,000 businesses globally, with Zia - Zoho''s AI assistant - embedded across the product to add predictive intelligence, conversational AI, and anomaly detection to standard CRM workflows. Zia analyses sales patterns to predict which deals will close and which are at risk, surfaces the optimal time to contact each prospect based on their engagement history, detects anomalies in sales data that indicate pipeline problems, and provides a chat interface for querying CRM data in plain language.\n\nThe platform covers the full sales workflow: lead management with automatic lead scoring, deal pipeline with AI-recommended next actions, built-in telephony, email integration, and a workflow automation engine that rivals dedicated automation platforms in depth. Canvas, Zoho''s CRM layout builder, allows teams to design completely custom CRM interfaces without developer assistance - a significant advantage for non-standard sales processes.\n\nZoho CRM sits at the intersection of enterprise feature depth and SMB pricing. The free edition supports 3 users and covers core CRM functionality. Paid plans from $14/user/month unlock Zia AI, advanced automation, and analytics. Zoho''s platform strategy means CRM data flows natively into Zoho Analytics, Zoho Books, Zoho Desk, and 40+ other Zoho products - a meaningful advantage for companies already in the Zoho ecosystem. For businesses not on Salesforce or HubSpot, Zoho CRM offers the broadest feature set at the most competitive price point.',
+ 'https://zoho.com/crm', 'https://zoho.com/crm',
+ 'freemium', true, 14, 4.2, 6100, false, false, false,
+ ARRAY['crm', 'sales', 'ai-assistants'],
+ ARRAY['Zia AI provides lead scoring, anomaly detection, and conversational CRM queries', 'Free plan for 3 users with core lead and deal management', 'Canvas layout builder enables custom CRM interfaces without code', 'Native integration with 40+ Zoho products for full business suite coverage'],
+ ARRAY['UI has more visual complexity than modern CRMs like Attio or HubSpot', 'Zia AI requires consistent data quality to deliver reliable predictions', 'Advanced reporting requires Zoho Analytics as a separate add-on', 'Customer support quality varies significantly by plan tier'],
+ ARRAY['Mid-market B2B sales teams wanting Salesforce-level features at SMB pricing', 'Businesses already in the Zoho ecosystem seeking native CRM integration', 'Teams that need deep workflow automation within the CRM without external tools'],
+ NOW()),
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'close',
-  'Close',
-  'CRM built for inside sales with built-in calling, SMS, and AI email assistants',
-  E'Close is a CRM built specifically for inside sales teams that run outreach-heavy motions - SDRs, account executives, and sales-led startups that make a high volume of calls, emails, and sequences daily. The platform differentiates on its built-in communication layer: VoIP calling with automatic call recording and transcription, two-way SMS, and email sequences are native features, not integrations. Sales reps can call, email, and follow up without switching between tools.\n\nThe AI features include an email writer that generates personalised drafts from opportunity context, automatic call summarisation that pulls action items from transcripts, and lead scoring based on engagement data. Close''s workflow automation handles lead assignment, follow-up scheduling, and sequence triggering based on prospect behaviour. Smart Views - Close''s saved filter system - allow reps and managers to instantly surface the leads that need attention today.\n\nClose is opinionated about what a sales CRM should do: help reps make more touches per day, not add data entry overhead. The interface is intentionally minimal. Reporting focuses on activity metrics (calls made, emails sent, tasks completed) and pipeline metrics (deals created, won, and lost by rep and period). For venture-backed startups and growth-stage companies running outbound sales motions, Close is one of the strongest purpose-built options. Pricing starts at $49/month for 1 user on the Startup plan, scaling to team plans with advanced reporting.',
-  'https://logo.clearbit.com/close.com',
-  'https://close.com',
-  'https://close.com',
-  ARRAY['sales', 'crm'],
-  'paid', false, 49,
-  4.4, 3280, false, false, false,
-  ARRAY['Built-in VoIP calling with automatic recording and transcription', 'AI email writer generates personalised drafts from opportunity context', 'Smart Views surface the right leads at the right time without manual filtering', 'Purpose-built for outreach-heavy inside sales motions'],
-  ARRAY['No free plan - minimum $49/month', 'Less suitable for complex sales processes with long enterprise cycles', 'Reporting is activity-focused - lighter on revenue analytics than Salesforce', 'Limited marketing automation compared to HubSpot'],
-  ARRAY['SDR and AE teams running high-volume outbound call and email sequences', 'Startups building a repeatable inside sales motion from the ground up', 'Sales managers who want visibility into daily rep activity and pipeline health'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'close');
+('folk', 'Folk', 'Modern relationship CRM that syncs your contacts and builds itself from your network',
+ E'Folk is a modern CRM built around the reality of how business relationships actually work - spread across email, LinkedIn, Slack, Twitter, and dozens of other touchpoints rather than neatly entered into a database. The platform pulls contact data automatically from Gmail, Outlook, LinkedIn, and other sources, enriches it with company information, and creates a unified contact record without manual entry. AI features include automatic contact enrichment, personalised email generation from contact context, and smart grouping that suggests which contacts belong in the same pipeline or list.\n\nFolk''s interface is closer to a collaborative contact database than a traditional CRM - deliberately lighter and more visual than Salesforce or HubSpot. Contact views can be displayed as a board, list, or table. Tags and custom fields allow flexible categorisation. The email sequences module handles personalised outreach directly from Folk with tracking and auto-follow-up. A Chrome extension captures contacts from LinkedIn and websites in one click.\n\nThe CRM is particularly well-suited to founders, investors, business development professionals, and sales teams that rely on relationship quality rather than volume. It won''t replace Salesforce for large SDR teams with complex reporting requirements, but for small teams that need a CRM that actually gets used rather than avoided, Folk''s low-friction approach drives adoption where traditional CRMs fail. Starts at $20/user/month with a free 14-day trial.',
+ 'https://folk.app', 'https://folk.app',
+ 'paid', false, 20, 4.5, 1870, false, true, false,
+ ARRAY['crm', 'sales', 'productivity'],
+ ARRAY['Auto-imports and enriches contacts from Gmail, LinkedIn, and other sources', 'AI personalised email generation from contact and company context', 'Chrome extension captures contacts from LinkedIn in one click', 'Clean, visual interface drives CRM adoption where traditional tools fail'],
+ ARRAY['Less suited to high-volume SDR teams needing complex sales process management', 'Reporting is basic compared to enterprise CRMs', 'No built-in telephony - requires external calling integrations', 'Pipeline management is functional but not as deep as Pipedrive or Close'],
+ ARRAY['Founders and investors managing relationship networks across multiple channels', 'Business development teams tracking partner and prospect relationships', 'Small sales teams that need a CRM people will actually open and update'],
+ NOW()),
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'streak',
-  'Streak',
-  'CRM built directly inside Gmail for managing sales pipelines and relationships',
-  E'Streak is a CRM that lives entirely inside Gmail, making it the most frictionless option for small sales teams and solo operators who live in their inbox. Rather than requiring a separate tool, Streak adds pipeline views, contact tracking, email templates, merge fields, and workflow stages directly into the Gmail interface through a Chrome extension. There is no separate app to learn or maintain.\n\nPipelines are displayed as board views inside Gmail, where emails automatically group with the associated contact or deal. Streak tracks when recipients open emails and how many times they view messages, giving sales reps direct signal on prospect interest. AI features include email drafting assistance, automatic contact enrichment from email signatures and LinkedIn profiles, and template suggestions based on the sales stage.\n\nStreak supports any pipeline-based workflow beyond sales - recruiting, fundraising, real estate, and support operations are common use cases. The free plan is generous for individual users. Paid plans add team pipelines, custom fields, advanced permissions, and API access. For teams standardised on Google Workspace who want a CRM without the adoption friction of a separate tool, Streak eliminates the biggest CRM failure mode: reps not logging activities because it takes too long.',
-  'https://logo.clearbit.com/streak.com',
-  'https://streak.com',
-  'https://streak.com',
-  ARRAY['crm', 'productivity'],
-  'freemium', true, 15,
-  4.2, 2940, false, false, false,
-  ARRAY['Lives entirely inside Gmail - zero context switching for email-centric teams', 'Email open and view tracking built in without external tools', 'Free plan covers individual sales and pipeline management', 'Works for any pipeline workflow: sales, recruiting, fundraising, real estate'],
-  ARRAY['Chrome extension only - no mobile app with full functionality', 'Less powerful than dedicated CRMs for complex multi-stage sales processes', 'Team features and advanced reporting require paid plans', 'Tied to Gmail - no value for Outlook users'],
-  ARRAY['Solo founders and consultants managing sales pipelines from their inbox', 'Small teams on Google Workspace wanting CRM without a new tool', 'Recruiting and business development pipelines managed through email conversations'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'streak');
+('close', 'Close', 'CRM built for inside sales with built-in calling, SMS, and AI email assistants',
+ E'Close is a CRM built specifically for inside sales teams that run outreach-heavy motions - SDRs, account executives, and sales-led startups that make a high volume of calls, emails, and sequences daily. The platform differentiates on its built-in communication layer: VoIP calling with automatic call recording and transcription, two-way SMS, and email sequences are native features, not integrations. Sales reps can call, email, and follow up without switching between tools.\n\nThe AI features include an email writer that generates personalised drafts from opportunity context, automatic call summarisation that pulls action items from transcripts, and lead scoring based on engagement data. Close''s workflow automation handles lead assignment, follow-up scheduling, and sequence triggering based on prospect behaviour. Smart Views - Close''s saved filter system - allow reps and managers to instantly surface the leads that need attention today.\n\nClose is opinionated about what a sales CRM should do: help reps make more touches per day, not add data entry overhead. The interface is intentionally minimal. Reporting focuses on activity metrics (calls made, emails sent, tasks completed) and pipeline metrics (deals created, won, and lost by rep and period). For venture-backed startups and growth-stage companies running outbound sales motions, Close is one of the strongest purpose-built options. Pricing starts at $49/month for 1 user on the Startup plan, scaling to team plans with advanced reporting.',
+ 'https://close.com', 'https://close.com',
+ 'paid', false, 49, 4.4, 3280, false, false, false,
+ ARRAY['crm', 'sales', 'productivity'],
+ ARRAY['Built-in VoIP calling with automatic recording and transcription', 'AI email writer generates personalised drafts from opportunity context', 'Smart Views surface the right leads at the right time without manual filtering', 'Purpose-built for outreach-heavy inside sales motions'],
+ ARRAY['No free plan - minimum $49/month', 'Less suitable for complex sales processes with long enterprise cycles', 'Reporting is activity-focused - lighter on revenue analytics than Salesforce', 'Limited marketing automation compared to HubSpot'],
+ ARRAY['SDR and AE teams running high-volume outbound call and email sequences', 'Startups building a repeatable inside sales motion from the ground up', 'Sales managers who want visibility into daily rep activity and pipeline health'],
+ NOW()),
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'smartlead',
-  'Smartlead',
-  'AI cold email infrastructure for high-volume outreach with unlimited mailboxes',
-  E'Smartlead is an email outreach platform built for agencies and sales teams that run high-volume cold email campaigns at scale. The core infrastructure differentiator is unlimited mailbox connections with automated email warming - teams can connect as many sending accounts as needed without per-mailbox fees, and the warm-up system gradually increases sending volume on new accounts to establish sender reputation before campaigns begin.\n\nThe AI campaign features include personalisation at scale through custom variables and AI-written first lines that incorporate LinkedIn data, website content, and job description context to make emails feel individually written. A/B testing across subject lines and email bodies runs automatically, and the platform rotates sending across warmed mailboxes to maximise deliverability. The unified inbox consolidates all replies across every connected mailbox into a single view, allowing teams to manage responses without switching between email accounts.\n\nSmartlead''s analytics dashboard tracks deliverability metrics, open rates, reply rates, and meeting booked rates at the campaign and sequence level. For agencies running outreach for multiple clients, the sub-account system allows separate workspaces, separate sending infrastructure, and separate reporting per client. Smartlead competes primarily with Instantly in the high-volume outreach space, differentiating on its AI personalisation depth and unlimited mailbox model. Pricing starts at $39/month for individuals, with agency plans from $94/month.',
-  'https://logo.clearbit.com/smartlead.ai',
-  'https://smartlead.ai',
-  'https://smartlead.ai',
-  ARRAY['sales', 'marketing'],
-  'paid', false, 39,
-  4.4, 2100, false, true, false,
-  ARRAY['Unlimited mailbox connections with automated email warm-up included', 'AI personalisation uses LinkedIn, website, and job description data', 'Unified inbox across all connected mailboxes for centralised reply management', 'Sub-account system for agencies managing multiple client campaigns'],
-  ARRAY['No free plan - requires $39/month minimum commitment', 'Setup and warm-up process takes 2-4 weeks before full campaign capacity', 'Primarily email-only - no LinkedIn or multichannel sequences', 'Less suitable for low-volume, relationship-driven outreach'],
-  ARRAY['Agencies running cold email campaigns for multiple B2B clients', 'Sales teams scaling outbound without per-mailbox infrastructure costs', 'Lead generation businesses that need volume and deliverability simultaneously'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'smartlead');
+('streak', 'Streak', 'CRM built directly inside Gmail for managing sales pipelines and relationships',
+ E'Streak is a CRM that lives entirely inside Gmail, making it the most frictionless option for small sales teams and solo operators who live in their inbox. Rather than requiring a separate tool, Streak adds pipeline views, contact tracking, email templates, merge fields, and workflow stages directly into the Gmail interface through a Chrome extension. There is no separate app to learn or maintain.\n\nPipelines are displayed as board views inside Gmail, where emails automatically group with the associated contact or deal. Streak tracks when recipients open emails and how many times they view messages, giving sales reps direct signal on prospect interest. AI features include email drafting assistance, automatic contact enrichment from email signatures and LinkedIn profiles, and template suggestions based on the sales stage.\n\nStreak supports any pipeline-based workflow beyond sales - recruiting, fundraising, real estate, and support operations are common use cases. The free plan is generous for individual users. Paid plans add team pipelines, custom fields, advanced permissions, and API access. For teams standardised on Google Workspace who want a CRM without the adoption friction of a separate tool, Streak eliminates the biggest CRM failure mode: reps not logging activities because it takes too long.',
+ 'https://streak.com', 'https://streak.com',
+ 'freemium', true, 15, 4.2, 2940, false, false, false,
+ ARRAY['crm', 'productivity', 'sales'],
+ ARRAY['Lives entirely inside Gmail - zero context switching for email-centric teams', 'Email open and view tracking built in without external tools', 'Free plan covers individual sales and pipeline management', 'Works for any pipeline workflow: sales, recruiting, fundraising, real estate'],
+ ARRAY['Chrome extension only - no mobile app with full functionality', 'Less powerful than dedicated CRMs for complex multi-stage sales processes', 'Team features and advanced reporting require paid plans', 'Tied to Gmail - no value for Outlook users'],
+ ARRAY['Solo founders and consultants managing sales pipelines from their inbox', 'Small teams on Google Workspace wanting CRM without a new tool', 'Recruiting and business development pipelines managed through email conversations'],
+ NOW()),
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'clari',
-  'Clari',
-  'Revenue platform for AI-powered forecasting, pipeline inspection, and deal execution',
-  E'Clari is a revenue operations platform used by enterprise and mid-market sales organisations to replace manual forecast calls and spreadsheet-based pipeline reviews with AI-driven revenue intelligence. The platform ingests activity data from email, calendar, Salesforce, and call recordings to build a real-time picture of pipeline health that is more accurate and more current than CRM-entered data alone.\n\nClari''s forecast engine uses AI to predict quarterly attainment with confidence ranges, identifying pipeline gaps and risk exposure weeks earlier than traditional CRM roll-ups. Deal inspection features surface which opportunities have gone dark (no recent activity), which have slipped from the forecast, and which show strong buying signals. The Revenue Cadence workflow standardises the weekly forecast review process - replacing ad-hoc spreadsheet updates with a structured, data-driven process that takes 30 minutes instead of a half-day.\n\nFor sales managers and revenue operations teams, Clari provides the missing layer between raw CRM data and reliable revenue prediction. The platform is particularly valuable in organisations with deal cycles of 60-180 days where pipeline visibility determines how leadership allocates resources and adjusts go-to-market strategy. Clari integrates deeply with Salesforce, Dynamics 365, and major CRMs. Pricing is enterprise and requires a demo - typical contracts are six figures annually for mid-market and above.',
-  'https://logo.clearbit.com/clari.com',
-  'https://clari.com',
-  'https://clari.com',
-  ARRAY['sales', 'analytics'],
-  'paid', false, NULL,
-  4.4, 1890, false, false, false,
-  ARRAY['AI forecast accuracy significantly outperforms manual CRM roll-up predictions', 'Deal inspection surfaces at-risk and dark opportunities automatically', 'Revenue Cadence standardises the weekly forecast review process across the team', 'Activity capture from email and calendar reduces reliance on rep data entry'],
-  ARRAY['Enterprise pricing - typical contracts are five to six figures annually', 'Requires 90+ days of historical CRM and activity data to deliver full value', 'Implementation complexity is high - plan for 4-6 week onboarding', 'Overkill for sales teams with fewer than 10 reps or simple pipeline structures'],
-  ARRAY['Enterprise sales teams replacing spreadsheet-based quarterly forecast calls', 'Revenue operations leaders building a data-driven pipeline review process', 'CFOs and CEOs who need reliable revenue predictability for board reporting'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'clari');
+('smartlead', 'Smartlead', 'AI cold email infrastructure for high-volume outreach with unlimited mailboxes',
+ E'Smartlead is an email outreach platform built for agencies and sales teams that run high-volume cold email campaigns at scale. The core infrastructure differentiator is unlimited mailbox connections with automated email warming - teams can connect as many sending accounts as needed without per-mailbox fees, and the warm-up system gradually increases sending volume on new accounts to establish sender reputation before campaigns begin.\n\nThe AI campaign features include personalisation at scale through custom variables and AI-written first lines that incorporate LinkedIn data, website content, and job description context to make emails feel individually written. A/B testing across subject lines and email bodies runs automatically, and the platform rotates sending across warmed mailboxes to maximise deliverability. The unified inbox consolidates all replies across every connected mailbox into a single view, allowing teams to manage responses without switching between email accounts.\n\nSmartlead''s analytics dashboard tracks deliverability metrics, open rates, reply rates, and meeting booked rates at the campaign and sequence level. For agencies running outreach for multiple clients, the sub-account system allows separate workspaces, separate sending infrastructure, and separate reporting per client. Smartlead competes primarily with Instantly in the high-volume outreach space, differentiating on its AI personalisation depth and unlimited mailbox model. Pricing starts at $39/month for individuals, with agency plans from $94/month.',
+ 'https://smartlead.ai', 'https://smartlead.ai',
+ 'paid', false, 39, 4.4, 2100, false, true, false,
+ ARRAY['sales', 'marketing', 'ai-assistants'],
+ ARRAY['Unlimited mailbox connections with automated email warm-up included', 'AI personalisation uses LinkedIn, website, and job description data', 'Unified inbox across all connected mailboxes for centralised reply management', 'Sub-account system for agencies managing multiple client campaigns'],
+ ARRAY['No free plan - requires $39/month minimum commitment', 'Setup and warm-up process takes 2-4 weeks before full campaign capacity', 'Primarily email-only - no LinkedIn or multichannel sequences', 'Less suitable for low-volume, relationship-driven outreach'],
+ ARRAY['Agencies running cold email campaigns for multiple B2B clients', 'Sales teams scaling outbound without per-mailbox infrastructure costs', 'Lead generation businesses that need volume and deliverability simultaneously'],
+ NOW()),
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'amplemarket',
-  'Amplemarket',
-  'AI sales copilot for prospecting, multichannel outreach, and buying intent signals',
-  E'Amplemarket is a sales automation platform that combines prospect database access, buying intent data, and multichannel outreach (email, LinkedIn, and phone) in a single workflow. The AI Copilot feature analyses prospect signals - job changes, company growth, technology installs, and intent data from third-party sources - to surface the accounts most likely to be in-market right now and suggest the right outreach message for each signal.\n\nThe outreach automation handles email sequences, LinkedIn connection requests and messages, and phone task management from a unified dashboard. AI-personalised email content incorporates buying signals directly into the message - for example, automatically referencing a prospect''s recent funding round or LinkedIn post. Deliverability features include inbox rotation across multiple email accounts and automatic warm-up for new senders.\n\nAnd unlike tools that require you to bring your own prospect list, Amplemarket includes its own verified B2B database with direct dial phone numbers and LinkedIn URLs. The Duet AI feature operates as a virtual SDR - it identifies new accounts that match your ideal customer profile, builds the outreach sequence, and manages follow-ups automatically based on engagement signals. For revenue teams that want prospecting and outreach in one AI-native platform, Amplemarket offers a more integrated alternative to combining a data provider (ZoomInfo, Apollo) with a separate sequencing tool (Outreach, Salesloft).',
-  'https://logo.clearbit.com/amplemarket.com',
-  'https://amplemarket.com',
-  'https://amplemarket.com',
-  ARRAY['sales', 'marketing'],
-  'paid', false, NULL,
-  4.3, 980, false, true, false,
-  ARRAY['Combines prospect database, intent data, and multichannel outreach in one platform', 'Duet AI identifies ICP accounts and manages outreach sequences autonomously', 'Buying intent signals surface in-market accounts before competitors identify them', 'AI personalisation incorporates real prospect signals (job changes, funding, tech installs)'],
-  ARRAY['Pricing is not publicly listed - requires sales call for quotes', 'Intent data quality varies by industry and company size', 'Less established brand than Apollo, ZoomInfo, or Outreach', 'Best value for teams doing high-volume outbound - not ideal for low-touch channels'],
-  ARRAY['SDR teams replacing multiple tools (data provider + sequencer + intent data)', 'Revenue teams wanting AI-autonomous prospecting with buying signal targeting', 'Sales leaders building outbound infrastructure for new market entry'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'amplemarket');
+('clari', 'Clari', 'Revenue platform for AI-powered forecasting, pipeline inspection, and deal execution',
+ E'Clari is a revenue operations platform used by enterprise and mid-market sales organisations to replace manual forecast calls and spreadsheet-based pipeline reviews with AI-driven revenue intelligence. The platform ingests activity data from email, calendar, Salesforce, and call recordings to build a real-time picture of pipeline health that is more accurate and more current than CRM-entered data alone.\n\nClari''s forecast engine uses AI to predict quarterly attainment with confidence ranges, identifying pipeline gaps and risk exposure weeks earlier than traditional CRM roll-ups. Deal inspection features surface which opportunities have gone dark (no recent activity), which have slipped from the forecast, and which show strong buying signals. The Revenue Cadence workflow standardises the weekly forecast review process - replacing ad-hoc spreadsheet updates with a structured, data-driven process that takes 30 minutes instead of a half-day.\n\nFor sales managers and revenue operations teams, Clari provides the missing layer between raw CRM data and reliable revenue prediction. The platform is particularly valuable in organisations with deal cycles of 60-180 days where pipeline visibility determines how leadership allocates resources and adjusts go-to-market strategy. Clari integrates deeply with Salesforce, Dynamics 365, and major CRMs. Pricing is enterprise and requires a demo - typical contracts are six figures annually for mid-market and above.',
+ 'https://clari.com', 'https://clari.com',
+ 'paid', false, NULL, 4.4, 1890, false, false, false,
+ ARRAY['sales', 'analytics', 'ai-assistants'],
+ ARRAY['AI forecast accuracy significantly outperforms manual CRM roll-up predictions', 'Deal inspection surfaces at-risk and dark opportunities automatically', 'Revenue Cadence standardises the weekly forecast review process across the team', 'Activity capture from email and calendar reduces reliance on rep data entry'],
+ ARRAY['Enterprise pricing - typical contracts are five to six figures annually', 'Requires 90+ days of historical CRM and activity data to deliver full value', 'Implementation complexity is high - plan for 4-6 week onboarding', 'Overkill for sales teams with fewer than 10 reps or simple pipeline structures'],
+ ARRAY['Enterprise sales teams replacing spreadsheet-based quarterly forecast calls', 'Revenue operations leaders building a data-driven pipeline review process', 'CFOs and CEOs who need reliable revenue predictability for board reporting'],
+ NOW()),
 
-INSERT INTO tools (
-  slug, name, tagline, description,
-  logo_url, website_url, affiliate_url,
-  category, pricing_type, pricing_free_tier, pricing_starting_price,
-  rating, review_count, featured, trending, editor_pick,
-  pros, cons, use_cases, updated_at
-)
-SELECT
-  'kommo',
-  'Kommo',
-  'Messaging-first CRM for managing sales through WhatsApp, Instagram, and Telegram',
-  E'Kommo (formerly amoCRM) is a CRM built specifically for businesses that close deals through messaging apps rather than traditional email and phone. Where conventional CRMs were designed for structured sales cycles with formal proposals and contracts, Kommo is optimised for the conversational selling patterns common in SMB, real estate, professional services, and consumer businesses across Latin America, Europe, and Asia where WhatsApp is the primary business communication channel.\n\nThe platform connects WhatsApp Business, Instagram DMs, Telegram, Facebook Messenger, and live chat into a single inbox, with all conversations linked to contact and deal records automatically. AI features include SalesBot - a no-code chatbot builder for qualifying leads, answering common questions, and routing conversations to the right sales rep. The AI Reply Assistant generates message drafts in the style of the ongoing conversation, reducing response time while maintaining the personal tone that messaging-channel customers expect.\n\nKommo''s pipeline management handles lead qualification, deal stages, task assignments, and automatic follow-up reminders. Analytics show response time, conversion rates by channel, and rep performance. For businesses where the majority of customer contact happens over WhatsApp or Instagram - a common pattern in professional services, real estate agencies, fitness studios, and retail - Kommo provides a structured sales workflow that traditional CRMs were not built for.',
-  'https://logo.clearbit.com/kommo.com',
-  'https://kommo.com',
-  'https://kommo.com',
-  ARRAY['crm', 'sales'],
-  'paid', false, 15,
-  4.2, 2340, false, false, false,
-  ARRAY['Native WhatsApp, Instagram, Telegram, and Facebook Messenger inbox integration', 'SalesBot handles lead qualification and routing without developer support', 'AI Reply Assistant drafts responses matching the conversational tone of each thread', 'Designed for messaging-channel selling - not retrofitted from email-centric CRM'],
-  ARRAY['Less suitable for structured enterprise sales with long procurement cycles', 'Reporting depth is limited compared to Salesforce or HubSpot', 'WhatsApp API costs are additional to the Kommo subscription', 'Mobile app is functional but less polished than the desktop interface'],
-  ARRAY['SMBs and service businesses closing deals through WhatsApp or Instagram DMs', 'Real estate agencies and professional services teams in messaging-first markets', 'Retail and consumer businesses running sales through conversational channels'],
-  NOW()
-WHERE NOT EXISTS (SELECT 1 FROM tools WHERE slug = 'kommo');
+('amplemarket', 'Amplemarket', 'AI sales copilot for prospecting, multichannel outreach, and buying intent signals',
+ E'Amplemarket is a sales automation platform that combines prospect database access, buying intent data, and multichannel outreach (email, LinkedIn, and phone) in a single workflow. The AI Copilot feature analyses prospect signals - job changes, company growth, technology installs, and intent data from third-party sources - to surface the accounts most likely to be in-market right now and suggest the right outreach message for each signal.\n\nThe outreach automation handles email sequences, LinkedIn connection requests and messages, and phone task management from a unified dashboard. AI-personalised email content incorporates buying signals directly into the message - for example, automatically referencing a prospect''s recent funding round or LinkedIn post. Deliverability features include inbox rotation across multiple email accounts and automatic warm-up for new senders.\n\nUnlike tools that require you to bring your own prospect list, Amplemarket includes its own verified B2B database with direct dial phone numbers and LinkedIn URLs. The Duet AI feature operates as a virtual SDR - it identifies new accounts that match your ideal customer profile, builds the outreach sequence, and manages follow-ups automatically based on engagement signals. For revenue teams that want prospecting and outreach in one AI-native platform, Amplemarket offers a more integrated alternative to combining a data provider (ZoomInfo, Apollo) with a separate sequencing tool (Outreach, Salesloft).',
+ 'https://amplemarket.com', 'https://amplemarket.com',
+ 'paid', false, NULL, 4.3, 980, false, true, false,
+ ARRAY['sales', 'marketing', 'ai-assistants'],
+ ARRAY['Combines prospect database, intent data, and multichannel outreach in one platform', 'Duet AI identifies ICP accounts and manages outreach sequences autonomously', 'Buying intent signals surface in-market accounts before competitors identify them', 'AI personalisation incorporates real prospect signals (job changes, funding, tech installs)'],
+ ARRAY['Pricing is not publicly listed - requires sales call for quotes', 'Intent data quality varies by industry and company size', 'Less established brand than Apollo, ZoomInfo, or Outreach', 'Best value for teams doing high-volume outbound - not ideal for low-touch channels'],
+ ARRAY['SDR teams replacing multiple tools (data provider + sequencer + intent data)', 'Revenue teams wanting AI-autonomous prospecting with buying signal targeting', 'Sales leaders building outbound infrastructure for new market entry'],
+ NOW()),
+
+('kommo', 'Kommo', 'Messaging-first CRM for managing sales through WhatsApp, Instagram, and Telegram',
+ E'Kommo (formerly amoCRM) is a CRM built specifically for businesses that close deals through messaging apps rather than traditional email and phone. Where conventional CRMs were designed for structured sales cycles with formal proposals and contracts, Kommo is optimised for the conversational selling patterns common in SMB, real estate, professional services, and consumer businesses across Latin America, Europe, and Asia where WhatsApp is the primary business communication channel.\n\nThe platform connects WhatsApp Business, Instagram DMs, Telegram, Facebook Messenger, and live chat into a single inbox, with all conversations linked to contact and deal records automatically. AI features include SalesBot - a no-code chatbot builder for qualifying leads, answering common questions, and routing conversations to the right sales rep. The AI Reply Assistant generates message drafts in the style of the ongoing conversation, reducing response time while maintaining the personal tone that messaging-channel customers expect.\n\nKommo''s pipeline management handles lead qualification, deal stages, task assignments, and automatic follow-up reminders. Analytics show response time, conversion rates by channel, and rep performance. For businesses where the majority of customer contact happens over WhatsApp or Instagram - a common pattern in professional services, real estate agencies, fitness studios, and retail - Kommo provides a structured sales workflow that traditional CRMs were not built for.',
+ 'https://kommo.com', 'https://kommo.com',
+ 'paid', false, 15, 4.2, 2340, false, false, false,
+ ARRAY['crm', 'sales', 'productivity'],
+ ARRAY['Native WhatsApp, Instagram, Telegram, and Facebook Messenger inbox integration', 'SalesBot handles lead qualification and routing without developer support', 'AI Reply Assistant drafts responses matching the conversational tone of each thread', 'Designed for messaging-channel selling - not retrofitted from email-centric CRM'],
+ ARRAY['Less suitable for structured enterprise sales with long procurement cycles', 'Reporting depth is limited compared to Salesforce or HubSpot', 'WhatsApp API costs are additional to the Kommo subscription', 'Mobile app is functional but less polished than the desktop interface'],
+ ARRAY['SMBs and service businesses closing deals through WhatsApp or Instagram DMs', 'Real estate agencies and professional services teams in messaging-first markets', 'Retail and consumer businesses running sales through conversational channels'],
+ NOW())
+
+ON CONFLICT (slug) DO NOTHING;
