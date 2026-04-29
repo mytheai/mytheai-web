@@ -704,6 +704,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🗺️',
     slugs: ['weglot', 'lokalise', 'crowdin', 'transifex', 'poeditor'],
   },
+  {
+    slug: 'best-workflow-automation-tools',
+    title: 'Best AI Workflow Automation Tools 2026',
+    description: 'The top workflow automation platforms to connect your apps and eliminate repetitive tasks in 2026 - from no-code tools for business teams to developer-first platforms for building custom AI pipelines.',
+    category: 'Automation',
+    emoji: '🔗',
+    slugs: ['zapier', 'make-com', 'activepieces', 'pipedream', 'workato', 'bardeen', 'integrately', 'tray-io', 'pabbly-connect', 'albato'],
+  },
+  {
+    slug: 'best-no-code-automation-tools',
+    title: 'Best No-Code Automation Tools 2026',
+    description: 'The best automation tools for non-developers in 2026 - connect apps, automate workflows, and save hours every week without writing a single line of code.',
+    category: 'Automation',
+    emoji: '⚡',
+    slugs: ['zapier', 'make-com', 'integrately', 'activepieces', 'pabbly-connect', 'bardeen', 'albato'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {

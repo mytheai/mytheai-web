@@ -1,18 +1,18 @@
 import type { Tool, Category, Comparison, TrendingTool } from '@/types'
 
 export const mockCategories: Category[] = [
-  { id: '1', slug: 'ai-assistants', name: 'AI Assistants', emoji: '🧠', tool_count: 105 },
-  { id: '2', slug: 'writing-ai', name: 'Writing AI', emoji: '✍️', tool_count: 51 },
-  { id: '3', slug: 'image-ai', name: 'Image AI', emoji: '🎨', tool_count: 90 },
-  { id: '4', slug: 'video-ai', name: 'Video AI', emoji: '🎬', tool_count: 81 },
-  { id: '5', slug: 'code-ai', name: 'Code AI', emoji: '💻', tool_count: 64 },
-  { id: '6', slug: 'seo-marketing', name: 'SEO & Marketing', emoji: '📈', tool_count: 73 },
-  { id: '7', slug: 'productivity', name: 'Productivity', emoji: '⚡', tool_count: 58 },
-  { id: '8', slug: 'analytics', name: 'Analytics', emoji: '📊', tool_count: 42 },
-  { id: '9', slug: 'voice-audio', name: 'Voice & Audio', emoji: '🎙️', tool_count: 38 },
-  { id: '10', slug: 'crm-sales', name: 'CRM & Sales', emoji: '🤝', tool_count: 47 },
-  { id: '11', slug: 'email-marketing', name: 'Email Marketing', emoji: '📧', tool_count: 29 },
-  { id: '12', slug: 'automation', name: 'Automation', emoji: '🔗', tool_count: 55 },
+  { id: '1', slug: 'ai-assistants', name: 'AI Assistants', emoji: '🧠', tool_count: 105, description: 'General-purpose AI chatbots and assistants for writing, research, coding, and everyday tasks. Includes ChatGPT, Claude, Gemini, and 100+ specialized AI tools.' },
+  { id: '2', slug: 'writing-ai', name: 'Writing AI', emoji: '✍️', tool_count: 51, description: 'AI writing tools for marketers, bloggers, and content teams. Generate blog posts, ad copy, emails, and social content faster without sacrificing quality.' },
+  { id: '3', slug: 'image-ai', name: 'Image AI', emoji: '🎨', tool_count: 90, description: 'AI image generation and editing tools for designers and creators. Create original visuals, edit photos, generate backgrounds, and produce branded assets with text prompts.' },
+  { id: '4', slug: 'video-ai', name: 'Video AI', emoji: '🎬', tool_count: 81, description: 'AI video creation, editing, and enhancement tools. Generate video from text, add subtitles automatically, create AI avatars, and produce professional content without a studio.' },
+  { id: '5', slug: 'code-ai', name: 'Code AI', emoji: '💻', tool_count: 64, description: 'AI coding assistants and developer tools. Autocomplete code, explain functions, generate tests, review pull requests, and build full apps from natural language descriptions.' },
+  { id: '6', slug: 'seo-marketing', name: 'SEO & Marketing', emoji: '📈', tool_count: 73, description: 'AI-powered SEO, content marketing, and digital advertising tools. Improve rankings, research keywords, optimize content, and run smarter campaigns with less manual work.' },
+  { id: '7', slug: 'productivity', name: 'Productivity', emoji: '⚡', tool_count: 58, description: 'AI tools to work smarter and get more done. Meeting summarizers, note-takers, task managers, and personal productivity assistants that save hours every week.' },
+  { id: '8', slug: 'analytics', name: 'Analytics', emoji: '📊', tool_count: 42, description: 'AI-powered data analytics and business intelligence tools. Ask questions about your data in plain language, build dashboards, and surface insights without SQL or data science skills.' },
+  { id: '9', slug: 'voice-audio', name: 'Voice & Audio', emoji: '🎙️', tool_count: 38, description: 'AI voice generation, transcription, and audio editing tools. Clone voices, transcribe meetings, generate realistic speech, and produce professional audio without a recording studio.' },
+  { id: '10', slug: 'crm-sales', name: 'CRM & Sales', emoji: '🤝', tool_count: 47, description: 'AI-enhanced CRM and sales tools to find, qualify, and close more deals. Automate outreach, score leads, draft personalized emails, and manage your pipeline with AI assistance.' },
+  { id: '11', slug: 'email-marketing', name: 'Email Marketing', emoji: '📧', tool_count: 29, description: 'AI-powered email marketing platforms to write better campaigns, personalize at scale, optimize send times, and grow your list faster than manual approaches allow.' },
+  { id: '12', slug: 'automation', name: 'Automation', emoji: '🔗', tool_count: 55, description: 'No-code and low-code workflow automation tools to connect your apps and eliminate repetitive tasks. From Zapier to Make to open-source self-hosted options.' },
 ]
 
 const aiAssistants = mockCategories[0]

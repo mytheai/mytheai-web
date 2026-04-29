@@ -87,9 +87,20 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
     })),
   }
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
+      { '@type': 'ListItem', position: 2, name: 'Categories', item: 'https://mytheai.com/categories' },
+      { '@type': 'ListItem', position: 3, name: cat.name, item: `https://mytheai.com/categories/${slug}` },
+    ],
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
@@ -107,10 +118,15 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
             <span className="text-4xl">{cat.emoji}</span>
             <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600">{cat.name}</p>
           </div>
-          <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
+          <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-3">
             Best {cat.name} Tools ({year})
           </h1>
-          <p className="text-[15px] text-muted-foreground">
+          {cat.description && (
+            <p className="text-[15px] text-muted-foreground leading-relaxed mb-2">
+              {cat.description}
+            </p>
+          )}
+          <p className="text-[13px] text-muted-foreground">
             {tools.length > 0
               ? `${tools.length} tools reviewed and ranked by editorial merit.`
               : 'Tools in this category coming soon.'}

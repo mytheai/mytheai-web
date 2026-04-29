@@ -421,37 +421,49 @@ export default async function ToolPage({
 
             {/* Pricing card */}
             <div className="border border-border rounded-xl p-5 bg-card">
-              <h3 className="text-[14px] font-bold text-foreground mb-3">Pricing</h3>
-              <div className="space-y-2.5">
-                <div className="flex items-center justify-between text-[13px]">
-                  <span className="text-muted-foreground">Plan type</span>
-                  <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${PRICING_COLORS[tool.pricing_type]}`}>
-                    {PRICING_LABELS[tool.pricing_type]}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between text-[13px]">
-                  <span className="text-muted-foreground">Free tier</span>
-                  <span className="font-medium text-foreground">
-                    {tool.pricing_free_tier ? '✓ Available' : '✗ No'}
-                  </span>
-                </div>
-                {tool.pricing_starting_price != null && (
-                  <div className="flex items-center justify-between text-[13px]">
-                    <span className="text-muted-foreground">Starting at</span>
-                    <span className="font-semibold text-foreground">
-                      ${tool.pricing_starting_price}/mo
-                    </span>
+              <h3 className="text-[14px] font-bold text-foreground mb-4">Pricing</h3>
+              <div className="space-y-2 mb-4">
+                {tool.pricing_type === 'free' && (
+                  <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#D1FAE5]/40">
+                    <span className="text-[12px] font-semibold text-[#065F46]">Free</span>
+                    <span className="text-[12px] font-bold text-[#065F46]">$0 / forever</span>
                   </div>
                 )}
-                <p className="text-[11px] text-muted-foreground pt-1">
-                  As of {updatedDate}. Verify on official site.
-                </p>
+                {tool.pricing_type === 'ltd' && tool.pricing_starting_price != null && (
+                  <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#FEF3C7]/60">
+                    <span className="text-[12px] font-semibold text-[#92400E]">Lifetime Deal</span>
+                    <span className="text-[12px] font-bold text-[#92400E]">From ${tool.pricing_starting_price}</span>
+                  </div>
+                )}
+                {(tool.pricing_type === 'freemium' || tool.pricing_type === 'paid') && (
+                  <>
+                    {tool.pricing_free_tier && (
+                      <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#D1FAE5]/40">
+                        <span className="text-[12px] font-semibold text-[#065F46]">Free</span>
+                        <span className="text-[12px] font-bold text-[#065F46]">$0 / mo</span>
+                      </div>
+                    )}
+                    {tool.pricing_starting_price != null && (
+                      <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#EFF6FF]">
+                        <span className="text-[12px] font-semibold text-[#1E40AF]">Pro</span>
+                        <span className="text-[12px] font-bold text-[#1E40AF]">From ${tool.pricing_starting_price} / mo</span>
+                      </div>
+                    )}
+                    <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-[#F3F4F6]">
+                      <span className="text-[12px] font-semibold text-[#374151]">Enterprise</span>
+                      <span className="text-[12px] text-[#374151]">Custom</span>
+                    </div>
+                  </>
+                )}
               </div>
+              <p className="text-[11px] text-muted-foreground mb-4">
+                As of {updatedDate}. Verify current pricing on the official site.
+              </p>
               <a
                 href={`/go/${tool.slug}`}
                 target="_blank"
                 rel="noopener noreferrer sponsored"
-                className="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[13px] transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[13px] transition-colors"
               >
                 Get {tool.name} →
               </a>
