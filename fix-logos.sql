@@ -2,7 +2,8 @@
 -- Updates logo_url for all tools to use Clearbit Logo API.
 -- Clearbit returns high-quality 200x200px PNG company logos.
 -- URL pattern: https://logo.clearbit.com/{domain}
--- Run in Supabase SQL Editor.
+-- Excludes subdomain tools of Google/Adobe/Microsoft (they return parent logos).
+-- Run in Supabase SQL Editor. Then run fix-logos-overrides.sql.
 
 UPDATE tools
 SET logo_url = 'https://logo.clearbit.com/' ||
@@ -10,7 +11,11 @@ SET logo_url = 'https://logo.clearbit.com/' ||
 WHERE website_url IS NOT NULL
   AND website_url ~ 'https?://'
   AND length(trim(website_url)) > 0
-  AND substring(website_url FROM 'https?://(?:www\.)?([^/?#]+)') IS NOT NULL;
+  AND substring(website_url FROM 'https?://(?:www\.)?([^/?#]+)') IS NOT NULL
+  -- Exclude tools on Google/Adobe/Microsoft subdomains (Clearbit returns parent logo)
+  AND website_url NOT LIKE '%google.com%'
+  AND website_url NOT LIKE '%.adobe.com%'
+  AND website_url NOT LIKE '%.microsoft.com%';
 
 -- Verify sample results
 SELECT slug, name, logo_url, website_url

@@ -705,6 +705,22 @@ export const TOP10_LISTS: Top10List[] = [
     slugs: ['weglot', 'lokalise', 'crowdin', 'transifex', 'poeditor'],
   },
   {
+    slug: 'best-ai-social-media-tools',
+    title: 'Best AI Social Media Tools',
+    description: 'The top AI-powered social media tools for 2026 - from LinkedIn content engines and visual post generators to all-in-one social media management platforms for creators, marketers, and agencies.',
+    category: 'Marketing',
+    emoji: '📱',
+    slugs: ['predis-ai', 'taplio', 'contentstudio', 'publer', 'flick-social', 'vista-social', 'supergrow'],
+  },
+  {
+    slug: 'best-linkedin-ai-tools',
+    title: 'Best AI Tools for LinkedIn Growth',
+    description: 'The top AI-powered LinkedIn tools for growing your personal brand and audience in 2026 - from AI content writers that match your voice to automation tools for scheduling, engagement, and warm lead tracking.',
+    category: 'Marketing',
+    emoji: '💼',
+    slugs: ['taplio', 'supergrow', 'hypefury', 'postwise'],
+  },
+  {
     slug: 'best-workflow-automation-tools',
     title: 'Best AI Workflow Automation Tools 2026',
     description: 'The top workflow automation platforms to connect your apps and eliminate repetitive tasks in 2026 - from no-code tools for business teams to developer-first platforms for building custom AI pipelines.',
