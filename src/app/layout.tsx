@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     apple: [{ url: '/api/logo', sizes: '180x180', type: 'image/png' }],
   },
   manifest: '/manifest.json',
+  verification: { google: 'v1XXmGzPAUqEJsSXb3F1bl3TipZYYKmIObnmRK8N2oc' },
   robots: { index: true, follow: true },
 }
 
