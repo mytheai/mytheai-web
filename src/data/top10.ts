@@ -768,6 +768,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🛍️',
     slugs: ['rep-ai', 'octane-ai', 'rebuy', 'recart', 'stamped-io', 'shopify-magic'],
   },
+  {
+    slug: 'best-ai-customer-service-tools',
+    title: 'Best AI Customer Service Tools 2026',
+    description: 'The best AI customer service tools in 2026 - autonomous resolution agents, ticket triage, and multilingual support automation for support orgs of every size.',
+    category: 'Customer Support',
+    emoji: '💬',
+    slugs: ['intercom-fin', 'ada-ai', 'decagon-ai', 'forethought-ai', 'ultimate-ai', 'yellow-ai'],
+  },
+  {
+    slug: 'best-ai-helpdesk-automation',
+    title: 'Best AI Helpdesk Automation Tools 2026',
+    description: 'The best AI tools for helpdesk automation in 2026 - deflection AI, ticket routing, and agent assist that reduce ticket volume and handle time.',
+    category: 'Customer Support',
+    emoji: '🎫',
+    slugs: ['intercom-fin', 'decagon-ai', 'forethought-ai', 'ultimate-ai', 'yellow-ai', 'lang-io'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
