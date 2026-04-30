@@ -736,6 +736,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '⚡',
     slugs: ['zapier', 'make-com', 'integrately', 'activepieces', 'pabbly-connect', 'bardeen', 'albato'],
   },
+  {
+    slug: 'best-ai-crm-tools',
+    title: 'Best AI CRM Tools 2026',
+    description: 'The best AI-powered CRMs in 2026 - from Salesforce Einstein for enterprise to Folk for startups. Real pricing, honest tradeoffs, and which CRM fits your team.',
+    category: 'CRM & Sales',
+    emoji: '📇',
+    slugs: ['salesforce-einstein', 'zoho-crm', 'freshsales', 'folk', 'close', 'streak'],
+  },
+  {
+    slug: 'best-ai-sales-tools',
+    title: 'Best AI Sales Tools 2026',
+    description: 'The best AI-powered sales tools in 2026 - revenue forecasting, AI cold outbound, and sales engagement platforms for modern revenue teams.',
+    category: 'CRM & Sales',
+    emoji: '💼',
+    slugs: ['clari', 'amplemarket', 'smartlead', 'salesforce-einstein', 'kommo', 'freshsales'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
