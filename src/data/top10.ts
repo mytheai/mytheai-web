@@ -752,6 +752,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '💼',
     slugs: ['clari', 'amplemarket', 'smartlead', 'salesforce-einstein', 'kommo', 'freshsales'],
   },
+  {
+    slug: 'best-ai-ecommerce-tools',
+    title: 'Best AI E-commerce Tools 2026',
+    description: 'The best AI tools for ecommerce stores in 2026 - from on-site assistants and personalization engines to visual search and product description generators.',
+    category: 'E-commerce',
+    emoji: '🛒',
+    slugs: ['shopify-magic', 'rep-ai', 'octane-ai', 'rebuy', 'nosto', 'recart'],
+  },
+  {
+    slug: 'best-ai-shopify-apps',
+    title: 'Best AI Shopify Apps 2026',
+    description: 'The best AI-powered apps for Shopify and Shopify Plus stores - personalization, search, reviews, and conversion optimization that scale with your store.',
+    category: 'E-commerce',
+    emoji: '🛍️',
+    slugs: ['rep-ai', 'octane-ai', 'rebuy', 'recart', 'stamped-io', 'shopify-magic'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
