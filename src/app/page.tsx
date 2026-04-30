@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import type { Metadata } from 'next'
+import LogoImage from '@/components/ui/LogoImage'
 import { createStaticClient } from '@/lib/supabase'
 import { mockCategories } from '@/data/mock'
 import { TOP10_LISTS } from '@/data/top10'
@@ -143,39 +143,6 @@ function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
     <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${map[type]}`}>
       {labels[type]}
     </span>
-  )
-}
-
-function getLogoSrc(logoUrl: string | null, websiteUrl?: string | null): string | null {
-  if (logoUrl) return logoUrl
-  if (websiteUrl) {
-    try {
-      const hostname = new URL(websiteUrl).hostname
-      return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`
-    } catch {
-      return null
-    }
-  }
-  return null
-}
-
-function ToolLogo({ url, websiteUrl, name, size = 40 }: { url: string | null; websiteUrl?: string | null; name: string; size?: number }) {
-  const src = getLogoSrc(url, websiteUrl)
-  if (!src) return (
-    <div
-      className="rounded-[10px] flex items-center justify-center bg-gray-100 dark:bg-gray-800 flex-shrink-0 text-[13px] font-bold text-gray-400"
-      style={{ width: size, height: size }}
-    >
-      {name[0]}
-    </div>
-  )
-  return (
-    <div
-      className="rounded-[10px] flex items-center justify-center bg-gray-50 dark:bg-gray-800 flex-shrink-0 overflow-hidden"
-      style={{ width: size, height: size }}
-    >
-      <Image src={src} alt={name} width={size} height={size} className="object-contain p-1" unoptimized />
-    </div>
   )
 }
 
@@ -331,7 +298,7 @@ export default async function HomePage() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <ToolLogo url={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} />
+                      <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} />
                       <div>
                         <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
                         <div className="text-[12px] text-muted-foreground">{tool.tags?.[0] ?? ''}</div>
@@ -389,7 +356,7 @@ export default async function HomePage() {
                   >
                     {i + 1}
                   </span>
-                  <ToolLogo url={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={36} />
+                  <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={36} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                       <span className="text-[13.5px] font-semibold text-foreground">{tool.name}</span>
@@ -430,7 +397,7 @@ export default async function HomePage() {
                       >
                         {i + 1}
                       </span>
-                      <ToolLogo url={item.logo_url} websiteUrl={item.website_url} name={item.name} size={20} />
+                      <LogoImage src={item.logo_url} websiteUrl={item.website_url} name={item.name} size={20} />
                       <span className="text-[13px] text-foreground flex-1 truncate">{item.name}</span>
                       <PricingBadge type={item.pricing_type as Tool['pricing_type']} />
                     </li>
