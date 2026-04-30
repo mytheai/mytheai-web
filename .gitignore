@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dev artifacts from scripts/ (regenerated each run, don't commit)
+dead-tools-report.json
+dead-tools-final.json
+suspect-tools.md
+false-positives.md
+verify-suspects-report.json
+scripts-output*.log
