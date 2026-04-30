@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { createStaticClient } from '@/lib/supabase'
 import Link from 'next/link'
-import Image from 'next/image'
+import LogoImage from '@/components/ui/LogoImage'
 import SearchFilterBar from '@/components/tools/SearchFilterBar'
 import type { Metadata } from 'next'
 
@@ -102,7 +102,6 @@ export default async function ReviewsPage({
         <div className="space-y-3">
           {tools.map((tool, index) => {
             const badge = pricingLabel(tool.pricing_type)
-            const logoSrc = tool.logo_url || (tool.website_url ? (() => { try { return `https://www.google.com/s2/favicons?domain=${new URL(tool.website_url!).hostname}&sz=64` } catch { return null } })() : null)
             return (
               <div key={tool.slug} className="flex items-center gap-4 border border-border rounded-xl p-4 bg-card hover:border-[#93C5FD] transition-colors">
                 {/* Rank */}
@@ -112,11 +111,13 @@ export default async function ReviewsPage({
 
                 {/* Logo */}
                 <div className="logo-sm flex-shrink-0 flex items-center justify-center" style={{ background: '#f0f0f0' }}>
-                  {logoSrc ? (
-                    <Image src={logoSrc} alt={tool.name} width={34} height={34} unoptimized className="rounded" />
-                  ) : (
-                    <span className="text-[13px] font-bold text-gray-400">{tool.name[0]}</span>
-                  )}
+                  <LogoImage
+                    src={tool.logo_url}
+                    websiteUrl={tool.website_url}
+                    name={tool.name}
+                    size={34}
+                    className="rounded"
+                  />
                 </div>
 
                 {/* Info */}

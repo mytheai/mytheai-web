@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
+import LogoImage from '@/components/ui/LogoImage'
 import { createStaticClient } from '@/lib/supabase'
 import CompareFilterBar from '@/components/tools/CompareFilterBar'
 import type { Metadata } from 'next'
@@ -57,18 +57,6 @@ async function getToolsMeta(slugs: string[]): Promise<Record<string, ToolMeta>> 
   const map: Record<string, ToolMeta> = {}
   for (const t of data ?? []) map[t.slug] = t as ToolMeta
   return map
-}
-
-function getLogoSrc(tool: ToolMeta): string | null {
-  if (tool.logo_url) return tool.logo_url
-  if (tool.website_url) {
-    try {
-      return `https://www.google.com/s2/favicons?domain=${new URL(tool.website_url).hostname}&sz=64`
-    } catch {
-      return null
-    }
-  }
-  return null
 }
 
 function getCategory(tool: ToolMeta): string {
@@ -158,11 +146,7 @@ export default async function ComparePage({
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-2 flex-1 min-w-0">
                     <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      {getLogoSrc(a) ? (
-                        <Image src={getLogoSrc(a)!} alt={a.name} width={28} height={28} unoptimized />
-                      ) : (
-                        <span className="text-[13px] font-bold text-gray-400">{a.name[0]}</span>
-                      )}
+                      <LogoImage src={a.logo_url} websiteUrl={a.website_url} name={a.name} size={28} />
                     </div>
                     <span className="text-[14px] font-semibold text-foreground truncate">{a.name}</span>
                   </div>
@@ -170,11 +154,7 @@ export default async function ComparePage({
                   <div className="flex items-center gap-2 flex-1 min-w-0 justify-end">
                     <span className="text-[14px] font-semibold text-foreground truncate text-right">{b.name}</span>
                     <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                      {getLogoSrc(b) ? (
-                        <Image src={getLogoSrc(b)!} alt={b.name} width={28} height={28} unoptimized />
-                      ) : (
-                        <span className="text-[13px] font-bold text-gray-400">{b.name[0]}</span>
-                      )}
+                      <LogoImage src={b.logo_url} websiteUrl={b.website_url} name={b.name} size={28} />
                     </div>
                   </div>
                 </div>

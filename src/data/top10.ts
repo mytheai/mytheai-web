@@ -134,7 +134,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for reading, summarising, and chatting with documents and PDFs - turning long files into instant answers.',
     category: 'Productivity',
     emoji: '📄',
-    slugs: ['notebooklm', 'chatpdf', 'readwise', 'adobe-acrobat-ai', 'claude'],
+    slugs: ['notebooklm', 'chatpdf', 'readwise', 'claude'],
   },
   {
     slug: 'best-ai-voice-generators',
@@ -142,7 +142,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI text-to-speech and voice generation tools for creators, businesses, and developers - ranked by voice quality, language support, and value.',
     category: 'Voice AI',
     emoji: '🗣️',
-    slugs: ['elevenlabs', 'play-ht', 'wellsaid', 'murf', 'riverside'],
+    slugs: ['elevenlabs', 'wellsaid', 'murf', 'riverside'],
   },
   {
     slug: 'best-ai-video-generators',
@@ -214,7 +214,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for lawyers, legal operations teams, and corporate legal departments - from contract review and research to e-signatures and CLM platforms.',
     category: 'Business',
     emoji: '⚖️',
-    slugs: ['harvey-ai', 'spellbook-ai', 'contractbook', 'detangle-ai', 'docusign-ai'],
+    slugs: ['harvey-ai', 'spellbook-ai', 'contractbook', 'docusign-ai'],
   },
   {
     slug: 'best-ai-tools-for-content-creators',
@@ -614,7 +614,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI meeting assistants for 2026 - lightweight tools that automatically transcribe, summarise, and distribute meeting notes without requiring a separate app or complex setup.',
     category: 'Productivity',
     emoji: '🤖',
-    slugs: ['jamie', 'meetgeek', 'sembly-ai', 'notta', 'airgram'],
+    slugs: ['jamie', 'meetgeek', 'sembly-ai', 'notta'],
   },
   {
     slug: 'best-sales-call-intelligence-tools',

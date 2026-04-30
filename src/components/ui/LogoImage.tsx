@@ -1,24 +1,19 @@
 'use client'
 
-import Image from 'next/image'
 import { useState } from 'react'
 
-// Fallback order: logo_url → Clearbit → faviconV2 (always returns an image) → letter avatar.
-// faviconV2 is last in the image chain: it may return a placeholder for unknown domains,
-// but that is acceptable as a last resort before falling back to the letter avatar.
-// favicon.ico is intentionally excluded: it falls outside next.config remotePatterns,
-// which can cause failures depending on Next.js version.
-function buildFallbacks(src: string | null, websiteUrl: string | null): string[] {
-  const list: string[] = []
-  if (src) list.push(src)
-  if (websiteUrl) {
-    try {
-      const { hostname } = new URL(websiteUrl)
-      list.push(`https://logo.clearbit.com/${hostname}`)
-      list.push(`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${websiteUrl}&size=64`)
-    } catch {}
+// Single source: Google S2 favicons. Google's CDN is fast worldwide,
+// supports every domain, and always returns an image. No fallback chain
+// needed - if the image fails to load entirely, the letter avatar shows.
+function buildSrc(src: string | null, websiteUrl: string | null): string | null {
+  if (src) return src
+  if (!websiteUrl) return null
+  try {
+    const { hostname } = new URL(websiteUrl)
+    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=128`
+  } catch {
+    return null
   }
-  return list
 }
 
 interface Props {
@@ -38,22 +33,25 @@ export default function LogoImage({
   className,
   letterClassName = 'text-[14px] font-bold text-gray-400',
 }: Props) {
-  const fallbacks = buildFallbacks(src, websiteUrl)
-  const [idx, setIdx] = useState(0)
+  const initial = buildSrc(src, websiteUrl)
+  const [failed, setFailed] = useState(false)
 
-  if (idx >= fallbacks.length) {
+  if (!initial || failed) {
     return <span className={letterClassName}>{name.charAt(0).toUpperCase()}</span>
   }
 
   return (
-    <Image
-      src={fallbacks[idx]}
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={initial}
       alt={name}
       width={size}
       height={size}
-      unoptimized
+      loading="lazy"
+      decoding="async"
+      referrerPolicy="no-referrer"
       className={className}
-      onError={() => setIdx(i => i + 1)}
+      onError={() => setFailed(true)}
     />
   )
 }

@@ -55,14 +55,14 @@ export default function ToolCard({ tool }: { tool: Tool }) {
           <span className="text-[13px] font-semibold text-foreground">{tool.rating}</span>
           <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k)</span>
         </div>
-        <Link
+        <a
           href={`/go/${tool.slug}`}
           target="_blank"
           rel="noopener noreferrer sponsored"
           className="relative z-10 text-[12px] font-semibold text-blue-600 hover:text-blue-700"
         >
           Visit →
-        </Link>
+        </a>
       </div>
     </div>
   )
