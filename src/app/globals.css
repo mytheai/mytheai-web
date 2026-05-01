@@ -170,3 +170,20 @@
     background: rgba(15, 17, 23, 0.93);
   }
 }
+
+/* Google Translate widget - hide default chrome */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget-icon,
+.goog-logo-link,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+body { top: 0 !important; }
+.goog-tooltip,
+.goog-tooltip:hover { display: none !important; }
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+#goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+font[style*="background-color"] { background: transparent !important; }

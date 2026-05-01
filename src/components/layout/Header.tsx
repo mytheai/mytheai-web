@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import SearchDropdown from '@/components/search/SearchDropdown'
+import LanguagePicker from '@/components/layout/LanguagePicker'
 
 const NAV_LINKS = [
   { href: '/tools', label: 'Tools' },
@@ -50,11 +51,6 @@ export default function Header() {
           <span className="font-bold text-[17px] text-foreground tracking-tight">MytheAi</span>
         </Link>
 
-        {/* Desktop search */}
-        <div className="hidden md:block flex-1 max-w-[280px]">
-          <SearchDropdown variant="header" />
-        </div>
-
         {/* Right group: nav + actions, always pushed right */}
         <div className="flex items-center gap-3 ml-auto">
 
@@ -69,6 +65,9 @@ export default function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-1.5">
+            {/* Language picker */}
+            <LanguagePicker />
+
             {/* Dark mode */}
             <button
               onClick={toggleDark}
