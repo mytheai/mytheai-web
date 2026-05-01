@@ -31,13 +31,6 @@ export const metadata: Metadata = {
     description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, verified pricing - no pay-to-rank.',
     images: ['/api/og/site'],
   },
-  icons: {
-    icon: [
-      { url: '/api/logo', sizes: '512x512', type: 'image/png' },
-      { url: '/api/logo', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [{ url: '/api/logo', sizes: '180x180', type: 'image/png' }],
-  },
   manifest: '/manifest.json',
   verification: { google: 'v1XXmGzPAUqEJsSXb3F1bl3TipZYYKmIObnmRK8N2oc' },
   robots: { index: true, follow: true },
