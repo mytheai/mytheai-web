@@ -17,9 +17,7 @@ export default function Footer() {
                   </linearGradient>
                 </defs>
                 <rect width="32" height="32" rx="8" fill="url(#footer-grad)" />
-                <circle cx="12.5" cy="14" r="5" stroke="white" strokeWidth="2" fill="none" />
-                <line x1="16.2" y1="17.7" x2="22" y2="23.5" stroke="white" strokeWidth="2.4" strokeLinecap="round" />
-                <path d="M22.5 7 L23.3 9.7 L26 10.5 L23.3 11.3 L22.5 14 L21.7 11.3 L19 10.5 L21.7 9.7 Z" fill="white" />
+                <path d="M16 4 L19 13 L28 16 L19 19 L16 28 L13 19 L4 16 L13 13 Z" fill="white" />
               </svg>
               <span
                 className="font-bold text-[16px] tracking-tight text-transparent bg-clip-text"
