@@ -18,17 +18,20 @@ export default function AuthorBio({ context = 'curated', className = '' }: Autho
       itemScope
       itemType="https://schema.org/Person"
     >
-      <div
-        className="w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center text-white font-bold text-[18px]"
-        style={{ background: 'linear-gradient(135deg, #60A5FA 0%, #1D4ED8 100%)' }}
-        aria-hidden="true"
-      >
-        TP
-      </div>
+      <img
+        src="https://api.dicebear.com/9.x/notionists-neutral/svg?seed=john-ethan&backgroundColor=f3f4f6&radius=50"
+        alt="John Ethan, founder of MytheAi"
+        width={48}
+        height={48}
+        className="w-12 h-12 rounded-full flex-shrink-0 border border-border bg-gray-100"
+        loading="lazy"
+        decoding="async"
+        itemProp="image"
+      />
       <div className="flex-1 min-w-0">
         <p className="text-[12px] text-muted-foreground mb-0.5">{LABEL[context]}</p>
         <p className="text-[14px] font-bold text-foreground" itemProp="name">
-          Truong Pham
+          John Ethan
         </p>
         <p className="text-[12px] text-muted-foreground mt-1 leading-relaxed" itemProp="description">
           Founder of MytheAi. Tracking and reviewing AI and SaaS tools since January 2026. Built MytheAi out of frustration with pay-to-rank listicles and SEO-driven AI directories that prioritize ad revenue over honest guidance.
