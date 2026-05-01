@@ -5,14 +5,9 @@ import { useEffect, useRef, useState } from 'react'
 const LANGS = [
   { code: 'en', label: 'English', flag: '🇬🇧' },
   { code: 'zh-CN', label: '中文', flag: '🇨🇳' },
+  { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' },
   { code: 'es', label: 'Español', flag: '🇪🇸' },
-  { code: 'pt', label: 'Português', flag: '🇵🇹' },
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
-  { code: 'ja', label: '日本語', flag: '🇯🇵' },
-  { code: 'ko', label: '한국어', flag: '🇰🇷' },
-  { code: 'id', label: 'Indonesia', flag: '🇮🇩' },
-  { code: 'vi', label: 'Tiếng Việt', flag: '🇻🇳' },
 ] as const
 
 const INCLUDED = LANGS.map(l => l.code).join(',')
