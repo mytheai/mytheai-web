@@ -784,6 +784,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🎫',
     slugs: ['intercom-fin', 'decagon-ai', 'forethought-ai', 'ultimate-ai', 'yellow-ai', 'lang-io'],
   },
+  {
+    slug: 'best-ai-medical-scribes',
+    title: 'Best AI Medical Scribe Tools 2026',
+    description: 'The best AI ambient medical scribes in 2026 - tools that listen to patient encounters and generate clinical notes automatically, cutting documentation time for clinicians.',
+    category: 'Healthcare AI',
+    emoji: '🩺',
+    slugs: ['heidi-health', 'freed-ai', 'deepscribe', 'ambience-healthcare', 'abridge'],
+  },
+  {
+    slug: 'best-ai-clinical-decision-support',
+    title: 'Best AI Clinical Decision Support Tools 2026',
+    description: 'The best AI tools for clinical decision support in 2026 - real-time diagnosis assistance, imaging triage, and evidence-based care recommendations for clinicians.',
+    category: 'Healthcare AI',
+    emoji: '🏥',
+    slugs: ['regard-clinical', 'atropos-health', 'tempus-ai', 'viz-ai', 'paige-ai'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
