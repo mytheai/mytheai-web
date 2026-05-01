@@ -6,6 +6,7 @@ import { mockCategories } from '@/data/mock'
 import { TOP10_LISTS } from '@/data/top10'
 import type { Tool } from '@/types'
 import NewsletterForm from '@/components/newsletter/NewsletterForm'
+import SearchDropdown from '@/components/search/SearchDropdown'
 
 export const revalidate = 21600
 
@@ -203,39 +204,16 @@ export default async function HomePage() {
             <span className="text-blue-600">You Actually Need</span>
           </h1>
 
-          {/* Search bar - primary CTA */}
-          <form
-            action="/tools"
-            method="GET"
-            className="flex items-center gap-2 p-1.5 mb-4 shadow-md rounded-xl border border-border bg-card"
-            role="search"
-          >
-            <span className="pl-3 text-muted-foreground flex-shrink-0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-            </span>
-            <input
-              className="flex-1 py-3.5 px-1 text-[15px] bg-transparent outline-none text-foreground placeholder:text-muted-foreground min-w-0"
-              type="search"
-              name="q"
-              placeholder="Try: AI for writing emails, free video tools..."
-              autoComplete="off"
-              aria-label="Search AI tools"
-            />
-            <button
-              type="submit"
-              className="px-5 py-2.5 rounded-lg text-white text-[14px] font-semibold bg-blue-600 hover:bg-blue-700 active:bg-blue-800 transition-colors flex-shrink-0"
-            >
-              Search
-            </button>
-          </form>
+          {/* Search bar - primary CTA. Instant search dropdown (Session 67). */}
+          <div className="mb-4 text-left">
+            <SearchDropdown variant="hero" />
+          </div>
 
           <p className="text-[14px] text-muted-foreground mb-5">
             Honest reviews. Real comparisons. No pay-to-rank.
           </p>
 
-          {/* Quick search pills */}
+          {/* Quick search pills - kept visible for SEO and direct links */}
           <div className="flex flex-wrap justify-center items-center gap-2 text-[12px] text-muted-foreground">
             <span className="font-medium">Popular:</span>
             {['ChatGPT alternatives', 'Free AI tools', 'AI for coding', 'Best SEO tools'].map(q => (
@@ -247,6 +225,26 @@ export default async function HomePage() {
                 {q}
               </Link>
             ))}
+          </div>
+
+          {/* Trust strip - editorial transparency signals */}
+          <div className="mt-8 flex flex-wrap justify-center items-center gap-x-5 gap-y-2 text-[12px] text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+              <span><strong className="text-foreground">559</strong> tools tracked</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              <span><strong className="text-foreground">266</strong> head-to-head comparisons</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+              <span>Updated weekly</span>
+            </span>
+            <Link href="/methodology" className="flex items-center gap-1.5 hover:text-blue-600 transition-colors">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+              <span className="underline-offset-4 hover:underline">No pay-to-rank</span>
+            </Link>
           </div>
         </div>
       </section>

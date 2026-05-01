@@ -3,6 +3,7 @@ import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
 import { createStaticClient } from '@/lib/supabase'
 import { TOP10_LISTS, getList } from '@/data/top10'
+import AuthorBio from '@/components/layout/AuthorBio'
 import type { Metadata } from 'next'
 
 export const revalidate = 604800
@@ -279,9 +280,14 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
           </div>
         )}
 
+        {/* Author */}
+        <div className="mt-10">
+          <AuthorBio context="curated" />
+        </div>
+
         {/* Disclosure */}
-        <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
-          <strong>Disclosure:</strong> Some links on this page are affiliate links. We may earn a commission at no extra cost to you. Rankings are based on editorial merit. Affiliate relationships never influence placement.
+        <div className="mt-6 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
+          <strong>Disclosure:</strong> Some links on this page are affiliate links. We may earn a commission at no extra cost to you. Rankings are based on <Link href="/methodology" className="text-blue-600 hover:underline">editorial merit</Link>. Affiliate relationships never influence placement.
         </div>
 
         <Link href="/tools" className="inline-block mt-6 text-[13px] text-blue-600 hover:underline">

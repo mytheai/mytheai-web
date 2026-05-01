@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import AuthorBio from '@/components/layout/AuthorBio'
 
 export const metadata: Metadata = {
   title: 'About MytheAi: Our Mission & Editorial Standards',
@@ -25,14 +27,23 @@ export default function AboutPage() {
         </p>
       </div>
 
+      {/* Founder */}
+      <section className="mb-10">
+        <h2 className="text-[20px] font-bold text-foreground mb-3">Who runs MytheAi</h2>
+        <AuthorBio context="curated" className="mb-4" />
+        <p className="text-[15px] text-muted-foreground leading-relaxed">
+          MytheAi started in January 2026 because every existing AI directory I tried felt like a paid leaderboard with reviews bolted on. Tools ranked because they paid the most, not because they were the best. I am building MytheAi as the directory I wish existed: honest, curated, no pay-to-rank, and transparent about how every score is calculated. <Link href="/methodology" className="text-blue-600 hover:underline font-medium">See the full methodology</Link>.
+        </p>
+      </section>
+
       {/* Mission */}
       <section className="mb-10">
         <h2 className="text-[20px] font-bold text-foreground mb-3">Our Mission</h2>
         <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
-          The AI tools landscape changes every week. New products launch, pricing shifts, and yesterday&apos;s best option becomes obsolete. We cut through the noise by maintaining a living directory of 500+ tools, each reviewed, verified, and updated regularly.
+          The AI tools landscape changes every week. New products launch, pricing shifts, and yesterday&apos;s best option becomes obsolete. We cut through the noise by maintaining a living directory of 559 tools and 266 head-to-head comparisons, each reviewed, verified, and updated regularly.
         </p>
         <p className="text-[15px] text-muted-foreground leading-relaxed">
-          We believe tool discovery should feel like getting advice from a knowledgeable friend, not scrolling through a sponsorship-laden listicle. Every ranking on MytheAi is based on editorial merit: feature depth, pricing value, user feedback, and real-world use cases.
+          We believe tool discovery should feel like getting advice from a knowledgeable friend, not scrolling through a sponsorship-laden listicle. Every ranking on MytheAi is based on editorial merit: feature depth, pricing value, user feedback, and real-world use cases. The full ranking framework is documented on the <Link href="/methodology" className="text-blue-600 hover:underline font-medium">methodology page</Link>.
         </p>
       </section>
 
