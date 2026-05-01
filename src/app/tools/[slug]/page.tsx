@@ -494,9 +494,17 @@ export default async function ToolPage({
         {/* Alternatives */}
         {alternatives.length > 0 && (
           <div className="mt-12 pt-8 border-t border-border">
-            <h2 className="text-[18px] font-bold text-foreground mb-4">
-              Alternatives to {tool.name}
-            </h2>
+            <div className="flex items-end justify-between mb-4">
+              <h2 className="text-[18px] font-bold text-foreground">
+                Alternatives to {tool.name}
+              </h2>
+              <Link
+                href={`/alternatives/${tool.slug}`}
+                className="text-[13px] text-blue-600 font-medium hover:underline"
+              >
+                See all 8 →
+              </Link>
+            </div>
             <div className="grid sm:grid-cols-3 gap-3">
               {alternatives.map(alt => (
                 <Link

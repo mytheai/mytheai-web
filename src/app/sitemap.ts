@@ -11,9 +11,14 @@ export const revalidate = 86400
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createStaticClient()
 
-  const [{ data: toolsData }, { data: comparisonsData }] = await Promise.all([
+  const [{ data: toolsData }, { data: comparisonsData }, { data: altToolsData }] = await Promise.all([
     supabase.from('tools').select('slug,updated_at'),
     supabase.from('comparisons').select('slug,updated_at'),
+    supabase
+      .from('tools')
+      .select('slug,updated_at')
+      .or('trending.eq.true,featured.eq.true,editor_pick.eq.true')
+      .limit(150),
   ])
 
   const toolUrls: MetadataRoute.Sitemap = (toolsData ?? []).map(t => ({
@@ -21,6 +26,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(t.updated_at),
     changeFrequency: 'weekly',
     priority: 0.8,
+  }))
+
+  const alternativesUrls: MetadataRoute.Sitemap = (altToolsData ?? []).map(t => ({
+    url: `https://mytheai.com/alternatives/${t.slug}`,
+    lastModified: new Date(t.updated_at),
+    changeFrequency: 'weekly',
+    priority: 0.7,
   }))
 
   const compareUrls: MetadataRoute.Sitemap = (comparisonsData ?? []).map(c => ({
@@ -71,8 +83,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mytheai.com/privacy', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 },
     { url: 'https://mytheai.com/contact', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
     { url: 'https://mytheai.com/submit', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
+    { url: 'https://mytheai.com/methodology', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     ...toolUrls,
     ...compareUrls,
+    ...alternativesUrls,
     ...categoryUrls,
     ...top10Urls,
     ...blogUrls,
