@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import LogoImage from '@/components/ui/LogoImage'
+import ToolScreenshot from '@/components/ui/ToolScreenshot'
 import Link from 'next/link'
 import { createClient, createStaticClient } from '@/lib/supabase'
 import type { Metadata } from 'next'
@@ -390,30 +391,22 @@ export default async function ToolPage({
               </section>
             )}
 
-            {/* Screenshots */}
+            {/* Screenshot */}
             <section>
-              <h2 className="text-[18px] font-bold text-foreground mb-3">Screenshots & Demo</h2>
-              <div className="border border-dashed border-border rounded-xl p-6 bg-card flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#EFF6FF] flex items-center justify-center flex-shrink-0">
-                  <span className="text-[20px]">🖼️</span>
-                </div>
-                <div>
-                  <p className="text-[14px] font-medium text-foreground mb-1">Screenshots coming soon</p>
-                  <p className="text-[12px] text-muted-foreground">
-                    We&apos;re working on adding screenshots for {tool.name}.
-                  </p>
-                  {tool.website_url && (
-                    <a
-                      href={tool.website_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[12px] text-blue-600 hover:underline mt-1 inline-block"
-                    >
-                      See {tool.name} in action ↗
-                    </a>
-                  )}
-                </div>
-              </div>
+              <h2 className="text-[18px] font-bold text-foreground mb-3">{tool.name} Preview</h2>
+              <ToolScreenshot websiteUrl={tool.website_url} name={tool.name} />
+              <p className="text-[12px] text-muted-foreground mt-2">
+                Live screenshot of {tool.name} homepage. {tool.website_url && (
+                  <a
+                    href={tool.website_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    Visit the site ↗
+                  </a>
+                )}
+              </p>
             </section>
 
             {/* Affiliate disclosure */}
