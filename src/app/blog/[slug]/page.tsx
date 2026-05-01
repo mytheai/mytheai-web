@@ -6,6 +6,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { readFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import NewsletterForm from '@/components/newsletter/NewsletterForm'
 
 export const revalidate = 604800
 
@@ -207,6 +208,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <article>
         <MDXRemote source={article.content} components={mdxComponents} />
       </article>
+
+      {/* Inline newsletter capture (high-engagement moment after read) */}
+      <div className="mt-10 p-6 rounded-xl border-2 border-blue-100 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-950/20">
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-700 dark:text-blue-300 mb-1">Weekly Picks</p>
+        <h3 className="text-[18px] font-bold text-foreground mb-2">Get the best AI tools in your inbox</h3>
+        <p className="text-[14px] text-muted-foreground mb-4">
+          Every Tuesday: 5 hand-picked tools, new launches worth trying, and honest takes. No spam, unsubscribe anytime.
+        </p>
+        <NewsletterForm />
+      </div>
 
       {/* Compare tools CTA */}
       <div className="mt-10 p-5 rounded-xl border border-[#BFDBFE] bg-[#EFF6FF]">

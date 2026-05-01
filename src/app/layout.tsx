@@ -4,6 +4,7 @@ import Script from 'next/script'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import StickyMobileBar from '@/components/newsletter/StickyMobileBar'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <StickyMobileBar />
         <Script
           src="https://plausible.io/js/script.outbound-links.file-downloads.js"
           data-domain="mytheai.com"
