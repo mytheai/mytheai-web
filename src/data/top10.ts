@@ -1098,6 +1098,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📋',
     slugs: ['evisort', 'linksquares', 'onetrust', 'bigid', 'securiti'],
   },
+  {
+    slug: 'best-ai-real-estate-tools',
+    title: 'Best AI Real Estate Tools 2026',
+    description: 'The best AI-powered real estate platforms in 2026 - from brokerage intelligence that identifies likely sellers before they list, to commercial property data platforms for off-market deal origination.',
+    category: 'Real Estate',
+    emoji: '🏠',
+    slugs: ['compass', 'reonomy', 'cherre', 'leverton', 'rex-real-estate'],
+  },
+  {
+    slug: 'best-ai-property-data-platforms',
+    title: 'Best AI Property Data Platforms 2026',
+    description: 'The best AI property data and analytics platforms in 2026 - commercial real estate intelligence, multifamily portfolio analytics, and institutional data unification tools.',
+    category: 'Real Estate',
+    emoji: '🏢',
+    slugs: ['reonomy', 'cherre', 'rentlytics', 'skyline-ai', 'leverton'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
