@@ -43,12 +43,19 @@ export default function Header() {
               </linearGradient>
             </defs>
             <rect width="32" height="32" rx="8" fill="url(#logo-grad)" />
-            <polyline points="7,23 7,9 16,17 25,9 25,23" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            <circle cx="7" cy="9" r="2.2" fill="white" />
-            <circle cx="16" cy="17" r="1.8" fill="white" opacity="0.8" />
-            <circle cx="25" cy="9" r="2.2" fill="white" />
+            {/* Magnifying glass lens */}
+            <circle cx="12.5" cy="14" r="5" stroke="white" strokeWidth="2" fill="none" />
+            {/* Handle */}
+            <line x1="16.2" y1="17.7" x2="22" y2="23.5" stroke="white" strokeWidth="2.4" strokeLinecap="round" />
+            {/* AI sparkle */}
+            <path d="M22.5 7 L23.3 9.7 L26 10.5 L23.3 11.3 L22.5 14 L21.7 11.3 L19 10.5 L21.7 9.7 Z" fill="white" />
           </svg>
-          <span className="font-bold text-[17px] text-foreground tracking-tight">MytheAi</span>
+          <span
+            className="font-bold text-[17px] tracking-tight text-transparent bg-clip-text"
+            style={{ backgroundImage: 'linear-gradient(135deg, #60A5FA 0%, #1D4ED8 100%)' }}
+          >
+            MytheAi
+          </span>
         </Link>
 
         {/* Right group: nav + actions, always pushed right */}
