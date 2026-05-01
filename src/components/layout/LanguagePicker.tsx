@@ -78,11 +78,29 @@ export default function LanguagePicker() {
       document.body.appendChild(s)
     }
 
+    // Defensive: remove GT banner iframe + reset body offset whenever they reappear.
+    // CSS rules sometimes lose to Google's inline style on body (top: 40px).
+    function purgeBanner() {
+      document
+        .querySelectorAll<HTMLElement>(
+          'iframe.skiptranslate, iframe.goog-te-banner-frame, .goog-te-banner-frame'
+        )
+        .forEach(el => el.remove())
+      if (document.body.style.top) document.body.style.top = ''
+      if (document.documentElement.style.top) document.documentElement.style.top = ''
+    }
+    const purgeInterval = window.setInterval(purgeBanner, 300)
+    const stopPurge = window.setTimeout(() => window.clearInterval(purgeInterval), 8000)
+
     function onClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
     }
     document.addEventListener('mousedown', onClickOutside)
-    return () => document.removeEventListener('mousedown', onClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', onClickOutside)
+      window.clearInterval(purgeInterval)
+      window.clearTimeout(stopPurge)
+    }
   }, [])
 
   function pick(code: string) {
