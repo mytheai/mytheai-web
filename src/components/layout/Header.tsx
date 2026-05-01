@@ -92,12 +92,12 @@ export default function Header() {
             </button>
 
             {/* Find Your Stack */}
-            <button className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[13px] font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors">
+            <Link href="/quiz" className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-[13px] font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M12 2l2.5 8H22l-7 5 2.5 8.5L12 19l-6.5 4.5L8 15l-7-5h7.5z" />
               </svg>
               Find Your Stack
-            </button>
+            </Link>
 
             {/* Mobile hamburger */}
             <button
@@ -138,12 +138,16 @@ export default function Header() {
               </Link>
             ))}
             <div className="pt-2 mt-1 border-t border-border">
-              <button className="py-2.5 px-3 rounded-lg text-[14px] font-semibold flex items-center gap-2 text-blue-600">
+              <Link
+                href="/quiz"
+                onClick={() => setMenuOpen(false)}
+                className="py-2.5 px-3 rounded-lg text-[14px] font-semibold flex items-center gap-2 text-blue-600"
+              >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2l2.5 8H22l-7 5 2.5 8.5L12 19l-6.5 4.5L8 15l-7-5h7.5z" />
                 </svg>
                 Find Your Stack
-              </button>
+              </Link>
             </div>
           </nav>
         </div>
