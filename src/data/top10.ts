@@ -800,6 +800,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🏥',
     slugs: ['regard-clinical', 'atropos-health', 'tempus-ai', 'viz-ai', 'paige-ai'],
   },
+  {
+    slug: 'best-ai-compliance-automation',
+    title: 'Best AI Compliance Automation Tools 2026',
+    description: 'The best AI compliance automation platforms in 2026 - automated SOC 2, ISO 27001, and HIPAA certification tools that cut audit prep from months to weeks.',
+    category: 'Compliance & Security',
+    emoji: '🔒',
+    slugs: ['vanta', 'drata', 'secureframe', 'sprinto', 'auditboard'],
+  },
+  {
+    slug: 'best-ai-contract-intelligence',
+    title: 'Best AI Contract Intelligence Tools 2026',
+    description: 'The best AI contract intelligence platforms in 2026 - tools that extract obligations, renewal dates, and risk terms from contract repositories at scale.',
+    category: 'Legal AI',
+    emoji: '📋',
+    slugs: ['evisort', 'linksquares', 'onetrust', 'bigid', 'securiti'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
