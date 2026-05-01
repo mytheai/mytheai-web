@@ -102,6 +102,13 @@ export default function LanguagePicker() {
     writeCookie(code)
     setCurrent(code)
     setOpen(false)
+
+    const combo = document.querySelector<HTMLSelectElement>('select.goog-te-combo')
+    if (combo) {
+      combo.value = code === 'en' ? '' : code
+      combo.dispatchEvent(new Event('change'))
+      return
+    }
     window.location.reload()
   }
 
@@ -148,9 +155,6 @@ export default function LanguagePicker() {
               </button>
             )
           })}
-          <div className="px-3 py-2 border-t border-border text-[10.5px] text-muted-foreground leading-snug">
-            Translation by Google. Quality may vary - English remains canonical.
-          </div>
         </div>
       )}
 
