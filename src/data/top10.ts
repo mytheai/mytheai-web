@@ -1114,6 +1114,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🏢',
     slugs: ['reonomy', 'cherre', 'rentlytics', 'skyline-ai', 'leverton'],
   },
+  {
+    slug: 'best-ai-construction-tools',
+    title: 'Best AI Construction Tools 2026',
+    description: 'The best AI construction site capture, progress monitoring, and document intelligence tools in 2026 - platforms that reduce documentation overhead and surface schedule risk before delays compound.',
+    category: 'Construction AI',
+    emoji: '🏗️',
+    slugs: ['openspace', 'buildots', 'disperse', 'togal-ai', 'trunk-tools'],
+  },
+  {
+    slug: 'best-ai-design-and-architecture-tools',
+    title: 'Best AI Design and Architecture Tools 2026',
+    description: 'The best AI generative design and development feasibility tools in 2026 - platforms that compress early-stage massing analysis, regulatory compliance checking, and site feasibility from weeks to minutes.',
+    category: 'Construction AI',
+    emoji: '🏛️',
+    slugs: ['autodesk-forma', 'archistar', 'testfit', 'spacemaker', 'join-build'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
