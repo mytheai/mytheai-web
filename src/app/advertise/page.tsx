@@ -122,7 +122,7 @@ const FAQS = [
 
 export default function AdvertisePage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">
+    <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       {/* Header */}
       <div className="mb-12">

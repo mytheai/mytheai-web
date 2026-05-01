@@ -194,7 +194,7 @@ export default async function HomePage() {
 
       {/* ── HERO: Search First ────────────────────────────────────────────── */}
       <section className="hero-bg py-10 md:py-20">
-        <div className="max-w-2xl mx-auto px-4 text-center">
+        <div className="max-w-3xl mx-auto px-4 md:px-5 text-center">
 
           <h1
             className="text-[34px] sm:text-[44px] md:text-[56px] font-extrabold leading-[1.08] mb-6 text-foreground"
@@ -292,27 +292,40 @@ export default async function HomePage() {
                 <Link
                   key={tool.id}
                   href={`/tools/${tool.slug}`}
-                  className="bg-card border border-border rounded-xl p-5 block transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300"
+                  className="bg-card border border-border rounded-xl p-5 block transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300 flex flex-col"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} />
-                      <div>
-                        <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
-                        <div className="text-[12px] text-muted-foreground">{tool.tags?.[0] ?? ''}</div>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1">
+                          <span className="text-[14px] font-semibold text-foreground truncate">{tool.name}</span>
+                          <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="#2563EB"
+                            className="flex-shrink-0"
+                            aria-label="Editorially verified"
+                          >
+                            <path d="M12 2 L14.5 4 L17.5 3.2 L19 6 L22 7 L21 10 L22 13 L19 14 L17.5 16.8 L14.5 16 L12 18 L9.5 16 L6.5 16.8 L5 14 L2 13 L3 10 L2 7 L5 6 L6.5 3.2 L9.5 4 Z" />
+                            <path d="M8 11 L11 14 L16 9" stroke="white" strokeWidth="2.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                        <div className="text-[12px] text-muted-foreground truncate">{tool.tags?.[0] ?? ''}</div>
                       </div>
                     </div>
                     <PricingBadge type={tool.pricing_type} />
                   </div>
-                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-4 line-clamp-2">{tool.tagline}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <Stars rating={tool.rating} />
-                      <span className="text-[13px] font-semibold text-foreground">{tool.rating.toFixed(1)}</span>
-                      <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k)</span>
-                    </div>
-                    <span className="text-[12px] font-semibold text-blue-600">View →</span>
+                  <p className="text-[13px] text-muted-foreground leading-relaxed mb-4 line-clamp-2 flex-1">{tool.tagline}</p>
+                  <div className="flex items-center gap-1.5 mb-3">
+                    <Stars rating={tool.rating} />
+                    <span className="text-[13px] font-semibold text-foreground">{tool.rating.toFixed(1)}</span>
+                    <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k reviews)</span>
                   </div>
+                  <span className="block w-full text-center text-[13px] font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors py-2.5 rounded-lg">
+                    View {tool.name} →
+                  </span>
                 </Link>
               ))}
             </div>

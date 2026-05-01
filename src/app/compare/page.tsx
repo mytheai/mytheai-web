@@ -114,7 +114,7 @@ export default async function ComparePage({
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
-      <div className="max-w-5xl mx-auto px-4 md:px-5 py-10 md:py-14">
+      <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
         <div className="mb-8">
           <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Head-to-Head</p>
           <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">

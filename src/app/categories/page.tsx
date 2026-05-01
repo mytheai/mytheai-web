@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function CategoriesPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">
+    <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-10">
         <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Browse</p>
