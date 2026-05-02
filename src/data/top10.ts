@@ -2190,6 +2190,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🛡️',
     slugs: ['lemonade', 'next-insurance', 'coalition', 'socotra', 'zelros'],
   },
+  {
+    slug: 'best-ai-hotel-management-tools',
+    title: 'Best AI Hotel Management Tools 2026',
+    description: 'The best AI-powered hotel management platforms in 2026 - from modern cloud PMS and channel distribution to guest experience automation and direct booking optimization.',
+    category: 'Hospitality',
+    emoji: '🏨',
+    slugs: ['mews', 'cloudbeds', 'siteminder', 'guesty', 'revinate'],
+  },
+  {
+    slug: 'best-ai-revenue-management',
+    title: 'Best AI Revenue Management Tools 2026',
+    description: 'The best AI-powered hotel revenue management platforms in 2026 - from enterprise open pricing and demand forecasting to automated dynamic pricing for independent properties.',
+    category: 'Hospitality',
+    emoji: '📈',
+    slugs: ['duetto', 'atomize', 'revinate', 'mews'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
