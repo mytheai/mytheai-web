@@ -3,6 +3,8 @@ import LogoImage from '@/components/ui/LogoImage'
 import ToolScreenshot from '@/components/ui/ToolScreenshot'
 import Link from 'next/link'
 import { createClient, createStaticClient } from '@/lib/supabase'
+import ReviewForm from '@/components/reviews/ReviewForm'
+import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
 import type { Metadata } from 'next'
 
 export const revalidate = 86400
@@ -146,10 +148,20 @@ export default async function ToolPage({
   if (!tool) notFound()
 
   const alternatives = await getAlternatives(slug, tool.tags ?? [])
+  const userReviews = await getApprovedReviews(slug)
   const year = new Date().getFullYear()
   const updatedDate = new Date(tool.updated_at).toLocaleDateString('en-US', {
     month: 'long', year: 'numeric',
   })
+
+  // Combined aggregate: editorial baseline (tool.rating, tool.review_count)
+  // plus approved user reviews. User-weighted rating ranks higher with more user input.
+  const userReviewCount = userReviews.length
+  const userRatingSum = userReviews.reduce((s, r) => s + r.rating, 0)
+  const totalReviewCount = tool.review_count + userReviewCount
+  const totalRating = totalReviewCount > 0
+    ? (tool.rating * tool.review_count + userRatingSum) / totalReviewCount
+    : tool.rating
 
   // FAQ data
   const faqs = [
@@ -193,10 +205,10 @@ export default async function ToolPage({
       price: tool.pricing_starting_price ?? 0,
       priceCurrency: 'USD',
     },
-    aggregateRating: tool.review_count > 0 ? {
+    aggregateRating: totalReviewCount > 0 ? {
       '@type': 'AggregateRating',
-      ratingValue: tool.rating,
-      reviewCount: tool.review_count,
+      ratingValue: Number(totalRating.toFixed(2)),
+      reviewCount: totalReviewCount,
     } : undefined,
   }
 
@@ -493,6 +505,20 @@ export default async function ToolPage({
               Last verified: {updatedDate}
             </p>
           </div>
+        </div>
+
+        {/* User reviews */}
+        <div className="mt-12 pt-8 border-t border-border">
+          <div className="flex items-end justify-between mb-4">
+            <h2 className="text-[18px] font-bold text-foreground">
+              User reviews
+              {userReviewCount > 0 && <span className="text-[13px] text-muted-foreground font-normal ml-2">({userReviewCount})</span>}
+            </h2>
+          </div>
+          <div className="mb-5">
+            <ReviewForm toolSlug={tool.slug} toolName={tool.name} />
+          </div>
+          <ReviewList toolSlug={tool.slug} />
         </div>
 
         {/* Alternatives */}
