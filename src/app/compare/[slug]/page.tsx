@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
 import { createClient, createStaticClient } from '@/lib/supabase'
+import { getCompareEnrichment } from '@/data/compareEnrichment'
 import type { Metadata } from 'next'
 
 export const revalidate = 86400
@@ -135,6 +136,8 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
   const scoreA = criteria.reduce((sum, c) => sum + (c.tool_a_score ?? 0), 0)
   const scoreB = criteria.reduce((sum, c) => sum + (c.tool_b_score ?? 0), 0)
 
+  const enrichment = getCompareEnrichment(slug)
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -143,6 +146,16 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
     url: `https://mytheai.com/compare/${slug}`,
     dateModified: cmp.updated_at,
   }
+
+  const faqJsonLd = enrichment ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: enrichment.faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  } : null
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -158,6 +171,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
 
       <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
@@ -268,6 +282,28 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
           )}
         </section>
 
+        {/* Bottom Line (enriched) */}
+        {enrichment && (
+          <section className="mb-10 p-6 rounded-xl border-2 border-blue-100 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-950/20">
+            <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-700 dark:text-blue-300 mb-2">Bottom Line</p>
+            <p className="text-[15px] text-foreground leading-relaxed">{enrichment.bottomLine}</p>
+          </section>
+        )}
+
+        {/* When to pick A/B (enriched) */}
+        {enrichment && (
+          <section className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="p-5 rounded-xl border border-border bg-card">
+              <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-2">Pick {toolA.name}</p>
+              <p className="text-[14px] text-muted-foreground leading-relaxed">{enrichment.whenToPickA}</p>
+            </div>
+            <div className="p-5 rounded-xl border border-border bg-card">
+              <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-2">Pick {toolB.name}</p>
+              <p className="text-[14px] text-muted-foreground leading-relaxed">{enrichment.whenToPickB}</p>
+            </div>
+          </section>
+        )}
+
         {/* CTAs */}
         <div className="flex flex-wrap gap-3 mb-10">
           <a href={`/go/${toolA.slug}`} target="_blank" rel="noopener noreferrer sponsored"
@@ -289,6 +325,21 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
             Full {toolB.name} review →
           </Link>
         </div>
+
+        {/* FAQ (enriched) */}
+        {enrichment && enrichment.faqs.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-[20px] font-bold text-foreground mb-5">Frequently asked</h2>
+            <div className="space-y-4">
+              {enrichment.faqs.map((faq, i) => (
+                <div key={i} className="p-5 rounded-xl border border-border bg-card">
+                  <p className="text-[15px] font-bold text-foreground mb-2">{faq.q}</p>
+                  <p className="text-[14px] text-muted-foreground leading-relaxed">{faq.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Disclosure */}
         <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
