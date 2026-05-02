@@ -496,6 +496,246 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Does either include email sending?', a: 'Apollo does (built-in sequences and inbox warmup). Clay does not (Clay is pure data). Most Clay users pair it with Smartlead, Instantly, or other dedicated email-sending tools. Apollo is the more complete starting stack; Clay is the more capable data engine.' },
     ],
   },
+
+  'stability-ai-vs-midjourney': {
+    bottomLine: 'Stability AI and Midjourney are both image generation leaders but serve different audiences. Stability AI ships open-weights models (Stable Diffusion 3.5, SDXL, SD3) that anyone can run locally or fine-tune. Midjourney is closed, Discord-and-web only, and the aesthetic leader. Pick Stability AI if you need self-hosting, fine-tuning, or open weights for product integration. Pick Midjourney if you want the best out-of-the-box artistic quality and do not need to own the inference. Stability AI ships free open weights plus paid API; Midjourney is $10-60/month subscription.',
+    whenToPickA: 'You need open weights for self-hosting, custom fine-tuning, or commercial product integration where you own inference. Stable Diffusion 3.5 plus the broader ecosystem (ComfyUI, A1111, Forge) is the most flexible image gen stack. Best for developers, researchers, and product teams.',
+    whenToPickB: 'You generate images for art, design, or creative work where aesthetic quality matters more than control or licensing. Midjourney v6.1 produces the most consistently beautiful output without prompt engineering effort. Best for designers, illustrators, and creators.',
+    faqs: [
+      { q: 'Is Stable Diffusion really free?', a: 'Yes, the model weights are free for non-commercial use under the Stability AI Community License. SD 3.5 Large requires a Stability membership ($20/mo) for commercial use over $1M revenue. For most users, the open weights are functionally free.' },
+      { q: 'Which has better image quality?', a: 'Midjourney, on aesthetics. Stable Diffusion 3.5 is competitive on prompt adherence but Midjourney still wins on artistic style and composition out of the box. With careful prompting and ControlNet, Stable Diffusion can match or exceed Midjourney on specific use cases.' },
+      { q: 'Can I run Midjourney locally?', a: 'No. Midjourney is closed-source. The closest local equivalent is Stable Diffusion via ComfyUI or Forge, optionally with style LoRAs trained on Midjourney-like aesthetics.' },
+      { q: 'Which has better text rendering?', a: 'Both struggle with text. Stable Diffusion 3.5 is somewhat better than Midjourney v6.1 on text rendering. For reliable text in images, Flux 1.1 Pro or Ideogram are better choices than either.' },
+    ],
+  },
+
+  'chatpdf-vs-notebooklm': {
+    bottomLine: 'ChatPDF and NotebookLM both let you chat with documents, but solve different jobs. ChatPDF is the simple, no-account PDF chat tool: drop in a PDF, ask questions, get answers with page citations. NotebookLM is the multi-source research workspace: upload up to 50 sources (PDFs, articles, transcripts, links) and chat across them with Audio Overviews, mind maps, and study guides. ChatPDF is faster for one-off PDF questions; NotebookLM is more capable for sustained research. ChatPDF Free covers light use; ChatPDF Plus is $20/mo. NotebookLM is free with a Google account.',
+    whenToPickA: 'You have one PDF and need a quick answer. ChatPDF requires no signup, no setup, just upload and ask. Best for students, researchers, and professionals doing one-off document Q&A.',
+    whenToPickB: 'You research a topic from multiple sources and want sustained context across them. NotebookLM holds 50 sources per notebook with cross-source citations and unique features like Audio Overviews. Best for analysts, students writing papers, and journalists synthesising research.',
+    faqs: [
+      { q: 'Is NotebookLM really free?', a: 'Yes, fully free for individuals with a Google account. Limits: 100 notebooks, 50 sources per notebook, generous daily query caps. Paid Plus tier ($20/mo via Google One AI Premium) raises limits.' },
+      { q: 'Can ChatPDF handle long PDFs?', a: 'Yes. ChatPDF Plus supports PDFs up to 2,000 pages and 32MB. The free tier limits PDFs to 120 pages and 10MB. For long contracts or textbooks, paid tier is required.' },
+      { q: 'Which gives better citations?', a: 'NotebookLM, slightly. NotebookLM cites specific source passages with quote previews. ChatPDF cites page numbers but with less context. For academic work where citation precision matters, NotebookLM has the edge.' },
+      { q: 'Can either browse the web?', a: 'No, neither. Both work strictly on uploaded sources. For web-grounded answers, use Perplexity or Gemini instead.' },
+    ],
+  },
+
+  'mailchimp-vs-beehiiv': {
+    bottomLine: 'Mailchimp and Beehiiv target different sides of email. Mailchimp is the broad SMB email marketing platform: newsletters, campaigns, automations, ecommerce flows. Beehiiv is the creator-focused newsletter platform: subscriber growth, monetisation tools, ad network, and creator-friendly UX. Mailchimp wins for businesses sending campaigns to existing customers. Beehiiv wins for creators building paid newsletters from scratch. Mailchimp Free covers 500 contacts and 1000 sends/month. Beehiiv Free covers 2,500 subscribers (more generous on subscribers) but charges for monetisation.',
+    whenToPickA: 'You run a business sending email campaigns, transactional emails, or ecommerce flows. Mailchimp is broader and integrates with Shopify, WooCommerce, and most CRMs. Best for SMBs, B2B marketers, and ecommerce stores under $100K revenue.',
+    whenToPickB: 'You are a creator building a paid newsletter and want monetisation tools (paid subscriptions, ad network, Boosts) plus better creator UX. Beehiiv is built for newsletter operators, not general email marketing. Best for solo creators, journalists, and newsletter-first media businesses.',
+    faqs: [
+      { q: 'Which is cheaper for newsletters?', a: 'Beehiiv at scale. Beehiiv flat fee structure beats Mailchimp pricing once you exceed ~2,000 subscribers. Mailchimp pricing scales steeply on contacts; Beehiiv stays flat at most tiers.' },
+      { q: 'Does Beehiiv have automations?', a: 'Yes, basic automations: welcome series, segmentation by behaviour. The automation editor is simpler than Mailchimp Customer Journey Builder. For complex flows (cart abandonment, multi-step nurture), Mailchimp is more capable.' },
+      { q: 'Which has better deliverability?', a: 'Both are competent. Mailchimp has a longer reputation track record but is occasionally flagged as spam-prone due to large free-tier user base. Beehiiv deliverability has been consistently strong since launch. For mission-critical email, both pass; choose based on features not deliverability.' },
+      { q: 'Can I migrate from Mailchimp to Beehiiv?', a: 'Yes. Beehiiv has a free Mailchimp import tool that pulls subscribers, segments, and recent campaigns. The harder work is rebuilding automations and templates, which usually takes 1-2 weeks for a serious setup.' },
+    ],
+  },
+
+  'klaviyo-vs-activecampaign': {
+    bottomLine: 'Klaviyo and ActiveCampaign are leading email + marketing automation platforms with different sweet spots. Klaviyo is ecommerce-specialised: deep Shopify and BigCommerce integration, segmentation by purchase behaviour, predictive analytics. ActiveCampaign is broader: email plus CRM plus marketing automation plus sales automation, suited to B2B and service businesses. Klaviyo wins for DTC ecommerce. ActiveCampaign wins for B2B, SaaS, and service businesses needing CRM integration. Klaviyo costs $0-$1,800/mo. ActiveCampaign costs $19-$229/mo. ActiveCampaign is cheaper at small scale; Klaviyo wins on ecommerce-specific revenue.',
+    whenToPickA: 'You run a DTC ecommerce store on Shopify, BigCommerce, or WooCommerce. Klaviyo segmentation by order history, predictive lifetime value, and ecommerce flows generate the highest revenue per send. Best for DTC brands, ecommerce founders.',
+    whenToPickB: 'You run a B2B, SaaS, or service business and need email plus CRM plus pipeline automation. ActiveCampaign Sales Hub provides CRM functionality competitive with HubSpot at a fraction of the price. Best for B2B marketers, agencies, and service businesses.',
+    faqs: [
+      { q: 'Is ActiveCampaign cheaper than Klaviyo?', a: 'At small scale (under 1,000 contacts), yes. ActiveCampaign Lite is $19/mo for 1,000 contacts. Klaviyo Free covers 250 contacts and Email tier starts ~$45/mo for 1,500. At scale (10K+ contacts) the gap closes and depends on send frequency.' },
+      { q: 'Can ActiveCampaign do ecommerce?', a: 'Yes, but with limits. ActiveCampaign integrates with Shopify and offers ecommerce templates and basic flows. The depth of segmentation by order data is significantly less than Klaviyo. For ecommerce-first businesses, Klaviyo flows generate 30-40% more revenue per send.' },
+      { q: 'Which has better automations?', a: 'ActiveCampaign, on visual workflow editor and CRM-tied automations. Klaviyo automations are excellent for ecommerce flows but the editor is less flexible for non-ecommerce logic. For complex multi-channel automation, ActiveCampaign wins.' },
+      { q: 'Does either include SMS?', a: 'Klaviyo SMS is built-in (additional cost per send). ActiveCampaign SMS is available on higher plans. Klaviyo SMS deliverability and segmentation are stronger because they share the email infrastructure.' },
+    ],
+  },
+
+  'veed-io-vs-submagic': {
+    bottomLine: 'VEED and Submagic are video editing tools at different positioning. VEED is the all-in-one online video editor: trim, captions, voice cloning, AI avatars, collaboration. Submagic is the AI-first short-form video editor: auto-captions, viral templates, B-roll suggestions, optimised for TikTok, Reels, Shorts. VEED is broader; Submagic is faster for short-form social content. VEED costs $0-$30/mo. Submagic costs $20-$48/mo. For mixed video work, VEED. For pure short-form social output, Submagic.',
+    whenToPickA: 'You edit longer-form video (YouTube, podcasts, courses) and want one tool for trim, captions, voice, and collaboration. VEED Pro is the cleanest browser-based editor at this price point. Best for YouTubers, course creators, marketing teams.',
+    whenToPickB: 'You produce short-form vertical video for TikTok, Reels, or YouTube Shorts and want viral-caption styles done fast. Submagic templates and auto-B-roll save 30-60 minutes per video. Best for social-first creators and SMM teams.',
+    faqs: [
+      { q: 'Can VEED do auto-captions?', a: 'Yes, VEED auto-captions are excellent and support 100+ languages. Submagic captions are more visually styled (animated, viral templates) but VEED captions are more accurate on transcription.' },
+      { q: 'Does Submagic edit long videos?', a: 'It can, but is optimised for under-90-second clips. Long-form video (10+ minutes) works but the auto-features (B-roll, viral captions) are less effective. For long-form, VEED or Descript are better.' },
+      { q: 'Which is faster for short clips?', a: 'Submagic, by a wide margin. The AI auto-fills captions, B-roll, and music cuts in 30 seconds. VEED requires manual caption styling and B-roll selection. For TikTok-volume creators, Submagic saves real time.' },
+      { q: 'Can either replace CapCut?', a: 'For social-first creators, Submagic plus the CapCut mobile app is a better stack than VEED. CapCut handles raw editing on phone, Submagic adds AI captions and templates. VEED replaces CapCut for browser-based workflows.' },
+    ],
+  },
+
+  'ideogram-vs-adobe-firefly': {
+    bottomLine: 'Ideogram and Adobe Firefly are text-aware image generation tools at different positioning. Ideogram is the standalone, design-and-marketing focused tool: best-in-class text rendering, magic prompt rewriting, generous free tier. Adobe Firefly is integrated into Creative Cloud (Photoshop, Illustrator) with commercial-safe training data and enterprise features. Ideogram costs $0-$20/mo. Firefly is $9.99/mo standalone or included in Creative Cloud. Pick Ideogram for fast standalone output. Pick Firefly if you live in Adobe apps and need commercial-safe generation.',
+    whenToPickA: 'You generate marketing visuals, posters, social assets, or any image with text. Ideogram has best-in-class text rendering and the free tier is genuinely usable. Best for marketers, designers, and SMB owners outside the Adobe ecosystem.',
+    whenToPickB: 'You work in Photoshop, Illustrator, or InDesign and want native AI generation. Firefly Generative Fill, Generative Expand, and Text Effects are deeply integrated into Adobe apps. Best for graphic designers, ad agencies, and enterprises requiring IP-safe AI output.',
+    faqs: [
+      { q: 'Is Firefly really IP-safe?', a: 'Yes, Adobe trained Firefly on Adobe Stock plus public domain content with a commercial-safe guarantee. For brands and enterprises worried about copyright lawsuits over AI training data, Firefly is the safest choice in the category.' },
+      { q: 'Which has better text rendering?', a: 'Roughly equivalent in late 2026. Both produce readable text most of the time. Ideogram has slight edge on marketing typography (bold poster text); Firefly has slight edge on integration with vector text in Illustrator.' },
+      { q: 'Does Firefly come with Creative Cloud?', a: 'Yes. Creative Cloud All Apps ($59.99/mo) includes Firefly generative credits. Standalone Firefly is $9.99/mo for users not on Creative Cloud. For existing Adobe customers, Firefly is effectively free.' },
+      { q: 'Can either replace Midjourney?', a: 'For specific use cases, yes. Both are weaker than Midjourney on artistic aesthetic but stronger on text rendering and (for Firefly) commercial safety. Most professional designers run multiple tools.' },
+    ],
+  },
+
+  'krea-ai-vs-midjourney': {
+    bottomLine: 'Krea AI and Midjourney target different image generation needs. Krea is the real-time generation tool with multi-model access (Flux, Stable Diffusion, plus Krea proprietary models) and unique features like image upscaling, video generation, and live painting. Midjourney is the dedicated artistic image tool with the strongest aesthetic out of the box. Krea costs $0-$60/mo. Midjourney costs $10-$60/mo. Pick Krea for multi-model flexibility plus video. Pick Midjourney for pure image art quality.',
+    whenToPickA: 'You want access to multiple top image models (Flux, SD3.5, plus Krea models) in one subscription, real-time generation, and unique features (live painting, upscaling, video). Best for designers, art directors, and creators who experiment across models.',
+    whenToPickB: 'You want the best dedicated artistic image generator with consistent aesthetic. Midjourney v6.1 still produces the most beautiful single-prompt output. Best for illustrators, concept artists, and creators where aesthetic is the deliverable.',
+    faqs: [
+      { q: 'Does Krea have video generation?', a: 'Yes. Krea integrates with Veo, Runway, Pika, and other video models in one interface. For mixed image and video workflows, Krea is more efficient than juggling separate subscriptions.' },
+      { q: 'Is Krea real-time generation real?', a: 'Yes, Krea Live is genuinely real-time: as you adjust the prompt or sketch, the image updates in <1 second. The feature is uniquely useful for iterative ideation. Midjourney has no equivalent.' },
+      { q: 'Which is cheaper?', a: 'Roughly equivalent. Krea Free is more generous on free credits; Midjourney Basic is cheaper on monthly cost ($10 vs Krea Pro $20). For heavy users, both land at $30-60/mo.' },
+      { q: 'Can Krea match Midjourney aesthetic?', a: 'When using Krea proprietary models or Flux Pro through Krea, output quality is competitive with Midjourney v6.1. Krea slightly underperforms Midjourney on default style consistency without prompt engineering. For maximum aesthetic with minimal effort, Midjourney still wins.' },
+    ],
+  },
+
+  'windsurf-vs-bolt': {
+    bottomLine: 'Windsurf and Bolt are AI-first dev tools at different sophistication levels. Windsurf is a full IDE (VS Code fork) with Cascade agent for production codebases. Bolt is a browser-based app generator: type a description, get a deployable Next.js or Astro app. Windsurf is for engineers shipping production code daily. Bolt is for non-engineers, designers, and engineers building throwaway prototypes. They rarely compete in the same workflow. Windsurf costs $15/mo. Bolt costs $0-$50/mo.',
+    whenToPickA: 'You write code daily and want an AI-augmented IDE for production work. Windsurf Pro provides Cascade agent, repo-aware context, and Composer-style multi-file edits. Best for engineers and engineering teams.',
+    whenToPickB: 'You need a working app from a description without writing code. Bolt generates full-stack Next.js or Astro apps that deploy in browser. Best for non-engineers, founders building MVPs, and designers prototyping.',
+    faqs: [
+      { q: 'Can Bolt replace an IDE?', a: 'Not for production engineering. Bolt generates apps fast but lacks the depth (debugging, testing, large refactors) that production work requires. Most engineers using Bolt do prototyping there and migrate to Cursor or Windsurf for ongoing development.' },
+      { q: 'Is Windsurf really $15/mo?', a: 'Yes, Windsurf Pro is $15/mo (cheaper than Cursor at $20/mo). Free tier covers 50 Cascade messages/month which is genuinely usable. Most professional engineers find Pro pays for itself in week one.' },
+      { q: 'Can I deploy from Bolt directly?', a: 'Yes, Bolt deploys to Netlify, Vercel, or StackBlitz with one click. The deployment URL is shareable. For production hosting, you typically download the code and deploy to your own infrastructure.' },
+      { q: 'Which is better for learning to code?', a: 'Bolt for absolute beginners (no setup, immediate working app). Windsurf for those past beginner stage who need to learn how production code is structured. Bolt is the gentlest entry point.' },
+    ],
+  },
+
+  'play-ht-vs-elevenlabs': {
+    bottomLine: 'Play.ht and ElevenLabs are leading AI voice generation platforms. ElevenLabs is the quality leader with the most realistic emotional range, multilingual support, and a real-time API used by AI phone agents. Play.ht is competitive on quality with broader stock voice library and a stronger team workflow for podcasters. ElevenLabs costs $5-$330/mo. Play.ht costs $0-$99/mo. ElevenLabs wins on raw voice quality and real-time use cases. Play.ht wins on stock voice variety and team collaboration features.',
+    whenToPickA: 'You produce podcasts, audiobooks, or videos with stock voices and want a polished team workflow. Play.ht has 800+ stock voices and a clean editor for long-form audio production. Best for podcasters, audiobook narrators, and team-based audio production.',
+    whenToPickB: 'You need the most realistic voice quality, voice cloning, real-time API, or multilingual support. ElevenLabs is the quality leader and the standard for AI phone agents, audiobook production, and creator voice work. Best for premium audio creators and AI app developers.',
+    faqs: [
+      { q: 'Which has more realistic voices?', a: 'ElevenLabs, in late 2026. The emotional range, breath sounds, and natural pacing are best in the category. Play.ht is competitive on neutral narration but lags on expressive voice work.' },
+      { q: 'Does Play.ht have voice cloning?', a: 'Yes. Play.ht Voice Cloning is similar in capability to ElevenLabs Instant Voice Cloning. Quality favours ElevenLabs slightly; Play.ht is faster to set up. For team-based podcast production, Play.ht workflow wins.' },
+      { q: 'Which is cheaper?', a: 'Roughly equivalent. Play.ht Free is more generous (12,500 chars/mo) than ElevenLabs Free (10K chars/mo). Top-tier pricing is similar. Pick based on use case fit, not cost.' },
+      { q: 'Can either generate voice in real time?', a: 'ElevenLabs has the more mature real-time API used by Vapi, Synthflow, Bland AI, and many production voice agents. Play.ht real-time is competitive but newer with smaller production deployment. For voice agents, ElevenLabs is the safer choice.' },
+    ],
+  },
+
+  'capcut-vs-veed-io': {
+    bottomLine: 'CapCut and VEED are video editors at different positioning. CapCut is mobile-first, owned by ByteDance, optimised for TikTok-style short video with massive template library and AI features. VEED is browser-based, professional-friendly with team collaboration, captions, and AI features. CapCut is free for individual mobile use; VEED costs $0-$30/mo. CapCut wins for mobile creators and TikTok-volume short-form. VEED wins for browser-based collaborative editing and longer-form content.',
+    whenToPickA: 'You edit short video on mobile (TikTok, Reels, Shorts) and want the largest template library plus AI features at zero cost. CapCut is the standard tool for short-form social creators. Best for TikTok creators, mobile-first SMM teams, and casual users.',
+    whenToPickB: 'You edit video in browser, work across devices, or collaborate with a team. VEED Pro provides captions, voice cloning, AI avatars, and shared workspaces. Best for marketing teams, course creators, and professionals editing on desktop.',
+    faqs: [
+      { q: 'Is CapCut really free?', a: 'CapCut individual mobile use is free with most features. CapCut Pro is $7.99/mo for advanced features. CapCut Commercial (for businesses with ad spend) requires a separate license per ByteDance terms.' },
+      { q: 'Which has better AI?', a: 'Roughly equivalent for short-form. CapCut AI is integrated for templates, auto-captions, voice changing. VEED AI covers captions, cloning, avatars. For polished long-form, VEED AI features feel more professional. For viral short-form, CapCut wins.' },
+      { q: 'Can VEED edit on mobile?', a: 'Yes, VEED has mobile apps but the experience is browser-based, not native. For pure mobile editing, CapCut is faster and more polished. For browser-first cross-device work, VEED wins.' },
+      { q: 'Are there commercial use restrictions?', a: 'Yes, on CapCut. Commercial use of CapCut requires the Commercial license. VEED has no such restriction; standard plans permit commercial use. For ad agencies and brands, VEED is the simpler license model.' },
+    ],
+  },
+
+  'coda-vs-notion-ai': {
+    bottomLine: 'Coda and Notion are knowledge work platforms with overlapping but distinct strengths. Coda is the document plus database hybrid with Pack integrations and stronger formula-based automations. Notion is the broader workspace with cleaner page UX, larger ecosystem, and Notion AI integrated throughout. Coda costs $0-$36/user/mo. Notion costs $0-$20/user/mo (Notion AI is +$10/user/mo). Pick Coda for spreadsheet-meets-doc workflows and Pack-based automations. Pick Notion for general-purpose team wiki, project management, and lighter database work.',
+    whenToPickA: 'You build internal tools mixing documents, formulas, and database logic. Coda Packs (300+ integrations like GitHub, Slack, Jira) plus formula language replace many lightweight SaaS internal tools. Best for ops teams, RevOps, and technical project managers.',
+    whenToPickB: 'You want a flexible team workspace covering wiki, project tracking, meeting notes, and personal notes. Notion is broader and simpler to onboard non-technical team members. Best for marketing teams, content teams, and general-purpose company wikis.',
+    faqs: [
+      { q: 'Does Coda have AI?', a: 'Yes, Coda AI is built in (free on paid plans). Capabilities are similar to Notion AI: write, summarise, brainstorm, formula assistance. Notion AI has slightly more polish on page-level features; Coda AI is stronger on formula and automation help.' },
+      { q: 'Which is easier to learn?', a: 'Notion, for most users. The page-and-block model is intuitive. Coda formula language requires more learning but unlocks more power once mastered. For team-wide adoption, Notion is the safer pick.' },
+      { q: 'Can Coda replace Notion?', a: 'For database-heavy teams, yes. Coda formula and Pack capabilities exceed Notion databases. For wiki and content-heavy teams, Notion is the better fit. Many teams pick based on which member leads the choice.' },
+      { q: 'Which has bigger ecosystem?', a: 'Notion, by a clear margin. Notion has more templates, more YouTube tutorials, more third-party integrations, and more community resources. Coda is a smaller but loyal ecosystem.' },
+    ],
+  },
+
+  'langchain-vs-dify': {
+    bottomLine: 'LangChain and Dify are AI application development tools at different sophistication levels. LangChain is the developer framework: code-first, deeply customisable, the standard for production AI app engineering. Dify is the visual AI app platform: low-code, visual workflow builder, faster path from idea to working AI app. LangChain wins for engineering teams building custom AI products. Dify wins for non-engineers prototyping or shipping internal AI tools without writing code. LangChain framework is free open source plus paid LangSmith observability. Dify is open source self-hosted free or $59-$1,599/mo cloud.',
+    whenToPickA: 'You are an engineering team building production AI apps with custom logic, complex chains, or specific model integrations. LangChain is the most flexible framework with deep ecosystem (LangGraph, LangSmith, LangServe). Best for AI engineers, ML teams, and tech-led startups.',
+    whenToPickB: 'You build AI apps without writing code, or you want a faster path from prototype to deployed app. Dify visual workflow builder plus built-in agents handle most internal AI tools. Best for non-engineers, ops teams, and rapid prototyping.',
+    faqs: [
+      { q: 'Is LangChain too complex for simple apps?', a: 'For very simple apps (single LLM call, basic RAG), yes. LangChain abstractions add overhead that pure SDK calls do not need. For complex chains with multiple steps, retrieval, agents, and observability, LangChain saves significant code.' },
+      { q: 'Can Dify replace LangChain?', a: 'For internal tools and prototypes, yes. For production apps with custom requirements, no. Dify abstractions limit flexibility and self-hosting at scale requires DevOps investment. Many teams prototype on Dify and rebuild critical apps in LangChain.' },
+      { q: 'Which has better observability?', a: 'LangChain plus LangSmith is the most mature observability stack for AI apps. Dify has built-in monitoring but less depth. For production apps where debugging hallucinations and latency matters, LangChain ecosystem wins.' },
+      { q: 'Is Dify really free?', a: 'Yes, the open source self-hosted version is fully free. Cloud paid tiers are $59-$1,599/mo. For self-hosted users, total cost is server time plus DevOps effort, often $30-100/mo for small deployments.' },
+    ],
+  },
+
+  'obsidian-vs-nuclino': {
+    bottomLine: 'Obsidian and Nuclino are knowledge management tools at different audiences. Obsidian is the local-first, markdown-based personal knowledge base with extensive plugin ecosystem and graph view. Nuclino is the team-first, real-time collaborative wiki with cleaner UX and faster onboarding. Obsidian is free for personal use ($50/yr Sync, $96/yr Publish). Nuclino is $0-$10/user/mo. Pick Obsidian for personal knowledge management and power-user workflows. Pick Nuclino for team wiki and small-company knowledge sharing.',
+    whenToPickA: 'You build a personal knowledge base or second brain and value local-first storage, markdown ownership, and plugin extensibility. Obsidian community plus 1500+ plugins covers any workflow. Best for researchers, writers, students, and serious note-takers.',
+    whenToPickB: 'You need a team wiki for company knowledge sharing with real-time collaboration and minimal onboarding effort. Nuclino is the cleanest small-team wiki at $5/user/mo. Best for startups, small teams, and product teams documenting features.',
+    faqs: [
+      { q: 'Is Obsidian really free?', a: 'Yes for personal use. Obsidian core app is free forever for personal use. Sync (cross-device) is $50/yr. Publish (public website) is $96/yr. Commercial use requires Commercial license at $50/user/yr. For individuals, Obsidian is functionally free.' },
+      { q: 'Can Obsidian work for teams?', a: 'Partially. Obsidian Sync supports team-style sharing but lacks real-time multiplayer. Most teams use Obsidian on shared Git repos, which works but is engineering-heavy. For real team wiki needs, Nuclino or Notion are better.' },
+      { q: 'Does Nuclino have markdown?', a: 'Yes, Nuclino supports markdown shortcuts and exports. The underlying storage is not raw markdown files (unlike Obsidian) but markdown round-trip is supported. For markdown purists, Obsidian is the cleaner choice.' },
+      { q: 'Which has better search?', a: 'Obsidian, for power users with the right plugins (Omnisearch, Smart Connections AI search). Nuclino built-in search is simpler but adequate for team wiki use. For deep research workflows, Obsidian wins.' },
+    ],
+  },
+
+  'greenhouse-vs-lever': {
+    bottomLine: 'Greenhouse and Lever are leading enterprise applicant tracking systems. Greenhouse is the structured-hiring leader with the deepest interview kit, scorecard, and reporting tooling. Lever is the talent-relationship-management leader with stronger sourcing, candidate nurture, and CRM-style features. Both are enterprise-priced (typically $100-300/user/mo). Greenhouse wins for organisations prioritising hiring rigor and analytics. Lever wins for companies running proactive outbound sourcing and longer talent pipelines. Most companies pick one and rarely switch.',
+    whenToPickA: 'You prioritise structured hiring, fair-process scorecards, and analytics-driven recruiting. Greenhouse interview kits and reporting are the most rigorous in the category. Best for scaling tech companies, finance firms, and organisations under regulatory pressure for fair hiring.',
+    whenToPickB: 'You run proactive outbound sourcing as a core motion and need CRM-style talent relationship management. Lever Nurture features and candidate-as-relationship model fit talent-led recruiting. Best for high-growth startups, agencies, and exec recruiting teams.',
+    faqs: [
+      { q: 'Which is more expensive?', a: 'Roughly equivalent at enterprise scale (both $100-300/user/mo). Greenhouse pricing is more module-based; Lever has cleaner tier structure. Both require sales calls; neither publishes pricing.' },
+      { q: 'Can either do AI sourcing?', a: 'Both have AI assist features in late 2026 (matching, drafting, summary). Neither matches dedicated sourcing tools (LinkedIn Recruiter, hireEZ) on pure sourcing depth. Most teams pair Greenhouse or Lever with a dedicated sourcing tool.' },
+      { q: 'Which has better integrations?', a: 'Roughly equivalent. Both integrate with HRIS (Workday, Rippling), assessment platforms, and background check providers. Greenhouse has slightly more partners; Lever integrations are slightly cleaner UX-wise.' },
+      { q: 'Should I pick Ashby instead?', a: 'For venture-backed scale-ups, Ashby is increasingly the modern alternative. Cleaner UI, analytics-first, lower price. Greenhouse and Lever still win at enterprise scale (5,000+ employees) on stability and depth. For under 1,000 employees, Ashby is worth comparing.' },
+    ],
+  },
+
+  'ashby-vs-greenhouse': {
+    bottomLine: 'Ashby and Greenhouse are applicant tracking systems at different generations. Greenhouse is the established enterprise standard with the deepest module set and largest customer base. Ashby is the modern challenger built analytics-first with cleaner UX, faster product velocity, and lower price. Greenhouse wins at large enterprise scale (5,000+ employees) on stability and partner ecosystem. Ashby wins for venture-backed scale-ups (50-2,000 employees) on UX and analytics. Greenhouse pricing is module-based ($100-300/user/mo). Ashby pricing is more transparent (~$50-100/user/mo).',
+    whenToPickA: 'You are a venture-backed scale-up under 2,000 employees and want an analytics-first ATS with modern UX. Ashby is the favourite of YC companies and tier-1 startups. Best for high-growth startups, VC-backed scale-ups, and tech-forward HR teams.',
+    whenToPickB: 'You are an enterprise (5,000+ employees) needing the deepest module set, largest partner ecosystem, and stability over UX. Greenhouse is the safer enterprise choice with longest track record. Best for large enterprises, regulated industries, and orgs with complex hiring workflows.',
+    faqs: [
+      { q: 'Why are scale-ups switching to Ashby?', a: 'Cleaner UX (recruiters report higher engagement), better analytics out of the box (no separate BI tool needed), lower price, and faster product velocity. Greenhouse remains stable but ships fewer new features.' },
+      { q: 'Is Ashby ready for enterprise?', a: 'For mid-market enterprise (1,000-5,000 employees), increasingly yes. Several enterprise customers in late 2026 including some Fortune 500 divisions. For 10,000+ employee orgs with complex workflows, Greenhouse stability still wins.' },
+      { q: 'Which has better analytics?', a: 'Ashby, by a wide margin. Ashby was built analytics-first with the most depth in the category. Greenhouse analytics are competent but require either Greenhouse Reports module or external BI tool to match Ashby out-of-the-box.' },
+      { q: 'How does pricing compare?', a: 'Ashby is roughly half Greenhouse at the same employee count. Ashby is transparent (per-recruiter or per-hire). Greenhouse requires sales call and is module-based. Total cost difference often justifies the switch for scale-ups.' },
+    ],
+  },
+
+  'articulate-vs-ispring': {
+    bottomLine: 'Articulate and iSpring are leading e-learning authoring tools at different price points. Articulate Storyline plus Rise is the industry standard with the deepest interaction library, animation control, and SCORM compliance. iSpring is the PowerPoint-integrated alternative: install as add-in, convert decks to e-learning, simpler workflow. Articulate costs $1,099-$1,499/yr per user. iSpring costs $370-$970/yr per user. Pick Articulate for serious instructional design teams. Pick iSpring for SMBs and L&D teams already in PowerPoint who need decent e-learning fast.',
+    whenToPickA: 'You run a professional instructional design team building serious e-learning courses with interactivity, branching scenarios, and accessibility. Articulate Storyline is the category standard. Best for L&D agencies, large enterprise L&D, and ID consultants.',
+    whenToPickB: 'You convert PowerPoint decks to e-learning fast or your team is non-IDs (subject matter experts). iSpring Suite integrates as a PowerPoint add-in, requires no new software learning. Best for SMB L&D, internal training teams, and SMEs producing courses.',
+    faqs: [
+      { q: 'Which is cheaper?', a: 'iSpring, by a wide margin. iSpring Suite Max is $970/yr vs Articulate 360 Personal at $1,099/yr. For team plans, the gap widens. iSpring is roughly half the cost at most tiers.' },
+      { q: 'Can either output SCORM?', a: 'Yes, both output SCORM 1.2, SCORM 2004, xAPI, and AICC. SCORM compliance is mature on both. For LMS integration, either tool works with major LMS platforms (Cornerstone, Docebo, TalentLMS).' },
+      { q: 'Which has more templates?', a: 'Articulate Content Library is the larger asset library (millions of templates, characters, illustrations). iSpring has solid templates but smaller library. For visual richness, Articulate wins.' },
+      { q: 'Is Articulate worth the price?', a: 'For full-time IDs at agencies and large L&D teams, yes. For occasional course creation by SMEs, no. Articulate price reflects the depth IDs need; iSpring price reflects accessibility for non-IDs.' },
+    ],
+  },
+
+  'dovetail-vs-maze': {
+    bottomLine: 'Dovetail and Maze are UX research tools with different specialisations. Dovetail is the qualitative research repository: organise interview notes, transcripts, and themes with AI-assisted analysis. Maze is the unmoderated testing platform: run usability tests, surveys, prototype tests at scale with quantitative metrics. Dovetail wins for qualitative research analysis. Maze wins for quantitative usability testing. Dovetail costs $0-$45/user/mo. Maze costs $0-$99/user/mo. Most serious research teams use both.',
+    whenToPickA: 'You run qualitative research (user interviews, contextual inquiry) and need a repository for transcripts, notes, and theme analysis. Dovetail AI features auto-tag and summarise interviews. Best for product researchers, design researchers, and qualitative-led research teams.',
+    whenToPickB: 'You run unmoderated usability tests, prototype testing, or surveys with quantitative metrics. Maze tests can reach 1,000+ users with auto-analysed results. Best for product designers running fast iteration cycles and PMs validating concepts.',
+    faqs: [
+      { q: 'Can Dovetail run usability tests?', a: 'Not natively. Dovetail is for analysis, not testing. Most teams run tests on Maze, UserTesting, or moderated platforms (Lookback) and import recordings/notes into Dovetail for analysis.' },
+      { q: 'Does Maze have qualitative analysis?', a: 'Limited. Maze captures qualitative responses but the analysis tools are basic compared to Dovetail. For deep qualitative analysis, exporting to Dovetail or Notion is common.' },
+      { q: 'Which is cheaper?', a: 'Dovetail at most tiers. Dovetail Free covers personal use; Pro is $45/user/mo. Maze Free covers limited testing; Pro is $99/user/mo. For mixed-method research teams, total spend often lands $200-500/mo across both.' },
+      { q: 'Can either replace UserTesting?', a: 'For unmoderated testing, Maze is a strong alternative at lower price. For moderated interviews with recruited participants, UserTesting and Lookback remain stronger. Most teams use Maze plus a moderated platform.' },
+    ],
+  },
+
+  'wellsaid-vs-murf': {
+    bottomLine: 'WellSaid Labs and Murf are corporate-focused AI voice tools. WellSaid is the enterprise-positioned voice cloning leader with studio-quality voice avatars trained from professional voice actors. Murf is the broader corporate voiceover tool with stock voices, video editor, and team workflow. WellSaid costs $44-$179/mo. Murf costs $19-$99/mo. WellSaid wins on individual voice avatar quality (movie-trailer-grade narration). Murf wins on team workflow and project management for L&D and marketing teams.',
+    whenToPickA: 'You need cinematic-quality voice avatars for corporate narration, ads, or premium content. WellSaid Voice Avatars are licensed from professional voice actors and produce broadcast-grade output. Best for ad agencies, premium content producers, and brands needing brand voice.',
+    whenToPickB: 'You produce corporate L&D, marketing videos, or internal training and need a polished team workflow. Murf has 200+ stock voices, project management, and video voiceover sync. Best for L&D teams, marketing teams, and SMBs needing fast voiceover at scale.',
+    faqs: [
+      { q: 'Which has more realistic voices?', a: 'WellSaid Voice Avatars, on individual avatar quality. Each WellSaid avatar is a licensed professional voice actor delivering studio-grade output. Murf voices are excellent but more synthetic on close listening.' },
+      { q: 'Can either clone my own voice?', a: 'WellSaid Custom Voice requires studio recording session ($) and produces enterprise-grade clones. Murf Voice Cloning is more accessible (instant, online). For licensed brand voice with legal certainty, WellSaid wins; for fast self-service cloning, Murf wins.' },
+      { q: 'Which is cheaper?', a: 'Murf at most tiers. Murf Creator is $19/mo vs WellSaid Maker at $44/mo. WellSaid pricing reflects the licensed actor cost in voice avatars; Murf uses synthetic stock voices.' },
+      { q: 'Should I pick ElevenLabs instead?', a: 'For creator and AI-app use cases, yes. ElevenLabs is more realistic and cheaper. WellSaid is positioned for enterprise narration with licensed actors; Murf is positioned for corporate teams. ElevenLabs covers broader use cases.' },
+    ],
+  },
+
+  'chatpdf-vs-humata': {
+    bottomLine: 'ChatPDF and Humata are PDF chat tools at different positioning. ChatPDF is the simpler, faster tool for one-off PDF Q&A with no signup required for free tier. Humata is the more enterprise-focused alternative with team workspaces, collaboration features, and multi-document context. Both let you chat with PDFs and get cited answers. ChatPDF Free covers light personal use; Plus is $20/mo. Humata Free covers basic; Pro is $14.99/mo. Pick ChatPDF for personal one-off use. Pick Humata for team or multi-document research.',
+    whenToPickA: 'You need quick answers from one PDF and want zero friction. ChatPDF requires no signup for the free tier. Best for students, one-off researchers, and quick-question users.',
+    whenToPickB: 'You research multiple PDFs together or collaborate with a team on document analysis. Humata multi-document context and team features make sustained research workflows cleaner. Best for research teams, legal teams, and analysts.',
+    faqs: [
+      { q: 'Which has better citation accuracy?', a: 'Roughly equivalent. Both cite specific page numbers and provide quote previews. Humata cross-document citations are slightly cleaner; ChatPDF single-document citations are slightly faster.' },
+      { q: 'Can either handle long PDFs?', a: 'Yes. ChatPDF Plus supports up to 2,000 pages. Humata Pro supports up to 500 pages per document but unlimited documents. For book-length single PDFs, ChatPDF wins; for many medium PDFs, Humata wins.' },
+      { q: 'Should I use NotebookLM instead?', a: 'For most users, NotebookLM is free, has more sources, and adds Audio Overviews. ChatPDF and Humata remain useful for users who want a no-account experience (ChatPDF) or team features Humata offers. NotebookLM has eaten significant market share since 2024.' },
+      { q: 'Which is cheaper?', a: 'Humata Pro is $14.99/mo vs ChatPDF Plus $20/mo. Both have free tiers. For team plans, both scale per seat. Cost is similar at any scale.' },
+    ],
+  },
+
+  'taskade-vs-notion-ai': {
+    bottomLine: 'Taskade and Notion AI are productivity tools with different sweet spots. Taskade is the AI-first task and project management tool with built-in AI agents, video calls, and outline-style task views. Notion is the broader workspace platform with AI added on top, covering wiki, docs, projects, and databases. Taskade costs $0-$10/user/mo. Notion costs $0-$20/user/mo (Notion AI is +$10/user/mo). Pick Taskade for AI-augmented task management with built-in agents. Pick Notion for general-purpose workspace where tasks are one workflow among many.',
+    whenToPickA: 'You want AI agents and task automation built into your task tool, not bolted on. Taskade AI Agents can auto-generate task lists, summarise projects, and run sub-agent workflows. Best for solopreneurs, small teams, and AI-forward operators.',
+    whenToPickB: 'You want a full workspace covering wiki, docs, projects, and databases. Notion is broader and the standard team workspace at most modern companies. Best for teams of 5-50 wanting one tool for everything.',
+    faqs: [
+      { q: 'Does Taskade have AI agents?', a: 'Yes. Taskade AI Agents are workflow-level (you can create a marketing assistant, research agent, etc.) and chain into projects. Notion AI is page-level rather than agent-level. For agent-style automation, Taskade is more capable.' },
+      { q: 'Can Taskade replace Notion?', a: 'For task and project management, yes. For wiki, docs, and database use cases, no. Taskade is task-first; Notion is doc-first. Most teams pick based on whether tasks or docs are the primary workflow.' },
+      { q: 'Which is cheaper?', a: 'Taskade, marginally. Taskade Pro is $8/mo (single user); Notion Plus is $10/user/mo. Notion AI adds $10/user/mo on top, making the gap wider. For AI-heavy users, Taskade is cheaper.' },
+      { q: 'Which has bigger ecosystem?', a: 'Notion, by a wide margin. Notion has 10x more templates, tutorials, and third-party integrations. Taskade ecosystem is smaller but loyal and growing. For team adoption ease, Notion is the safer pick.' },
+    ],
+  },
 }
 
 export function getCompareEnrichment(slug: string): CompareEnrichment | null {
