@@ -2184,6 +2184,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🏛️',
     slugs: ['autodesk-forma', 'archistar', 'testfit', 'spacemaker', 'join-build'],
   },
+  {
+    slug: 'best-ai-tutoring-tools',
+    title: 'Best AI Tutoring Tools 2026',
+    description: 'The best AI tutoring and homework help tools in 2026 - from instant math problem solving to conversational concept coaching and adaptive study for students at every level.',
+    category: 'Education',
+    emoji: '📚',
+    slugs: ['photomath', 'mathgpt', 'socratic', 'quizlet-q-chat', 'coursera-coach'],
+  },
+  {
+    slug: 'best-ai-classroom-tools',
+    title: 'Best AI Classroom Tools 2026',
+    description: 'The best AI tools for teachers and classrooms in 2026 - from automated grading and interactive lesson creation to game-based review and differentiated instruction generation.',
+    category: 'Education',
+    emoji: '🎓',
+    slugs: ['gradescope-ai', 'kahoot-ai', 'nearpod-ai', 'edpuzzle-ai', 'eduaide-ai'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
