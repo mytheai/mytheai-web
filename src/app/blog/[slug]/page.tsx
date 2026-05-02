@@ -99,13 +99,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const article = getArticle(slug)
   if (!article) return {}
+  const articleYear = new Date(article.date).getFullYear() || new Date().getFullYear()
+  const titleWithYear = `${article.title} (${articleYear}) | MytheAi Blog`
   const ogImage = `https://mytheai.com/api/og/blog?title=${encodeURIComponent(article.title)}&category=${encodeURIComponent(article.category)}`
   return {
-    title: `${article.title} | MytheAi Blog`,
+    title: titleWithYear,
     description: article.excerpt,
     alternates: { canonical: `https://mytheai.com/blog/${slug}` },
     openGraph: {
-      title: `${article.title} | MytheAi Blog`,
+      title: titleWithYear,
       description: article.excerpt,
       url: `https://mytheai.com/blog/${slug}`,
       type: 'article',
@@ -113,7 +115,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${article.title} | MytheAi Blog`,
+      title: titleWithYear,
       description: article.excerpt,
       images: [ogImage],
     },

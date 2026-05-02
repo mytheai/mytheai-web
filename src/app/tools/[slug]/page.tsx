@@ -87,13 +87,17 @@ export async function generateMetadata(
   if (!tool) return { title: 'Tool not found | MytheAi' }
 
   const year = new Date().getFullYear()
+  const baseDesc = tool.tagline ?? ''
+  const description = baseDesc.length < 80
+    ? `${baseDesc}. Read our ${year} review: pricing, features, pros, cons, and best alternatives.`
+    : baseDesc
   const ogImageUrl = `https://mytheai.com/api/og?name=${encodeURIComponent(tool.name)}&tagline=${encodeURIComponent(tool.tagline)}&rating=${tool.rating}${tool.logo_url ? `&logo=${encodeURIComponent(tool.logo_url)}` : ''}`
   return {
     title: `${tool.name} Review ${year}: Pricing, Features & Alternatives | MytheAi`,
-    description: tool.tagline,
+    description,
     openGraph: {
       title: `${tool.name} Review ${year} | MytheAi`,
-      description: tool.tagline,
+      description,
       url: `https://mytheai.com/tools/${slug}`,
       images: [{ url: ogImageUrl, width: 1200, height: 630 }],
     },

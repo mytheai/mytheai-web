@@ -157,7 +157,7 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const year = new Date().getFullYear()
   return {
     title: `${cat.title} ${year}: 15 Free Picks (No Credit Card) | MytheAi`,
-    description: `${cat.title.toLowerCase()} in 2026. ${cat.intro.split('.')[0]}. Independent rankings, no pay-to-rank.`,
+    description: `${cat.title.toLowerCase()} in ${year}. ${cat.intro.split('.')[0]}. Independent rankings, no pay-to-rank.`,
     alternates: { canonical: `https://mytheai.com/free-ai-tools/${category}` },
     openGraph: {
       title: `${cat.title} ${year} | MytheAi`,
