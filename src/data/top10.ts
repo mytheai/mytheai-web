@@ -2222,6 +2222,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📦',
     slugs: ['shippo', 'easypost', 'flexport', 'transfix', 'stord'],
   },
+  {
+    slug: 'best-ai-ediscovery-tools',
+    title: 'Best AI E-Discovery Tools 2026',
+    description: 'The best AI-powered e-discovery platforms in 2026 - from cloud-native litigation review and predictive coding to contract repository management and case management for high-volume matters.',
+    category: 'Legal AI',
+    emoji: '⚖️',
+    slugs: ['everlaw', 'relativity', 'lexion', 'filevine'],
+  },
+  {
+    slug: 'best-ai-contract-review-tools',
+    title: 'Best AI Contract Review Tools 2026',
+    description: 'The best AI contract review and analysis tools in 2026 - from M&A due diligence extraction and precedent-based drafting assistance to legal spend management and contract navigation.',
+    category: 'Legal AI',
+    emoji: '📄',
+    slugs: ['kira-systems', 'draftwise', 'definely', 'lexion', 'brightflag'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
