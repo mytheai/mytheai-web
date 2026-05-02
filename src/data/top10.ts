@@ -2200,6 +2200,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🎓',
     slugs: ['gradescope-ai', 'kahoot-ai', 'nearpod-ai', 'edpuzzle-ai', 'eduaide-ai'],
   },
+  {
+    slug: 'best-ai-performance-management',
+    title: 'Best AI Performance Management Tools 2026',
+    description: 'The best AI-powered performance management platforms in 2026 - from continuous check-in tools and OKR tracking to flight risk detection and AI-assisted review writing.',
+    category: 'HR',
+    emoji: '📊',
+    slugs: ['lattice', '15five', 'leapsome', 'culture-amp', 'peakon'],
+  },
+  {
+    slug: 'best-ai-hris-tools',
+    title: 'Best AI HRIS Tools 2026',
+    description: 'The best AI-powered HR information systems in 2026 - from modern HRIS for mid-market teams to all-in-one payroll and benefits platforms for growing US businesses.',
+    category: 'HR',
+    emoji: '👥',
+    slugs: ['hibob', 'gusto', 'rippling', 'bamboohr', 'lattice'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
