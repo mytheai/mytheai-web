@@ -2174,6 +2174,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '👥',
     slugs: ['hibob', 'gusto', 'rippling', 'bamboohr', 'lattice'],
   },
+  {
+    slug: 'best-ai-claims-automation',
+    title: 'Best AI Claims Automation Tools 2026',
+    description: 'The best AI-powered insurance claims automation platforms in 2026 - from computer vision damage assessment and virtual appraisal workflows to fraud detection and straight-through claims processing.',
+    category: 'Insurance',
+    emoji: '🔍',
+    slugs: ['tractable', 'shift-technology', 'snapsheet', 'coalition', 'planck'],
+  },
+  {
+    slug: 'best-ai-insurance-platforms',
+    title: 'Best AI Insurance Platforms 2026',
+    description: 'The best AI-native insurance platforms and InsurTech tools in 2026 - from instant digital consumer and small business coverage to broker recommendation engines and modern policy administration systems.',
+    category: 'Insurance',
+    emoji: '🛡️',
+    slugs: ['lemonade', 'next-insurance', 'coalition', 'socotra', 'zelros'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
