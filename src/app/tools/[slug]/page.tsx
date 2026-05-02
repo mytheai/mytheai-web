@@ -5,6 +5,9 @@ import Link from 'next/link'
 import { createClient, createStaticClient } from '@/lib/supabase'
 import ReviewForm from '@/components/reviews/ReviewForm'
 import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
+import ScoringTable from '@/components/tools/ScoringTable'
+import { isValidScores, type ToolScores } from '@/lib/scoring'
+import { TOP10_LISTS } from '@/data/top10'
 import type { Metadata } from 'next'
 
 export const revalidate = 86400
@@ -23,6 +26,7 @@ interface ToolRow {
   pricing_type: 'free' | 'freemium' | 'paid' | 'ltd'
   pricing_free_tier: boolean
   pricing_starting_price: number | null
+  pricing_verified_at: string | null
   rating: number
   review_count: number
   featured: boolean
@@ -32,7 +36,20 @@ interface ToolRow {
   pros: string[] | null
   cons: string[] | null
   use_cases: string[] | null
+  scores: ToolScores | null
   updated_at: string
+}
+
+interface RelatedCompare {
+  slug: string
+  tool_a_slug: string
+  tool_b_slug: string
+}
+
+interface RelatedTop10 {
+  slug: string
+  title: string
+  emoji: string
 }
 
 // --- Data fetching ---
@@ -71,6 +88,23 @@ async function getAlternatives(currentSlug: string, tags: string[]): Promise<Alt
     .order('rating', { ascending: false })
     .limit(3)
   return (data ?? []) as AltTool[]
+}
+
+async function getRelatedCompares(slug: string): Promise<RelatedCompare[]> {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from('comparisons')
+    .select('slug, tool_a_slug, tool_b_slug')
+    .or(`tool_a_slug.eq.${slug},tool_b_slug.eq.${slug}`)
+    .limit(8)
+  return (data ?? []) as RelatedCompare[]
+}
+
+function getRelatedTop10(slug: string): RelatedTop10[] {
+  return TOP10_LISTS
+    .filter(l => l.slugs.includes(slug))
+    .slice(0, 6)
+    .map(l => ({ slug: l.slug, title: l.title, emoji: l.emoji }))
 }
 
 export async function generateStaticParams() {
@@ -147,12 +181,21 @@ export default async function ToolPage({
   const tool = await getTool(slug)
   if (!tool) notFound()
 
-  const alternatives = await getAlternatives(slug, tool.tags ?? [])
-  const userReviews = await getApprovedReviews(slug)
+  const [alternatives, userReviews, relatedCompares] = await Promise.all([
+    getAlternatives(slug, tool.tags ?? []),
+    getApprovedReviews(slug),
+    getRelatedCompares(slug),
+  ])
+  const relatedTop10 = getRelatedTop10(slug)
   const year = new Date().getFullYear()
   const updatedDate = new Date(tool.updated_at).toLocaleDateString('en-US', {
     month: 'long', year: 'numeric',
   })
+  const pricingVerifiedDate = new Date(tool.pricing_verified_at ?? tool.updated_at).toLocaleDateString('en-US', {
+    month: 'long', year: 'numeric',
+  })
+  const scoresValid = isValidScores(tool.scores)
+  const scores = scoresValid ? (tool.scores as ToolScores) : null
 
   // Combined aggregate: editorial baseline (tool.rating, tool.review_count)
   // plus approved user reviews. User-weighted rating ranks higher with more user input.
@@ -472,7 +515,7 @@ export default async function ToolPage({
                 )}
               </div>
               <p className="text-[11px] text-muted-foreground mb-4">
-                As of {updatedDate}. Verify current pricing on the official site.
+                Pricing verified {pricingVerifiedDate}. Verify current pricing on the official site before purchase.
               </p>
               <a
                 href={`/go/${tool.slug}`}
@@ -506,6 +549,56 @@ export default async function ToolPage({
             </p>
           </div>
         </div>
+
+        {/* Editorial scoring breakdown */}
+        {scores && <ScoringTable scores={scores} toolName={tool.name} />}
+
+        {/* Related comparisons + Top 10 lists - internal linking */}
+        {(relatedCompares.length > 0 || relatedTop10.length > 0) && (
+          <section className="mt-12 pt-8 border-t border-border">
+            <h2 className="text-[18px] font-bold text-foreground mb-4">
+              {tool.name} on MytheAi
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {relatedCompares.length > 0 && (
+                <div className="p-5 rounded-xl border border-border bg-card">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-3">
+                    Compared with ({relatedCompares.length})
+                  </p>
+                  <ul className="space-y-2">
+                    {relatedCompares.map(c => {
+                      const otherSlug = c.tool_a_slug === tool.slug ? c.tool_b_slug : c.tool_a_slug
+                      const otherName = otherSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+                      return (
+                        <li key={c.slug}>
+                          <Link href={`/compare/${c.slug}`} className="text-[13px] text-foreground hover:text-blue-600 hover:underline">
+                            {tool.name} vs {otherName} →
+                          </Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              )}
+              {relatedTop10.length > 0 && (
+                <div className="p-5 rounded-xl border border-border bg-card">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-3">
+                    Ranked in ({relatedTop10.length})
+                  </p>
+                  <ul className="space-y-2">
+                    {relatedTop10.map(l => (
+                      <li key={l.slug}>
+                        <Link href={`/top-10/${l.slug}`} className="text-[13px] text-foreground hover:text-blue-600 hover:underline">
+                          <span className="mr-1.5">{l.emoji}</span>{l.title} →
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* User reviews */}
         <div className="mt-12 pt-8 border-t border-border">
