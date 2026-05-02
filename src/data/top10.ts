@@ -31,7 +31,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered coding assistants and editors ranked by developer adoption, code quality, and workflow integration.',
     category: 'Code AI',
     emoji: '💻',
-    slugs: ['cursor', 'windsurf', 'github-copilot', 'bolt', 'replit'],
+    slugs: ['cursor', 'windsurf', 'bolt', 'replit'],
     intro: 'AI coding tools have moved from autocomplete to true pair programming in 2026. The five tools below have separated themselves from the pack by combining strong language models with editor-native UX, repo-aware context, and increasingly autonomous agent modes. If you are choosing your first AI coding assistant, the gap between the top three and everything else is now wide enough that the choice matters more for daily speed than your editor or language. We focus on what shipping engineers actually feel after a week of use, not synthetic benchmarks.',
     methodology: 'We rank these tools on five weighted criteria: code quality on real production tasks, latency from keystroke to suggestion, repo-wide context handling, agent mode reliability for multi-file edits, and value per dollar at the indie tier. Each tool was used for at least 40 hours of actual work across TypeScript, Python, and Go codebases. We do not rank by feature count or marketing claims.',
     picks: [
@@ -46,12 +46,6 @@ export const TOP10_LISTS: Top10List[] = [
         whyPicked: 'Windsurf (formerly Codeium) is the most legitimate Cursor alternative and now beats Cursor outright on agent flow control. The Cascade feature stays on task across longer sequences without losing the plot. Free tier is generous, and the paid tier is competitive with Cursor on price. Windsurf is what you reach for when the work is exploratory and Cursor feels too eager.',
         bestFor: 'Engineers who do a lot of greenfield exploration, prototyping, and sprint-level planning inside the editor.',
         limitation: 'Less mature plugin ecosystem than Cursor and slower to adopt new model versions.',
-      },
-      {
-        slug: 'github-copilot',
-        whyPicked: 'Copilot is the safe enterprise choice and the only option that works inside JetBrains, Visual Studio, and Neovim with first-class support. The 2026 Copilot Workspace adds Cursor-style agent capabilities, and the GitHub integration means PRs, issues, and Actions context flow naturally into suggestions. If your company already pays for GitHub Enterprise, Copilot is essentially free incremental value.',
-        bestFor: 'Teams on GitHub Enterprise, JetBrains shops, and engineers who need the broadest editor coverage.',
-        limitation: 'Tab completion and multi-file edits still trail Cursor; Workspace agent mode is newer and less polished.',
       },
       {
         slug: 'bolt',
@@ -649,7 +643,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top free and affordable AI tools that give students a genuine academic edge: from research and writing to coding and presentations.',
     category: 'Education',
     emoji: '🎓',
-    slugs: ['perplexity', 'notebooklm', 'grammarly', 'claude', 'github-copilot'],
+    slugs: ['perplexity', 'notebooklm', 'grammarly', 'claude'],
   },
   {
     slug: 'best-ai-note-taking-tools',
@@ -827,14 +821,6 @@ export const TOP10_LISTS: Top10List[] = [
     slugs: ['claude', 'grammarly', 'notion-ai', 'canva-ai', 'zapier'],
   },
   {
-    slug: 'best-ai-code-assistants',
-    title: 'Best AI Code Assistants',
-    description: 'The top AI-powered code completion and coding assistant tools for developers - from inline completions and chat to autonomous multi-file editing.',
-    category: 'Code AI',
-    emoji: '🤖',
-    slugs: ['github-copilot', 'cursor', 'tabnine', 'codeium', 'phind'],
-  },
-  {
     slug: 'best-ai-tools-for-startups',
     title: 'Best AI Tools for Startups',
     description: 'The top AI tools early-stage and growth-stage startups use to outproduce larger teams - organised by function and budget.',
@@ -894,14 +880,6 @@ export const TOP10_LISTS: Top10List[] = [
         a: 'Claude Pro and ChatGPT Plus have data-not-trained-on guarantees on the paid tier. Notion has SOC 2 compliance. Linear has SOC 2 and is used by serious companies. Canva is fine for non-confidential marketing assets. Always check the data agreement before sending highly sensitive info (legal, IP, compensation data).',
       },
     ],
-  },
-  {
-    slug: 'best-ai-developer-tools',
-    title: 'Best AI Developer Tools',
-    description: 'The top AI tools for software developers - from code generation and debugging to infrastructure, deployment, and workflow automation.',
-    category: 'Code AI',
-    emoji: '⚙️',
-    slugs: ['cursor', 'github-copilot', 'vercel-v0', 'gitpod', 'langsmith'],
   },
   {
     slug: 'best-ai-agent-tools',
@@ -1140,7 +1118,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for individual and team productivity - from intelligent task management and calendar scheduling to AI email clients and smart scheduling assistants.',
     category: 'Productivity',
     emoji: '⚡',
-    slugs: ['motion', 'reclaim-ai', 'notion-ai', 'todoist', 'clockwise'],
+    slugs: ['motion', 'reclaim-ai', 'notion-ai', 'todoist'],
     intro: 'Productivity AI in 2026 has matured into three distinct lanes: AI-driven calendar and task scheduling (Motion, Reclaim, Clockwise), all-in-one workspace AI (Notion AI), and traditional task managers with AI features (Todoist). The five tools below win in their respective lanes for individual or small-team use. Most knowledge workers benefit from one calendar AI plus one task tool, not all five together.',
     methodology: 'We rated each tool on AI feature depth, time savings on real workflows (calendar planning, meeting prep, task prioritization), integration with existing tools (Google Calendar, Slack, Gmail), learning curve, and pricing fairness for solo and small-team use. Each tested over 2 weeks of daily real-work use.',
     picks: [
@@ -1168,14 +1146,8 @@ export const TOP10_LISTS: Top10List[] = [
         bestFor: 'Individual users who want a clean task list without complex project management, anyone valuing cross-platform reliability.',
         limitation: 'Less ambitious AI features than Motion or Notion; not for team project work.',
       },
-      {
-        slug: 'clockwise',
-        whyPicked: 'Clockwise optimizes calendar time for entire teams - automatic move-meeting suggestions, shared focus time blocks, and team analytics on meeting load. The 2026 Clockwise Prism uses AI to detect calendar inefficiencies and suggest team-wide improvements. Best pick when meeting overload is a team-wide problem and you have authority to change shared calendar behavior.',
-        bestFor: 'Engineering and product teams suffering from meeting overload, managers who want team-wide focus time enforcement.',
-        limitation: 'Requires team-wide adoption to deliver value; less useful for solo individuals.',
-      },
     ],
-    bottomLine: 'Pick Motion if calendar plus task chaos is the bottleneck and you want one AI tool to handle both. Pick Reclaim if you want lightweight calendar AI alongside an existing task tool. Pick Notion AI if your work already lives in Notion. Pick Todoist if you want a simple, reliable task list with light AI. Pick Clockwise when team-wide meeting overload is the actual problem. Many knowledge workers run Notion AI for thinking + Reclaim for calendar protection together.',
+    bottomLine: 'Pick Motion if calendar plus task chaos is the bottleneck and you want one AI tool to handle both. Pick Reclaim if you want lightweight calendar AI alongside an existing task tool. Pick Notion AI if your work already lives in Notion. Pick Todoist if you want a simple, reliable task list with light AI. Many knowledge workers run Notion AI for thinking plus Reclaim for calendar protection together.',
     faqs: [
       {
         q: 'Motion vs Reclaim - which is better?',
@@ -1201,7 +1173,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered scheduling and calendar tools for protecting focus time, automating task planning, and making meeting booking effortless for both sides.',
     category: 'Productivity',
     emoji: '📅',
-    slugs: ['motion', 'reclaim-ai', 'clockwise', 'cal-com', 'savvycal'],
+    slugs: ['motion', 'reclaim-ai', 'cal-com', 'savvycal'],
   },
   {
     slug: 'best-ai-analytics-tools',
@@ -1642,7 +1614,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered recruiting platforms for 2026 - from structured hiring ATS and candidate CRMs to talent sourcing intelligence, automated interview scheduling, and AI interview notes.',
     category: 'Business',
     emoji: '🎯',
-    slugs: ['ashby', 'greenhouse', 'lever', 'goodtime', 'seekout'],
+    slugs: ['ashby', 'greenhouse', 'lever', 'goodtime'],
     intro: 'Recruiting tooling in 2026 has shifted from job boards plus spreadsheets to AI-augmented full-funnel platforms. The five tools below cover four jobs: applicant tracking (Ashby, Greenhouse, Lever), interview scheduling (GoodTime), and outbound sourcing (SeekOut). Most TA orgs run an ATS plus one specialized tool. Picking the ATS right is the high-stakes call because data lives there for years - the others are easier to swap.',
     methodology: 'We rated each platform on AI feature depth (smart scoring, pipeline analytics, interview assistance), structured-hiring rigor (does the tool enforce best practices), integration ecosystem (HR systems, sourcing tools, assessment vendors), pricing per hire vs per seat, and adoption signals from real TA teams. Ranked weighted on AI quality + structured-hiring fit.',
     picks: [
@@ -1670,14 +1642,8 @@ export const TOP10_LISTS: Top10List[] = [
         bestFor: 'High-volume hiring teams, companies running 5+ interviews per role, in-house TA with dedicated coordinators.',
         limitation: 'Standalone scheduling tool - not an ATS; pricing assumes high interview volume.',
       },
-      {
-        slug: 'seekout',
-        whyPicked: 'SeekOut is the AI-powered talent sourcing platform with the deepest data on technical and diverse talent. Search 800M+ profiles across LinkedIn, GitHub, papers, and patents with AI-matched results to job descriptions. The 2026 SeekOut AI Recruiter automates outbound message drafts. Best pick when sourcing technical or diverse talent is the bottleneck and LinkedIn Recruiter alone is insufficient.',
-        bestFor: 'Tech recruiters, DEI hiring initiatives, executive search, sourcing for hard-to-fill technical roles.',
-        limitation: 'Premium pricing; less useful for entry-level or non-technical hiring where LinkedIn covers most of the talent pool.',
-      },
     ],
-    bottomLine: 'Pick Ashby if you are a venture-backed scale-up and want analytics-first hiring in one tool. Pick Greenhouse if you are enterprise scale and need structured hiring rigor with a deep integration ecosystem. Pick Lever if proactive candidate nurture is core to your motion. Pick GoodTime when scheduling is the actual bottleneck. Pick SeekOut for technical sourcing or DEI-focused hiring. Most growth-stage companies run Ashby or Greenhouse + GoodTime + SeekOut as the modern recruiting stack.',
+    bottomLine: 'Pick Ashby if you are a venture-backed scale-up and want analytics-first hiring in one tool. Pick Greenhouse if you are enterprise scale and need structured hiring rigor with a deep integration ecosystem. Pick Lever if proactive candidate nurture is core to your motion. Pick GoodTime when scheduling is the actual bottleneck. Most growth-stage companies run Ashby or Greenhouse plus GoodTime as the modern recruiting stack.',
     faqs: [
       {
         q: 'Ashby vs Greenhouse - which to pick?',
@@ -1892,14 +1858,6 @@ export const TOP10_LISTS: Top10List[] = [
     ],
   },
   {
-    slug: 'best-ai-meeting-assistants',
-    title: 'Best AI Meeting Assistants 2026',
-    description: 'The top AI meeting assistants for 2026 - lightweight tools that automatically transcribe, summarise, and distribute meeting notes without requiring a separate app or complex setup.',
-    category: 'Productivity',
-    emoji: '🤖',
-    slugs: ['jamie', 'meetgeek', 'sembly-ai', 'notta'],
-  },
-  {
     slug: 'best-sales-call-intelligence-tools',
     title: 'Best Sales Call Intelligence Tools 2026',
     description: 'The top sales conversation intelligence platforms for 2026 - AI tools that record, transcribe, and analyse sales calls to identify coaching opportunities, track objections, and improve win rates.',
@@ -1974,7 +1932,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered Figma plugins and design-adjacent tools for 2026 - covering UI generation, design-to-code handoff, icon creation, UX copy writing, and automated layer cleanup inside the Figma workflow.',
     category: 'Design',
     emoji: '🖌️',
-    slugs: ['diagram', 'magician', 'galileo-ai', 'locofy', 'subframe'],
+    slugs: ['diagram', 'galileo-ai', 'locofy', 'subframe'],
   },
   {
     slug: 'best-ai-proposal-tools',
@@ -2062,7 +2020,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top workflow automation platforms to connect your apps and eliminate repetitive tasks in 2026 - from no-code tools for business teams to developer-first platforms for building custom AI pipelines.',
     category: 'Automation',
     emoji: '🔗',
-    slugs: ['zapier', 'make-com', 'activepieces', 'pipedream', 'workato', 'bardeen', 'integrately', 'tray-io', 'pabbly-connect', 'albato'],
+    slugs: ['zapier', 'make-com', 'activepieces', 'pipedream', 'workato', 'bardeen', 'integrately', 'tray-io', 'albato'],
   },
   {
     slug: 'best-no-code-automation-tools',
@@ -2070,7 +2028,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best automation tools for non-developers in 2026 - connect apps, automate workflows, and save hours every week without writing a single line of code.',
     category: 'Automation',
     emoji: '⚡',
-    slugs: ['zapier', 'make-com', 'integrately', 'activepieces', 'pabbly-connect', 'bardeen', 'albato'],
+    slugs: ['zapier', 'make-com', 'integrately', 'activepieces', 'bardeen', 'albato'],
   },
   {
     slug: 'best-ai-crm-tools',
@@ -2094,7 +2052,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tools for ecommerce stores in 2026 - from on-site assistants and personalization engines to visual search and product description generators.',
     category: 'E-commerce',
     emoji: '🛒',
-    slugs: ['shopify-magic', 'rep-ai', 'octane-ai', 'rebuy', 'nosto', 'recart'],
+    slugs: ['shopify-magic', 'rep-ai', 'octane-ai', 'rebuy', 'recart'],
   },
   {
     slug: 'best-ai-shopify-apps',
@@ -2150,7 +2108,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI contract intelligence platforms in 2026 - tools that extract obligations, renewal dates, and risk terms from contract repositories at scale.',
     category: 'Legal AI',
     emoji: '📋',
-    slugs: ['evisort', 'linksquares', 'onetrust', 'bigid', 'securiti'],
+    slugs: ['linksquares', 'onetrust', 'bigid', 'securiti'],
   },
   {
     slug: 'best-ai-real-estate-tools',
@@ -2158,7 +2116,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered real estate platforms in 2026 - from brokerage intelligence that identifies likely sellers before they list, to commercial property data platforms for off-market deal origination.',
     category: 'Real Estate',
     emoji: '🏠',
-    slugs: ['compass', 'reonomy', 'cherre', 'leverton', 'rex-real-estate'],
+    slugs: ['compass', 'reonomy', 'cherre', 'leverton'],
   },
   {
     slug: 'best-ai-property-data-platforms',
@@ -2166,7 +2124,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI property data and analytics platforms in 2026 - commercial real estate intelligence, multifamily portfolio analytics, and institutional data unification tools.',
     category: 'Real Estate',
     emoji: '🏢',
-    slugs: ['reonomy', 'cherre', 'rentlytics', 'skyline-ai', 'leverton'],
+    slugs: ['reonomy', 'cherre', 'skyline-ai', 'leverton'],
   },
   {
     slug: 'best-ai-construction-tools',
