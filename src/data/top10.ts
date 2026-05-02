@@ -2206,6 +2206,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📈',
     slugs: ['duetto', 'atomize', 'revinate', 'mews'],
   },
+  {
+    slug: 'best-ai-supply-chain-platforms',
+    title: 'Best AI Supply Chain Platforms 2026',
+    description: 'The best AI-powered supply chain planning and visibility platforms in 2026 - from concurrent planning for complex global networks to enterprise demand forecasting and distribution management.',
+    category: 'Supply Chain',
+    emoji: '🚚',
+    slugs: ['kinaxis', 'blue-yonder', 'o9-solutions', 'manhattan-associates', 'project44'],
+  },
+  {
+    slug: 'best-ai-shipping-and-logistics',
+    title: 'Best AI Shipping and Logistics Tools 2026',
+    description: 'The best AI shipping, freight, and logistics tools in 2026 - multi-carrier shipping APIs, digital freight forwarding, and cloud supply chain platforms for e-commerce and mid-market brands.',
+    category: 'Supply Chain',
+    emoji: '📦',
+    slugs: ['shippo', 'easypost', 'flexport', 'transfix', 'stord'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
