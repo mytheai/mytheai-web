@@ -1,20 +1,15 @@
 import { getRequestConfig } from 'next-intl/server'
 import { cookies, headers } from 'next/headers'
 
-export const locales = ['en', 'fr', 'zh-CN', 'hi', 'es', 'ar', 'pt', 'ru'] as const
+export const locales = ['en', 'es', 'pt'] as const
 export type Locale = (typeof locales)[number]
 export const defaultLocale: Locale = 'en'
 export const LOCALE_COOKIE = 'NEXT_LOCALE'
-export const RTL_LOCALES = new Set<Locale>(['ar'])
+export const RTL_LOCALES = new Set<Locale>()
 
 const ACCEPT_LANG_PREFIX_MAP: Array<[string, Locale]> = [
-  ['fr', 'fr'],
-  ['zh', 'zh-CN'],
-  ['hi', 'hi'],
   ['es', 'es'],
-  ['ar', 'ar'],
   ['pt', 'pt'],
-  ['ru', 'ru'],
 ]
 
 function pickLocale(cookieValue: string | undefined, acceptLanguage: string | null): Locale {

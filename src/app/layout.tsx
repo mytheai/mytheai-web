@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
-import { RTL_LOCALES, type Locale } from '../../i18n'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -70,9 +69,8 @@ const websiteSchema = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale()
   const messages = await getMessages()
-  const dir = RTL_LOCALES.has(locale as Locale) ? 'rtl' : 'ltr'
   return (
-    <html lang={locale} dir={dir} className={`${inter.variable} antialiased`} suppressHydrationWarning>
+    <html lang={locale} className={`${inter.variable} antialiased`} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col bg-background text-foreground">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
