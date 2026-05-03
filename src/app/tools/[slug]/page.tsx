@@ -8,6 +8,9 @@ import ReviewForm from '@/components/reviews/ReviewForm'
 import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
 import ScoringTable from '@/components/tools/ScoringTable'
 import StickyMobileCTA from '@/components/tools/StickyMobileCTA'
+import SourcesBlock from '@/components/tools/SourcesBlock'
+import AuthorBio from '@/components/layout/AuthorBio'
+import { getAuthorJsonLd } from '@/data/authors'
 import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidence } from '@/lib/scoring'
 import { TOP10_LISTS } from '@/data/top10'
 import type { Metadata } from 'next'
@@ -260,6 +263,34 @@ export default async function ToolPage({
     } : undefined,
   }
 
+  // Editorial review JSON-LD with Person author for E-E-A-T
+  const editorialReviewJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: {
+      '@type': 'SoftwareApplication',
+      name: tool.name,
+      applicationCategory: 'WebApplication',
+      url: `https://mytheai.com/tools/${slug}`,
+    },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: tool.rating,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    name: `${tool.name} editorial review`,
+    reviewBody: tool.tagline,
+    author: getAuthorJsonLd(),
+    publisher: {
+      '@type': 'Organization',
+      name: 'MytheAi',
+      url: 'https://mytheai.com',
+    },
+    datePublished: tool.updated_at,
+    dateModified: tool.updated_at,
+  }
+
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -285,6 +316,10 @@ export default async function ToolPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(editorialReviewJsonLd) }}
       />
       <script
         type="application/ld+json"
@@ -558,6 +593,9 @@ export default async function ToolPage({
         {/* Editorial scoring breakdown */}
         {scores && <ScoringTable scores={scores} toolName={tool.name} evidence={evidence} />}
 
+        {/* External sources bibliography */}
+        <SourcesBlock evidence={evidence} verifiedDate={updatedDate} />
+
         {/* Related comparisons + Top 10 lists - internal linking */}
         {(relatedCompares.length > 0 || relatedTop10.length > 0) && (
           <section className="mt-12 pt-8 border-t border-border">
@@ -670,6 +708,11 @@ export default async function ToolPage({
               </details>
             ))}
           </div>
+        </div>
+
+        {/* Author */}
+        <div className="mt-12 pt-8 border-t border-border">
+          <AuthorBio context="reviewed" />
         </div>
 
         {/* Review title for SEO */}

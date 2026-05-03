@@ -36,6 +36,13 @@ export default function MethodologyPage() {
       ],
     },
     {
+      title: 'How evidence is weighted',
+      body: [
+        'Every score has supporting evidence visible on the tool page. We tier evidence so readers can judge the strength of each claim. Tier 1 is hands-on testing on real tasks - the highest weight in our scoring. Tier 2 is third-party aggregate signal (G2, Capterra, Product Hunt scores from at least 50 verified users). Tier 3 is community signal (Reddit threads, Hacker News discussion, GitHub stars) which we treat as directional rather than conclusive.',
+        'When the three tiers agree, the score is high-confidence. When they disagree - say, hands-on testing exposes a flaw that aggregate scores miss because reviewers had not yet hit it - we lean on Tier 1 and note the disagreement on the page. Sources are listed at the bottom of each tool page and linked back to their original location. We never paraphrase third-party reviews as our own.',
+      ],
+    },
+    {
       title: 'How rankings are protected from affiliate influence',
       body: [
         'Affiliate commission rates are not visible to anyone making editorial decisions. The team member who maintains affiliate relationships is separate from the team member writing reviews. This is the simplest structural protection: if scoring does not see commission data, scoring cannot be biased by it.',

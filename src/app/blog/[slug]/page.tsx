@@ -7,6 +7,8 @@ import { readFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import NewsletterForm from '@/components/newsletter/NewsletterForm'
+import AuthorBio from '@/components/layout/AuthorBio'
+import { getAuthorJsonLd, getAuthor } from '@/data/authors'
 
 export const revalidate = 604800
 
@@ -18,6 +20,7 @@ interface ArticleFrontmatter {
   category: string
   date: string
   readTime: string
+  author?: string
 }
 
 function getArticle(slug: string): (ArticleFrontmatter & { content: string }) | null {
@@ -139,6 +142,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     ],
   }
 
+  const author = getAuthor(article.author)
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -147,7 +151,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     url: `https://mytheai.com/blog/${slug}`,
     datePublished: article.date,
     dateModified: article.date,
-    author: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+    author: getAuthorJsonLd(article.author),
     publisher: {
       '@type': 'Organization',
       name: 'MytheAi',
@@ -194,8 +198,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <h1 className="text-[26px] md:text-[32px] font-extrabold tracking-tight text-foreground leading-tight mb-4">
           {article.title}
         </h1>
-        <p className="text-[16px] text-muted-foreground leading-relaxed">
+        <p className="text-[16px] text-muted-foreground leading-relaxed mb-4">
           {article.excerpt}
+        </p>
+        <p className="text-[13px] text-muted-foreground">
+          By <Link href="/about" className="text-blue-600 hover:underline font-medium">{author.name}</Link>, {author.role}
         </p>
       </header>
 
@@ -236,6 +243,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </div>
 
       <hr className="border-border mt-10 mb-8" />
+
+      {/* Author */}
+      <div className="mb-10">
+        <AuthorBio context="written" authorSlug={article.author} />
+      </div>
 
       {/* Related posts */}
       {related.length > 0 && (

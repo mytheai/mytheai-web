@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import { getAuthor } from '@/data/authors'
 
 interface AuthorBioProps {
   context?: 'reviewed' | 'written' | 'curated'
+  authorSlug?: string
   className?: string
 }
 
@@ -11,7 +13,10 @@ const LABEL: Record<NonNullable<AuthorBioProps['context']>, string> = {
   curated: 'Curated by',
 }
 
-export default function AuthorBio({ context = 'curated', className = '' }: AuthorBioProps) {
+export default function AuthorBio({ context = 'curated', authorSlug, className = '' }: AuthorBioProps) {
+  const author = getAuthor(authorSlug)
+  const sameAs = [author.twitter, author.linkedin, author.github].filter(Boolean) as string[]
+
   return (
     <div
       className={`flex items-start gap-4 p-5 rounded-xl border border-border bg-card ${className}`}
@@ -24,7 +29,7 @@ export default function AuthorBio({ context = 'curated', className = '' }: Autho
         viewBox="0 0 32 32"
         fill="none"
         className="w-12 h-12 rounded-xl flex-shrink-0"
-        aria-label="John Ethan, founder of MytheAi"
+        aria-label={`${author.name}, ${author.role.toLowerCase()} at MytheAi`}
         role="img"
       >
         <defs>
@@ -39,21 +44,50 @@ export default function AuthorBio({ context = 'curated', className = '' }: Autho
       <div className="flex-1 min-w-0">
         <p className="text-[12px] text-muted-foreground mb-0.5">{LABEL[context]}</p>
         <p className="text-[14px] font-bold text-foreground" itemProp="name">
-          John Ethan
+          {author.name}
+        </p>
+        <p className="text-[12px] text-blue-600 font-medium mb-1" itemProp="jobTitle">
+          {author.role}
         </p>
         <p className="text-[12px] text-muted-foreground mt-1 leading-relaxed" itemProp="description">
-          Founder of MytheAi. Tracking and reviewing AI and SaaS tools since January 2026. Built MytheAi out of frustration with pay-to-rank listicles and SEO-driven AI directories that prioritize ad revenue over honest guidance.
+          {author.bio}
         </p>
-        <p className="text-[12px] text-muted-foreground mt-2">
-          <Link href="/about" className="text-blue-600 hover:underline font-medium">
+        <p className="text-[12px] text-muted-foreground mt-2 flex flex-wrap items-center gap-x-1.5 gap-y-1">
+          <Link href="/about" className="text-blue-600 hover:underline font-medium" itemProp="url">
             About the editor
           </Link>
-          <span className="mx-1.5">·</span>
+          <span>·</span>
           <Link href="/methodology" className="text-blue-600 hover:underline font-medium">
             How we rank tools
           </Link>
+          {sameAs.map(href => (
+            <span key={href} className="inline-flex items-center">
+              <span className="mr-1.5">·</span>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer me"
+                className="text-blue-600 hover:underline font-medium"
+                itemProp="sameAs"
+              >
+                {hostnameLabel(href)}
+              </a>
+            </span>
+          ))}
         </p>
       </div>
     </div>
   )
+}
+
+function hostnameLabel(url: string): string {
+  try {
+    const h = new URL(url).hostname.replace(/^www\./, '')
+    if (h.includes('twitter') || h.includes('x.com')) return 'Twitter'
+    if (h.includes('linkedin')) return 'LinkedIn'
+    if (h.includes('github')) return 'GitHub'
+    return h
+  } catch {
+    return 'Link'
+  }
 }
