@@ -103,9 +103,18 @@ export default function LanguagePicker() {
     setCurrent(code)
     setOpen(false)
 
+    // Switching back to English requires a hard reload: Google Translate
+    // does not restore the original DOM content via combo.value='' alone,
+    // it only translates forward in-place. Reload reads the cleared
+    // googtrans cookie and renders the original EN HTML.
+    if (code === 'en') {
+      window.location.reload()
+      return
+    }
+
     const combo = document.querySelector<HTMLSelectElement>('select.goog-te-combo')
     if (combo) {
-      combo.value = code === 'en' ? '' : code
+      combo.value = code
       combo.dispatchEvent(new Event('change'))
       return
     }
