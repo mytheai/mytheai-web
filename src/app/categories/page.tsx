@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import { mockCategories } from '@/data/mock'
 import type { Metadata } from 'next'
 
@@ -14,17 +15,19 @@ export const metadata: Metadata = {
   },
 }
 
-export default function CategoriesPage() {
+export default async function CategoriesPage() {
+  const t = await getTranslations('MiscPages')
+  const tSection = await getTranslations('HomeSections')
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-10">
-        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Browse</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">{t('categoriesEyebrow')}</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
-          All Categories
+          {t('categoriesTitle')}
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          Find the right AI tool for every use case.
+          {t('categoriesIntro', { count: mockCategories.length })}
         </p>
       </div>
 
@@ -38,7 +41,7 @@ export default function CategoriesPage() {
             <span className="text-3xl flex-shrink-0">{cat.emoji}</span>
             <div className="min-w-0 flex-1">
               <p className="text-[15px] font-bold text-foreground group-hover:text-blue-600 transition-colors">{cat.name}</p>
-              <p className="text-[13px] text-muted-foreground">{cat.tool_count}+ tools</p>
+              <p className="text-[13px] text-muted-foreground">{tSection('toolCount', { count: cat.tool_count })}</p>
             </div>
             <span className="text-muted-foreground text-[13px] flex-shrink-0">→</span>
           </Link>

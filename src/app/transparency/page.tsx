@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import { createStaticClient } from '@/lib/supabase'
 
 export const revalidate = 86400
@@ -29,12 +30,12 @@ async function getStats() {
 }
 
 export default async function TransparencyPage() {
-  const stats = await getStats()
+  const [stats, t] = await Promise.all([getStats(), getTranslations('MiscPages')])
   const lastUpdated = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 
   return (
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
-      <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">Transparency</p>
+      <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">{t('transparencyEyebrow')}</p>
       <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-3">
         How MytheAi works behind the scenes
       </h1>

@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import { getTranslations } from 'next-intl/server'
 import { createStaticClient } from '@/lib/supabase'
 import ToolCard from '@/components/tools/ToolCard'
 import DealsFilterBar from '@/components/tools/DealsFilterBar'
@@ -92,21 +93,22 @@ export default async function DealsPage({
   searchParams: Promise<{ tool?: string; discount?: string; max_price?: string; category?: string }>
 }) {
   const { tool, discount, max_price, category } = await searchParams
-  const [tools, toolOptions] = await Promise.all([
+  const [tools, toolOptions, t] = await Promise.all([
     getFreeTools(tool, discount, max_price, category),
     getToolOptions(),
+    getTranslations('MiscPages'),
   ])
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#10B981] mb-1">Free & Freemium</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#10B981] mb-1">{t('dealsEyebrow')}</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
-          Best AI Tools With a Free Tier
+          {t('dealsTitle')}
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          {tools.length} tools you can start using today. No credit card required.
+          {t('dealsIntro')}
         </p>
       </div>
 

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export interface PostMeta {
   slug: string
@@ -37,6 +38,8 @@ const SELECT_CLS =
   'h-9 px-3 rounded-lg border border-border bg-surface text-[13px] text-foreground focus:outline-none focus:border-blue-400 cursor-pointer transition-colors'
 
 export default function BlogGrid({ posts }: { posts: PostMeta[] }) {
+  const t = useTranslations('BlogPage')
+  const tFilter = useTranslations('SearchFilter')
   const [category, setCategory] = useState('')
   const [search, setSearch]     = useState('')
 
@@ -76,7 +79,7 @@ export default function BlogGrid({ posts }: { posts: PostMeta[] }) {
             type="search"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="Search articles..."
+            placeholder={t('searchPlaceholder')}
             className="w-full h-9 pl-8 pr-3 rounded-lg border border-border bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-colors"
           />
         </div>
@@ -89,7 +92,7 @@ export default function BlogGrid({ posts }: { posts: PostMeta[] }) {
           onChange={e => setCategory(e.target.value)}
           className={SELECT_CLS}
         >
-          <option value="">All Categories</option>
+          <option value="">{t('allCategories')}</option>
           {categories.map(c => (
             <option key={c} value={c}>{c}</option>
           ))}
@@ -99,7 +102,7 @@ export default function BlogGrid({ posts }: { posts: PostMeta[] }) {
         {hasFilters && (
           <button
             onClick={clearAll}
-            aria-label="Clear filters"
+            aria-label={tFilter('clearFilters')}
             className="flex items-center justify-center w-8 h-8 rounded-lg border border-border text-muted-foreground hover:border-red-300 hover:text-red-500 transition-colors"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -144,7 +147,7 @@ export default function BlogGrid({ posts }: { posts: PostMeta[] }) {
                   href={`/blog/${post.slug}`}
                   className="text-[13px] font-semibold text-blue-600 hover:underline"
                 >
-                  Read article →
+                  {t('readArticle')} →
                 </Link>
               </article>
             )
@@ -152,12 +155,12 @@ export default function BlogGrid({ posts }: { posts: PostMeta[] }) {
         </div>
       ) : (
         <div className="py-16 text-center">
-          <p className="text-muted-foreground text-[15px]">No articles found.</p>
+          <p className="text-muted-foreground text-[15px]">{t('noResults')}</p>
           <button
             onClick={clearAll}
             className="mt-3 inline-block text-blue-600 text-[14px] hover:underline"
           >
-            Clear filters
+            {tFilter('clearFilters')}
           </button>
         </div>
       )}

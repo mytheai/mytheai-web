@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { readFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import { getTranslations } from 'next-intl/server'
 import BlogGrid from './BlogGrid'
 import type { PostMeta } from './BlogGrid'
 
@@ -43,8 +44,9 @@ const collectionSchema = {
   publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
 }
 
-export default function BlogPage() {
+export default async function BlogPage() {
   const posts = getAllPosts()
+  const t = await getTranslations('BlogPage')
 
   return (
     <>
@@ -52,21 +54,21 @@ export default function BlogPage() {
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-10">
-        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">Insights</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">{t('eyebrow')}</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
-          Blog
+          {t('title')}
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          Guides, tool comparisons, and AI news. Written for professionals who want signal, not noise.
+          {t('intro')}
         </p>
       </div>
 
       <BlogGrid posts={posts} />
 
       <div className="mt-12 border border-border rounded-xl p-6 bg-card text-center">
-        <p className="text-[14px] font-semibold text-foreground mb-1">More articles coming soon</p>
+        <p className="text-[14px] font-semibold text-foreground mb-1">{t('moreSoon')}</p>
         <p className="text-[13px] text-muted-foreground">
-          Subscribe to our newsletter to get new guides and tool reviews delivered to your inbox.
+          {t('moreSoonCopy')}
         </p>
       </div>
     </div>

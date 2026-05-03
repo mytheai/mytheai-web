@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import LogoImage from '@/components/ui/LogoImage'
 import { createStaticClient } from '@/lib/supabase'
 import { TOP10_LISTS } from '@/data/top10'
@@ -111,13 +112,15 @@ export default async function RolesHubPage() {
     .in('slug', allToolSlugs)
 
   const toolMap: Record<string, ToolMeta> = {}
-  for (const t of (toolRows ?? []) as ToolMeta[]) toolMap[t.slug] = t
+  for (const tool of (toolRows ?? []) as ToolMeta[]) toolMap[tool.slug] = tool
+  const tPage = await getTranslations('MiscPages')
+  const tRoles = await getTranslations('Roles')
 
   return (
     <div className="max-w-6xl mx-auto px-4 md:px-5 py-10 md:py-14">
-      <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">By Role</p>
+      <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">{tPage('rolesEyebrow')}</p>
       <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-3">
-        AI Tools by Profession
+        {tPage('rolesTitle')}
       </h1>
       <p className="text-[15px] text-muted-foreground mb-10 max-w-3xl">
         Curated stacks for 8 professional roles. Each role gets a Top 10 list scored on the same seven editorial criteria. Pick the role that matches your work, then drill into the ranked picks.
@@ -138,8 +141,8 @@ export default async function RolesHubPage() {
               <div className="flex items-start gap-4 mb-3">
                 <span className="text-3xl flex-shrink-0" aria-hidden="true">{role.emoji}</span>
                 <div className="min-w-0 flex-1">
-                  <h2 className="text-[17px] font-bold text-foreground group-hover:text-blue-600 transition-colors">{role.title}</h2>
-                  <p className="text-[13px] text-muted-foreground">{role.desc}</p>
+                  <h2 className="text-[17px] font-bold text-foreground group-hover:text-blue-600 transition-colors">{tRoles(role.slug)}</h2>
+                  <p className="text-[13px] text-muted-foreground">{tRoles(`${role.slug}Desc`)}</p>
                 </div>
               </div>
 
