@@ -108,6 +108,18 @@
     "alreadySubscribed": "Você já está inscrito.",
     "invalidEmail": "Por favor, insira um email válido."
   },
+  "SearchFilter": {
+    "search": "Pesquisar...",
+    "allCategories": "Todas as categorias",
+    "allPricing": "Todos os preços",
+    "topRated": "Melhor avaliadas",
+    "newest": "Mais recentes",
+    "nameAZ": "Nome A-Z",
+    "allRatings": "Todas as notas",
+    "rating4plus": "★★★★+ (4,0+)",
+    "rating45plus": "★★★★★ (4,5+)",
+    "clearFilters": "Limpar filtros"
+  },
   "ToolsPage": {
     "eyebrow": "Diretório",
     "title": "Todas as ferramentas IA e SaaS",

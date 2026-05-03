@@ -1,23 +1,25 @@
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import LogoImage from '@/components/ui/LogoImage'
 import type { Tool } from '@/types'
 
 function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
+  const t = useTranslations('PricingBadge')
   const map = {
     free:     'bg-[#D1FAE5] text-[#065F46]',
     freemium: 'bg-[#DBEAFE] text-[#1E40AF]',
     paid:     'bg-[#F3F4F6] text-[#374151]',
     ltd:      'bg-[#FEF3C7] text-[#92400E]',
   }
-  const labels = { free: 'Free', freemium: 'Freemium', paid: 'Paid', ltd: 'LTD' }
   return (
     <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${map[type]}`}>
-      {labels[type]}
+      {t(type)}
     </span>
   )
 }
 
 export default function ToolCard({ tool }: { tool: Tool }) {
+  const t = useTranslations('Common')
   return (
     <div className="relative bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300">
       {/* Header row */}
@@ -61,7 +63,7 @@ export default function ToolCard({ tool }: { tool: Tool }) {
           rel="noopener noreferrer sponsored"
           className="relative z-10 text-[12px] font-semibold text-blue-600 hover:text-blue-700"
         >
-          Visit →
+          {t('visit')} →
         </a>
       </div>
     </div>

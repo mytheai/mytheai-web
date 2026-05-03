@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 const CATEGORIES = [
   { slug: 'ai-assistants',        name: 'AI Assistants' },
@@ -46,25 +47,9 @@ const CATEGORIES = [
   { slug: 'legal-ai',             name: 'Legal AI' },
 ]
 
-const PRICING_OPTIONS = [
-  { value: '',          label: 'All pricing' },
-  { value: 'free',      label: 'Free' },
-  { value: 'freemium',  label: 'Freemium' },
-  { value: 'paid',      label: 'Paid' },
-  { value: 'ltd',       label: 'LTD' },
-]
-
-const SORT_OPTIONS = [
-  { value: '',        label: 'Top Rated' },
-  { value: 'newest',  label: 'Newest' },
-  { value: 'name',    label: 'Name A-Z' },
-]
-
-const MIN_RATING_OPTIONS = [
-  { value: '',    label: 'All Ratings' },
-  { value: '4',   label: '★★★★+ (4.0+)' },
-  { value: '4.5', label: '★★★★★ (4.5+)' },
-]
+const PRICING_VALUES = ['', 'free', 'freemium', 'paid', 'ltd'] as const
+const SORT_VALUES = ['', 'newest', 'name'] as const
+const MIN_RATING_VALUES = ['', '4', '4.5'] as const
 
 const SELECT_CLS =
   'h-9 px-3 rounded-lg border border-border bg-surface text-[13px] text-foreground focus:outline-none focus:border-blue-400 cursor-pointer transition-colors'
@@ -84,10 +69,29 @@ export default function SearchFilterBar({
   showPricing,
   showSort,
   showMinRating,
-  searchPlaceholder = 'Search...',
+  searchPlaceholder,
 }: SearchFilterBarProps) {
   const router = useRouter()
   const params = useSearchParams()
+  const t = useTranslations('SearchFilter')
+  const tBadge = useTranslations('PricingBadge')
+
+  const PRICING_OPTIONS = PRICING_VALUES.map(v => ({
+    value: v,
+    label: v === '' ? t('allPricing') : tBadge(v),
+  }))
+  const SORT_OPTIONS: { value: string; label: string }[] = [
+    { value: '', label: t('topRated') },
+    { value: 'newest', label: t('newest') },
+    { value: 'name', label: t('nameAZ') },
+  ]
+  const MIN_RATING_OPTIONS: { value: string; label: string }[] = [
+    { value: '', label: t('allRatings') },
+    { value: '4', label: t('rating4plus') },
+    { value: '4.5', label: t('rating45plus') },
+  ]
+  // Keep deps reference but mark unused intentionally
+  void SORT_VALUES; void MIN_RATING_VALUES
 
   const activeCategory  = params.get('category')   ?? ''
   const activePricing   = params.get('pricing')    ?? ''
@@ -136,7 +140,7 @@ export default function SearchFilterBar({
           type="search"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          placeholder={searchPlaceholder}
+          placeholder={searchPlaceholder ?? t('search')}
           className="w-full h-9 pl-8 pr-3 rounded-lg border border-border bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 transition-colors"
         />
       </div>
@@ -153,7 +157,7 @@ export default function SearchFilterBar({
           onChange={e => setFilter('category', e.target.value)}
           className={SELECT_CLS}
         >
-          <option value="">All categories</option>
+          <option value="">{t('allCategories')}</option>
           {CATEGORIES.map(c => (
             <option key={c.slug} value={c.slug}>{c.name}</option>
           ))}
@@ -203,7 +207,7 @@ export default function SearchFilterBar({
       {hasFilters && (
         <button
           onClick={clearAll}
-          aria-label="Clear filters"
+          aria-label={t('clearFilters')}
           className="flex items-center justify-center w-8 h-8 rounded-lg border border-border text-muted-foreground hover:border-red-300 hover:text-red-500 transition-colors"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"

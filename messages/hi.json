@@ -108,6 +108,18 @@
     "alreadySubscribed": "आप पहले से सब्सक्राइब हैं।",
     "invalidEmail": "कृपया एक मान्य ईमेल दर्ज करें।"
   },
+  "SearchFilter": {
+    "search": "खोजें…",
+    "allCategories": "सभी श्रेणियाँ",
+    "allPricing": "सभी मूल्य",
+    "topRated": "सर्वोच्च रेटेड",
+    "newest": "नवीनतम",
+    "nameAZ": "नाम A-Z",
+    "allRatings": "सभी रेटिंग",
+    "rating4plus": "★★★★+ (4.0+)",
+    "rating45plus": "★★★★★ (4.5+)",
+    "clearFilters": "फ़िल्टर साफ़ करें"
+  },
   "ToolsPage": {
     "eyebrow": "डायरेक्टरी",
     "title": "सभी AI और SaaS टूल्स",

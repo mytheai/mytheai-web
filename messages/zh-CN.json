@@ -108,6 +108,18 @@
     "alreadySubscribed": "你已订阅。",
     "invalidEmail": "请输入有效的邮箱地址。"
   },
+  "SearchFilter": {
+    "search": "搜索……",
+    "allCategories": "全部分类",
+    "allPricing": "全部价格",
+    "topRated": "评分最高",
+    "newest": "最新",
+    "nameAZ": "按名称 A-Z",
+    "allRatings": "全部评分",
+    "rating4plus": "★★★★+ (4.0+)",
+    "rating45plus": "★★★★★ (4.5+)",
+    "clearFilters": "清除筛选"
+  },
   "ToolsPage": {
     "eyebrow": "目录",
     "title": "所有 AI 与 SaaS 工具",

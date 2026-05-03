@@ -108,6 +108,18 @@
     "alreadySubscribed": "Вы уже подписаны.",
     "invalidEmail": "Введите корректный email."
   },
+  "SearchFilter": {
+    "search": "Поиск...",
+    "allCategories": "Все категории",
+    "allPricing": "Все цены",
+    "topRated": "Высший рейтинг",
+    "newest": "Новейшие",
+    "nameAZ": "Имя А-Я",
+    "allRatings": "Все рейтинги",
+    "rating4plus": "★★★★+ (4.0+)",
+    "rating45plus": "★★★★★ (4.5+)",
+    "clearFilters": "Сбросить фильтры"
+  },
   "ToolsPage": {
     "eyebrow": "Каталог",
     "title": "Все ИИ и SaaS инструменты",

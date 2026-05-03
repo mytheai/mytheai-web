@@ -108,6 +108,18 @@
     "alreadySubscribed": "You're already subscribed.",
     "invalidEmail": "Please enter a valid email."
   },
+  "SearchFilter": {
+    "search": "Search...",
+    "allCategories": "All categories",
+    "allPricing": "All pricing",
+    "topRated": "Top Rated",
+    "newest": "Newest",
+    "nameAZ": "Name A-Z",
+    "allRatings": "All Ratings",
+    "rating4plus": "★★★★+ (4.0+)",
+    "rating45plus": "★★★★★ (4.5+)",
+    "clearFilters": "Clear filters"
+  },
   "ToolsPage": {
     "eyebrow": "Directory",
     "title": "All AI & SaaS Tools",

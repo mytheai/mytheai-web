@@ -108,6 +108,18 @@
     "alreadySubscribed": "أنت مشترك بالفعل.",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح."
   },
+  "SearchFilter": {
+    "search": "بحث...",
+    "allCategories": "كل الفئات",
+    "allPricing": "كل الأسعار",
+    "topRated": "الأعلى تقييمًا",
+    "newest": "الأحدث",
+    "nameAZ": "الاسم أ-ي",
+    "allRatings": "كل التقييمات",
+    "rating4plus": "★★★★+ (4.0+)",
+    "rating45plus": "★★★★★ (4.5+)",
+    "clearFilters": "إعادة ضبط الفلاتر"
+  },
   "ToolsPage": {
     "eyebrow": "الدليل",
     "title": "كل أدوات الذكاء الاصطناعي و SaaS",
