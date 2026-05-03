@@ -35,6 +35,18 @@ export const metadata: Metadata = {
     images: ['/api/og/site'],
   },
   manifest: '/manifest.json',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/apple-icon', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+  },
   verification: { google: 'v1XXmGzPAUqEJsSXb3F1bl3TipZYYKmIObnmRK8N2oc' },
   robots: { index: true, follow: true },
 }
@@ -46,7 +58,7 @@ const organizationSchema = {
   url: 'https://mytheai.com',
   logo: {
     '@type': 'ImageObject',
-    url: 'https://mytheai.com/api/logo',
+    url: 'https://mytheai.com/icon-512.png',
     width: 512,
     height: 512,
   },
