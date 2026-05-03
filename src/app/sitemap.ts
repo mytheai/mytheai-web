@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 import { createStaticClient } from '@/lib/supabase'
 import { mockCategories } from '@/data/mock'
 import { TOP10_LISTS } from '@/data/top10'
+import { GLOSSARY } from '@/data/glossary'
 
 export const revalidate = 86400
 
@@ -56,6 +57,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
+  const glossaryUrls: MetadataRoute.Sitemap = GLOSSARY.map(g => ({
+    url: `https://mytheai.com/glossary/${g.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
   const blogDir = path.join(process.cwd(), 'content/blog')
   const blogFiles = readdirSync(blogDir).filter(f => f.endsWith('.mdx'))
   const blogUrls: MetadataRoute.Sitemap = blogFiles.map(file => {
@@ -93,11 +101,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     })),
+    { url: 'https://mytheai.com/glossary', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
     ...toolUrls,
     ...compareUrls,
     ...alternativesUrls,
     ...categoryUrls,
     ...top10Urls,
     ...blogUrls,
+    ...glossaryUrls,
   ]
 }

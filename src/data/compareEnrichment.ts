@@ -976,6 +976,246 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'How long can each generate per clip?', a: 'Hailuo standard is 6 seconds per clip with paid extension to longer. Kling 1.5 supports up to 2 minutes per single clip on higher tiers, which is unique in the category. For longer narrative shots, Kling is the better pick.' },
     ],
   },
+
+  'cursor-vs-replit': {
+    bottomLine: 'Cursor and Replit attack AI coding from opposite ends. Cursor is a desktop VS Code fork built around AI for serious code work: agent mode, Composer, multi-file refactor, and tight repo context. Replit is a browser-based IDE plus AI agent (Replit Agent) optimised for spinning up working apps from natural language with hosting included. Cursor Pro is $20/mo. Replit Core is $25/mo with Agent and hosting. Pick Cursor for daily engineering on an existing codebase. Pick Replit when you want an all-in-one tool to ideate, build, and deploy a small project without setup friction.',
+    whenToPickA: 'You work in a real codebase day to day and want the strongest AI assistant inside the IDE. Cursor handles repo-wide context, agent edits across files, and ships the most polished AI-coding UX in 2026. Best for software engineers and developers shipping production work.',
+    whenToPickB: 'You want zero-setup coding plus AI plus hosting. Replit Agent generates a working app from a prompt, runs it in the browser, and ships it on a public URL. Best for hackathons, MVP prototyping, learners, and anyone who values an integrated environment over local-IDE control.',
+    faqs: [
+      { q: 'Can Replit replace a real IDE for daily work?', a: 'For most professional engineering workflows, no. Replit is excellent for rapid prototyping and education but struggles with very large codebases, complex local toolchains, and team-scale workflows. Cursor or VS Code remain the standard for production engineering.' },
+      { q: 'How does Replit Agent compare to Cursor agent mode?', a: 'They target different problem shapes. Replit Agent excels at scaffolding new projects from a high-level prompt and getting them running. Cursor agent excels at multi-step edits inside an existing codebase with tests. Both are usable; pick by workflow.' },
+      { q: 'Which is better for learning to code?', a: 'Replit, by a clear margin. The browser-only setup, instant runtime, and Agent that explains itself make it the standard for coding education in 2026. Cursor assumes you already know enough to operate VS Code and Git.' },
+      { q: 'Can I export from Replit to a real repo?', a: 'Yes. Replit projects can be cloned to GitHub and brought into Cursor or VS Code at any point. The common pattern is to prototype in Replit, then move to a real IDE once the project graduates to production.' },
+    ],
+  },
+
+  'lovable-vs-replit': {
+    bottomLine: 'Lovable and Replit both let you build apps from natural language, but they target different audiences. Lovable (formerly GPT Engineer) is laser-focused on full-stack web apps with first-class Supabase integration and a guided iteration loop for non-developers. Replit is a broader platform: any language, any framework, plus hosting, plus collaborative coding, plus an AI Agent. Lovable runs around $20/mo. Replit Core is $25/mo with Agent and hosting. Pick Lovable for product-style web apps where you want polish and Supabase out of the box. Pick Replit when you need flexibility across languages and frameworks or want to learn coding alongside the AI.',
+    whenToPickA: 'You build a SaaS-style product, want clean Supabase auth/db scaffolding, and prefer a guided iteration UX over an open IDE. Lovable strength is the spec-to-product flow with sensible defaults. Best for indie hackers, founders, and non-developers shipping working tools.',
+    whenToPickB: 'You want a real IDE plus AI plus hosting plus collaboration in the browser. Replit covers many languages (Python, JS, Go, Rust, Java, more) and is the standard for education and rapid prototyping in any stack. Best for learners, hackathons, and developers who want flexibility.',
+    faqs: [
+      { q: 'Which is faster to ship a working web app?', a: 'Lovable, marginally, for SaaS-shaped apps. Lovable defaults to a Next.js plus Supabase stack with auth and a database wired up by default. Replit Agent can do the same but takes more prompting to get to the same level of integration.' },
+      { q: 'Can either build native mobile apps?', a: 'Lovable focuses on web only. Replit supports any language so you can build with React Native or Flutter, but Replit Agent itself is web-app first. For real mobile work, neither is yet the right primary tool.' },
+      { q: 'Which is better for non-developers?', a: 'Lovable, slightly. The guided iteration UX surfaces what to fix and how, where Replit assumes you can read TypeScript or Python when something breaks. For total beginners, Lovable is more forgiving.' },
+      { q: 'How does pricing compare at scale?', a: 'Both run $20-25/mo for individual use. Replit pricing includes hosting credits which can spike if you deploy a high-traffic project. Lovable hosting is via Netlify or Vercel under your account, so production cost is yours to control.' },
+    ],
+  },
+
+  'zed-vs-cursor': {
+    bottomLine: 'Zed and Cursor are both VS Code-class editors with AI features but optimise for very different things. Zed is a from-scratch native editor written in Rust by the Atom team, focused on raw performance, multiplayer collaboration, and minimalist design. Cursor is a VS Code fork built around the deepest AI coding integration in the market. Zed is free with optional $20/mo Zed Pro for AI features. Cursor Pro is $20/mo. Pick Zed if you value editor speed, native multiplayer collaboration, and prefer a minimalist tool. Pick Cursor if AI is the centre of your coding workflow and you want the most capable agent.',
+    whenToPickA: 'You care about latency and craftsmanship in your editor. Zed renders frames at 120 FPS, opens projects instantly, and the multiplayer mode is genuinely the best in any editor. Best for engineers who want a fast, opinionated tool and use AI as a sidecar rather than the main interface.',
+    whenToPickB: 'You want AI as the primary coding modality with the best agent, multi-file edits, and Composer flow. Cursor remains the AI-first leader in 2026 and the integration depth is unmatched. Best for engineers willing to trade some VS Code marketplace breadth for AI power.',
+    faqs: [
+      { q: 'Is Zed AI as capable as Cursor?', a: 'Not as deeply integrated. Zed AI handles inline assist and chat with leading models, but the agent and multi-file refactor flows in Cursor are more polished and frequently updated. Zed AI is improving fast though.' },
+      { q: 'Can Zed replace VS Code for plugins?', a: 'Partially. Zed has its own extension system that has filled in major languages and tools but is much smaller than the VS Code marketplace. If you rely on a niche plugin, Zed may not have it yet.' },
+      { q: 'Which is better for collaboration?', a: 'Zed, by a wide margin. Native multiplayer with shared cursors, voice, and real-time co-editing is built in and works smoothly. Cursor multiplayer is a Live Share-style add-on that is less integrated.' },
+      { q: 'Is Zed really faster than VS Code?', a: 'Yes, noticeably. Zed targets the GPU and runs natively, opening cold projects in well under a second on modern hardware. Cursor inherits VS Code performance which is fine but slower for very large codebases.' },
+    ],
+  },
+
+  'you-com-vs-perplexity': {
+    bottomLine: 'You.com and Perplexity are both AI-first search engines that compete with Google for research-style queries, with different strengths in 2026. Perplexity is the polished consumer leader: clean answer-with-citations UX, multi-step Pro Search, and broad model choice. You.com is the more developer-friendly platform: agent-style multi-step research, exposed API, and tight integrations for power users. Perplexity Pro is $20/mo. You.com Pro is $20/mo. Pick Perplexity for everyday research and reading. Pick You.com if you want agent-style deep research, API access, or already work in the You.com developer ecosystem.',
+    whenToPickA: 'You want a clean answer engine that replaces Google for research, news, and product comparisons. Perplexity is the polish leader and what most non-technical users default to. Best for researchers, journalists, analysts, and anyone tired of Google ad clutter.',
+    whenToPickB: 'You need a research agent that can run multi-step web tasks, or you want to embed AI search into your own product via API. You.com agent and developer surface are stronger than Perplexity equivalent. Best for developers, power researchers, and teams building on top of search infrastructure.',
+    faqs: [
+      { q: 'Which has better answer quality?', a: 'Perplexity, marginally, on consumer-facing queries. Both ground in live web results and cite sources. Perplexity ranking and answer composition feels slightly more polished; You.com edges ahead on agent-style tasks that require multiple steps.' },
+      { q: 'Can either replace Google?', a: 'For informational queries, mostly yes for both. Heavy Perplexity and You.com users replace Google for "what is X" and "how does Y work" queries while still using Google for navigational and shopping searches.' },
+      { q: 'Does either offer an API?', a: 'You.com has a public Search and Research API that is more mature. Perplexity API was added in 2024 and continues to expand but the developer surface is smaller. For embedding AI search into a product, You.com is the more practical pick.' },
+      { q: 'Which is better for dev research?', a: 'You.com, slightly, because the agent surfaces code-friendly results with stack-aware ranking. Perplexity also handles dev queries well; many engineers prefer Phind for code-specific search.' },
+    ],
+  },
+
+  'phind-vs-perplexity': {
+    bottomLine: 'Phind and Perplexity are AI search engines with different audiences. Phind is laser-focused on developer queries (code, error messages, framework docs) with a custom code-tuned model and direct integration with technical content. Perplexity is the broader consumer answer engine for research, news, and general questions. Phind is free with optional $20/mo Pro. Perplexity Pro is $20/mo. Pick Phind for any technical or coding query. Pick Perplexity for general research, news, and non-dev knowledge work.',
+    whenToPickA: 'You search for code, debugging, framework documentation, or technical comparisons. Phind ranking favours official docs, GitHub, and Stack Overflow, and the answer style includes code blocks and version-aware syntax. Best for developers and DevOps engineers.',
+    whenToPickB: 'You search for general knowledge, news, product comparisons, or any non-technical research. Perplexity broader coverage and polished answer composition is better for everyday research. Best for analysts, students, and knowledge workers.',
+    faqs: [
+      { q: 'Is Phind really better than Perplexity for coding?', a: 'Yes, by a noticeable margin in 2026. Phind training tunes for code retrieval and the custom Phind-405B model is competitive with frontier general models on coding benchmarks. For "how do I do X in Rust" or "what does this Python error mean", Phind answers tend to be more precise.' },
+      { q: 'Which has the larger free tier?', a: 'Phind, slightly. Phind Free includes most search functionality with rate limits; Perplexity Free is also usable but caps Pro Search and model choice. For developers, Phind Free covers daily work.' },
+      { q: 'Can Perplexity match Phind on dev queries?', a: 'Pretty close on many queries. Perplexity routes to GPT-4o or Claude and these models are strong at coding. The gap is mostly that Perplexity does not bias retrieval toward technical sources the way Phind does.' },
+      { q: 'Should I use both?', a: 'Many engineers do. Phind for in-IDE-style technical search; Perplexity for broader research and product comparisons. Combined cost is $40/mo which is justified for heavy users.' },
+    ],
+  },
+
+  'wrike-vs-asana': {
+    bottomLine: 'Wrike and Asana are both established work management platforms competing for mid-market and enterprise teams in 2026. Asana is the cleaner, design-led tool with the strongest list and timeline views and broad SaaS adoption. Wrike is the more enterprise-flavoured option: deeper customisation, request forms, proofing for creative teams, and stronger Gantt and resource management. Asana Starter is $10.99/user/mo. Wrike Team is $9.80/user/mo. Pick Asana when team UX and adoption matter most. Pick Wrike for complex workflows, Gantt-heavy projects, or creative agency use.',
+    whenToPickA: 'Your team values a clean UX, fast onboarding, and broad ecosystem. Asana adoption inside organisations is consistently faster because the UI is less intimidating. Best for SaaS companies, marketing teams, and any group where adoption rate matters more than feature depth.',
+    whenToPickB: 'You need request forms, complex approval workflows, dynamic Gantt scheduling, or creative-asset proofing inside the project tool. Wrike feature depth wins for ops-heavy and creative-agency use cases. Best for enterprise project management, creative agencies, and PMOs.',
+    faqs: [
+      { q: 'Which has better Gantt views?', a: 'Wrike, by a clear margin. Wrike Gantt is dynamic with auto-scheduling, dependency cascades, and resource levelling. Asana Timeline covers the same surface but feels more visual than functional for serious scheduling.' },
+      { q: 'Which is easier to roll out?', a: 'Asana. The product is opinionated and the default views match how most teams already think about projects. Wrike has more knobs which means more decisions during setup; expect a longer rollout for teams over 50.' },
+      { q: 'How do they compare on price?', a: 'Wrike entry tier is slightly cheaper at $9.80/user/mo vs Asana $10.99. Higher tiers run roughly the same. The bigger cost driver is implementation time, where Asana wins.' },
+      { q: 'Should I look at ClickUp instead?', a: 'ClickUp competes head-on with both, with broader feature sprawl and lower entry pricing. ClickUp wins on raw features per dollar; Asana wins on UX clarity; Wrike wins on enterprise depth. Pick by which trade-off matches your team.' },
+    ],
+  },
+
+  'smartsheet-vs-clickup': {
+    bottomLine: 'Smartsheet and ClickUp are both flexible work platforms with very different DNA. Smartsheet started as a spreadsheet-based work tool and feels like Excel-meets-project-management with strong enterprise governance, automation, and reporting. ClickUp is a younger SaaS-native platform packing tasks, docs, goals, whiteboards, and chat into one app. Smartsheet Pro is $9/user/mo (annual). ClickUp Unlimited is $7/user/mo. Pick Smartsheet for enterprise teams that already think in spreadsheets and need governance. Pick ClickUp for SaaS-style teams who want broader app coverage at a lower price.',
+    whenToPickA: 'Your organisation runs project tracking in spreadsheets and you want a real platform that preserves that mental model. Smartsheet enterprise governance, auditability, and report builder are strong. Best for finance, ops, and PMO teams in mid-to-large enterprises.',
+    whenToPickB: 'You want one tool covering tasks, docs, whiteboards, goals, and chat without buying separate SaaS for each. ClickUp ships the broadest feature set per dollar in 2026. Best for startups and SMBs consolidating their tool stack.',
+    faqs: [
+      { q: 'Which is more enterprise-ready?', a: 'Smartsheet, by a clear margin. SOC 2, HIPAA, FedRAMP options, governance, and audit features are deeper. ClickUp meets standard SOC 2 but enterprise compliance is a younger story.' },
+      { q: 'Which has more native features?', a: 'ClickUp, by a wide margin. Docs, whiteboards, goals, chat, time tracking, and forms are all built in. Smartsheet keeps a tight scope around grids and project tracking.' },
+      { q: 'Are spreadsheets in ClickUp as good as Smartsheet grids?', a: 'No, not in 2026. Smartsheet grids handle large datasets, complex formulas, and cross-sheet references better than ClickUp tables. If spreadsheets are the centre of work, Smartsheet wins.' },
+      { q: 'Which has better automation?', a: 'Roughly equal. Both ship native automation rules, integrate with Zapier, and handle multi-step workflows. Smartsheet automation feels more enterprise; ClickUp automation feels more lightweight and flexible.' },
+    ],
+  },
+
+  'plane-so-vs-linear': {
+    bottomLine: 'Plane and Linear both target software teams who want a fast, focused issue tracker but differ on philosophy. Linear is the polished proprietary leader: opinionated UX, lightning fast, used by many high-performance product teams. Plane is the open-source challenger that mirrors much of Linear feel but ships self-hosted plus cloud, with broader customisation. Linear Standard is $8/user/mo. Plane Cloud Free covers small teams; Pro is $9/user/mo. Pick Linear if budget allows and you want the most polished proprietary tool. Pick Plane when you need self-hosted, open-source, or want the same shape at lower cost.',
+    whenToPickA: 'You want the most polished issue tracker with the cleanest UX in 2026. Linear keyboard-driven flow, instant search, and tight integrations are still the gold standard for high-performance product teams. Best for SaaS startups and engineering teams that value tool polish.',
+    whenToPickB: 'You need self-hosted deployment, open-source flexibility, or cannot justify proprietary per-seat pricing. Plane has closed much of the UX gap with Linear and offers a comparable experience at lower cost. Best for engineering teams who want self-hosting or broader customisation.',
+    faqs: [
+      { q: 'Is Plane really comparable to Linear?', a: 'Closer than most expect in 2026, but not identical. Plane core flows (issues, cycles, projects) feel fast and clean. Linear retains an edge on edge-case polish, integrations, and AI features. For 80% of users either tool works.' },
+      { q: 'Can I self-host Linear?', a: 'No. Linear is cloud-only with no self-hosted option. If self-hosting is a requirement, Plane (or Jira Server, or YouTrack) are the realistic picks.' },
+      { q: 'Which has a better free tier?', a: 'Plane. Plane Cloud Free is generous (up to 10 members) and self-hosted is fully free. Linear Free is limited to small teams and basic features.' },
+      { q: 'Which has better integrations?', a: 'Linear, by a meaningful margin. Slack, GitHub, Figma, Sentry, and many others integrate first-class with Linear. Plane integrations are growing but smaller in count and depth.' },
+    ],
+  },
+
+  'helpscout-vs-freshdesk': {
+    bottomLine: 'Help Scout and Freshdesk are both popular help-desk tools that target different organisation shapes. Help Scout is the modern, conversation-style tool optimised for SMB and mid-market teams who want email-feeling support without the ticket-system overhead. Freshdesk is the broader, more enterprise-flavoured help-desk from Freshworks with a generous free tier and deeper feature coverage at the higher tiers. Help Scout Standard is $25/user/mo. Freshdesk Growth is $15/agent/mo with a free tier covering 10 agents. Pick Help Scout when you want a clean, email-feeling shared inbox. Pick Freshdesk for traditional ticketing or a strong free tier.',
+    whenToPickA: 'You run support that feels more like email correspondence than ticketing. Help Scout shared inbox, customer profiles, and Beacon (in-app chat) are exceptionally clean. Best for SaaS companies and SMBs who want quality conversations rather than ticket volume.',
+    whenToPickB: 'You want a traditional help desk with ticketing, automations, and a forever-free tier for early-stage teams. Freshdesk feature breadth covers omnichannel, SLAs, and reporting and the free tier (10 agents) is best in class. Best for SMBs cost-sensitive on support tooling.',
+    faqs: [
+      { q: 'Is Help Scout missing ticketing features?', a: 'Not really; it just does not look like a traditional ticketing tool. Conversations have all the underpinnings (assignment, tags, SLAs, reporting) but the UX is email-feeling. For teams who want a "support inbox" rather than "ticket queue", this is the appeal.' },
+      { q: 'Which is cheaper at small scale?', a: 'Freshdesk, clearly, because of the forever-free tier. Help Scout starts at $25/user/mo with no free tier. For a 5-agent SMB on a budget, Freshdesk Free is the practical pick.' },
+      { q: 'Which has better AI?', a: 'Roughly even in 2026. Help Scout AI assist focuses on draft replies and summarisation with the in-conversation flow. Freshdesk Freddy AI covers similar ground plus deflection. Both are improving fast.' },
+      { q: 'Which integrates better with SaaS stack?', a: 'Help Scout, marginally, for SaaS companies. The Beacon embed, customer-app integrations, and shared-inbox style fit modern SaaS workflows. Freshdesk integration breadth is broader but less SaaS-native.' },
+    ],
+  },
+
+  'gorgias-vs-tidio': {
+    bottomLine: 'Gorgias and Tidio compete for ecommerce support but at different price points. Gorgias is the Shopify-native helpdesk built for ecommerce: deep order context, automated ticket macros tied to order data, and the strongest Shopify and BigCommerce integration. Tidio is the lighter live-chat plus AI tool that targets SMB ecommerce with affordable pricing and a usable free tier. Gorgias Starter is $50/mo (300 tickets). Tidio Free covers 50 conversations; Starter is $29/mo. Pick Gorgias when you run a serious Shopify store and need order-aware support. Pick Tidio when you are smaller and want chat plus simple AI on a budget.',
+    whenToPickA: 'You run a Shopify or BigCommerce store with real ticket volume and want every conversation tied to order, refund, and customer data automatically. Gorgias macros and integrations save hours per week for support teams. Best for ecommerce brands at $1M+ GMV.',
+    whenToPickB: 'You are a smaller ecommerce shop or SMB that needs live chat, basic AI deflection, and a free tier to start. Tidio price-to-value is hard to beat for early-stage stores. Best for shops under $500K GMV or any small business that needs chat first.',
+    faqs: [
+      { q: 'Is Gorgias really worth the higher price for Shopify?', a: 'For Shopify stores past a few thousand orders per month, yes. The order-aware ticketing reduces handling time materially. For very small shops, Tidio or even Shopify Inbox is the right choice.' },
+      { q: 'Does Tidio handle ticketing or only chat?', a: 'Both, but chat is the stronger surface. Tidio added ticketing and email but the product DNA is chat-first. For chat-heavy support, this is the appeal; for high-volume email tickets, Gorgias or Help Scout fit better.' },
+      { q: 'Which has better AI for ecommerce?', a: 'Gorgias AI Agent is more ecommerce-specific (knows your products, orders, returns policies). Tidio Lyro is a competent generalist chatbot. For order-aware AI, Gorgias wins.' },
+      { q: 'Can either integrate with Shopify Flow?', a: 'Both connect to Shopify, but Gorgias integration is deeper: native Shopify Flow triggers and deep order data exposure. Tidio connects via standard Shopify app.' },
+    ],
+  },
+
+  'notion-ai-vs-mem': {
+    bottomLine: 'Notion AI and Mem take different sides of the AI-notes question. Notion AI bolts AI onto the popular all-in-one Notion workspace: write, summarise, autofill databases, ask the wiki. Mem is an AI-native notes app where AI is the foundation: every note auto-tags, auto-links, and is searchable by meaning rather than folder. Notion AI is a $10/user/mo add-on to Notion. Mem X is $15/user/mo. Pick Notion AI when your team is already on Notion and you want AI added to that. Pick Mem if you want a notes-first tool where AI organises your second brain automatically.',
+    whenToPickA: 'Your team already runs on Notion and you want AI assistance for writing, summarising, and asking the wiki. Notion AI integration into the existing workspace is the path of least resistance for most teams. Best for SaaS teams already standardised on Notion.',
+    whenToPickB: 'You want a personal notes app where AI is the organising principle, not a feature. Mem auto-linking, daily review, and meaning-based search are unique. Best for power note-takers, researchers, and individuals building a second brain.',
+    faqs: [
+      { q: 'Can Mem replace Notion entirely?', a: 'For personal notes, yes. For team wiki, project tracking, and database use cases, no. Mem stays focused on notes; Notion is broader workspace.' },
+      { q: 'Which has stronger AI search?', a: 'Mem, marginally. Mem search is meaning-based by default and includes related notes automatically. Notion AI Q&A is good but feels more like "ask the wiki" than a native semantic search.' },
+      { q: 'Which is cheaper?', a: 'Notion AI is technically cheaper ($10 add-on) but you also pay for Notion ($10 Plus tier), so $20/user/mo total. Mem X is $15/user/mo standalone. For a single person, Mem is cheaper; for a team, Notion total stack tends to win.' },
+      { q: 'Should I use NotebookLM instead?', a: 'For document Q&A and source-grounded research, NotebookLM is excellent and free. For an always-on second-brain notes app, NotebookLM is not the right fit. Many users run NotebookLM alongside Notion or Mem.' },
+    ],
+  },
+
+  'reflect-vs-mem-ai': {
+    bottomLine: 'Reflect and Mem are both AI-native note apps that compete with Notion and Roam in the second-brain category. Reflect is the simpler, more opinionated tool: daily notes, backlinks, and AI assistant tightly integrated, with end-to-end encryption. Mem is the broader AI-first platform with auto-linking, meaning-based search, and aggressive AI features. Reflect is $10/mo. Mem X is $15/user/mo. Pick Reflect for a clean, encrypted note-taking flow with AI as a sidecar. Pick Mem when you want AI to do the organising for you.',
+    whenToPickA: 'You want a simple, encrypted, daily-note style app with backlinks and a usable AI assistant. Reflect opinionated UX and end-to-end encryption are differentiators. Best for privacy-conscious individuals and writers who value simplicity.',
+    whenToPickB: 'You want AI to do the heavy lifting on organising notes (auto-tags, auto-links, meaning search). Mem is more aggressive on AI features. Best for power note-takers building large knowledge bases.',
+    faqs: [
+      { q: 'Is end-to-end encryption real in Reflect?', a: 'Yes, Reflect implements client-side encryption for note content. AI features either run on-device or against an encrypted relay. For privacy-sensitive notes, this is a meaningful differentiator.' },
+      { q: 'Which has better AI?', a: 'Mem, marginally, on raw AI feature count. Reflect AI feels more curated and intentional. Pick by whether you want AI as a power tool (Mem) or as a thoughtful sidekick (Reflect).' },
+      { q: 'Which is cheaper?', a: 'Reflect, slightly. Reflect is $10/mo flat. Mem X is $15/user/mo. For an individual, Reflect saves $60/year.' },
+      { q: 'Can I migrate between them?', a: 'Both export to standard markdown. Migration is doable but you lose backlink graph fidelity in either direction. Pick the tool that fits your workflow rather than planning to switch.' },
+    ],
+  },
+
+  'tana-vs-notebooklm': {
+    bottomLine: 'Tana and NotebookLM solve adjacent but distinct knowledge-management problems. Tana is a structured outlining and database hybrid with AI-augmented capture, designed for power users building complex personal knowledge systems. NotebookLM is a Google product for grounded Q&A and Audio Overviews of documents you upload, optimised for understanding sources rather than building a system. Tana Pro is $14/mo. NotebookLM is free. Pick Tana for a long-term second brain you build deliberately. Pick NotebookLM when you have specific documents to understand or summarise.',
+    whenToPickA: 'You build a structured second brain with hierarchies, tags, and AI assistance. Tana supertags and node-based architecture support sophisticated personal knowledge work that other tools cannot match. Best for researchers, writers, and power note-takers.',
+    whenToPickB: 'You want a free, fast tool for asking questions of specific PDFs, articles, or transcripts. NotebookLM Audio Overviews (auto-generated podcast summaries) and grounded citations are unique. Best for students, researchers, and anyone with documents to understand.',
+    faqs: [
+      { q: 'Are Tana and NotebookLM substitutes or complements?', a: 'Complements. Tana is your long-term knowledge system. NotebookLM is a focused tool for specific source comprehension. Many power users feed insights from NotebookLM into Tana.' },
+      { q: 'Why is NotebookLM free?', a: 'Google strategy. NotebookLM showcases Gemini in a clear use case while collecting research data. Free tier is generous (50+ sources, unlimited queries). The trade-off is no privacy guarantee for source content.' },
+      { q: 'Is Tana worth $14/mo for casual users?', a: 'Probably not. Tana power comes from structured supertags and complex queries that take time to learn. Casual note-takers usually do better with Notion, Reflect, or even Apple Notes.' },
+      { q: 'Which has better AI?', a: 'NotebookLM has the stronger underlying model (Gemini) and produces more accurate document Q&A. Tana AI is well-integrated for capture and structuring but less sophisticated on raw answering.' },
+    ],
+  },
+
+  'mailerlite-vs-mailchimp': {
+    bottomLine: 'MailerLite and Mailchimp are the two most popular email marketing tools for SMBs but target different team shapes. MailerLite is the cleaner, simpler, lower-priced tool that punches well above its weight on UX and feature value. Mailchimp is the broader, more brand-forward platform with stronger ecommerce integrations, audience reporting, and a much larger template library. MailerLite Free covers 1K subscribers (12K emails/mo). Mailchimp Free covers 500 contacts (1K emails/mo). Pick MailerLite when budget and UX are top concerns. Pick Mailchimp when you need ecommerce-grade automation, the broadest integrations, or are already in Intuit ecosystem.',
+    whenToPickA: 'You want the cleanest email tool with a generous free tier and predictable pricing. MailerLite UX is consistently rated as the simplest in the category and the price scales gently. Best for solopreneurs, small newsletters, and SMBs cost-sensitive on marketing tools.',
+    whenToPickB: 'You run ecommerce or need rich automation, segmentation, and the broadest integration ecosystem. Mailchimp Customer Journey Builder and ecommerce features are stronger. Best for ecommerce brands, established SMBs, and Intuit QuickBooks customers.',
+    faqs: [
+      { q: 'Is MailerLite free tier really useful?', a: 'Yes, for newsletters under 1K subscribers. The 12K monthly email allowance covers weekly newsletters or twice-weekly sends. Mailchimp free tier is much tighter at 1K emails/mo.' },
+      { q: 'Which has better automation?', a: 'Mailchimp, by a meaningful margin at the higher tiers. Customer Journey Builder handles complex triggers and branching. MailerLite automation is solid for basics but less deep.' },
+      { q: 'Which has better deliverability?', a: 'Roughly equivalent in 2026. Both run on professional sender infrastructure with similar inbox-placement scores. Sender reputation is mostly a function of your list quality, not the tool.' },
+      { q: 'Should I look at Beehiiv or Klaviyo instead?', a: 'For newsletter creators, Beehiiv has eaten significant share with newsletter-native features and growth tools. For ecommerce, Klaviyo is the dominant ecommerce email/SMS tool. MailerLite and Mailchimp remain strong general-purpose picks.' },
+    ],
+  },
+
+  'omnisend-vs-klaviyo': {
+    bottomLine: 'Omnisend and Klaviyo are both ecommerce-focused email and SMS platforms competing for Shopify and BigCommerce stores in 2026. Klaviyo is the market leader with the deepest segmentation, predictive analytics, and broadest ecommerce integrations. Omnisend is the more value-oriented alternative with comparable email/SMS features at lower cost and a simpler UX. Klaviyo Free covers 250 contacts. Omnisend Free covers 250 contacts and 500 emails/mo. Klaviyo paid starts around $35/mo (1K contacts). Omnisend paid starts at $16/mo. Pick Klaviyo when ecommerce is your primary channel and you need maximum sophistication. Pick Omnisend when budget matters and you need a capable but simpler tool.',
+    whenToPickA: 'You run a serious ecommerce store ($500K+ GMV), need advanced segmentation, predictive analytics, and the deepest Shopify integration. Klaviyo is the industry default for ecommerce email at scale. Best for established ecommerce brands and DTC companies.',
+    whenToPickB: 'You run a smaller ecommerce store and want capable email plus SMS at significantly lower cost. Omnisend covers 80% of Klaviyo capability at roughly half the price. Best for newer ecommerce stores and SMBs cost-sensitive on tooling.',
+    faqs: [
+      { q: 'Is Omnisend really comparable to Klaviyo?', a: 'For 80% of use cases, yes. Email automation, segmentation, SMS, and ecommerce triggers are all solid in Omnisend. Where Klaviyo pulls ahead: predictive analytics, advanced segmentation, deeper Shopify-Plus features.' },
+      { q: 'Which has better SMS?', a: 'Roughly equivalent in 2026. Both ship native SMS with email coordination. Klaviyo SMS analytics are slightly deeper; Omnisend SMS pricing is slightly more transparent.' },
+      { q: 'How does cost compare at 10K contacts?', a: 'Klaviyo at 10K contacts is around $150-200/mo. Omnisend at 10K is around $90-120/mo. The gap widens at 50K+. For most growing stores, the cost differential is meaningful.' },
+      { q: 'Can I migrate between them?', a: 'Yes. Both offer guided migration. Klaviyo to Omnisend is straightforward. Omnisend to Klaviyo requires more careful flow translation. Plan a few weeks for either direction.' },
+    ],
+  },
+
+  'pipedream-vs-zapier': {
+    bottomLine: 'Pipedream and Zapier both connect apps and run automations but target different audiences. Zapier is the consumer-friendly leader: 7K+ apps, no-code triggers and actions, generous free tier, and the easiest onboarding in the category. Pipedream is the developer-friendly alternative: real code (Node.js, Python) inside steps, much better quotas per dollar, and stronger handling of long-running or complex workflows. Zapier Free covers 100 tasks/mo. Pipedream Free is generous (10K credits/mo). Zapier paid starts at $19.99/mo. Pipedream paid starts at $19/mo. Pick Zapier for no-code automation across consumer SaaS. Pick Pipedream when you write code, need higher quotas, or want long-running workflows.',
+    whenToPickA: 'You want no-code automation across the broadest possible app catalogue with the easiest setup experience. Zapier is the default for non-technical users connecting consumer SaaS. Best for marketers, ops teams, and non-developers building workflows.',
+    whenToPickB: 'You write code and want automation that does not hide behind no-code abstractions. Pipedream code steps in Node.js and Python plus higher free quotas make it the developer-first pick. Best for engineers, technical operators, and indie hackers building richer workflows.',
+    faqs: [
+      { q: 'Is Pipedream really cheaper than Zapier?', a: 'For most workflows, yes by a wide margin. Pipedream credits cover code-step execution and HTTP calls; the cost per equivalent task is roughly half Zapier. The trade-off is mental overhead - Pipedream assumes basic engineering literacy.' },
+      { q: 'Can Zapier handle complex workflows?', a: 'Yes, with limits. Multi-step Zaps support filters, paths, and code (Code by Zapier), but at higher volumes the cost compounds. Long-running and stateful workflows fit Pipedream better.' },
+      { q: 'Which has more apps?', a: 'Zapier, by a wide margin. Zapier 7K+ app catalogue is unmatched. Pipedream has 2.5K+ which covers most modern SaaS but the long tail is thinner.' },
+      { q: 'Should I use n8n or Make instead?', a: 'n8n is open-source and self-hostable, the right pick if data privacy or self-hosting matters. Make is mid-priced with strong visual workflows. Each tool has its niche; Pipedream and Zapier remain the popular choices for cloud-only no-code/low-code work.' },
+    ],
+  },
+
+  'n8n-vs-windmill': {
+    bottomLine: 'n8n and Windmill are both open-source automation platforms that compete with Zapier and Make but target different use cases. n8n is the mature open-source workflow tool with 400+ integrations, visual node editor, and broad community adoption. Windmill is the developer-first newcomer that treats automation more like internal-tool building: scripts, flows, and apps in one platform with strong dev ergonomics. n8n Cloud Starter is $20/mo; self-hosted is free. Windmill Cloud Pro is $10/user/mo; self-hosted is free. Pick n8n for traditional workflow automation. Pick Windmill when you want code-first automation plus internal-tool building.',
+    whenToPickA: 'You want a Zapier or Make replacement that is open-source, self-hostable, and built around visual workflow editing. n8n maturity and integration count make it the leading open-source pick. Best for ops teams, indie hackers, and any company that needs self-hosted automation.',
+    whenToPickB: 'You write code and want automation that feels like writing scripts and flows together with internal-tool UI in one platform. Windmill TypeScript and Python execution plus app builder is powerful. Best for developer-led teams and platform engineers.',
+    faqs: [
+      { q: 'Are both really self-hostable?', a: 'Yes. n8n self-hosted is widely deployed and well-documented. Windmill self-hosted is similarly straightforward, with Postgres and Docker as the main dependencies. For air-gapped or compliance use cases, both work.' },
+      { q: 'Which has more integrations?', a: 'n8n, by a wide margin (400+ vs Windmill 100+). For wide app coverage, n8n wins. Windmill makes up some of the gap by exposing TypeScript and Python imports for any npm or PyPI package.' },
+      { q: 'Is Windmill more developer-friendly?', a: 'Yes. Code-first with full TypeScript and Python (and Go and Bash and Deno) plus a UI builder for internal tools makes it feel more like a platform-engineering toolkit than a workflow tool.' },
+      { q: 'Should I just use Zapier?', a: 'For non-technical teams or no-self-hosting requirements, yes. n8n and Windmill shine when you need code, self-hosting, or higher quotas at lower cost. The open-source story is the differentiator.' },
+    ],
+  },
+
+  'pictory-vs-invideo-ai': {
+    bottomLine: 'Pictory and InVideo AI are both AI-powered video creators that target marketers and creators making short-form video at scale. Pictory specialises in turning long content (blog posts, scripts, articles) into short videos with auto-selected stock footage, captions, and voiceover. InVideo AI is broader: text-to-video, AI-generated avatars, voice clones, and a deep template library for ads, reels, and YouTube shorts. Pictory Standard is $25/mo. InVideo AI Plus is $25/mo. Pick Pictory when you have written content to repurpose into video. Pick InVideo AI when you generate from scratch and want broader creator features.',
+    whenToPickA: 'You repurpose written content (blog posts, scripts, podcasts) into short videos. Pictory long-content-to-video flow is unmatched and produces clean, captioned video with auto-selected stock footage. Best for content marketers and bloggers.',
+    whenToPickB: 'You generate video from scratch with text prompts, AI avatars, and template-based design. InVideo AI is the more general-purpose creator tool with a broader feature set. Best for social media creators, ad teams, and video-first content brands.',
+    faqs: [
+      { q: 'Which has better stock footage matching?', a: 'Pictory, marginally. The blog-to-video flow is its core competence and the AI footage matching is more reliable. InVideo AI footage is also good but feels more generic for repurpose-from-text use cases.' },
+      { q: 'Which has better avatars?', a: 'InVideo AI, by a clear margin. Built-in AI avatar generation with custom voice clones is core to the platform. Pictory does not offer avatars natively. For avatar-based content, InVideo AI or HeyGen are the picks.' },
+      { q: 'How long can each generate?', a: 'Both produce videos up to 30 minutes on paid tiers. For shorter social content (under 90 seconds), both work well. For longer YouTube-style content, the quality of stock-footage matching matters more, where Pictory edges ahead.' },
+      { q: 'Should I use Synthesia or HeyGen instead?', a: 'For talking-head avatar content at corporate quality, yes. Synthesia and HeyGen are the AI-avatar leaders. Pictory and InVideo AI cover the broader repurpose and template-driven creator markets.' },
+    ],
+  },
+
+  'runway-vs-luma-ai': {
+    bottomLine: 'Runway and Luma AI (Dream Machine) are both leading AI video generation platforms competing with Pika, Hailuo, and Kling in 2026. Runway is the more complete creator suite: text-to-video, video-to-video, motion brush, green screen, lip sync, and editing tools. Luma AI Dream Machine is more focused on raw text-to-video generation with strong photorealism and natural motion. Runway Standard is $15/mo. Luma AI Standard is $9.99/mo. Pick Runway for an end-to-end AI video creator suite. Pick Luma when raw text-to-video quality and natural motion are the priority.',
+    whenToPickA: 'You produce video content end to end and want a single tool that covers generation, editing, motion control, and effects. Runway suite of tools is the broadest in AI video as of 2026. Best for creators, ad teams, and indie filmmakers.',
+    whenToPickB: 'You generate clips from prompts and want the most photorealistic motion at a lower price. Luma Dream Machine is highly competitive on raw output quality and pricing. Best for creators who use AI video for hero shots and prefer to edit elsewhere.',
+    faqs: [
+      { q: 'Which has better text-to-video quality?', a: 'Roughly equivalent in 2026 with Runway slightly ahead on motion control and Luma slightly ahead on photorealism. Both are competitive with Pika, Kling, and Hailuo. The output gap between leaders is small per shot.' },
+      { q: 'Which has more editing features?', a: 'Runway, by a wide margin. Green screen, motion brush, frame interpolation, lip sync, and a real timeline editor live inside Runway. Luma is generation-focused without an editor.' },
+      { q: 'How do clip-length limits compare?', a: 'Both default to 10-second clips with extension up to roughly 30 seconds via stitching. For longer content, you generate multiple clips and edit them together (in Runway natively or in CapCut/DaVinci externally).' },
+      { q: 'Which is cheaper?', a: 'Luma at $9.99/mo entry vs Runway at $15/mo. For pure generation use, Luma is cheaper. For an end-to-end suite, Runway justifies the higher price.' },
+    ],
+  },
+
+  'recraft-ai-vs-ideogram': {
+    bottomLine: 'Recraft AI and Ideogram are both AI image generators that target designers and marketers, with overlap in features but different focus. Recraft is the design-tool angle: vector output, brand styles, infinite scale, and a visual editor optimised for marketing assets. Ideogram is the text-rendering specialist: the best AI image model for accurate text in images, plus strong photorealism and prompt adherence. Recraft Pro is $12/mo. Ideogram Plus is $8/mo. Pick Recraft when you produce design assets and want vector or branded output. Pick Ideogram when text accuracy in images matters or you produce social and ad creative.',
+    whenToPickA: 'You produce design assets that need vector output, brand consistency, or scale to infinite resolution. Recraft vector mode and brand styles are differentiators in the AI image category. Best for designers, marketing teams producing collateral, and indie creators making merch.',
+    whenToPickB: 'You need accurate text in images (logos, social posts, ads, posters). Ideogram is the AI image leader on text rendering by a clear margin in 2026. Best for social media designers, ad creative teams, and anyone where text-in-image is a job to be done.',
+    faqs: [
+      { q: 'Which has better text rendering?', a: 'Ideogram, by a wide margin. Ideogram 2.0 produces accurate, well-kerned text in images more reliably than any other AI image generator including Midjourney and Flux. For typographic posters and social posts, Ideogram is the default.' },
+      { q: 'Can Recraft really do vector output?', a: 'Yes, and the result is editable vector (SVG/PDF) suitable for design tools. This is unique in the AI image category and is the main reason designers pick Recraft for marketing-asset work.' },
+      { q: 'Which is cheaper?', a: 'Ideogram, slightly. Ideogram Plus at $8/mo vs Recraft Pro at $12/mo. Both have free tiers; both deliver real value at the entry tier.' },
+      { q: 'Should I use Midjourney instead?', a: 'For pure aesthetic image generation, Midjourney remains the leader. Recraft and Ideogram are the picks when vector or text-in-image are required, both of which Midjourney does poorly.' },
+    ],
+  },
 }
 
 export function getCompareEnrichment(slug: string): CompareEnrichment | null {

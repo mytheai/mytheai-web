@@ -13,6 +13,7 @@ import VerifyExternalBlock from '@/components/tools/VerifyExternalBlock'
 import AuthorBio from '@/components/layout/AuthorBio'
 import { getAuthorJsonLd } from '@/data/authors'
 import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidence } from '@/lib/scoring'
+import { linkGlossary } from '@/lib/glossary-linker'
 import { TOP10_LISTS } from '@/data/top10'
 import type { Metadata } from 'next'
 
@@ -472,7 +473,13 @@ export default async function ToolPage({
               {tool.description
                 ? (tool.description || '').split('\n\n').filter(Boolean).map((para, i) => (
                     <p key={i} className="text-[15px] text-muted-foreground leading-relaxed mb-3 last:mb-0">
-                      {para}
+                      {linkGlossary(para).map((seg, j) =>
+                        seg.type === 'link' ? (
+                          <Link key={j} href={seg.href} className="text-blue-600 hover:underline">{seg.value}</Link>
+                        ) : (
+                          <span key={j}>{seg.value}</span>
+                        )
+                      )}
                     </p>
                   ))
                 : (

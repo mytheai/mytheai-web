@@ -1,0 +1,268 @@
+// AI/SaaS glossary - definitions for terms that appear across tool descriptions,
+// blog posts, and reviews. Each entry powers /glossary/[slug] page and is also
+// auto-linked inline in tool descriptions for dense internal linking.
+
+export interface GlossaryEntry {
+  slug: string
+  term: string                  // canonical name shown as H1
+  aliases?: string[]            // additional surface forms to auto-link in body text
+  short: string                 // 1-sentence answer for snippet, ~140 chars
+  long: string                  // 2-3 paragraph definition
+  relatedTerms?: string[]       // other glossary slugs
+  relatedTools?: string[]       // tool slugs (linked under "Tools that use this")
+}
+
+export const GLOSSARY: GlossaryEntry[] = [
+  {
+    slug: 'large-language-model',
+    term: 'Large Language Model (LLM)',
+    aliases: ['LLM', 'large language model'],
+    short: 'A neural network trained on huge text corpora that produces human-like text by predicting the next token, one token at a time.',
+    long: 'A Large Language Model is a neural network with billions of parameters trained on enormous text corpora to predict the next token in a sequence. The output looks like reasoning and conversation but is grounded in token-level statistical prediction. GPT-4o, Claude 3.5 Sonnet, and Gemini 2.0 are the dominant frontier LLMs in 2026.\n\nLLMs power chat assistants, code completion, summarisation, and translation. Their main constraints are context window size, hallucination rate (when the model invents facts), and inference cost per token. The frontier model layer is dominated by OpenAI, Anthropic, Google, and Meta.',
+    relatedTerms: ['transformer', 'tokens', 'context-window', 'hallucination'],
+    relatedTools: ['chatgpt', 'claude', 'gemini', 'perplexity'],
+  },
+  {
+    slug: 'transformer',
+    term: 'Transformer',
+    aliases: ['transformer'],
+    short: 'The neural network architecture introduced in 2017 ("Attention Is All You Need") that powers every major LLM today.',
+    long: 'The Transformer is a deep-learning architecture introduced by Google researchers in 2017 in the paper "Attention Is All You Need." It replaced recurrent networks for sequence modelling and is the foundation of every major LLM, image generator, and multimodal model in 2026.\n\nTransformers use a mechanism called self-attention to weigh the relevance of every token in a sequence to every other token, regardless of distance. This is what lets an LLM keep track of context across thousands of tokens. The full architecture stacks many attention layers; "scale" in modern AI refers mostly to stacking more layers and training on more data.',
+    relatedTerms: ['large-language-model', 'tokens', 'embeddings'],
+  },
+  {
+    slug: 'tokens',
+    term: 'Tokens',
+    aliases: ['token', 'tokens'],
+    short: 'The chunks of text an LLM reads and produces - usually 3-4 characters each. Pricing and limits are measured in tokens.',
+    long: 'A token is the basic unit of text an LLM processes. English tokens are typically 3-4 characters or roughly 0.75 words. The word "tokenization" itself is one token; "ChatGPT" is two tokens. Code tokens are usually shorter because of more punctuation.\n\nLLM pricing is almost always per-token: GPT-4o charges roughly $5 per 1M input tokens and $15 per 1M output tokens (2026 pricing). Context windows are also measured in tokens: a 200K-token window holds about 500 pages of English text. When you see a tool advertise "100K tokens of free use per month", multiply by 0.75 to get word count.',
+    relatedTerms: ['context-window', 'inference', 'large-language-model'],
+  },
+  {
+    slug: 'context-window',
+    term: 'Context Window',
+    aliases: ['context window', 'context length'],
+    short: 'The maximum number of tokens an LLM can read in a single request, including the prompt, files, and the response.',
+    long: 'The context window is the upper bound on how much text an LLM can consider in one request. It includes the system prompt, the user prompt, any attached files, and the model\'s own response. Exceeding the window forces truncation or error.\n\nIn 2026 most frontier models offer 128K to 200K tokens by default and 1M tokens on enterprise tiers. This is large enough to feed an entire book or codebase in a single prompt. Quality at the long end varies: independent benchmarks show models often forget content in the middle of very long contexts, a phenomenon called "lost in the middle."',
+    relatedTerms: ['tokens', 'large-language-model', 'rag'],
+  },
+  {
+    slug: 'fine-tuning',
+    term: 'Fine-tuning',
+    aliases: ['fine-tuning', 'finetuning', 'fine tuning'],
+    short: 'Continued training of a pre-trained model on a smaller domain-specific dataset to specialise its behaviour.',
+    long: 'Fine-tuning takes a pre-trained foundation model and continues training on a smaller, curated dataset to teach domain-specific style, format, or knowledge. It is cheaper than training from scratch but more expensive than prompt engineering or RAG.\n\nIn 2026 fine-tuning is most useful for narrow style adaptation (brand voice, structured output formats) and for low-latency cases where prompt length matters. For factual knowledge updates, retrieval (RAG) usually beats fine-tuning because facts change but style does not.',
+    relatedTerms: ['rag', 'lora', 'prompt-engineering'],
+  },
+  {
+    slug: 'prompt-engineering',
+    term: 'Prompt Engineering',
+    aliases: ['prompt engineering', 'prompt design'],
+    short: 'The practice of writing inputs to an LLM that reliably produce the desired output, often through structure, examples, and constraints.',
+    long: 'Prompt engineering is the discipline of writing inputs that get reliable, high-quality output from an LLM. It covers techniques like role prompts ("You are a senior copywriter"), few-shot examples, structured output formats (JSON, XML), chain-of-thought hints, and constraint specification.\n\nGood prompt engineering can change an LLM\'s output quality more than swapping models. The skill is increasingly automated by tools that test prompt variants against eval suites, but the underlying judgement of what to ask for remains human work.',
+    relatedTerms: ['few-shot-learning', 'chain-of-thought', 'large-language-model'],
+  },
+  {
+    slug: 'rag',
+    term: 'RAG (Retrieval-Augmented Generation)',
+    aliases: ['RAG', 'retrieval-augmented generation', 'retrieval augmented generation'],
+    short: 'A pattern that retrieves relevant documents and feeds them to an LLM as context, instead of relying on the model\'s training data.',
+    long: 'RAG is the standard pattern for grounding LLM output in fresh, private, or domain-specific knowledge. Instead of fine-tuning facts into model weights, you index documents in a vector database, retrieve the top-k relevant chunks at query time, and pass them to the LLM as context.\n\nRAG is how every "chat with your docs" product works. It scales cheaply (just add more documents to the index), updates instantly (re-index changed content), and produces citable answers (return source links alongside the response). Quality depends heavily on the quality of chunking, embedding, and retrieval.',
+    relatedTerms: ['embeddings', 'vector-database', 'context-window', 'large-language-model'],
+    relatedTools: ['notebooklm', 'chatpdf', 'humata'],
+  },
+  {
+    slug: 'embeddings',
+    term: 'Embeddings',
+    aliases: ['embedding', 'embeddings', 'vector embedding'],
+    short: 'A numerical representation of text (or image, audio) as a high-dimensional vector that captures semantic meaning.',
+    long: 'Embeddings turn unstructured content into numerical vectors. Two pieces of text with similar meaning produce vectors that are close in vector space, which lets you search by meaning instead of keyword match.\n\nEmbeddings are the backbone of semantic search, RAG retrieval, recommendation, and clustering. OpenAI text-embedding-3-large is the popular default in 2026. Cohere, Voyage, and open-source alternatives like BGE-M3 are competitive. Embedding quality matters more than people expect - swapping embeddings can move RAG accuracy by 10-20 points.',
+    relatedTerms: ['rag', 'vector-database', 'transformer'],
+  },
+  {
+    slug: 'vector-database',
+    term: 'Vector Database',
+    aliases: ['vector database', 'vector db'],
+    short: 'A database optimised for storing and searching high-dimensional vectors by similarity rather than exact match.',
+    long: 'A vector database stores embeddings and serves nearest-neighbour search at scale. The retrieval step in RAG is almost always a vector database query under the hood.\n\nLeading options in 2026: Pinecone (managed), Weaviate (open-source plus managed), Qdrant (open-source), Chroma (lightweight, local-first), pgvector (PostgreSQL extension, popular for small projects). Choice depends on scale, operational preference, and whether you want to colocate vectors with relational data.',
+    relatedTerms: ['embeddings', 'rag'],
+  },
+  {
+    slug: 'hallucination',
+    term: 'Hallucination',
+    aliases: ['hallucination', 'hallucinations', 'hallucinate'],
+    short: 'When an LLM produces output that is fluent and confident-sounding but factually wrong or invented.',
+    long: 'Hallucination is the LLM failure mode where the model produces fluent, confident output that is not grounded in any real source. The model invents citations, fabricates statistics, or confabulates events that never happened.\n\nHallucination is reduced by RAG (grounding in retrieved sources), low temperature (less random sampling), explicit instructions to say "I do not know," and post-hoc verification against trusted sources. It is not eliminated in 2026; serious applications still require human review for any factual claim that matters.',
+    relatedTerms: ['rag', 'temperature', 'large-language-model'],
+  },
+  {
+    slug: 'temperature',
+    term: 'Temperature',
+    aliases: ['temperature', 'sampling temperature'],
+    short: 'A model parameter from 0 to ~2 that controls how random the LLM\'s token sampling is. Lower temperature equals more deterministic output.',
+    long: 'Temperature is a parameter that scales the probability distribution the LLM samples from when picking the next token. Temperature 0 always picks the most likely token (deterministic). Temperature 1 samples in proportion to the model\'s probabilities. Temperature 2 flattens the distribution toward random.\n\nIn practice: 0 to 0.3 for code, structured output, and factual answers; 0.7 to 1 for creative writing, brainstorming, and conversation. Most chat tools default around 0.7-1. Temperature does not improve accuracy at any setting; it only changes how varied the output is.',
+    relatedTerms: ['inference', 'large-language-model', 'hallucination'],
+  },
+  {
+    slug: 'multimodal',
+    term: 'Multimodal',
+    aliases: ['multimodal', 'multi-modal'],
+    short: 'A model that accepts or produces multiple input/output types - text plus images, audio, or video.',
+    long: 'A multimodal model handles more than one input or output type. GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro are all multimodal: they accept text plus images, and Gemini also accepts audio and video natively.\n\nMultimodal capability matters for screenshot understanding, document OCR, video summarisation, and any workflow where text alone is insufficient. By 2026 most frontier models have native vision; audio is closing the gap; full video understanding still trails text quality but is improving rapidly.',
+    relatedTerms: ['large-language-model', 'foundation-model'],
+  },
+  {
+    slug: 'foundation-model',
+    term: 'Foundation Model',
+    aliases: ['foundation model', 'frontier model'],
+    short: 'A large, general-purpose model trained on broad data that serves as the base for many downstream applications.',
+    long: 'A foundation model is a large, general-purpose model trained on broad data and adapted (via prompting, fine-tuning, or RAG) to many downstream tasks. The term was coined by Stanford in 2021. GPT-4o, Claude, Gemini, Llama, and Mistral are foundation models for text. Stable Diffusion, Flux, and Imagen are foundation models for image.\n\nThe economics of foundation models concentrate at the largest labs because training requires hundreds of millions of dollars. Most application builders use foundation models via API rather than training their own.',
+    relatedTerms: ['large-language-model', 'fine-tuning', 'multimodal'],
+  },
+  {
+    slug: 'inference',
+    term: 'Inference',
+    aliases: ['inference'],
+    short: 'The act of running a trained model on new input to produce output. Distinct from training. Inference cost dominates production budgets.',
+    long: 'Inference is the runtime step where a trained model processes a new input and returns output. Training happens once (or periodically for fine-tuning); inference happens on every request, so its cost dominates the operating budget of any production AI system.\n\nKey metrics: latency (time to first token, total time), throughput (tokens per second), and cost per million tokens. Frontier-model inference happens on specialised hardware (Nvidia H100/H200, Google TPU, AWS Trainium, Cerebras); optimisation includes batching, quantisation, and speculative decoding.',
+    relatedTerms: ['tokens', 'quantization', 'large-language-model'],
+  },
+  {
+    slug: 'diffusion-model',
+    term: 'Diffusion Model',
+    aliases: ['diffusion model', 'diffusion'],
+    short: 'A generative model that creates images (or video, audio) by iteratively denoising random noise into a coherent output.',
+    long: 'A diffusion model generates images by starting with random noise and iteratively denoising over many steps until a coherent image emerges. It is the architecture behind Stable Diffusion, Midjourney, Flux, DALL-E, and most modern image generators.\n\nDiffusion is conceptually different from the autoregressive token-by-token approach used by LLMs, but the same underlying transformer architecture is often used inside the denoising step. Video diffusion (Sora, Runway, Kling) extends the same idea to time-coherent frame sequences.',
+    relatedTerms: ['foundation-model', 'transformer', 'multimodal'],
+    relatedTools: ['midjourney', 'stable-diffusion', 'flux'],
+  },
+  {
+    slug: 'agent',
+    term: 'AI Agent',
+    aliases: ['agent', 'AI agent', 'autonomous agent'],
+    short: 'An LLM-powered system that takes actions in a loop - reading data, calling tools, executing tasks - to reach a goal.',
+    long: 'An AI agent is an LLM running in a loop that can call tools (APIs, databases, browsers, terminals) and act on the results, iterating until a task is complete. Where a chat assistant produces one response, an agent can read files, run code, browse the web, and edit a system without a human in the loop on every step.\n\nAgent quality in 2026 is improving but unreliable for sustained autonomous work; most production agents run with bounded scopes, careful guardrails, and human review checkpoints. Cursor, Devin, Lindy, and Operator are leading agent platforms; LangChain and AutoGen are the popular frameworks.',
+    relatedTerms: ['prompt-engineering', 'large-language-model'],
+    relatedTools: ['cursor', 'devin-ai'],
+  },
+  {
+    slug: 'few-shot-learning',
+    term: 'Few-shot Learning',
+    aliases: ['few-shot', 'few-shot learning'],
+    short: 'Showing the model a small number of examples in the prompt to teach a desired pattern, without changing model weights.',
+    long: 'Few-shot learning is a prompting technique where you include a handful of input/output examples in the prompt itself, teaching the model the desired pattern by demonstration rather than by weight change. The model then completes the pattern on the new input.\n\nFew-shot is dramatically more effective than zero-shot for niche formats, structured extraction, and brand voice. The cost is prompt length (and therefore token cost) per request. For high-volume production use, fine-tuning sometimes wins on cost; for experimentation and low-volume work, few-shot is faster.',
+    relatedTerms: ['zero-shot-learning', 'prompt-engineering', 'fine-tuning'],
+  },
+  {
+    slug: 'zero-shot-learning',
+    term: 'Zero-shot Learning',
+    aliases: ['zero-shot', 'zero-shot learning'],
+    short: 'Asking the model to perform a task without any examples - just instructions. Frontier models do this reasonably well in 2026.',
+    long: 'Zero-shot learning is asking the model to perform a task using instructions alone, with no examples. "Translate this paragraph to French" is zero-shot. Frontier models in 2026 are strong zero-shot learners on common tasks because their training data covered many similar tasks.\n\nZero-shot fails when the task is unusual, the format is non-standard, or domain-specific style matters. In those cases few-shot or fine-tuning is required. The evolution of LLM capability is largely visible as zero-shot quality climbing on harder benchmarks year over year.',
+    relatedTerms: ['few-shot-learning', 'prompt-engineering'],
+  },
+  {
+    slug: 'chain-of-thought',
+    term: 'Chain of Thought',
+    aliases: ['chain of thought', 'chain-of-thought', 'CoT'],
+    short: 'A prompting technique that asks the model to reason step-by-step before answering, materially improving accuracy on hard problems.',
+    long: 'Chain of Thought (CoT) is a prompting technique where the model is asked to produce reasoning steps before the final answer. "Let\'s think step by step" was the original phrase that triggered the behaviour; modern frontier models often produce CoT reasoning by default.\n\nCoT improves accuracy on math, multi-step logic, and any problem that benefits from intermediate work. It also makes errors more debuggable: you can see where the reasoning went wrong. The OpenAI o1 model family takes this further with extended internal reasoning before responding.',
+    relatedTerms: ['prompt-engineering', 'large-language-model'],
+  },
+  {
+    slug: 'rlhf',
+    term: 'RLHF (Reinforcement Learning from Human Feedback)',
+    aliases: ['RLHF', 'reinforcement learning from human feedback'],
+    short: 'A training technique that uses human preference data to align an LLM\'s output with what people actually want.',
+    long: 'RLHF trains a separate reward model on human preference data (humans rank pairs of model outputs), then uses reinforcement learning to push the LLM toward outputs the reward model rates higher. It is what turned GPT-3 into ChatGPT and is responsible for the helpful, polite default behaviour of modern frontier models.\n\nRLHF is expensive and labour-intensive (large teams of human annotators) and has known limitations (reward hacking, sycophancy). DPO (Direct Preference Optimisation) and similar techniques in 2026 are simpler alternatives that produce comparable alignment with less infrastructure.',
+    relatedTerms: ['fine-tuning', 'foundation-model'],
+  },
+  {
+    slug: 'quantization',
+    term: 'Quantization',
+    aliases: ['quantization', 'quantisation', 'quantized'],
+    short: 'Reducing the numerical precision of model weights (e.g., 16-bit to 4-bit) to shrink memory and speed up inference at minor quality cost.',
+    long: 'Quantization reduces the numerical precision of model weights. A 70B-parameter model in 16-bit precision needs 140GB of memory; quantized to 4-bit it needs 35GB and fits on a single consumer GPU.\n\nQuantization is essential for running open-source models locally and for cost-effective serving at scale. Quality loss at 8-bit is usually undetectable; at 4-bit there is a measurable but tolerable drop on benchmarks. Tools like llama.cpp, GGUF format, and AWQ make quantization accessible to non-researchers.',
+    relatedTerms: ['inference', 'foundation-model', 'lora'],
+  },
+  {
+    slug: 'lora',
+    term: 'LoRA (Low-Rank Adaptation)',
+    aliases: ['LoRA', 'low-rank adaptation'],
+    short: 'A fine-tuning method that trains small "adapter" matrices instead of updating full model weights, dramatically cheaper than full fine-tuning.',
+    long: 'LoRA fine-tunes a model by training small low-rank adapter matrices that get added to the existing weights, rather than updating the full weight matrix. The adapter is typically less than 1% of the size of the full model.\n\nLoRA dramatically lowers the cost of fine-tuning (a few hours on a single GPU instead of weeks on a cluster) and lets you swap personalities or styles by swapping adapters. It is the dominant fine-tuning technique in 2026 for open-source models. Stable Diffusion communities use LoRAs heavily for character and style control.',
+    relatedTerms: ['fine-tuning', 'foundation-model', 'quantization'],
+  },
+  {
+    slug: 'mixture-of-experts',
+    term: 'Mixture of Experts (MoE)',
+    aliases: ['MoE', 'mixture of experts'],
+    short: 'A model architecture where only a subset of parameters activates per token, giving large total capacity at lower inference cost.',
+    long: 'A Mixture of Experts model contains many "expert" sub-networks; a routing layer picks which experts handle each token. The total parameter count can be enormous (Mixtral 8x7B totals 47B parameters) but only a fraction is active per inference step (Mixtral activates ~13B per token).\n\nMoE gives the quality of a large model at the inference cost of a smaller one. Mixtral, DeepSeek, and rumoured GPT-4 architectures all use MoE. The trade-off is more complex training and serving infrastructure.',
+    relatedTerms: ['foundation-model', 'inference'],
+  },
+  {
+    slug: 'autocomplete',
+    term: 'AI Autocomplete',
+    aliases: ['autocomplete', 'AI autocomplete', 'tab completion'],
+    short: 'Inline LLM-generated completions in a code editor or text field, accepted with a single keystroke.',
+    long: 'AI autocomplete is the inline-prediction modality popularised by GitHub Copilot and Tabnine in code, and now common in writing tools (Notion AI, Grammarly) and email (Gmail Smart Compose). The interaction model is that the cursor is followed by gray suggested text; pressing Tab accepts it.\n\nAutocomplete is fast, cheap, and unintrusive, which is why it scales: a typical engineer accepts 20-40% of Copilot suggestions and accepts 5-15% of suggested lines in a typical day. The model needs low latency (under 200ms ideally) and good ranking; quality of the autocomplete is mostly about ranking the right next line for the cursor context.',
+    relatedTerms: ['agent', 'large-language-model'],
+    relatedTools: ['cursor', 'tabnine', 'codeium'],
+  },
+  {
+    slug: 'system-prompt',
+    term: 'System Prompt',
+    aliases: ['system prompt', 'system message'],
+    short: 'A hidden instruction at the start of an LLM conversation that sets persona, style, and constraints for all subsequent turns.',
+    long: 'A system prompt is the instruction passed to the LLM at the start of a conversation, separately from user messages. It typically defines the assistant\'s role, persona, output format, and forbidden topics. Users do not see it but it shapes every response.\n\nSystem prompt design is a core part of building any LLM application. A good system prompt is concise, specific, and tested against many user inputs. Leading model providers all support system prompts, though phrasing the same intent for Claude versus GPT-4o sometimes produces different output.',
+    relatedTerms: ['prompt-engineering', 'large-language-model'],
+  },
+  {
+    slug: 'guardrails',
+    term: 'Guardrails',
+    aliases: ['guardrails', 'guardrail'],
+    short: 'The combined safety, format, and policy filters that constrain what an LLM can output in production.',
+    long: 'Guardrails are the layer of filters and validators around an LLM that block unsafe, off-topic, or wrongly-formatted output before it reaches the user. They include content moderation models, format validators (regex, JSON schema), topic filters, and prompt-injection detectors.\n\nMost production LLM apps use a mix of provider-level safety (OpenAI moderation, Anthropic\'s constitutional AI) and application-level guardrails (NeMo Guardrails, Guardrails AI library, Lakera). The trade-off is always latency and false-positive rate vs robustness.',
+    relatedTerms: ['system-prompt', 'agent'],
+  },
+  {
+    slug: 'rag-vs-fine-tuning',
+    term: 'RAG vs Fine-tuning',
+    aliases: ['rag vs fine-tuning'],
+    short: 'The standard build-time decision: ground the LLM in retrieved documents (RAG) or specialise its weights with more training (fine-tuning).',
+    long: 'RAG and fine-tuning solve different problems and are often combined. RAG handles knowledge that changes over time and gives citable answers. Fine-tuning handles style, format, and behavioural specialisation that is hard to fit in a prompt.\n\nThe usual decision rule: if the gap is "the model does not know X facts," use RAG. If the gap is "the model knows X but does not behave the way I need," use fine-tuning. Both have measurable quality lift; combining both is common in mature production systems.',
+    relatedTerms: ['rag', 'fine-tuning', 'lora'],
+  },
+  {
+    slug: 'prompt-injection',
+    term: 'Prompt Injection',
+    aliases: ['prompt injection', 'jailbreak'],
+    short: 'A class of attacks where untrusted input embedded in an LLM prompt overrides the system instructions.',
+    long: 'Prompt injection happens when text controlled by an attacker (a user message, a retrieved document, a webpage in agent browsing) overrides the system instructions and gets the LLM to do something the developer did not intend. It is the SQL injection of the LLM era.\n\nDirect injection is when the user types a manipulative prompt. Indirect injection is more dangerous: a malicious instruction hidden in a webpage or PDF that the LLM reads as part of normal RAG or agent operation. Defences in 2026 are imperfect and rely on input sanitisation, output validation, narrow tool permissions, and constitutional or instruction-tuned guardrails.',
+    relatedTerms: ['guardrails', 'agent', 'rag'],
+  },
+  {
+    slug: 'open-source-llm',
+    term: 'Open-source LLM',
+    aliases: ['open-source LLM', 'open source model', 'open-weights'],
+    short: 'A foundation model whose weights are publicly available, letting anyone run it locally or self-host without paying per-token.',
+    long: 'Open-source LLMs (more accurately "open-weight" models, since training data is rarely released) ship the model weights publicly so anyone can run inference locally. Llama (Meta), Mistral, DeepSeek, Qwen (Alibaba), and Gemma (Google) are leading families in 2026.\n\nOpen weights matter for privacy (no data leaving your network), cost predictability (run on your own hardware), and customisation (full fine-tuning, no API restrictions). Quality has closed the gap with frontier proprietary models on many benchmarks; the remaining gap is mostly multimodal capability and the largest reasoning models.',
+    relatedTerms: ['foundation-model', 'fine-tuning', 'quantization'],
+  },
+  {
+    slug: 'evals',
+    term: 'Evals',
+    aliases: ['evals', 'evaluation', 'eval suite'],
+    short: 'Test suites that score LLM output against benchmarks or human-rated criteria, the unit tests of LLM systems.',
+    long: 'Evals are test suites for LLM systems. They cover capability benchmarks (MMLU, HumanEval, SWE-bench), regression tests (does this prompt still work after the model upgrade), and application-specific quality bars (does the chatbot give the right answer on these 200 real customer questions).\n\nEvals are how teams ship LLM systems with confidence. Without them, every model upgrade is a roulette spin. In 2026, eval tooling is standard: Promptfoo, Braintrust, LangSmith, and OpenAI Evals are widely used. Good eval design matters more than fancier prompts for production quality.',
+    relatedTerms: ['prompt-engineering', 'fine-tuning', 'large-language-model'],
+  },
+]
+
+export function getGlossaryEntry(slug: string): GlossaryEntry | null {
+  return GLOSSARY.find(g => g.slug === slug) ?? null
+}
+
+// All slugs sorted alphabetically by term
+export const GLOSSARY_SLUGS = GLOSSARY.map(g => g.slug)

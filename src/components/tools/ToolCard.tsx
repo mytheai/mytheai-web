@@ -18,8 +18,17 @@ function PricingBadge({ type }: { type: Tool['pricing_type'] }) {
   )
 }
 
+function isRecentlyVerified(updatedAt: string | undefined): boolean {
+  if (!updatedAt) return false
+  const updated = new Date(updatedAt).getTime()
+  if (Number.isNaN(updated)) return false
+  const ageDays = (Date.now() - updated) / (1000 * 60 * 60 * 24)
+  return ageDays <= 30
+}
+
 export default function ToolCard({ tool }: { tool: Tool }) {
   const t = useTranslations('Common')
+  const recentlyVerified = isRecentlyVerified(tool.updated_at)
   return (
     <div className="relative bg-card border border-border rounded-xl p-5 transition-all duration-150 hover:-translate-y-0.5 hover:shadow-xl hover:border-blue-300">
       {/* Header row */}
@@ -35,7 +44,17 @@ export default function ToolCard({ tool }: { tool: Tool }) {
             />
           </div>
           <div>
-            <div className="text-[14px] font-semibold text-foreground">{tool.name}</div>
+            <div className="flex items-center gap-1.5 flex-wrap">
+              <span className="text-[14px] font-semibold text-foreground">{tool.name}</span>
+              {recentlyVerified && (
+                <span
+                  title="Re-verified by editorial within the last 30 days"
+                  className="inline-flex items-center gap-0.5 text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900"
+                >
+                  ✓ Verified
+                </span>
+              )}
+            </div>
             <div className="text-[12px] text-muted-foreground">{tool.category[0]?.name}</div>
           </div>
         </div>
