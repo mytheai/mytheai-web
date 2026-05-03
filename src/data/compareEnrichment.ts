@@ -979,5 +979,21 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
 }
 
 export function getCompareEnrichment(slug: string): CompareEnrichment | null {
-  return COMPARE_ENRICHMENT[slug] ?? null
+  const direct = COMPARE_ENRICHMENT[slug]
+  if (direct) return direct
+  // Reverse-pair fallback: enrichment for "foo-vs-bar" also serves "bar-vs-foo".
+  // bottomLine and FAQs reference tools by name (not A/B labels) so they read
+  // correctly either way. whenToPickA/B map to fixed positions on the page so
+  // we swap them.
+  const m = slug.match(/^(.+)-vs-(.+)$/)
+  if (!m) return null
+  const reversed = `${m[2]}-vs-${m[1]}`
+  const r = COMPARE_ENRICHMENT[reversed]
+  if (!r) return null
+  return {
+    bottomLine: r.bottomLine,
+    whenToPickA: r.whenToPickB,
+    whenToPickB: r.whenToPickA,
+    faqs: r.faqs,
+  }
 }

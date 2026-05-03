@@ -153,6 +153,47 @@ export async function generateMetadata(
 
 // --- Helpers ---
 
+// Build an editor's verdict paragraph from data signals.
+// Used in the prominent verdict block above About.
+function buildEditorVerdict(tool: ToolRow): string {
+  const lines: string[] = []
+  const pricingDescriptor = PRICING_LABELS_HELPER[tool.pricing_type] ?? tool.pricing_type
+  if (tool.rating >= 4.5) {
+    lines.push(`${tool.name} is one of the strongest ${pricingDescriptor.toLowerCase()} tools in its category, rated ${tool.rating.toFixed(1)}/5 by ${tool.review_count.toLocaleString()} users.`)
+  } else if (tool.rating >= 4.0) {
+    lines.push(`${tool.name} is a solid ${pricingDescriptor.toLowerCase()} pick, rated ${tool.rating.toFixed(1)}/5 by ${tool.review_count.toLocaleString()} users.`)
+  } else {
+    lines.push(`${tool.name} is a ${pricingDescriptor.toLowerCase()} tool with a ${tool.rating.toFixed(1)}/5 user rating across ${tool.review_count.toLocaleString()} reviews.`)
+  }
+  if (tool.use_cases && tool.use_cases.length > 0) {
+    const top = tool.use_cases.slice(0, 2).map(u => u.toLowerCase().replace(/\.$/, ''))
+    lines.push(`Best for ${top.join(' and ')}.`)
+  }
+  if (tool.pros && tool.pros.length > 0) {
+    const standout = tool.pros[0].trim().replace(/\.$/, '')
+    lines.push(`Standout: ${standout.charAt(0).toLowerCase() + standout.slice(1)}.`)
+  }
+  if (tool.cons && tool.cons.length > 0) {
+    const caveat = tool.cons[0].trim().replace(/\.$/, '')
+    lines.push(`Watch out: ${caveat.charAt(0).toLowerCase() + caveat.slice(1)}.`)
+  }
+  if (tool.pricing_type === 'free') {
+    lines.push('Fully free with no paid tier.')
+  } else if (tool.pricing_free_tier && tool.pricing_starting_price) {
+    lines.push(`Has a free tier; paid plans start at $${tool.pricing_starting_price}/mo.`)
+  } else if (tool.pricing_starting_price) {
+    lines.push(`Starts at $${tool.pricing_starting_price}/mo with no free tier.`)
+  }
+  return lines.join(' ')
+}
+
+const PRICING_LABELS_HELPER: Record<string, string> = {
+  free: 'Free',
+  freemium: 'Freemium',
+  paid: 'Paid',
+  ltd: 'Lifetime Deal',
+}
+
 const PRICING_LABELS: Record<string, string> = {
   free: 'Free',
   freemium: 'Freemium',
@@ -396,6 +437,14 @@ export default async function ToolPage({
               Official site ↗
             </a>
           )}
+        </div>
+
+        {/* Editor's verdict (auto-generated from data signals) */}
+        <div className="mb-10 p-5 rounded-xl border-2 border-blue-100 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-950/20">
+          <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-700 dark:text-blue-300 mb-2">Editor&apos;s verdict</p>
+          <p className="text-[15px] text-foreground leading-relaxed">
+            {buildEditorVerdict(tool)}
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">

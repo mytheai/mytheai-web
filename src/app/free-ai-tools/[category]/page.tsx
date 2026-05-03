@@ -127,6 +127,23 @@ interface ToolRow {
 const PRICING_LABELS: Record<string, string> = {
   free: 'Free', freemium: 'Freemium', paid: 'Paid', ltd: 'Lifetime Deal',
 }
+
+// Generate a per-tool reasoning blurb explaining why the tool earned a slot
+// in the free list. Pulls from rating, review count, free-tier status, and
+// pricing to produce a varied, signal-driven sentence.
+function freeToolBlurb(tool: ToolRow, position: number): string {
+  const ratingPart = tool.review_count > 5000
+    ? `Strong free-tier choice with ${tool.rating.toFixed(1)}/5 across ${tool.review_count.toLocaleString()} verified reviews`
+    : `Rated ${tool.rating.toFixed(1)}/5 by ${tool.review_count.toLocaleString()} users`
+  const freePart = tool.pricing_type === 'free'
+    ? 'fully free with no paid tier'
+    : tool.pricing_free_tier
+    ? `free tier with paid plans starting at $${tool.pricing_starting_price ?? 'varies'}/mo if you outgrow it`
+    : 'limited free trial - check current terms before relying on free use'
+  const trendPart = tool.trending ? '. Currently trending in the category' : ''
+  const rankNote = position === 0 ? 'Top pick. ' : position === 1 ? 'Runner-up. ' : ''
+  return `${rankNote}${ratingPart}, ${freePart}${trendPart}.`
+}
 const PRICING_COLORS: Record<string, string> = {
   free: 'bg-[#D1FAE5] text-[#065F46]',
   freemium: 'bg-[#DBEAFE] text-[#1E40AF]',
@@ -222,37 +239,44 @@ export default async function FreeAIToolsPage({ params }: { params: Promise<{ ca
         </div>
 
         {tools.length > 0 ? (
-          <ol className="space-y-3 mb-10">
+          <ol className="space-y-4 mb-10">
             {tools.map((tool, i) => (
               <li key={tool.slug}>
-                <Link
-                  href={`/tools/${tool.slug}`}
-                  className="flex items-start gap-4 p-4 rounded-xl border border-border bg-card hover:border-emerald-300 transition-colors"
-                >
-                  <span className="text-[16px] font-bold text-muted-foreground w-6 flex-shrink-0 leading-none pt-1">
-                    {i + 1}
-                  </span>
-                  <div className="w-10 h-10 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={32} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                      <span className="text-[14px] font-bold text-foreground">{tool.name}</span>
-                      <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${PRICING_COLORS[tool.pricing_type]}`}>
-                        {PRICING_LABELS[tool.pricing_type]}
-                      </span>
-                      {tool.pricing_free_tier && tool.pricing_type === 'paid' && (
-                        <span className="text-[11px] font-semibold text-[#10B981]">Free tier</span>
-                      )}
+                <div className="rounded-xl border border-border bg-card overflow-hidden">
+                  <div className="flex items-start gap-4 p-4">
+                    <span className="text-[16px] font-bold text-muted-foreground w-6 flex-shrink-0 leading-none pt-1">
+                      {i + 1}
+                    </span>
+                    <Link href={`/tools/${tool.slug}`} className="w-10 h-10 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden hover:border-emerald-300 transition-colors">
+                      <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={32} />
+                    </Link>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                        <Link href={`/tools/${tool.slug}`} className="text-[14px] font-bold text-foreground hover:text-emerald-600 transition-colors">{tool.name}</Link>
+                        <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${PRICING_COLORS[tool.pricing_type]}`}>
+                          {PRICING_LABELS[tool.pricing_type]}
+                        </span>
+                        {tool.pricing_free_tier && tool.pricing_type === 'paid' && (
+                          <span className="text-[11px] font-semibold text-[#10B981]">Free tier</span>
+                        )}
+                      </div>
+                      <p className="text-[12.5px] text-muted-foreground line-clamp-2">{tool.tagline}</p>
                     </div>
-                    <p className="text-[12.5px] text-muted-foreground line-clamp-2">{tool.tagline}</p>
-                    <p className="text-[11px] text-muted-foreground mt-1">
-                      <span className="text-[#F59E0B] font-semibold">★ {tool.rating.toFixed(1)}</span>
-                      <span className="mx-1.5">·</span>
-                      {tool.review_count.toLocaleString()} reviews
+                    <a
+                      href={`/go/${tool.slug}`}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-[12px] transition-colors flex-shrink-0 whitespace-nowrap self-center"
+                    >
+                      Try free →
+                    </a>
+                  </div>
+                  <div className="border-t border-border px-4 py-3 bg-emerald-50/30 dark:bg-emerald-950/10">
+                    <p className="text-[12.5px] text-muted-foreground leading-relaxed">
+                      {freeToolBlurb(tool, i)}
                     </p>
                   </div>
-                </Link>
+                </div>
               </li>
             ))}
           </ol>

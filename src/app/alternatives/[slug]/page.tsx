@@ -26,6 +26,70 @@ interface ToolRow {
 const PRICING_LABELS: Record<string, string> = {
   free: 'Free', freemium: 'Freemium', paid: 'Paid', ltd: 'Lifetime Deal',
 }
+
+// Generate a per-alternative reasoning sentence from data signals.
+// Compares rating, pricing, free-tier, and trending against the subject tool.
+function altBlurb(alt: ToolRow, tool: ToolRow, primaryTag: string): string {
+  const points: string[] = []
+  if (alt.pricing_free_tier && !tool.pricing_free_tier) {
+    points.push(`unlike ${tool.name}, ${alt.name} ships a free tier`)
+  } else if (!alt.pricing_free_tier && tool.pricing_free_tier && alt.pricing_type !== 'free') {
+    points.push(`paid only (${tool.name} has a free tier)`)
+  }
+  if (tool.pricing_starting_price && alt.pricing_starting_price) {
+    if (alt.pricing_starting_price <= tool.pricing_starting_price * 0.7) {
+      points.push(`starts at $${alt.pricing_starting_price}/mo, materially cheaper than ${tool.name} at $${tool.pricing_starting_price}/mo`)
+    } else if (alt.pricing_starting_price >= tool.pricing_starting_price * 1.5) {
+      points.push(`positioned higher in price ($${alt.pricing_starting_price}/mo vs ${tool.name} at $${tool.pricing_starting_price}/mo)`)
+    }
+  }
+  if (alt.rating >= tool.rating + 0.2) {
+    points.push(`rated ${alt.rating.toFixed(1)}/5 across ${alt.review_count.toLocaleString()} users, ahead of ${tool.name} at ${tool.rating.toFixed(1)}`)
+  } else if (alt.rating <= tool.rating - 0.2) {
+    points.push(`rated lower than ${tool.name} (${alt.rating.toFixed(1)} vs ${tool.rating.toFixed(1)})`)
+  }
+  if (alt.trending && !tool.trending) {
+    points.push('currently trending in the category')
+  }
+  if (points.length === 0) {
+    return `A direct competitor to ${tool.name} in the ${primaryTag} space, rated ${alt.rating.toFixed(1)}/5 by ${alt.review_count.toLocaleString()} users.`
+  }
+  const sentence = `${alt.name} is a strong ${primaryTag} alternative: ` + points.join('; ') + '.'
+  return sentence
+}
+
+// Build a decision matrix mapping common decision criteria to specific alts.
+function buildDecisionMatrix(alts: ToolRow[]): { criterion: string; pick: ToolRow; reason: string }[] {
+  if (alts.length === 0) return []
+  const out: { criterion: string; pick: ToolRow; reason: string }[] = []
+  const seen = new Set<string>()
+  // Highest rated
+  const topRated = [...alts].sort((a, b) => b.rating - a.rating)[0]
+  if (topRated) {
+    out.push({ criterion: 'You want the highest-rated alternative', pick: topRated, reason: `Rated ${topRated.rating.toFixed(1)}/5 by ${topRated.review_count.toLocaleString()} users.` })
+    seen.add(topRated.slug)
+  }
+  // Cheapest with starting price
+  const priced = alts.filter(a => a.pricing_starting_price != null && !seen.has(a.slug))
+  if (priced.length > 0) {
+    const cheapest = priced.sort((a, b) => (a.pricing_starting_price ?? 0) - (b.pricing_starting_price ?? 0))[0]
+    out.push({ criterion: 'Budget is the main constraint', pick: cheapest, reason: `Starts at $${cheapest.pricing_starting_price}/mo on the entry tier.` })
+    seen.add(cheapest.slug)
+  }
+  // Best free tier
+  const freeOption = alts.find(a => (a.pricing_type === 'free' || a.pricing_free_tier) && !seen.has(a.slug))
+  if (freeOption) {
+    out.push({ criterion: 'You want a free option to test first', pick: freeOption, reason: freeOption.pricing_type === 'free' ? 'Completely free, no paid tier.' : 'Includes a usable free tier with no credit card required.' })
+    seen.add(freeOption.slug)
+  }
+  // Trending
+  const trending = alts.find(a => a.trending && !seen.has(a.slug))
+  if (trending) {
+    out.push({ criterion: 'You want the fastest-growing tool', pick: trending, reason: `${trending.name} is currently trending in this category - rapid adoption signal.` })
+    seen.add(trending.slug)
+  }
+  return out
+}
 const PRICING_COLORS: Record<string, string> = {
   free: 'bg-[#D1FAE5] text-[#065F46]',
   freemium: 'bg-[#DBEAFE] text-[#1E40AF]',
@@ -202,19 +266,32 @@ export default async function AlternativesPage({ params }: { params: Promise<{ s
                         </div>
                       </div>
                     </Link>
-                    <div className="border-t border-border px-5 py-3 flex flex-wrap gap-3 text-[13px]">
-                      <Link
-                        href={`/compare/${comparePairSlug}`}
-                        className="text-blue-600 font-medium hover:underline"
-                      >
-                        Compare {tool.name} vs {alt.name} →
-                      </Link>
-                      <Link
-                        href={`/alternatives/${alt.slug}`}
-                        className="text-muted-foreground hover:text-blue-600 transition-colors"
-                      >
-                        {alt.name} alternatives
-                      </Link>
+                    <div className="border-t border-border px-5 py-4">
+                      <p className="text-[13.5px] text-muted-foreground leading-relaxed mb-3">
+                        {altBlurb(alt, tool, primaryTag)}
+                      </p>
+                      <div className="flex flex-wrap gap-3 text-[13px]">
+                        <a
+                          href={`/go/${alt.slug}`}
+                          target="_blank"
+                          rel="noopener noreferrer sponsored"
+                          className="inline-flex items-center px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[12px] transition-colors"
+                        >
+                          Try {alt.name} →
+                        </a>
+                        <Link
+                          href={`/compare/${comparePairSlug}`}
+                          className="text-blue-600 font-medium hover:underline self-center"
+                        >
+                          Compare {tool.name} vs {alt.name} →
+                        </Link>
+                        <Link
+                          href={`/alternatives/${alt.slug}`}
+                          className="text-muted-foreground hover:text-blue-600 transition-colors self-center"
+                        >
+                          {alt.name} alternatives
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -226,6 +303,31 @@ export default async function AlternativesPage({ params }: { params: Promise<{ s
             <p className="text-[14px] text-muted-foreground">No alternatives found in the same category yet. Browse <Link href="/tools" className="text-blue-600 hover:underline">all tools</Link> instead.</p>
           </div>
         )}
+
+        {/* Decision matrix */}
+        {(() => {
+          const matrix = buildDecisionMatrix(alternatives)
+          if (matrix.length === 0) return null
+          return (
+            <section className="mb-10">
+              <h2 className="text-[20px] font-bold text-foreground mb-3">Quick decision matrix</h2>
+              <p className="text-[14px] text-muted-foreground leading-relaxed mb-4">
+                Most users land on this page with one decision criterion top of mind. Here is the alternative we recommend for each common scenario.
+              </p>
+              <ol className="space-y-3">
+                {matrix.map((m, i) => (
+                  <li key={i} className="p-4 rounded-xl border border-border bg-card">
+                    <p className="text-[14px] text-foreground mb-1">
+                      <span className="font-bold">{m.criterion}: </span>
+                      <Link href={`/tools/${m.pick.slug}`} className="text-blue-600 font-bold hover:underline">{m.pick.name}</Link>
+                    </p>
+                    <p className="text-[13px] text-muted-foreground leading-relaxed">{m.reason}</p>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )
+        })()}
 
         {/* Why look for alternatives */}
         <section className="mb-10">
