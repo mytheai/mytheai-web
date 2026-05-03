@@ -30,21 +30,32 @@ interface ReviewRow {
   updated_at: string
 }
 
-async function getReviewedTools(q?: string, category?: string, min_rating?: string): Promise<ReviewRow[]> {
+const PAGE_SIZE = 40
+const HARD_CAP = 200
+const DEFAULT_MIN_RATING = 4.0
+
+async function getReviewedTools(
+  q?: string,
+  category?: string,
+  min_rating?: string,
+): Promise<{ rows: ReviewRow[]; total: number }> {
   const supabase = createStaticClient()
+  const effectiveMin = min_rating ? parseFloat(min_rating) : DEFAULT_MIN_RATING
+
   let query = supabase
     .from('tools')
-    .select('slug, name, tagline, logo_url, website_url, rating, review_count, pricing_type, tags, updated_at')
+    .select('slug, name, tagline, logo_url, website_url, rating, review_count, pricing_type, tags, updated_at', { count: 'exact' })
+    .gte('rating', effectiveMin)
     .order('rating', { ascending: false })
+    .order('review_count', { ascending: false })
 
   if (q) query = query.or(`name.ilike.%${q}%,tagline.ilike.%${q}%`)
   if (category) query = query.contains('tags', [category])
-  if (min_rating) query = query.gte('rating', parseFloat(min_rating))
 
-  query = query.limit(60)
+  query = query.limit(HARD_CAP)
 
-  const { data } = await query
-  return (data ?? []) as ReviewRow[]
+  const { data, count } = await query
+  return { rows: (data ?? []) as ReviewRow[], total: count ?? 0 }
 }
 
 function pricingLabel(type: string) {
@@ -71,10 +82,31 @@ function formatDate(iso: string) {
 export default async function ReviewsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; category?: string; min_rating?: string }>
+  searchParams: Promise<{ q?: string; category?: string; min_rating?: string; page?: string }>
 }) {
-  const { q, category, min_rating } = await searchParams
-  const tools = await getReviewedTools(q, category, min_rating)
+  const { q, category, min_rating, page } = await searchParams
+  const { rows: allTools, total } = await getReviewedTools(q, category, min_rating)
+
+  const pageNum = Math.max(1, parseInt(page ?? '1', 10) || 1)
+  const totalPages = Math.max(1, Math.ceil(allTools.length / PAGE_SIZE))
+  const safePage = Math.min(pageNum, totalPages)
+  const start = (safePage - 1) * PAGE_SIZE
+  const tools = allTools.slice(start, start + PAGE_SIZE)
+
+  const baseQuery = new URLSearchParams()
+  if (q) baseQuery.set('q', q)
+  if (category) baseQuery.set('category', category)
+  if (min_rating) baseQuery.set('min_rating', min_rating)
+  const baseQueryStr = baseQuery.toString()
+
+  function pageHref(p: number) {
+    const next = new URLSearchParams(baseQueryStr)
+    if (p > 1) next.set('page', String(p))
+    const qs = next.toString()
+    return qs ? `/reviews?${qs}` : '/reviews'
+  }
+
+  const effectiveMin = min_rating ? parseFloat(min_rating) : DEFAULT_MIN_RATING
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
@@ -85,7 +117,7 @@ export default async function ReviewsPage({
           AI Tool Reviews
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          {tools.length} tools reviewed, ranked by editorial rating. Each review covers pricing, pros and cons, and real use cases.
+          {total.toLocaleString()} tools rated {effectiveMin.toFixed(1)}+ by our editorial team, ranked by score and review volume. Each review covers pricing, pros and cons, and real use cases.
         </p>
       </div>
 
@@ -102,11 +134,12 @@ export default async function ReviewsPage({
         <div className="space-y-3">
           {tools.map((tool, index) => {
             const badge = pricingLabel(tool.pricing_type)
+            const rank = start + index + 1
             return (
               <div key={tool.slug} className="flex items-center gap-4 border border-border rounded-xl p-4 bg-card hover:border-[#93C5FD] transition-colors">
                 {/* Rank */}
                 <span className="text-[13px] font-bold text-muted-foreground w-6 text-right flex-shrink-0">
-                  {index + 1}
+                  {rank}
                 </span>
 
                 {/* Logo */}
@@ -153,6 +186,36 @@ export default async function ReviewsPage({
           <p className="text-muted-foreground text-[15px]">No reviews found for this filter.</p>
           <Link href="/reviews" className="mt-3 inline-block text-blue-600 text-[14px] hover:underline">Clear filters</Link>
         </div>
+      )}
+
+      {totalPages > 1 && (
+        <nav className="mt-8 flex items-center justify-center gap-2" aria-label="Pagination">
+          {safePage > 1 ? (
+            <Link
+              href={pageHref(safePage - 1)}
+              className="h-9 px-3 inline-flex items-center rounded-lg border border-border bg-surface text-[13px] text-foreground hover:border-blue-400 transition-colors"
+            >
+              ← Prev
+            </Link>
+          ) : (
+            <span className="h-9 px-3 inline-flex items-center rounded-lg border border-border bg-surface text-[13px] text-muted-foreground opacity-50">← Prev</span>
+          )}
+
+          <span className="text-[13px] text-muted-foreground px-3">
+            Page {safePage} of {totalPages}
+          </span>
+
+          {safePage < totalPages ? (
+            <Link
+              href={pageHref(safePage + 1)}
+              className="h-9 px-3 inline-flex items-center rounded-lg border border-border bg-surface text-[13px] text-foreground hover:border-blue-400 transition-colors"
+            >
+              Next →
+            </Link>
+          ) : (
+            <span className="h-9 px-3 inline-flex items-center rounded-lg border border-border bg-surface text-[13px] text-muted-foreground opacity-50">Next →</span>
+          )}
+        </nav>
       )}
 
       <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
