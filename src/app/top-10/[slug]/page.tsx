@@ -185,10 +185,7 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
             return (
               <li key={tool.slug}>
                 <div className="rounded-xl border border-border bg-card overflow-hidden">
-                  <Link
-                    href={`/tools/${tool.slug}`}
-                    className="flex items-start gap-4 p-5 hover:bg-gray-50 dark:hover:bg-gray-900/40 transition-colors"
-                  >
+                  <div className="flex items-start gap-4 p-5">
                     {/* Rank */}
                     <div
                       className="text-[22px] font-extrabold w-8 flex-shrink-0 leading-none pt-0.5"
@@ -198,14 +195,19 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
                     </div>
 
                     {/* Logo */}
-                    <div className="w-11 h-11 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                    <Link
+                      href={`/tools/${tool.slug}`}
+                      className="w-11 h-11 rounded-xl border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden hover:border-blue-300 transition-colors"
+                    >
                       <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={36} />
-                    </div>
+                    </Link>
 
                     {/* Info */}
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <span className="text-[15px] font-bold text-foreground">{tool.name}</span>
+                        <Link href={`/tools/${tool.slug}`} className="text-[15px] font-bold text-foreground hover:text-blue-600 transition-colors">
+                          {tool.name}
+                        </Link>
                         <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${PRICING_COLORS[tool.pricing_type]}`}>
                           {PRICING_LABELS[tool.pricing_type]}
                         </span>
@@ -214,7 +216,7 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
                         )}
                       </div>
                       <p className="text-[13px] text-muted-foreground line-clamp-2 mb-2">{tool.tagline}</p>
-                      <div className="flex items-center gap-3 text-[12px] text-muted-foreground">
+                      <div className="flex items-center gap-3 text-[12px] text-muted-foreground flex-wrap">
                         <span className="text-[#F59E0B] font-semibold">★ {tool.rating.toFixed(1)}</span>
                         <span>{tool.review_count.toLocaleString()} reviews</span>
                         {tool.pricing_free_tier && <span className="text-[#10B981] font-medium">Free tier</span>}
@@ -222,8 +224,24 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
                       </div>
                     </div>
 
-                    <span className="text-[13px] text-blue-600 font-medium flex-shrink-0 pt-0.5">Review →</span>
-                  </Link>
+                    {/* Actions */}
+                    <div className="flex flex-col gap-2 flex-shrink-0">
+                      <a
+                        href={`/go/${tool.slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer sponsored"
+                        className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[12px] transition-colors whitespace-nowrap"
+                      >
+                        Try {tool.name} →
+                      </a>
+                      <Link
+                        href={`/tools/${tool.slug}`}
+                        className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg border border-border hover:border-blue-300 text-foreground font-medium text-[12px] transition-colors whitespace-nowrap"
+                      >
+                        Review →
+                      </Link>
+                    </div>
+                  </div>
 
                   {pick && (
                     <div className="border-t border-border px-5 py-4 space-y-3 text-[14px] leading-relaxed">

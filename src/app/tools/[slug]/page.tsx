@@ -7,6 +7,7 @@ import { createClient, createStaticClient } from '@/lib/supabase'
 import ReviewForm from '@/components/reviews/ReviewForm'
 import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
 import ScoringTable from '@/components/tools/ScoringTable'
+import StickyMobileCTA from '@/components/tools/StickyMobileCTA'
 import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidence } from '@/lib/scoring'
 import { TOP10_LISTS } from '@/data/top10'
 import type { Metadata } from 'next'
@@ -294,7 +295,7 @@ export default async function ToolPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14">
+      <div className="max-w-4xl mx-auto px-4 md:px-5 py-10 md:py-14 pb-24 md:pb-14">
 
         {/* Breadcrumb */}
         <nav className="flex items-center gap-1.5 text-[13px] text-muted-foreground mb-8">
@@ -691,6 +692,14 @@ export default async function ToolPage({
         </div>
 
       </div>
+
+      <StickyMobileCTA
+        slug={tool.slug}
+        name={tool.name}
+        pricingType={tool.pricing_type}
+        pricingFreeTier={tool.pricing_free_tier}
+        startingPrice={tool.pricing_starting_price}
+      />
     </>
   )
 }

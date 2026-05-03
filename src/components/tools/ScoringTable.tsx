@@ -69,6 +69,19 @@ export default function ScoringTable({ scores, toolName, evidence }: Props) {
     ? Object.values(evidence).reduce((sum, list) => sum + (list?.length ?? 0), 0)
     : 0
 
+  // Evidence breakdown by type for the prominence banner
+  const typeCounts: Partial<Record<keyof typeof EVIDENCE_TYPE_LABELS, number>> = {}
+  if (evidence) {
+    for (const list of Object.values(evidence)) {
+      for (const e of list ?? []) {
+        typeCounts[e.type] = (typeCounts[e.type] ?? 0) + 1
+      }
+    }
+  }
+  const typeSummary = Object.entries(typeCounts)
+    .sort((a, b) => (b[1] as number) - (a[1] as number))
+    .map(([type, count]) => `${count} ${EVIDENCE_TYPE_LABELS[type as keyof typeof EVIDENCE_TYPE_LABELS].toLowerCase()}${(count as number) > 1 ? 's' : ''}`)
+
   return (
     <section className="mt-12 pt-8 border-t border-border">
       <div className="flex items-end justify-between mb-4">
@@ -80,6 +93,19 @@ export default function ScoringTable({ scores, toolName, evidence }: Props) {
           See methodology →
         </Link>
       </div>
+
+      {totalEvidence > 0 && (
+        <div className="mb-4 flex flex-wrap items-center gap-2 px-4 py-3 rounded-xl border border-blue-100 dark:border-blue-900/40 bg-blue-50/60 dark:bg-blue-950/20">
+          <span className="text-[13px] font-bold text-blue-700 dark:text-blue-300">
+            ✓ Backed by {totalEvidence} external source{totalEvidence > 1 ? 's' : ''}
+          </span>
+          {typeSummary.length > 0 && (
+            <span className="text-[12px] text-muted-foreground">
+              ({typeSummary.join(' · ')})
+            </span>
+          )}
+        </div>
+      )}
 
       <div className="border border-border rounded-xl overflow-hidden">
         <div className="grid grid-cols-[1fr_60px_160px] gap-0 bg-card border-b border-border">

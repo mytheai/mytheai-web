@@ -138,13 +138,56 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
 
   const enrichment = getCompareEnrichment(slug)
 
+  const ogImageUrl = (() => {
+    const u = new URL('https://mytheai.com/api/og/compare')
+    u.searchParams.set('nameA', toolA.name)
+    u.searchParams.set('nameB', toolB.name)
+    if (toolA.logo_url) u.searchParams.set('logoA', toolA.logo_url)
+    if (toolB.logo_url) u.searchParams.set('logoB', toolB.logo_url)
+    return u.toString()
+  })()
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: `${toolA.name} vs ${toolB.name} (${year}): Full Comparison`,
     description: cmp.summary,
     url: `https://mytheai.com/compare/${slug}`,
+    image: ogImageUrl,
+    datePublished: cmp.updated_at,
     dateModified: cmp.updated_at,
+    author: { '@type': 'Organization', name: 'MytheAi Editorial', url: 'https://mytheai.com/about' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'MytheAi',
+      url: 'https://mytheai.com',
+      logo: { '@type': 'ImageObject', url: 'https://mytheai.com/logo.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://mytheai.com/compare/${slug}` },
+    about: [
+      {
+        '@type': 'SoftwareApplication',
+        name: toolA.name,
+        applicationCategory: 'WebApplication',
+        url: `https://mytheai.com/tools/${toolA.slug}`,
+        aggregateRating: toolA.review_count > 0 ? {
+          '@type': 'AggregateRating',
+          ratingValue: toolA.rating,
+          reviewCount: toolA.review_count,
+        } : undefined,
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: toolB.name,
+        applicationCategory: 'WebApplication',
+        url: `https://mytheai.com/tools/${toolB.slug}`,
+        aggregateRating: toolB.review_count > 0 ? {
+          '@type': 'AggregateRating',
+          ratingValue: toolB.rating,
+          reviewCount: toolB.review_count,
+        } : undefined,
+      },
+    ],
   }
 
   const faqJsonLd = enrichment ? {
