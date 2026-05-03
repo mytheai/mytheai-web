@@ -226,26 +226,6 @@ export default async function HomePage() {
               </Link>
             ))}
           </div>
-
-          {/* Trust strip - editorial transparency signals */}
-          <div className="mt-8 flex flex-wrap justify-center items-center gap-x-5 gap-y-2 text-[12px] text-muted-foreground">
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              <span><strong className="text-foreground">559</strong> tools tracked</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-              <span><strong className="text-foreground">266</strong> head-to-head comparisons</span>
-            </span>
-            <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-              <span>Updated weekly</span>
-            </span>
-            <Link href="/methodology" className="flex items-center gap-1.5 hover:text-blue-600 transition-colors">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500" />
-              <span className="underline-offset-4 hover:underline">No pay-to-rank</span>
-            </Link>
-          </div>
         </div>
       </section>
 
