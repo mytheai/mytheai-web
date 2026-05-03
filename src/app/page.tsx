@@ -68,14 +68,14 @@ const jsonLd = {
 
 // ── Role cards (static, no DB needed) ────────────────────────────────────────
 
-const ROLES = [
-  { emoji: '💻', title: 'Developer', desc: 'Coding & AI agents', href: '/top-10/best-code-ai-tools' },
-  { emoji: '📣', title: 'Marketer', desc: 'Content & campaigns', href: '/top-10/best-ai-tools-for-marketers' },
-  { emoji: '✍️', title: 'Creator', desc: 'Video, audio & writing', href: '/top-10/best-ai-tools-for-content-creators' },
-  { emoji: '🎓', title: 'Student', desc: 'Research & learning', href: '/top-10/best-ai-tools-for-students' },
-  { emoji: '🚀', title: 'Founder', desc: 'Build & grow faster', href: '/top-10/best-ai-tools-for-startups' },
-  { emoji: '🎨', title: 'Designer', desc: 'Generate & design', href: '/top-10/best-ai-design-tools' },
-]
+const ROLE_KEYS = [
+  { emoji: '💻', key: 'developer', href: '/top-10/best-code-ai-tools' },
+  { emoji: '📣', key: 'marketer', href: '/top-10/best-ai-tools-for-marketers' },
+  { emoji: '✍️', key: 'creator', href: '/top-10/best-ai-tools-for-content-creators' },
+  { emoji: '🎓', key: 'student', href: '/top-10/best-ai-tools-for-students' },
+  { emoji: '🚀', key: 'founder', href: '/top-10/best-ai-tools-for-startups' },
+  { emoji: '🎨', key: 'designer', href: '/top-10/best-ai-design-tools' },
+] as const
 
 // ── Data fetching ─────────────────────────────────────────────────────────────
 
@@ -216,7 +216,7 @@ function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, view
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [editorPicks, trending, top10Data, stats, recentlyAdded, tHero, tTrust, tSection] = await Promise.all([
+  const [editorPicks, trending, top10Data, stats, recentlyAdded, tHero, tTrust, tSection, tRoles] = await Promise.all([
     getEditorPicks(),
     getTrending(),
     getTop10Data(),
@@ -225,6 +225,7 @@ export default async function HomePage() {
     getTranslations('Hero'),
     getTranslations('TrustBar'),
     getTranslations('HomeSections'),
+    getTranslations('Roles'),
   ])
 
   const rankColors = ['#F59E0B', '#9CA3AF', '#92400E']
@@ -305,7 +306,7 @@ export default async function HomePage() {
 
         {/* BROWSE BY CATEGORY - primary navigation after search */}
         <section aria-label="Browse by category">
-          <SectionHeader eyebrow="Explore" title="Browse by Category" viewAll="All categories →" viewAllHref="/categories" />
+          <SectionHeader eyebrow={tSection('browseEyebrow')} title={tSection('browseTitle')} viewAll={`${tSection('browseViewAll')} →`} viewAllHref="/categories" />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {mockCategories.map(cat => (
               <Link
@@ -316,7 +317,7 @@ export default async function HomePage() {
                 <span className="text-2xl flex-shrink-0" aria-hidden="true">{cat.emoji}</span>
                 <div className="min-w-0">
                   <div className="text-[13px] font-semibold text-foreground truncate">{cat.name}</div>
-                  <div className="text-[12px] text-muted-foreground">{cat.tool_count} tools</div>
+                  <div className="text-[12px] text-muted-foreground">{tSection('toolCount', { count: cat.tool_count })}</div>
                 </div>
               </Link>
             ))}
@@ -326,7 +327,7 @@ export default async function HomePage() {
         {/* EDITOR'S PICKS */}
         {editorPicks.length > 0 && (
           <section aria-label="Editor's picks">
-            <SectionHeader eyebrow="Curated" title="Editor's Picks" viewAll="View all tools →" viewAllHref="/tools" />
+            <SectionHeader eyebrow={tSection('editorEyebrow')} title={tSection('editorTitle')} viewAll={`${tSection('editorViewAll')} →`} viewAllHref="/tools" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {editorPicks.map(tool => (
                 <Link
@@ -361,17 +362,17 @@ export default async function HomePage() {
                   <div className="flex items-center gap-1.5 mb-2">
                     <Stars rating={tool.rating} />
                     <span className="text-[13px] font-semibold text-foreground">{tool.rating.toFixed(1)}</span>
-                    <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k reviews)</span>
+                    <span className="text-[12px] text-muted-foreground">{tSection('reviews', { count: (tool.review_count / 1000).toFixed(1) })}</span>
                   </div>
                   {isValidScores(tool.scores) && (
                     <div className="flex items-center gap-1.5 mb-3 text-[11px]">
-                      <span className="font-bold uppercase tracking-[0.06em] text-blue-600">Editorial</span>
+                      <span className="font-bold uppercase tracking-[0.06em] text-blue-600">{tSection('editorialScore')}</span>
                       <span className="font-semibold text-foreground">{computeWeightedScore(tool.scores).toFixed(2)}/5</span>
-                      <span className="text-muted-foreground">on 7 criteria</span>
+                      <span className="text-muted-foreground">{tSection('editorialScoreSuffix')}</span>
                     </div>
                   )}
                   <span className="block w-full text-center text-[13px] font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors py-2.5 rounded-lg">
-                    View {tool.name} →
+                    {tSection('viewTool', { name: tool.name })} →
                   </span>
                 </Link>
               ))}
@@ -382,7 +383,7 @@ export default async function HomePage() {
         {/* RECENTLY ADDED */}
         {recentlyAdded.length > 0 && (
           <section aria-label="Recently added AI tools">
-            <SectionHeader eyebrow="Fresh in the Directory" eyebrowColor="#10B981" title="Recently Added" viewAll="See all tools →" viewAllHref="/tools" />
+            <SectionHeader eyebrow={tSection('recentEyebrow')} eyebrowColor="#10B981" title={tSection('recentTitle')} viewAll={`${tSection('recentViewAll')} →`} viewAllHref="/tools" />
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {recentlyAdded.map(tool => (
                 <Link
@@ -402,17 +403,17 @@ export default async function HomePage() {
 
         {/* FIND TOOLS FOR YOUR ROLE */}
         <section aria-label="Find tools by role">
-          <SectionHeader eyebrow="Your Workflow" title="Find Tools For Your Role" viewAll="See all roles →" viewAllHref="/roles" />
+          <SectionHeader eyebrow={tSection('rolesEyebrow')} title={tSection('rolesTitle')} viewAll={`${tSection('rolesViewAll')} →`} viewAllHref="/roles" />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {ROLES.map(role => (
+            {ROLE_KEYS.map(role => (
               <Link
-                key={role.title}
+                key={role.key}
                 href={role.href}
                 className="flex flex-col items-center text-center p-4 md:p-5 rounded-xl border border-border bg-card hover:border-blue-300 hover:bg-[#EFF6FF] dark:hover:bg-[#1E3A5F] transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <span className="text-3xl mb-2" aria-hidden="true">{role.emoji}</span>
-                <span className="text-[13px] font-semibold text-foreground">{role.title}</span>
-                <span className="text-[11px] text-muted-foreground mt-0.5 leading-tight">{role.desc}</span>
+                <span className="text-[13px] font-semibold text-foreground">{tRoles(role.key)}</span>
+                <span className="text-[11px] text-muted-foreground mt-0.5 leading-tight">{tRoles(`${role.key}Desc`)}</span>
               </Link>
             ))}
           </div>
@@ -421,7 +422,7 @@ export default async function HomePage() {
         {/* TRENDING NOW */}
         {trending.length > 0 && (
           <section aria-label="Trending AI tools">
-            <SectionHeader eyebrow="This Week" eyebrowColor="#F59E0B" title="Trending Now" viewAll="View all →" viewAllHref="/tools" />
+            <SectionHeader eyebrow={tSection('trendingEyebrow')} eyebrowColor="#F59E0B" title={tSection('trendingTitle')} viewAll={`${tSection('trendingViewAll')} →`} viewAllHref="/tools" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {trending.map((tool, i) => (
                 <div
@@ -449,7 +450,7 @@ export default async function HomePage() {
                     href={`/tools/${tool.slug}`}
                     className="text-[12px] font-semibold text-blue-600 hover:text-blue-700 flex-shrink-0 min-h-[44px] flex items-center"
                   >
-                    View →
+                    {tSection('view')} →
                   </Link>
                 </div>
               ))}
@@ -459,7 +460,7 @@ export default async function HomePage() {
 
         {/* TOP 10 LISTS - SEO anchor pages */}
         <section aria-label="Top 10 AI tool lists">
-          <SectionHeader eyebrow="Ranked Lists" title="Top 10 AI Tools" viewAll="All Top 10 lists →" viewAllHref="/top-10" />
+          <SectionHeader eyebrow={tSection('top10Eyebrow')} title={tSection('top10Title')} viewAll={`${tSection('top10ViewAll')} →`} viewAllHref="/top-10" />
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {top10Data.map(({ list, tools }) => (
               <div key={list.slug} className="bg-card border border-border rounded-xl p-5">
@@ -486,7 +487,7 @@ export default async function HomePage() {
                   href={`/top-10/${list.slug}`}
                   className="mt-4 block text-center text-[12px] font-semibold py-2.5 rounded-lg border border-border hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-muted-foreground"
                 >
-                  See full list →
+                  {tSection('seeFullList')} →
                 </Link>
               </div>
             ))}
@@ -497,11 +498,11 @@ export default async function HomePage() {
         <section aria-label="Newsletter signup">
           <div className="bg-[#EFF6FF] dark:bg-[#1e3a8a]/20 border border-[#BFDBFE] dark:border-[#1e3a8a] rounded-2xl px-6 py-7 md:px-10 md:py-8 flex flex-col md:flex-row items-center justify-between gap-5">
             <div className="text-center md:text-left">
-              <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Stay Sharp</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">{tSection('newsletterEyebrow')}</p>
               <h2 className="text-[18px] md:text-[20px] font-extrabold tracking-tight text-foreground">
-                Weekly AI Tool Picks
+                {tSection('newsletterTitle')}
               </h2>
-              <p className="text-[13px] text-muted-foreground mt-1">New tools, honest reviews. Every Tuesday. No spam.</p>
+              <p className="text-[13px] text-muted-foreground mt-1">{tSection('newsletterCopy')}</p>
             </div>
             <div className="w-full md:w-auto md:min-w-[320px] flex-shrink-0">
               <NewsletterForm />

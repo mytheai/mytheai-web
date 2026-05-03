@@ -107,5 +107,23 @@
     "success": "धन्यवाद! पुष्टि के लिए अपना इनबॉक्स देखें।",
     "alreadySubscribed": "आप पहले से सब्सक्राइब हैं।",
     "invalidEmail": "कृपया एक मान्य ईमेल दर्ज करें।"
+  },
+  "Roles": {
+    "developer": "डेवलपर",
+    "developerDesc": "कोडिंग और AI एजेंट",
+    "marketer": "मार्केटर",
+    "marketerDesc": "कंटेंट और कैम्पेन",
+    "creator": "क्रिएटर",
+    "creatorDesc": "वीडियो, ऑडियो और लेखन",
+    "student": "छात्र",
+    "studentDesc": "अनुसंधान और सीखना",
+    "founder": "फाउंडर",
+    "founderDesc": "तेज़ी से बनाएँ और बढ़ाएँ",
+    "designer": "डिज़ाइनर",
+    "designerDesc": "जनरेट और डिज़ाइन",
+    "sales": "सेल्स",
+    "salesDesc": "आउटरीच और डील",
+    "support": "सपोर्ट",
+    "supportDesc": "टिकट और नॉलेज बेस"
   }
 }

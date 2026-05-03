@@ -107,5 +107,23 @@
     "success": "Thanks! Check your inbox to confirm.",
     "alreadySubscribed": "You're already subscribed.",
     "invalidEmail": "Please enter a valid email."
+  },
+  "Roles": {
+    "developer": "Developer",
+    "developerDesc": "Coding & AI agents",
+    "marketer": "Marketer",
+    "marketerDesc": "Content & campaigns",
+    "creator": "Creator",
+    "creatorDesc": "Video, audio & writing",
+    "student": "Student",
+    "studentDesc": "Research & learning",
+    "founder": "Founder",
+    "founderDesc": "Build & grow faster",
+    "designer": "Designer",
+    "designerDesc": "Generate & design",
+    "sales": "Sales",
+    "salesDesc": "Outreach & deal intelligence",
+    "support": "Support",
+    "supportDesc": "Tickets & knowledge"
   }
 }

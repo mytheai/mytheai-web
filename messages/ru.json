@@ -107,5 +107,23 @@
     "success": "Спасибо! Проверьте почту для подтверждения.",
     "alreadySubscribed": "Вы уже подписаны.",
     "invalidEmail": "Введите корректный email."
+  },
+  "Roles": {
+    "developer": "Разработчик",
+    "developerDesc": "Код и ИИ-агенты",
+    "marketer": "Маркетолог",
+    "marketerDesc": "Контент и кампании",
+    "creator": "Креатор",
+    "creatorDesc": "Видео, аудио и текст",
+    "student": "Студент",
+    "studentDesc": "Исследования и учёба",
+    "founder": "Основатель",
+    "founderDesc": "Создавать и расти",
+    "designer": "Дизайнер",
+    "designerDesc": "Генерация и дизайн",
+    "sales": "Продажи",
+    "salesDesc": "Аутрич и сделки",
+    "support": "Поддержка",
+    "supportDesc": "Тикеты и база знаний"
   }
 }

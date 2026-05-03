@@ -107,5 +107,23 @@
     "success": "感谢订阅!请查收邮件确认。",
     "alreadySubscribed": "你已订阅。",
     "invalidEmail": "请输入有效的邮箱地址。"
+  },
+  "Roles": {
+    "developer": "开发者",
+    "developerDesc": "编程与 AI 代理",
+    "marketer": "营销人员",
+    "marketerDesc": "内容与广告",
+    "creator": "创作者",
+    "creatorDesc": "视频、音频与写作",
+    "student": "学生",
+    "studentDesc": "研究与学习",
+    "founder": "创业者",
+    "founderDesc": "更快构建与增长",
+    "designer": "设计师",
+    "designerDesc": "生成与设计",
+    "sales": "销售",
+    "salesDesc": "拓客与成交",
+    "support": "客服",
+    "supportDesc": "工单与知识库"
   }
 }

@@ -107,5 +107,23 @@
     "success": "¡Gracias! Revisa tu correo para confirmar.",
     "alreadySubscribed": "Ya estás suscrito.",
     "invalidEmail": "Por favor introduce un correo válido."
+  },
+  "Roles": {
+    "developer": "Desarrollador",
+    "developerDesc": "Código y agentes IA",
+    "marketer": "Marketero",
+    "marketerDesc": "Contenido y campañas",
+    "creator": "Creador",
+    "creatorDesc": "Vídeo, audio y escritura",
+    "student": "Estudiante",
+    "studentDesc": "Investigación y aprendizaje",
+    "founder": "Fundador",
+    "founderDesc": "Construir y crecer",
+    "designer": "Diseñador",
+    "designerDesc": "Generar y diseñar",
+    "sales": "Ventas",
+    "salesDesc": "Prospección y cierre",
+    "support": "Soporte",
+    "supportDesc": "Tickets y base de conocimiento"
   }
 }

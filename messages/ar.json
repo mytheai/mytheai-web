@@ -107,5 +107,23 @@
     "success": "شكرًا! تحقق من بريدك للتأكيد.",
     "alreadySubscribed": "أنت مشترك بالفعل.",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح."
+  },
+  "Roles": {
+    "developer": "مطور",
+    "developerDesc": "البرمجة ووكلاء الذكاء الاصطناعي",
+    "marketer": "مسوّق",
+    "marketerDesc": "المحتوى والحملات",
+    "creator": "مبدع",
+    "creatorDesc": "فيديو وصوت وكتابة",
+    "student": "طالب",
+    "studentDesc": "البحث والتعلم",
+    "founder": "مؤسس",
+    "founderDesc": "البناء والنمو بسرعة",
+    "designer": "مصمم",
+    "designerDesc": "التوليد والتصميم",
+    "sales": "مبيعات",
+    "salesDesc": "التواصل وإتمام الصفقات",
+    "support": "دعم",
+    "supportDesc": "التذاكر وقاعدة المعرفة"
   }
 }
