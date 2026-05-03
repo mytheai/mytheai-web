@@ -121,6 +121,16 @@ async function getEditorPicks(): Promise<ToolRow[]> {
   return [...(picks ?? []), ...topRated]
 }
 
+async function getRecentlyAdded(): Promise<ToolRow[]> {
+  const supabase = createStaticClient()
+  const { data } = await supabase
+    .from('tools')
+    .select('id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending')
+    .order('created_at', { ascending: false })
+    .limit(6)
+  return data ?? []
+}
+
 async function getDirectoryStats() {
   const supabase = createStaticClient()
   const [toolsRes, comparesRes] = await Promise.all([
@@ -205,11 +215,12 @@ function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, view
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [editorPicks, trending, top10Data, stats] = await Promise.all([
+  const [editorPicks, trending, top10Data, stats, recentlyAdded] = await Promise.all([
     getEditorPicks(),
     getTrending(),
     getTop10Data(),
     getDirectoryStats(),
+    getRecentlyAdded(),
   ])
 
   const rankColors = ['#F59E0B', '#9CA3AF', '#92400E']
@@ -353,6 +364,27 @@ export default async function HomePage() {
                   <span className="block w-full text-center text-[13px] font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors py-2.5 rounded-lg">
                     View {tool.name} →
                   </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* RECENTLY ADDED */}
+        {recentlyAdded.length > 0 && (
+          <section aria-label="Recently added AI tools">
+            <SectionHeader eyebrow="Fresh in the Directory" eyebrowColor="#10B981" title="Recently Added" viewAll="See all tools →" viewAllHref="/tools" />
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+              {recentlyAdded.map(tool => (
+                <Link
+                  key={tool.id}
+                  href={`/tools/${tool.slug}`}
+                  className="bg-card border border-border rounded-xl p-3 flex flex-col items-center text-center transition-all duration-150 hover:border-emerald-300 hover:-translate-y-0.5 hover:shadow-sm"
+                >
+                  <LogoImage src={tool.logo_url} websiteUrl={tool.website_url} name={tool.name} size={36} />
+                  <span className="mt-2 text-[12.5px] font-semibold text-foreground truncate w-full">{tool.name}</span>
+                  <span className="text-[11px] text-muted-foreground truncate w-full">{tool.tags?.[0] ?? 'New'}</span>
+                  <PricingBadge type={tool.pricing_type} />
                 </Link>
               ))}
             </div>
