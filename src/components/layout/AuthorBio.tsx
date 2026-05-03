@@ -53,8 +53,8 @@ export default function AuthorBio({ context = 'curated', authorSlug, className =
           {author.bio}
         </p>
         <p className="text-[12px] text-muted-foreground mt-2 flex flex-wrap items-center gap-x-1.5 gap-y-1">
-          <Link href="/about" className="text-blue-600 hover:underline font-medium" itemProp="url">
-            About the editor
+          <Link href={`/authors/${author.slug}`} className="text-blue-600 hover:underline font-medium" itemProp="url">
+            More from {author.name}
           </Link>
           <span>·</span>
           <Link href="/methodology" className="text-blue-600 hover:underline font-medium">

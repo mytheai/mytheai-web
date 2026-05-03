@@ -20,8 +20,8 @@ export const AUTHORS: Record<string, Author> = {
     slug: 'john-ethan',
     name: 'John Ethan',
     role: 'Founder & Editor-in-Chief',
-    bio: 'Founder of MytheAi. Tracking and reviewing AI and SaaS tools since January 2026. Built MytheAi out of frustration with pay-to-rank listicles and SEO-driven AI directories that prioritize ad revenue over honest guidance. Hands-on testing across 600+ tools to date.',
-    url: 'https://mytheai.com/about',
+    bio: 'Founder of MytheAi. Tracking and reviewing AI and SaaS tools since January 2026. Built MytheAi out of frustration with pay-to-rank listicles and SEO-driven AI directories that prioritize ad revenue over honest guidance. Hands-on testing across 651+ tools to date.',
+    url: 'https://mytheai.com/authors/john-ethan',
   },
 }
 

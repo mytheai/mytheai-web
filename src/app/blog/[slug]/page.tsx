@@ -13,6 +13,7 @@ import TLDRBox from '@/components/blog/TLDRBox'
 import FAQBlock from '@/components/blog/FAQBlock'
 import PricingTable from '@/components/blog/PricingTable'
 import { getAuthorJsonLd, getAuthor } from '@/data/authors'
+import { linkGlossary } from '@/lib/glossary-linker'
 
 export const revalidate = 604800
 
@@ -65,12 +66,39 @@ const CATEGORY_TEXT: Record<string, string> = {
   Guide: '#065F46',
 }
 
+function renderLinkedString(text: string, keyPrefix: string) {
+  return linkGlossary(text).map((seg, i) =>
+    seg.type === 'link' ? (
+      <Link key={`${keyPrefix}-${i}`} href={seg.href} className="text-blue-600/80 hover:text-blue-600 hover:underline border-b border-dotted border-blue-200 dark:border-blue-900">{seg.value}</Link>
+    ) : (
+      <span key={`${keyPrefix}-${i}`}>{seg.value}</span>
+    )
+  )
+}
+
+function GlossaryLinkedText({ children }: { children: React.ReactNode }) {
+  // Auto-link glossary terms inside paragraphs. String children get linking;
+  // non-text children (already-formatted Link, strong, etc.) pass through unchanged.
+  // Children can be a single string, JSX element, or an array of mixed nodes.
+  const arr = Array.isArray(children) ? children : [children]
+  return (
+    <>
+      {arr.map((node, idx) => {
+        if (typeof node === 'string') return <span key={idx}>{renderLinkedString(node, `g${idx}`)}</span>
+        return <span key={idx}>{node}</span>
+      })}
+    </>
+  )
+}
+
 const mdxComponents = {
   h2: (props: ComponentProps<'h2'>) => (
     <h2 className="text-[20px] font-bold text-foreground mt-8 mb-3" {...props} />
   ),
-  p: (props: ComponentProps<'p'>) => (
-    <p className="text-[15px] text-muted-foreground leading-relaxed mb-4" {...props} />
+  p: ({ children, ...props }: ComponentProps<'p'>) => (
+    <p className="text-[15px] text-muted-foreground leading-relaxed mb-4" {...props}>
+      <GlossaryLinkedText>{children as React.ReactNode}</GlossaryLinkedText>
+    </p>
   ),
   ul: (props: ComponentProps<'ul'>) => (
     <ul className="space-y-3 mb-6" {...props} />
@@ -209,7 +237,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {article.excerpt}
         </p>
         <p className="text-[13px] text-muted-foreground">
-          By <Link href="/about" className="text-blue-600 hover:underline font-medium">{author.name}</Link>, {author.role}
+          By <Link href={`/authors/${author.slug}`} className="text-blue-600 hover:underline font-medium">{author.name}</Link>, {author.role}
         </p>
       </header>
 

@@ -1576,6 +1576,234 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Which is cheaper?', a: 'Basecamp at scale (10+ users), Notion for small teams (1-9 users). At 10 users, Notion Plus + AI costs $200/mo vs Basecamp $99/mo flat. Crossover is around 5-7 users.' },
     ],
   },
+
+  'gamma-vs-beautiful-ai': {
+    bottomLine: 'Gamma and Beautiful.ai both AI-generate presentations from prompts but at different angles. Gamma is the polished newer tool that creates not just slides but also docs and webpages from a prompt, with strong AI iteration and beautiful default templates. Beautiful.ai is the older presentation-focused tool with smart-template AI that auto-arranges content as you edit. Gamma Plus is $10/mo. Beautiful.ai Pro is $12/mo. Pick Gamma for the most modern AI presentation tool and broad output formats. Pick Beautiful.ai for clean traditional decks with strong auto-layout.',
+    whenToPickA: 'You want the most modern AI presentation tool with the broadest output (decks, docs, webpages) from one prompt. Gamma defaults look great and the iteration UX is best in class. Best for founders, marketers, and creators producing multi-format presentation content.',
+    whenToPickB: 'You produce traditional business decks and want smart auto-layout to handle slide design as you edit content. Beautiful.ai smart templates remain its core differentiator. Best for sales teams, consultants, and anyone producing client-facing decks at volume.',
+    faqs: [
+      { q: 'Which has better AI generation?', a: 'Gamma, by a clear margin. The "generate from prompt" flow produces a strong first draft that needs less editing. Beautiful.ai AI features focus on auto-arrangement rather than initial generation.' },
+      { q: 'Can either replace PowerPoint or Keynote?', a: 'For most modern decks yes. Both export to PPTX so you can hand off to teams on traditional tools. For animation-heavy or pixel-perfect corporate-template work, traditional tools still win.' },
+      { q: 'Which is cheaper?', a: 'Gamma Plus at $10/mo vs Beautiful.ai Pro at $12/mo. Roughly equivalent. Both have free tiers; both deliver value at the entry tier.' },
+      { q: 'Should I look at Pitch or Tome instead?', a: 'Pitch is competitive with Beautiful.ai for traditional decks. Tome was an AI-presentation pioneer but pivoted away from the consumer market. Gamma has effectively replaced Tome as the AI-presentation leader in 2026.' },
+    ],
+  },
+
+  'storydoc-vs-beautiful-ai': {
+    bottomLine: 'Storydoc and Beautiful.ai both build presentations but for different audiences. Storydoc is the engagement-focused tool that turns decks into interactive, mobile-friendly micro-sites with engagement analytics for sales and marketing. Beautiful.ai is the smart-template AI deck builder for traditional presentation use cases. Storydoc Starter is $40/mo. Beautiful.ai Pro is $12/mo. Pick Storydoc for sales decks where engagement tracking matters. Pick Beautiful.ai for traditional presentations.',
+    whenToPickA: 'You build sales decks, pitch decks, or proposals where you want to track who engaged, on which slide, for how long. Storydoc engagement analytics and interactive elements are unique. Best for sales reps, account executives, and marketing teams sending decks to prospects.',
+    whenToPickB: 'You produce traditional business decks for in-person or live presentations. Beautiful.ai smart templates handle layout automatically and the output is clean and conventional. Best for consultants, internal presenters, and traditional business decks.',
+    faqs: [
+      { q: 'Are Storydoc and Beautiful.ai really competitors?', a: 'Loosely. Storydoc is interactive web-deck plus analytics; Beautiful.ai is conventional presentation builder. Some overlap on SMB sales decks but the products serve different jobs.' },
+      { q: 'Does Storydoc support live presentation?', a: 'Yes but it is not the primary use case. The product shines when shared as a link the recipient interacts with on their own time. For live presentations, traditional tools work better.' },
+      { q: 'Which has better analytics?', a: 'Storydoc, decisively. Slide-level engagement, time spent, scroll depth, and re-views are tracked and surfaced in a clean dashboard. Beautiful.ai analytics are basic.' },
+      { q: 'Should I use Qwilr instead?', a: 'Qwilr is comparable to Storydoc with proposals and quotes baked in. For sales-deck plus quote workflow, Qwilr is competitive. For pure presentation engagement, Storydoc is more polished.' },
+    ],
+  },
+
+  'fotor-vs-canva-ai': {
+    bottomLine: 'Fotor and Canva AI both target consumer and SMB design but with different scopes. Canva AI is the all-in-one design platform with templates, brand kits, AI image generation, magic edit, and millions of users. Fotor is the more photo-editing-focused tool with strong AI photo enhancement, background removal, and quick photo retouching. Canva Pro is $14.99/mo. Fotor Pro is $8.99/mo. Pick Canva AI for general design and team workflows. Pick Fotor for AI-focused photo editing at lower cost.',
+    whenToPickA: 'You produce social posts, presentations, marketing collateral, and need a broad design platform with brand consistency and team collaboration. Canva ecosystem and template library are unmatched. Best for SMBs, marketing teams, and non-designers across many use cases.',
+    whenToPickB: 'You primarily edit photos with AI assistance (background removal, sky replacement, photo enhancement, quick retouching). Fotor focused photo-editing AI is stronger and cheaper. Best for photographers, ecommerce sellers, and anyone with photo-heavy workflows.',
+    faqs: [
+      { q: 'Is Fotor really comparable to Canva for design?', a: 'For photo editing, yes. For general design (decks, social posts, infographics, branded assets), Canva is significantly broader. Fotor design tools exist but feel secondary to the photo-editing core.' },
+      { q: 'Which is cheaper?', a: 'Fotor Pro at $8.99/mo vs Canva Pro at $14.99/mo. Fotor is meaningfully cheaper for photo-editing-focused use. For broader design needs, Canva justifies the premium.' },
+      { q: 'Which has better AI photo editing?', a: 'Roughly equivalent in 2026 with Fotor slightly ahead on photo-specific features (sky replace, photo enhance) and Canva slightly ahead on creative AI (Magic Edit, Magic Eraser).' },
+      { q: 'Should I look at Photoroom or Adobe Express?', a: 'Photoroom for ecommerce and product-photo workflows is purpose-built. Adobe Express bridges Adobe ecosystem with consumer-friendly UX. Pick by primary use case.' },
+    ],
+  },
+
+  'visme-vs-canva-ai': {
+    bottomLine: 'Visme and Canva AI both target SMB design but Visme leans toward business presentations, infographics, and data visualisation while Canva covers a broader creative scope. Visme is the data-and-presentation focused tool with strong infographic templates and chart builders. Canva is the all-purpose design platform. Visme Starter is $12.25/mo. Canva Pro is $14.99/mo. Pick Visme for infographics, data visualisation, and business presentations. Pick Canva for broader creative work.',
+    whenToPickA: 'You create infographics, data visualisations, business presentations, or any content that combines data and design. Visme chart builder and presentation templates are stronger for data-heavy use cases. Best for analysts, consultants, and content teams producing data-rich visuals.',
+    whenToPickB: 'You produce broader creative work: social posts, marketing collateral, video content, branded assets, and decks. Canva ecosystem is broader and the team collaboration features are more mature. Best for marketing teams and non-designers across many use cases.',
+    faqs: [
+      { q: 'Which has better infographic templates?', a: 'Visme, decisively. The infographic templates are purpose-built and the data-import-to-chart flow is much smoother than Canva. For data visualisation specifically, Visme is the right choice.' },
+      { q: 'Which has more templates overall?', a: 'Canva, by a wide margin. Canva template library is in the millions; Visme has tens of thousands. For breadth, Canva wins; for depth in business and data viz, Visme wins.' },
+      { q: 'Which is cheaper?', a: 'Visme, slightly. Visme Starter at $12.25/mo vs Canva Pro at $14.99/mo. Both are reasonably priced for SMB use.' },
+      { q: 'Should I just use Canva for everything?', a: 'For most users, yes. Visme earns its place when data visualisation or business-presentation depth specifically matters. For general design, Canva covers everything.' },
+    ],
+  },
+
+  'kittl-vs-canva-ai': {
+    bottomLine: 'Kittl and Canva AI both target design with different focuses. Kittl is the typography and illustration-first tool with strong vintage and retro design templates, AI generation, and export-friendly vector output. Canva is the all-purpose design platform. Kittl Pro is $10/mo. Canva Pro is $14.99/mo. Pick Kittl for typography, illustration, and merchandise design. Pick Canva for general design and team workflows.',
+    whenToPickA: 'You design merchandise (t-shirts, posters, mugs), focus on typography, or produce illustration-heavy content. Kittl typography tools, vintage templates, and merch-friendly vector export are differentiators. Best for designers, indie sellers, and creators producing illustration content.',
+    whenToPickB: 'You produce broad creative work: social posts, presentations, marketing collateral, branded assets. Canva covers everything well at scale. Best for marketing teams, SMBs, and non-designers.',
+    faqs: [
+      { q: 'Which has better typography control?', a: 'Kittl, by a clear margin. The typography tools (curve text, distress effects, vintage styles) are purpose-built and produce output you cannot easily get from Canva. For typography-driven design, Kittl is the better tool.' },
+      { q: 'Can either output for print and merchandise?', a: 'Both can, but Kittl is better. Kittl exports clean vector with print-friendly resolution and includes templates for common merchandise sizes. Canva print options exist but feel secondary.' },
+      { q: 'Which is cheaper?', a: 'Kittl Pro at $10/mo vs Canva Pro at $14.99/mo. Kittl is cheaper but the value depends on whether you need typography-focused features.' },
+      { q: 'Should I use Recraft instead?', a: 'Recraft is more AI-vector-focused and has stronger brand-style features. Kittl is typography-focused with vintage templates. Pick by primary use case.' },
+    ],
+  },
+
+  'simplified-vs-cohesive-ai': {
+    bottomLine: 'Simplified and Cohesive both bundle AI content creation with marketing workflow but with different emphasis. Simplified is the broader all-in-one with design, video, social scheduling, AI writing, and team collaboration. Cohesive AI focuses on AI content generation with templates for marketing, sales, and product content. Simplified Pro is $24/mo (1 user). Cohesive Pro is $25/mo. Pick Simplified for an all-in-one marketing suite. Pick Cohesive for content-focused AI generation.',
+    whenToPickA: 'You want one tool covering design, video editing, social scheduling, AI writing, and team collaboration without buying separate SaaS for each. Simplified breadth is genuinely useful for SMB marketing teams. Best for SMBs and indie creators consolidating their stack.',
+    whenToPickB: 'You generate marketing and sales content at volume and want a focused tool with strong templates. Cohesive AI templates and editor are cleaner for content production. Best for content marketers and copywriters.',
+    faqs: [
+      { q: 'Is Simplified really an all-in-one?', a: 'Reasonably yes. Design (Canva-style), video (basic editor), social scheduling (Buffer-style), and AI writing (template-based) all in one platform. Each individual feature is less deep than a specialist tool but the integration is real.' },
+      { q: 'Which has better AI writing?', a: 'Cohesive, marginally. The content-focus shows in the writing quality and template depth. Simplified AI writing covers the basics well but is less specialised.' },
+      { q: 'How does pricing compare at team scale?', a: 'Roughly equivalent. Both run $24-25/user/mo at the entry tier. Simplified business tier scales gently; Cohesive business pricing is similar. Compare based on the specific features you need.' },
+      { q: 'Should I use Canva plus Buffer plus Jasper instead?', a: 'For depth in each category, yes. The all-in-one trade-off is shallower features. For SMB starting out, Simplified is cheaper and faster; for established teams, specialised stack tends to win.' },
+    ],
+  },
+
+  'gainsight-vs-churnzero': {
+    bottomLine: 'Gainsight and ChurnZero are the two leading customer success platforms (CSPs) for SaaS. Gainsight is the enterprise-focused leader with the broadest feature set, deepest analytics, and the most robust integration ecosystem. ChurnZero is the mid-market alternative with a cleaner UX, faster time-to-value, and strong account-based playbook automation. Both run custom enterprise pricing typically $50K-$300K+ annually. Pick Gainsight for enterprise-scale CS with deepest analytics. Pick ChurnZero for mid-market CS with faster rollout.',
+    whenToPickA: 'You are a $100M+ ARR SaaS with established CS team and need the deepest health-score modelling, journey orchestration, and integration into Salesforce-grade infrastructure. Gainsight feature depth and Salesforce integration are unmatched. Best for enterprise CS organisations.',
+    whenToPickB: 'You are a $10M-$100M ARR SaaS deploying CS for the first time or replacing a less capable tool. ChurnZero rollout speed and account-based UX are strong. Best for mid-market SaaS adopting CSP for the first time.',
+    faqs: [
+      { q: 'Which has better health scoring?', a: 'Gainsight, by a clear margin at the enterprise tier. The CTA (Call to Action) framework and health-score modelling are deeper. ChurnZero scoring is solid for SMB and mid-market needs.' },
+      { q: 'How long does each take to implement?', a: 'ChurnZero implementation typically 4-8 weeks for mid-market. Gainsight implementation typically 12-24 weeks for enterprise (deeper customisation). The implementation gap reflects feature depth.' },
+      { q: 'Which is cheaper?', a: 'ChurnZero, generally. Both run custom but ChurnZero TCO at mid-market is roughly half Gainsight at the same employee count. Negotiation matters at both.' },
+      { q: 'Should I look at Vitally or Catalyst?', a: 'Vitally is the modern lightweight alternative; Catalyst (now owned by Totango) competes head-on with ChurnZero. For modern lightweight CS at lower cost, Vitally is the popular choice.' },
+    ],
+  },
+
+  'planhat-vs-vitally': {
+    bottomLine: 'Planhat and Vitally are modern customer success platforms that compete with Gainsight and ChurnZero at lower cost and faster time-to-value. Planhat is the broader CSP with portfolio management, customer health scoring, and revenue analytics built in. Vitally is the lightweight, developer-friendly CSP with a clean UX, fast onboarding, and deep workflow automation. Both run custom enterprise pricing typically $20K-$100K annually. Pick Planhat for revenue-aware CS with portfolio analytics. Pick Vitally for clean modern CSP with fast rollout.',
+    whenToPickA: 'You want a CSP that combines health scoring with revenue and renewal analytics in one tool. Planhat portfolio view and revenue features are stronger for CS-plus-account-management workflows. Best for SaaS where CS owns expansion and renewals.',
+    whenToPickB: 'You want a clean, fast-to-deploy CSP with strong workflow automation. Vitally UX is the cleanest in the category and the integration ecosystem covers the modern SaaS stack well. Best for product-led SaaS and CS-focused teams.',
+    faqs: [
+      { q: 'Are Planhat and Vitally substitutes?', a: 'Mostly yes for mid-market SaaS. The choice depends on whether revenue analytics (Planhat) or workflow automation (Vitally) is the primary need.' },
+      { q: 'How do they compare to Gainsight?', a: 'Both are roughly half the cost of Gainsight at the same employee count, with 80% of the feature depth for non-enterprise needs. For mid-market CS, Planhat or Vitally is usually the right pick.' },
+      { q: 'Which has better Slack-style notifications?', a: 'Vitally, marginally. The Slack integration and in-app notification ergonomics are cleaner. Planhat notifications are functional but less polished.' },
+      { q: 'Which is easier to roll out?', a: 'Vitally, decisively. Most teams are live within 4-6 weeks. Planhat takes longer because the platform is broader.' },
+    ],
+  },
+
+  'totango-vs-client-success': {
+    bottomLine: 'Totango and ClientSuccess (now part of Catalyst) target customer success at mid-market and enterprise. Totango is the longer-running tool with the freemium "Free for Starter" tier and broad CS playbook templates. ClientSuccess is the simpler mid-market CSP focused on customer health and renewal forecasting. Totango Free covers small teams; paid is custom. ClientSuccess is custom enterprise pricing. Pick Totango for the broadest CSP with a free tier to start. Pick ClientSuccess for simple mid-market CS focused on renewals.',
+    whenToPickA: 'You want to start with CS tooling without commitment. Totango Free tier is genuinely usable for small teams and the upgrade path covers SMB to enterprise. Best for early-stage SaaS deploying CS for the first time.',
+    whenToPickB: 'You are mid-market focused on renewal forecasting and customer health. ClientSuccess is simpler and more focused than Totango on those specific outcomes. Best for mid-market SaaS where renewal management is the core CS focus.',
+    faqs: [
+      { q: 'Is Totango free really useful?', a: 'For small teams (under 10 customers tracked actively), yes. The free tier covers basic health, NPS, and customer journeys. Most teams outgrow it quickly but it lets you start without budget approval.' },
+      { q: 'Which has better playbook templates?', a: 'Totango, by a clear margin. The CS playbook library is broad and field-tested. ClientSuccess templates exist but feel narrower.' },
+      { q: 'Should I look at Gainsight or ChurnZero instead?', a: 'For enterprise scale, Gainsight remains the leader. For mid-market with active deployment, ChurnZero or Vitally are popular alternatives. Totango sits between and ClientSuccess is the simpler narrower pick.' },
+      { q: 'Which has better Salesforce integration?', a: 'Totango, marginally. The bidirectional sync is cleaner and the field mapping is more flexible. ClientSuccess integration covers core needs well.' },
+    ],
+  },
+
+  'custify-vs-akita': {
+    bottomLine: 'Custify and Akita are SMB-focused customer success platforms competing with Vitally and Planhat at lower entry costs. Custify is the broader CSP with health scoring, automation, and customer portfolio management. Akita is more lightweight with a focus on activity tracking and customer engagement signals. Custify Pro starts around $499/mo. Akita pricing is custom. Pick Custify for broader SMB CSP at predictable monthly cost. Pick Akita for activity-tracking focused CS.',
+    whenToPickA: 'You are an SMB SaaS deploying CSP for the first time and want predictable monthly pricing rather than enterprise contracts. Custify covers core CS needs at SMB scale. Best for early-stage SaaS under 50 customers tracked.',
+    whenToPickB: 'You want a lightweight tool focused on customer activity tracking and engagement signals rather than full CSP. Akita simpler scope keeps onboarding fast. Best for product-led SaaS using engagement data to drive CS workflows.',
+    faqs: [
+      { q: 'Are Custify and Akita really alternatives to Vitally?', a: 'For very early SMB use, yes. As you grow, the gap to Vitally or Planhat becomes meaningful. Custify and Akita serve the under-$10M ARR SaaS market well.' },
+      { q: 'Which has better integrations?', a: 'Custify, by a clear margin. The integration ecosystem covers Salesforce, HubSpot, Stripe, Slack, Intercom, and more. Akita integrations are narrower.' },
+      { q: 'How does pricing compare?', a: 'Custify is more transparent ($499/mo Pro tier). Akita is custom. For SMB budgets, Custify predictable pricing wins. For enterprise needs, both punch below the right weight class.' },
+      { q: 'Should I look at Userpilot or Catalyst?', a: 'Userpilot is product-led growth and customer onboarding focused. Catalyst (Totango family) is mid-market CSP. Pick by primary need - PLG vs CSP vs lightweight tracking.' },
+    ],
+  },
+
+  'userpilot-vs-catalyst': {
+    bottomLine: 'Userpilot and Catalyst solve different jobs in the customer-success and product-led growth space. Userpilot is the product-led growth platform: in-app onboarding, feature adoption, NPS surveys, and user activation flows. Catalyst (now part of Totango) is the customer success platform: health scoring, renewal forecasting, and CS workflow automation. Userpilot Starter is $249/mo. Catalyst pricing is custom enterprise. Pick Userpilot for in-app PLG and onboarding. Pick Catalyst for traditional CS team workflow.',
+    whenToPickA: 'You drive growth through product-led activation, in-app messaging, onboarding flows, and feature adoption. Userpilot is the leading PLG platform alongside Pendo and Appcues. Best for product teams owning activation and adoption metrics.',
+    whenToPickB: 'You run a traditional CS team and need health scoring, renewal forecasting, playbook automation, and CS workflow management. Catalyst is the modern CSP for mid-market and enterprise. Best for CS leaders managing renewal and expansion.',
+    faqs: [
+      { q: 'Are these substitutes?', a: 'Mostly not. Userpilot is in-app PLG; Catalyst is CS workflow. Some overlap on customer health signals but the jobs differ. Many SaaS run both.' },
+      { q: 'Which is better for onboarding?', a: 'Userpilot, decisively. In-app onboarding is its core competence. Catalyst handles CS-led onboarding at the playbook level but does not produce in-app flows.' },
+      { q: 'Which has better health scoring?', a: 'Catalyst, by a clear margin. CS-focused health models are deeper. Userpilot does have engagement scoring but it serves PLG metrics rather than CS health.' },
+      { q: 'Should I use Pendo or Appcues for PLG instead?', a: 'For PLG specifically, Pendo and Appcues compete head-on with Userpilot. Pick by feature set and pricing. For CS workflow, Catalyst remains the focused choice.' },
+    ],
+  },
+
+  'document360-vs-helpjuice': {
+    bottomLine: 'Document360 and Helpjuice both target knowledge base for customer support and internal docs. Document360 is the more polished SaaS-focused tool with strong AI search, multi-language support, and clean SaaS-style UX. Helpjuice is the simpler, longer-running tool with strong analytics, customisation, and an established enterprise customer base. Document360 Standard is $149/mo. Helpjuice Standard is $200/mo. Pick Document360 for modern SaaS knowledge base. Pick Helpjuice for traditional enterprise KB with deep analytics.',
+    whenToPickA: 'You want a modern, AI-search-enabled knowledge base for customer support or product docs. Document360 UX feels current and the AI search performs well on real KBs. Best for SaaS companies and modern support orgs.',
+    whenToPickB: 'You run an enterprise KB and need deep customisation, analytics, and a tool that integrates with traditional enterprise stacks. Helpjuice analytics and customisation are stronger. Best for enterprise support orgs with established KB workflows.',
+    faqs: [
+      { q: 'Which has better AI search?', a: 'Document360, by a clear margin. The AI-powered search and suggestion features are first-class and improve KB usefulness. Helpjuice search is solid but less AI-driven.' },
+      { q: 'Which is cheaper?', a: 'Document360, modestly. Document360 Standard at $149/mo vs Helpjuice Standard at $200/mo. Both have higher tiers; cost differential roughly maintains.' },
+      { q: 'Which has better multi-language?', a: 'Document360 native multi-language support is stronger and more workflow-integrated. Helpjuice supports translation but the UX is less polished.' },
+      { q: 'Should I use Notion or GitBook for KB?', a: 'Notion works for internal KBs at SMB scale. GitBook works for technical documentation. Document360 and Helpjuice are purpose-built for customer-facing or large internal KBs where structure and search matter.' },
+    ],
+  },
+
+  'guru-vs-tettra': {
+    bottomLine: 'Guru and Tettra both target internal team knowledge base with different philosophies. Guru is the AI-driven knowledge management tool with strong cards, verification cycles, and Slack-native experience. Tettra is the simpler Slack-first KB with Q&A workflows, AI search, and lighter team management. Guru Pro is $15/user/mo. Tettra Scaling is $8.33/user/mo. Pick Guru for verified knowledge base with strict ownership. Pick Tettra for Slack-first lightweight KB at lower cost.',
+    whenToPickA: 'You need a knowledge base where information accuracy matters and verification cycles are required. Guru cards-with-owners and verification model keep KB content current. Best for sales, support, and product teams where wrong information is costly.',
+    whenToPickB: 'You want a simpler Slack-first KB where team Q&A surfaces and standardises knowledge. Tettra workflow is lighter and the Slack integration is excellent. Best for SMB and remote-first teams using Slack heavily.',
+    faqs: [
+      { q: 'Which has better Slack integration?', a: 'Both are excellent in Slack. Guru "ask the AI" inside Slack returns verified card answers; Tettra surfaces existing content from Q&A threads. Pick by whether verification or Q&A matters more.' },
+      { q: 'Which is cheaper?', a: 'Tettra, by roughly half. Tettra Scaling at $8.33/user/mo vs Guru Pro at $15/user/mo. For SMB and cost-sensitive teams, Tettra wins.' },
+      { q: 'Should I use Notion as a KB instead?', a: 'For team wikis and docs at SMB scale, yes Notion works. Guru and Tettra are purpose-built KB with verification, search, and AI features that Notion does not match.' },
+      { q: 'Which has better AI search?', a: 'Guru, marginally. The AI features are more developed and the verification cycle keeps content fresh. Tettra AI search is solid but less integrated into the workflow.' },
+    ],
+  },
+
+  'gitbook-vs-slab': {
+    bottomLine: 'GitBook and Slab compete for technical documentation and team knowledge base. GitBook is the dominant developer-doc tool with Git-friendly workflow, AI search, and modern editor used by thousands of dev tools. Slab is the polished modern team wiki tool with strong integrations, AI search, and a clean writing experience. GitBook Pro is $6.70/user/mo (annual). Slab Standard is $6.67/user/mo. Pick GitBook for technical or product documentation. Pick Slab for general team wiki and internal KB.',
+    whenToPickA: 'You document a software product, API, or technical platform. GitBook Git-friendly workflow, code-block features, and developer-focused UX are first-class. Best for dev tools, API docs, and product technical documentation.',
+    whenToPickB: 'You run an internal team wiki or KB without strong technical documentation needs. Slab cleaner editor and integrations make it the popular pick for modern non-technical teams. Best for SaaS startups and remote teams.',
+    faqs: [
+      { q: 'Which is better for API documentation?', a: 'GitBook, decisively. OpenAPI integration, code blocks, and Git-friendly workflow are purpose-built for dev docs. Slab is not designed for technical product documentation.' },
+      { q: 'Which has better AI search?', a: 'Roughly equivalent in 2026. Both ship strong AI search and AI-assisted authoring. Quality depends more on KB content than the tool.' },
+      { q: 'Which is cheaper?', a: 'Roughly equal at $6-7/user/mo entry. Higher tiers diverge: GitBook business adds advanced developer features; Slab business adds advanced team management.' },
+      { q: 'Should I use Notion instead?', a: 'For non-technical wikis at SMB scale, yes. Notion handles internal docs and project content well. GitBook and Slab earn their place when you need stronger search, structure, or technical doc features.' },
+    ],
+  },
+
+  'slab-vs-slite': {
+    bottomLine: 'Slab and Slite are modern team wikis competing with Notion for non-technical knowledge management. Slab is the polished tool with strong integrations and search. Slite is the AI-first wiki with built-in AI assistant and clean writing experience. Slab Standard is $6.67/user/mo. Slite Standard is $8/user/mo. Pick Slab for traditional wiki with strong integrations. Pick Slite for AI-first knowledge management.',
+    whenToPickA: 'You want a traditional, well-organised team wiki with strong search and integration breadth. Slab feels familiar and the integrations cover most modern SaaS. Best for SMB and mid-market teams adopting wiki tooling.',
+    whenToPickB: 'You want AI to be the centre of how you find and create knowledge. Slite AI assistant is genuinely integrated into the workflow rather than bolted on. Best for AI-forward teams.',
+    faqs: [
+      { q: 'Are Slab and Slite really different?', a: 'Yes, by AI-philosophy. Slite is built around AI; Slab uses AI as an assist feature. The difference matters when AI is your daily workflow.' },
+      { q: 'Which has better AI features?', a: 'Slite, by a clear margin. The AI assistant covers Q&A across your wiki, summarisation, and content generation more deeply than Slab AI features.' },
+      { q: 'Which is cheaper?', a: 'Slab, slightly. Slab at $6.67 vs Slite at $8/user/mo. Both are reasonable for mid-market.' },
+      { q: 'Should I use Notion or Confluence?', a: 'Notion for flexibility and template ecosystem. Confluence for Atlassian-stack alignment. Slab and Slite earn their place with cleaner UX and stronger AI focus.' },
+    ],
+  },
+
+  'plain-vs-helpscout': {
+    bottomLine: 'Plain and Help Scout target B2B customer support but at very different scales. Plain is the new modern B2B-focused customer support tool built around Slack-style workflow with API-first architecture. Help Scout is the established email-feeling shared inbox with broad SMB and mid-market adoption. Plain pricing is custom for B2B. Help Scout Standard is $25/user/mo. Pick Plain for modern B2B support with API-driven workflows. Pick Help Scout for email-feeling shared inbox at predictable cost.',
+    whenToPickA: 'You run B2B customer support where customers are companies, not individuals, and you need API-first workflow with deep customisation. Plain modern architecture is genuinely different. Best for B2B SaaS supporting other companies as customers.',
+    whenToPickB: 'You run B2C or general customer support where the email-feeling shared inbox is the right model. Help Scout is the SMB and mid-market default. Best for SaaS, ecommerce, and SMB support orgs.',
+    faqs: [
+      { q: 'Is Plain really different from Help Scout?', a: 'Yes, by architecture. Plain is API-first with B2B-specific workflows (customer accounts, multi-user threads, deep integrations). Help Scout is email-first with conversation-style UX. The difference matters for B2B SaaS.' },
+      { q: 'Which is more polished?', a: 'Help Scout, by feature maturity. Plain is newer and growing fast but the feature gap on edge cases is real. For polished day-to-day support, Help Scout wins; for B2B-specific architecture, Plain wins.' },
+      { q: 'Which is cheaper?', a: 'Help Scout publishes pricing ($25/user/mo). Plain is custom B2B. For SMB needs, Help Scout is more accessible.' },
+      { q: 'Should I look at Front instead?', a: 'Front is a strong shared-inbox tool for B2B support with broader collaboration features than Help Scout. For B2B specifically, Front and Plain are the modern choices; Help Scout is the broader SMB default.' },
+    ],
+  },
+
+  'kustomer-vs-gorgias': {
+    bottomLine: 'Kustomer and Gorgias both target ecommerce and consumer support but at different scales. Kustomer is the omnichannel CRM-first support platform that unifies customer data across channels with deep analytics. Gorgias is the Shopify-native helpdesk built specifically for ecommerce with order-aware tickets. Kustomer pricing is custom enterprise. Gorgias Starter is $50/mo (300 tickets). Pick Kustomer for omnichannel ecommerce at enterprise scale. Pick Gorgias for Shopify-focused SMB ecommerce.',
+    whenToPickA: 'You run ecommerce or consumer support at enterprise scale and need a unified customer view across email, chat, social, voice, and SMS. Kustomer omnichannel architecture is purpose-built for that scale. Best for large DTC brands and enterprise ecommerce.',
+    whenToPickB: 'You run a Shopify or BigCommerce store at SMB or mid-market scale and want order-aware ticketing with strong macro automation. Gorgias is the natural pick for ecommerce-focused support. Best for shops at $1M-$50M GMV.',
+    faqs: [
+      { q: 'Which is better for Shopify?', a: 'Gorgias, decisively. The Shopify integration is purpose-built and the order-aware workflows save real time for ecommerce support. Kustomer integrates with Shopify but feels less native.' },
+      { q: 'How does pricing compare?', a: 'Gorgias is published and predictable. Kustomer is custom enterprise. For SMB and mid-market, Gorgias is more accessible; for large enterprise, Kustomer custom often makes more sense.' },
+      { q: 'Which has better AI?', a: 'Both ship AI agent features. Gorgias AI Agent is more ecommerce-specific (knows your products, orders, returns policies). Kustomer AI is broader. For ecommerce, Gorgias wins; for general support, Kustomer is competitive.' },
+      { q: 'Should I look at Zendesk for ecommerce?', a: 'For very large enterprise ecommerce, Zendesk is competitive with Kustomer. For SMB and mid-market Shopify shops, Gorgias remains the leader.' },
+    ],
+  },
+
+  'pilot-vs-bench': {
+    bottomLine: 'Pilot and Bench compete for accounting and bookkeeping outsourcing for startups and SMBs. Pilot is the broader services tool with bookkeeping, tax, and CFO services bundled, plus strong startup-focused workflows. Bench is the simpler bookkeeping-focused service with predictable monthly pricing. Pilot pricing is custom starting around $499/mo. Bench Essential is $349/mo. Pick Pilot for startup-grade bookkeeping plus tax plus CFO. Pick Bench for predictable bookkeeping at lower cost.',
+    whenToPickA: 'You are a startup that wants integrated bookkeeping, tax filing, and CFO services from one provider. Pilot startup focus is genuine and the service quality is high. Best for venture-backed startups and high-growth SMBs.',
+    whenToPickB: 'You are a small business that needs reliable bookkeeping at predictable cost without enterprise services. Bench focus is bookkeeping-only and the monthly pricing is transparent. Best for solo entrepreneurs and small businesses.',
+    faqs: [
+      { q: 'Which is more expensive?', a: 'Pilot, by roughly 50% at base tier. Pilot starts around $499/mo vs Bench Essential at $349/mo. Pilot includes services Bench does not (tax, CFO).' },
+      { q: 'Can either replace a CPA?', a: 'For most SMBs, yes. Both produce books accurate enough for tax filing. For complex tax situations (multi-state, international, equity events), you may still need a CPA on top.' },
+      { q: 'Which is better for Series A startups?', a: 'Pilot, by a clear margin. The startup focus shows in workflows around fundraising, equity compensation, and burn-rate reporting. Bench is fine for SMB but not optimised for startup needs.' },
+      { q: 'Should I use Zeni instead?', a: 'Zeni is the AI-first competitor with similar startup focus. For modern AI-driven bookkeeping with real-time dashboards, Zeni is competitive. Pilot remains the established leader for venture-backed startups.' },
+    ],
+  },
+
+  'zeni-vs-pilot': {
+    bottomLine: 'Zeni and Pilot both target startup bookkeeping and finance but with different positioning. Pilot is the established services-led leader with bookkeeping, tax, and CFO services. Zeni is the AI-first newcomer with real-time dashboards, automated bookkeeping, and faster turnaround at lower cost. Pilot pricing is custom from $499/mo. Zeni Starter is $399/mo. Pick Pilot for established services-led bookkeeping. Pick Zeni for AI-first real-time finance dashboards.',
+    whenToPickA: 'You want established human-led bookkeeping with strong startup focus and added services (tax, CFO). Pilot reputation and team quality are the differentiators. Best for venture-backed startups wanting white-glove finance.',
+    whenToPickB: 'You want AI-first bookkeeping with real-time dashboards, automated categorisation, and faster turnaround. Zeni AI-driven approach is genuinely faster on routine bookkeeping. Best for cost-sensitive startups and SMBs adopting AI for finance.',
+    faqs: [
+      { q: 'Is Zeni really cheaper than Pilot?', a: 'Marginally. Zeni Starter at $399/mo vs Pilot starting around $499/mo. The bigger gap is at higher tiers where Pilot adds CFO services that Zeni does not match.' },
+      { q: 'Which has better real-time dashboards?', a: 'Zeni, by a clear margin. The AI-driven dashboard updates daily and surfaces metrics like burn, runway, and category breakdowns continuously. Pilot dashboards are monthly-cycle.' },
+      { q: 'Should I trust AI-driven bookkeeping?', a: 'For routine categorisation and reporting, yes. AI handles 90%+ correctly and human review catches the rest. For tax filings and edge cases, both Zeni and Pilot have human review layers; the AI is a productivity multiplier, not a replacement.' },
+      { q: 'Which is better for fundraising support?', a: 'Pilot, marginally. The CFO services tier and startup focus produce investor-ready packages more reliably. Zeni is improving on this but is younger.' },
+    ],
+  },
 }
 
 export function getCompareEnrichment(slug: string): CompareEnrichment | null {

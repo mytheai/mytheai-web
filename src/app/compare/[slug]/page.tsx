@@ -3,6 +3,7 @@ import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
 import { createClient, createStaticClient } from '@/lib/supabase'
 import { getCompareEnrichment } from '@/data/compareEnrichment'
+import { linkGlossary } from '@/lib/glossary-linker'
 import type { Metadata } from 'next'
 
 export const revalidate = 86400
@@ -268,7 +269,15 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         {/* Summary */}
         {cmp.summary && (
           <section className="mb-10">
-            <p className="text-[15px] text-muted-foreground leading-relaxed">{cmp.summary}</p>
+            <p className="text-[15px] text-muted-foreground leading-relaxed">
+              {linkGlossary(cmp.summary).map((seg, i) =>
+                seg.type === 'link' ? (
+                  <Link key={i} href={seg.href} className="text-blue-600/80 hover:text-blue-600 hover:underline border-b border-dotted border-blue-200 dark:border-blue-900">{seg.value}</Link>
+                ) : (
+                  <span key={i}>{seg.value}</span>
+                )
+              )}
+            </p>
           </section>
         )}
 
