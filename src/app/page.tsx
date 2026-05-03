@@ -7,6 +7,7 @@ import { TOP10_LISTS } from '@/data/top10'
 import type { Tool } from '@/types'
 import NewsletterForm from '@/components/newsletter/NewsletterForm'
 import SearchDropdown from '@/components/search/SearchDropdown'
+import { computeWeightedScore, isValidScores, type ToolScores } from '@/lib/scoring'
 
 export const revalidate = 21600
 
@@ -91,11 +92,12 @@ interface ToolRow {
   tags: string[] | null
   editor_pick: boolean
   trending: boolean
+  scores?: ToolScores | null
 }
 
 async function getEditorPicks(): Promise<ToolRow[]> {
   const supabase = createStaticClient()
-  const COLUMNS = 'id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending'
+  const COLUMNS = 'id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending,scores'
 
   const { data: picks } = await supabase
     .from('tools')
@@ -336,11 +338,18 @@ export default async function HomePage() {
                     <PricingBadge type={tool.pricing_type} />
                   </div>
                   <p className="text-[13px] text-muted-foreground leading-relaxed mb-4 line-clamp-2 flex-1">{tool.tagline}</p>
-                  <div className="flex items-center gap-1.5 mb-3">
+                  <div className="flex items-center gap-1.5 mb-2">
                     <Stars rating={tool.rating} />
                     <span className="text-[13px] font-semibold text-foreground">{tool.rating.toFixed(1)}</span>
                     <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k reviews)</span>
                   </div>
+                  {isValidScores(tool.scores) && (
+                    <div className="flex items-center gap-1.5 mb-3 text-[11px]">
+                      <span className="font-bold uppercase tracking-[0.06em] text-blue-600">Editorial</span>
+                      <span className="font-semibold text-foreground">{computeWeightedScore(tool.scores).toFixed(2)}/5</span>
+                      <span className="text-muted-foreground">on 7 criteria</span>
+                    </div>
+                  )}
                   <span className="block w-full text-center text-[13px] font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors py-2.5 rounded-lg">
                     View {tool.name} →
                   </span>
