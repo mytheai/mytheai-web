@@ -1,9 +1,54 @@
 import Link from 'next/link'
-import { SCORING_CRITERIA, computeWeightedScore, type ToolScores } from '@/lib/scoring'
+import {
+  SCORING_CRITERIA,
+  computeWeightedScore,
+  isInternalRef,
+  EVIDENCE_TYPE_LABELS,
+  type ToolScores,
+  type ToolScoresEvidence,
+  type ScoreEvidence,
+} from '@/lib/scoring'
 
 interface Props {
   scores: ToolScores
   toolName: string
+  evidence?: ToolScoresEvidence | null
+}
+
+function EvidenceRow({ items }: { items: ScoreEvidence[] }) {
+  if (!items || items.length === 0) return null
+  return (
+    <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px]">
+      <span className="font-bold uppercase tracking-[0.06em] text-muted-foreground">Evidence:</span>
+      {items.map((e, idx) => {
+        const isInternal = isInternalRef(e.url)
+        const typeLabel = EVIDENCE_TYPE_LABELS[e.type]
+        const content = (
+          <>
+            <span className="font-semibold opacity-70 mr-1">[{typeLabel}]</span>
+            {e.label}
+          </>
+        )
+        return (
+          <span key={idx} className="inline-flex items-center">
+            {idx > 0 && <span className="text-muted-foreground mr-2">·</span>}
+            {isInternal ? (
+              <span className="text-muted-foreground italic" title={e.url}>{content}</span>
+            ) : (
+              <a
+                href={e.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline"
+              >
+                {content}
+              </a>
+            )}
+          </span>
+        )
+      })}
+    </div>
+  )
 }
 
 function ScoreBar({ score }: { score: number }) {
@@ -18,8 +63,11 @@ function ScoreBar({ score }: { score: number }) {
   )
 }
 
-export default function ScoringTable({ scores, toolName }: Props) {
+export default function ScoringTable({ scores, toolName, evidence }: Props) {
   const overall = computeWeightedScore(scores)
+  const totalEvidence = evidence
+    ? Object.values(evidence).reduce((sum, list) => sum + (list?.length ?? 0), 0)
+    : 0
 
   return (
     <section className="mt-12 pt-8 border-t border-border">
@@ -39,20 +87,24 @@ export default function ScoringTable({ scores, toolName }: Props) {
           <div className="px-4 py-3 text-[11px] font-bold uppercase tracking-wide text-muted-foreground text-center border-l border-border">Weight</div>
           <div className="px-4 py-3 text-[11px] font-bold uppercase tracking-wide text-muted-foreground text-center border-l border-border">Score</div>
         </div>
-        {SCORING_CRITERIA.map((c, i) => (
-          <div key={c.key} className={`grid grid-cols-[1fr_60px_160px] gap-0 ${i % 2 === 0 ? 'bg-background' : 'bg-card'}`}>
-            <div className="px-4 py-3 border-b border-border">
-              <p className="text-[13px] font-semibold text-foreground">{c.label}</p>
-              <p className="text-[12px] text-muted-foreground mt-0.5 leading-snug">{c.description}</p>
+        {SCORING_CRITERIA.map((c, i) => {
+          const items = evidence?.[c.key] ?? []
+          return (
+            <div key={c.key} className={`grid grid-cols-[1fr_60px_160px] gap-0 ${i % 2 === 0 ? 'bg-background' : 'bg-card'}`}>
+              <div className="px-4 py-3 border-b border-border">
+                <p className="text-[13px] font-semibold text-foreground">{c.label}</p>
+                <p className="text-[12px] text-muted-foreground mt-0.5 leading-snug">{c.description}</p>
+                <EvidenceRow items={items} />
+              </div>
+              <div className="px-4 py-3 border-b border-l border-border text-center text-[13px] font-semibold text-foreground self-center">
+                {c.weight}%
+              </div>
+              <div className="px-4 py-3 border-b border-l border-border self-center">
+                <ScoreBar score={scores[c.key]} />
+              </div>
             </div>
-            <div className="px-4 py-3 border-b border-l border-border text-center text-[13px] font-semibold text-foreground self-center">
-              {c.weight}%
-            </div>
-            <div className="px-4 py-3 border-b border-l border-border self-center">
-              <ScoreBar score={scores[c.key]} />
-            </div>
-          </div>
-        ))}
+          )
+        })}
         <div className="grid grid-cols-[1fr_60px_160px] gap-0 bg-card">
           <div className="px-4 py-3 text-[14px] font-extrabold text-foreground">Overall editorial score</div>
           <div className="px-4 py-3 text-[12px] text-muted-foreground text-center border-l border-border self-center">100%</div>
@@ -63,7 +115,9 @@ export default function ScoringTable({ scores, toolName }: Props) {
       </div>
 
       <p className="text-[11px] text-muted-foreground mt-3">
-        Scores are editorial assessments based on hands-on testing and verified user data. They do not reflect affiliate relationships. <Link href="/methodology" className="underline hover:text-blue-600">How we score</Link>.
+        Scores are editorial assessments based on hands-on testing and verified user data. They do not reflect affiliate relationships.
+        {totalEvidence > 0 && <> {totalEvidence} sources cited above.</>}
+        {' '}<Link href="/methodology" className="underline hover:text-blue-600">How we score</Link>.
       </p>
     </section>
   )

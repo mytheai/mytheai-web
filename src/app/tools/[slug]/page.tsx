@@ -6,7 +6,7 @@ import { createClient, createStaticClient } from '@/lib/supabase'
 import ReviewForm from '@/components/reviews/ReviewForm'
 import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
 import ScoringTable from '@/components/tools/ScoringTable'
-import { isValidScores, type ToolScores } from '@/lib/scoring'
+import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidence } from '@/lib/scoring'
 import { TOP10_LISTS } from '@/data/top10'
 import type { Metadata } from 'next'
 
@@ -37,6 +37,7 @@ interface ToolRow {
   cons: string[] | null
   use_cases: string[] | null
   scores: ToolScores | null
+  scores_evidence: ToolScoresEvidence | null
   updated_at: string
 }
 
@@ -196,6 +197,7 @@ export default async function ToolPage({
   })
   const scoresValid = isValidScores(tool.scores)
   const scores = scoresValid ? (tool.scores as ToolScores) : null
+  const evidence = isValidEvidence(tool.scores_evidence) ? tool.scores_evidence : null
 
   // Combined aggregate: editorial baseline (tool.rating, tool.review_count)
   // plus approved user reviews. User-weighted rating ranks higher with more user input.
@@ -551,7 +553,7 @@ export default async function ToolPage({
         </div>
 
         {/* Editorial scoring breakdown */}
-        {scores && <ScoringTable scores={scores} toolName={tool.name} />}
+        {scores && <ScoringTable scores={scores} toolName={tool.name} evidence={evidence} />}
 
         {/* Related comparisons + Top 10 lists - internal linking */}
         {(relatedCompares.length > 0 || relatedTop10.length > 0) && (

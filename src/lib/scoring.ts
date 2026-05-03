@@ -47,3 +47,62 @@ export function isValidScores(scores: unknown): scores is ToolScores {
   const s = scores as Record<string, unknown>
   return SCORING_CRITERIA.every(c => typeof s[c.key] === 'number' && (s[c.key] as number) >= 1 && (s[c.key] as number) <= 5)
 }
+
+// ===== Score evidence =====
+// Each criterion can have 0-N evidence entries (URLs to benchmarks, third-party
+// reviews, official docs, etc). Editorial team populates over time. Tools with
+// no evidence render the same as S81 (no extra rows).
+
+export type EvidenceType =
+  | 'benchmark'
+  | 'third-party-review'
+  | 'user-count'
+  | 'uptime-data'
+  | 'official-docs'
+  | 'analyst-report'
+  | 'hands-on-test'
+
+export interface ScoreEvidence {
+  label: string
+  url: string
+  type: EvidenceType
+}
+
+export type ToolScoresEvidence = Partial<Record<keyof ToolScores, ScoreEvidence[]>>
+
+export const EVIDENCE_TYPE_LABELS: Record<EvidenceType, string> = {
+  'benchmark': 'Benchmark',
+  'third-party-review': 'Review',
+  'user-count': 'User data',
+  'uptime-data': 'Uptime',
+  'official-docs': 'Official docs',
+  'analyst-report': 'Analyst',
+  'hands-on-test': 'Hands-on test',
+}
+
+const EVIDENCE_TYPE_SET = new Set<EvidenceType>([
+  'benchmark', 'third-party-review', 'user-count', 'uptime-data',
+  'official-docs', 'analyst-report', 'hands-on-test',
+])
+
+const CRITERION_KEYS = new Set<keyof ToolScores>(SCORING_CRITERIA.map(c => c.key))
+
+export function isValidEvidence(e: unknown): e is ToolScoresEvidence {
+  if (!e || typeof e !== 'object' || Array.isArray(e)) return false
+  for (const [key, list] of Object.entries(e as Record<string, unknown>)) {
+    if (!CRITERION_KEYS.has(key as keyof ToolScores)) return false
+    if (!Array.isArray(list)) return false
+    for (const entry of list) {
+      if (!entry || typeof entry !== 'object') return false
+      const r = entry as Record<string, unknown>
+      if (typeof r.label !== 'string' || r.label.length === 0 || r.label.length > 80) return false
+      if (typeof r.url !== 'string' || r.url.length === 0) return false
+      if (typeof r.type !== 'string' || !EVIDENCE_TYPE_SET.has(r.type as EvidenceType)) return false
+    }
+  }
+  return true
+}
+
+export function isInternalRef(url: string): boolean {
+  return url.startsWith('internal:')
+}
