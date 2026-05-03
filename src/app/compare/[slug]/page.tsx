@@ -315,9 +315,19 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         <section className="mb-10 p-5 rounded-xl border border-border bg-card">
           <h2 className="text-[16px] font-bold text-foreground mb-2">Verdict</h2>
           {cmp.winner ? (
-            <p className="text-[14px] text-muted-foreground">
-              <strong className="text-foreground">{cmp.winner === cmp.tool_a_slug ? toolA.name : toolB.name}</strong> wins this comparison with a total score of {cmp.winner === cmp.tool_a_slug ? scoreA : scoreB}/{criteria.length * 5}.
-            </p>
+            <>
+              <p className="text-[14px] text-muted-foreground mb-4">
+                <strong className="text-foreground">{cmp.winner === cmp.tool_a_slug ? toolA.name : toolB.name}</strong> wins this comparison with a total score of {cmp.winner === cmp.tool_a_slug ? scoreA : scoreB}/{criteria.length * 5}.
+              </p>
+              <a
+                href={`/go/${cmp.winner}`}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[14px] transition-colors"
+              >
+                Try {cmp.winner === cmp.tool_a_slug ? toolA.name : toolB.name} - editor's pick →
+              </a>
+            </>
           ) : (
             <p className="text-[14px] text-muted-foreground">
               This comparison is <strong className="text-foreground">context-dependent</strong>. {toolA.name} scores {scoreA}/{criteria.length * 5} and {toolB.name} scores {scoreB}/{criteria.length * 5}. Choose based on your specific workflow needs.

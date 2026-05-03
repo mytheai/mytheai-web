@@ -7,7 +7,11 @@ import { readFileSync, readdirSync } from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
 import NewsletterForm from '@/components/newsletter/NewsletterForm'
+import ScrollNewsletter from '@/components/newsletter/ScrollNewsletter'
 import AuthorBio from '@/components/layout/AuthorBio'
+import TLDRBox from '@/components/blog/TLDRBox'
+import FAQBlock from '@/components/blog/FAQBlock'
+import PricingTable from '@/components/blog/PricingTable'
 import { getAuthorJsonLd, getAuthor } from '@/data/authors'
 
 export const revalidate = 604800
@@ -86,6 +90,9 @@ const mdxComponents = {
   blockquote: (props: ComponentProps<'blockquote'>) => (
     <blockquote className="text-[14px] font-semibold text-foreground mb-6 pl-4 border-l-2 border-blue-400 not-italic" {...props} />
   ),
+  TLDRBox,
+  FAQBlock,
+  PricingTable,
 }
 
 export function generateStaticParams() {
@@ -294,6 +301,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </Link>
       </div>
     </div>
+    <ScrollNewsletter />
     </>
   )
 }

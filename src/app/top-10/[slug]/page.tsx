@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { createStaticClient } from '@/lib/supabase'
 import { TOP10_LISTS, getList } from '@/data/top10'
 import AuthorBio from '@/components/layout/AuthorBio'
+import { getAuthorJsonLd } from '@/data/authors'
+import ScrollNewsletter from '@/components/newsletter/ScrollNewsletter'
 import type { Metadata } from 'next'
 
 export const revalidate = 604800
@@ -93,6 +95,9 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
   const tools = await getToolsForList(list.slugs)
   const year = new Date().getFullYear()
 
+  const authorJsonLd = getAuthorJsonLd()
+  const todayIso = new Date().toISOString().slice(0, 10)
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -105,6 +110,25 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
       position: i + 1,
       name: t.name,
       url: `https://mytheai.com/tools/${t.slug}`,
+      item: {
+        '@type': 'Review',
+        itemReviewed: {
+          '@type': 'SoftwareApplication',
+          name: t.name,
+          applicationCategory: 'WebApplication',
+          url: `https://mytheai.com/tools/${t.slug}`,
+        },
+        reviewRating: {
+          '@type': 'Rating',
+          ratingValue: t.rating,
+          bestRating: 5,
+          worstRating: 1,
+        },
+        author: authorJsonLd,
+        publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+        position: i + 1,
+        datePublished: todayIso,
+      },
     })),
   }
 
@@ -312,6 +336,7 @@ export default async function Top10Page({ params }: { params: Promise<{ slug: st
           ← Browse all tools
         </Link>
       </div>
+      <ScrollNewsletter />
     </>
   )
 }
