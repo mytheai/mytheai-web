@@ -10,6 +10,7 @@ import ScoringTable from '@/components/tools/ScoringTable'
 import StickyMobileCTA from '@/components/tools/StickyMobileCTA'
 import SourcesBlock from '@/components/tools/SourcesBlock'
 import VerifyExternalBlock from '@/components/tools/VerifyExternalBlock'
+import EmbedBadge from '@/components/tools/EmbedBadge'
 import AuthorBio from '@/components/layout/AuthorBio'
 import { getAuthorJsonLd } from '@/data/authors'
 import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidence } from '@/lib/scoring'
@@ -666,6 +667,9 @@ export default async function ToolPage({
 
         {/* Programmatic third-party verification links (every tool) */}
         <VerifyExternalBlock name={tool.name} slug={tool.slug} websiteUrl={tool.website_url} />
+
+        {/* Embeddable "Featured on MytheAi" badge - generates contextual backlinks when vendors embed */}
+        <EmbedBadge slug={tool.slug} name={tool.name} />
 
         {/* Related comparisons + Top 10 lists - internal linking */}
         {(relatedCompares.length > 0 || relatedTop10.length > 0) && (

@@ -48,7 +48,17 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
   },
   verification: { google: 'v1XXmGzPAUqEJsSXb3F1bl3TipZYYKmIObnmRK8N2oc' },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+  },
 }
 
 const organizationSchema = {
@@ -63,6 +73,13 @@ const organizationSchema = {
     height: 512,
   },
   description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, verified pricing - no pay-to-rank.',
+  sameAs: [
+    'https://twitter.com/mytheai',
+    'https://www.linkedin.com/company/mytheai',
+    'https://www.producthunt.com/@mytheai',
+  ],
+  foundingDate: '2026-01-01',
+  knowsAbout: ['Artificial Intelligence', 'SaaS', 'Software Reviews', 'AI Tools Directory', 'Editorial Methodology'],
   contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'hello@mytheai.com' },
 }
 
