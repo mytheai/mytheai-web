@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "indexnow": "node --env-file=.env.local scripts/indexnow-ping.mjs",
+    "indexnow:all": "node --env-file=.env.local scripts/indexnow-ping.mjs --all",
+    "indexnow:recent": "node --env-file=.env.local scripts/indexnow-ping.mjs --recent 7",
+    "icons:gen": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
