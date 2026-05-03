@@ -7,6 +7,12 @@ import { useLocale, useTranslations } from 'next-intl'
 const LANGS = [
   { code: 'en', label: 'English', flag: '🇬🇧' },
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
+  { code: 'es', label: 'Español', flag: '🇪🇸' },
+  { code: 'pt', label: 'Português', flag: '🇧🇷' },
+  { code: 'zh-CN', label: '中文', flag: '🇨🇳' },
+  { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' },
+  { code: 'ar', label: 'العربية', flag: '🇸🇦' },
+  { code: 'ru', label: 'Русский', flag: '🇷🇺' },
 ] as const
 
 const LOCALE_COOKIE = 'NEXT_LOCALE'
@@ -65,7 +71,7 @@ export default function LanguagePicker() {
       {open && (
         <div
           role="listbox"
-          className="absolute right-0 top-full mt-2 w-44 rounded-xl border border-border bg-card shadow-lg overflow-hidden z-50"
+          className="absolute right-0 top-full mt-2 w-44 max-h-[80vh] overflow-y-auto rounded-xl border border-border bg-card shadow-lg z-50"
         >
           {LANGS.map(l => {
             const selected = l.code === locale
