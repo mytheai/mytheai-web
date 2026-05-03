@@ -108,6 +108,21 @@
     "alreadySubscribed": "أنت مشترك بالفعل.",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح."
   },
+  "HubPages": {
+    "compareEyebrow": "مقارنات مباشرة",
+    "compareTitle": "مقارنات أدوات الذكاء الاصطناعي",
+    "compareIntro": "مقارنات صادقة جنبًا إلى جنب. بدون انحياز تسويقي.",
+    "compareCardCta": "قارن الميزات والأسعار",
+    "compareNoResults": "لا توجد مقارنات لهذا الفلتر.",
+    "compareViewAll": "عرض كل المقارنات",
+    "top10Eyebrow": "قوائم مرتبة",
+    "top10Title": "قوائم أفضل 10 أدوات ذكاء اصطناعي",
+    "top10Intro": "تصنيفات تحريرية. تُحدَّث بانتظام. اختيار صادق لكل فئة.",
+    "top10ToolsLabel": "{count} أداة",
+    "reviewsEyebrow": "مراجعات الخبراء",
+    "reviewsTitle": "مراجعات أدوات الذكاء الاصطناعي",
+    "reviewsIntro": "{count} أداة بتقييم {minRating}+ من فريقنا التحريري، مرتبة حسب الدرجة وعدد المراجعات."
+  },
   "SearchFilter": {
     "search": "بحث...",
     "allCategories": "كل الفئات",

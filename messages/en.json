@@ -108,6 +108,21 @@
     "alreadySubscribed": "You're already subscribed.",
     "invalidEmail": "Please enter a valid email."
   },
+  "HubPages": {
+    "compareEyebrow": "Head-to-Head",
+    "compareTitle": "AI Tool Comparisons",
+    "compareIntro": "Honest side-by-side breakdowns. No affiliate bias.",
+    "compareCardCta": "Compare features & pricing",
+    "compareNoResults": "No comparisons found for this filter.",
+    "compareViewAll": "View all comparisons",
+    "top10Eyebrow": "Ranked Lists",
+    "top10Title": "Top 10 AI Tool Lists",
+    "top10Intro": "Editorially ranked. Updated regularly. Honest picks for every category.",
+    "top10ToolsLabel": "{count} tools",
+    "reviewsEyebrow": "Expert Reviews",
+    "reviewsTitle": "AI Tool Reviews",
+    "reviewsIntro": "{count} tools rated {minRating}+ by our editorial team, ranked by score and review volume."
+  },
   "SearchFilter": {
     "search": "Search...",
     "allCategories": "All categories",

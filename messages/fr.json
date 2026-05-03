@@ -108,6 +108,21 @@
     "alreadySubscribed": "Vous êtes déjà abonné.",
     "invalidEmail": "Veuillez entrer une adresse email valide."
   },
+  "HubPages": {
+    "compareEyebrow": "Comparatifs",
+    "compareTitle": "Comparaisons d'outils IA",
+    "compareIntro": "Comparatifs honnêtes côte à côte. Sans biais d'affiliation.",
+    "compareCardCta": "Comparer fonctionnalités et prix",
+    "compareNoResults": "Aucune comparaison pour ce filtre.",
+    "compareViewAll": "Voir toutes les comparaisons",
+    "top10Eyebrow": "Classements",
+    "top10Title": "Listes Top 10 IA",
+    "top10Intro": "Classements éditoriaux. Mis à jour régulièrement. Sélection honnête par catégorie.",
+    "top10ToolsLabel": "{count} outils",
+    "reviewsEyebrow": "Avis d'experts",
+    "reviewsTitle": "Avis sur les outils IA",
+    "reviewsIntro": "{count} outils notés {minRating}+ par notre équipe, classés par score et volume d'avis."
+  },
   "SearchFilter": {
     "search": "Rechercher...",
     "allCategories": "Toutes les catégories",

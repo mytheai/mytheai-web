@@ -108,6 +108,21 @@
     "alreadySubscribed": "你已订阅。",
     "invalidEmail": "请输入有效的邮箱地址。"
   },
+  "HubPages": {
+    "compareEyebrow": "正面对比",
+    "compareTitle": "AI 工具对比",
+    "compareIntro": "诚实的并排对比。无联盟偏见。",
+    "compareCardCta": "对比功能与价格",
+    "compareNoResults": "此筛选下没有对比。",
+    "compareViewAll": "查看所有对比",
+    "top10Eyebrow": "排行榜",
+    "top10Title": "AI 工具前十名榜单",
+    "top10Intro": "编辑排名。定期更新。每个分类的诚实精选。",
+    "top10ToolsLabel": "{count} 款工具",
+    "reviewsEyebrow": "专家评测",
+    "reviewsTitle": "AI 工具评测",
+    "reviewsIntro": "{count} 款工具获得编辑团队 {minRating}+ 评分,按评分与评测量排序。"
+  },
   "SearchFilter": {
     "search": "搜索……",
     "allCategories": "全部分类",

@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import LogoImage from '@/components/ui/LogoImage'
 import { createStaticClient } from '@/lib/supabase'
 import CompareFilterBar from '@/components/tools/CompareFilterBar'
@@ -70,7 +71,10 @@ export default async function ComparePage({
   searchParams: Promise<{ category?: string; tool_a?: string }>
 }) {
   const { category, tool_a } = await searchParams
-  const comparisons = await getComparisons()
+  const [comparisons, t] = await Promise.all([
+    getComparisons(),
+    getTranslations('HubPages'),
+  ])
   const allSlugs = [...new Set(comparisons.flatMap(c => [c.tool_a_slug, c.tool_b_slug]))]
   const tools = await getToolsMeta(allSlugs)
 
@@ -116,12 +120,12 @@ export default async function ComparePage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
         <div className="mb-8">
-          <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Head-to-Head</p>
+          <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">{t('compareEyebrow')}</p>
           <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
-            AI Tool Comparisons
+            {t('compareTitle')}
           </h1>
           <p className="text-[15px] text-muted-foreground">
-            Honest side-by-side breakdowns. No affiliate bias.
+            {t('compareIntro')}
           </p>
         </div>
 
@@ -161,7 +165,7 @@ export default async function ComparePage({
                 {c.summary && (
                   <p className="text-[13px] text-muted-foreground line-clamp-2">{c.summary}</p>
                 )}
-                <span className="text-[13px] text-blue-600 font-medium">Compare features & pricing →</span>
+                <span className="text-[13px] text-blue-600 font-medium">{t('compareCardCta')} →</span>
               </Link>
             )
           })}
@@ -169,8 +173,8 @@ export default async function ComparePage({
 
         {filtered.length === 0 && (
           <div className="py-16 text-center">
-            <p className="text-muted-foreground text-[15px]">No comparisons found for this filter.</p>
-            <Link href="/compare" className="mt-3 inline-block text-blue-600 text-[14px] hover:underline">View all comparisons</Link>
+            <p className="text-muted-foreground text-[15px]">{t('compareNoResults')}</p>
+            <Link href="/compare" className="mt-3 inline-block text-blue-600 text-[14px] hover:underline">{t('compareViewAll')}</Link>
           </div>
         )}
       </div>

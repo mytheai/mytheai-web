@@ -108,6 +108,21 @@
     "alreadySubscribed": "आप पहले से सब्सक्राइब हैं।",
     "invalidEmail": "कृपया एक मान्य ईमेल दर्ज करें।"
   },
+  "HubPages": {
+    "compareEyebrow": "आमने-सामने",
+    "compareTitle": "AI टूल तुलनाएँ",
+    "compareIntro": "ईमानदार साइड-बाय-साइड तुलनाएँ। कोई एफ़िलिएट पक्षपात नहीं।",
+    "compareCardCta": "फ़ीचर और मूल्य की तुलना करें",
+    "compareNoResults": "इस फ़िल्टर के लिए कोई तुलना नहीं।",
+    "compareViewAll": "सभी तुलनाएँ देखें",
+    "top10Eyebrow": "रैंक्ड सूचियाँ",
+    "top10Title": "टॉप 10 AI टूल सूचियाँ",
+    "top10Intro": "संपादकीय रैंकिंग। नियमित रूप से अपडेट। हर श्रेणी के लिए ईमानदार चयन।",
+    "top10ToolsLabel": "{count} टूल्स",
+    "reviewsEyebrow": "विशेषज्ञ समीक्षाएँ",
+    "reviewsTitle": "AI टूल समीक्षाएँ",
+    "reviewsIntro": "हमारी संपादकीय टीम द्वारा {minRating}+ रेटेड {count} टूल्स, स्कोर और समीक्षा संख्या के अनुसार क्रमित।"
+  },
   "SearchFilter": {
     "search": "खोजें…",
     "allCategories": "सभी श्रेणियाँ",

@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { createStaticClient } from '@/lib/supabase'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import LogoImage from '@/components/ui/LogoImage'
 import SearchFilterBar from '@/components/tools/SearchFilterBar'
 import type { Metadata } from 'next'
@@ -85,7 +86,10 @@ export default async function ReviewsPage({
   searchParams: Promise<{ q?: string; category?: string; min_rating?: string; page?: string }>
 }) {
   const { q, category, min_rating, page } = await searchParams
-  const { rows: allTools, total } = await getReviewedTools(q, category, min_rating)
+  const [{ rows: allTools, total }, t] = await Promise.all([
+    getReviewedTools(q, category, min_rating),
+    getTranslations('HubPages'),
+  ])
 
   const pageNum = Math.max(1, parseInt(page ?? '1', 10) || 1)
   const totalPages = Math.max(1, Math.ceil(allTools.length / PAGE_SIZE))
@@ -112,12 +116,12 @@ export default async function ReviewsPage({
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">Expert Reviews</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">{t('reviewsEyebrow')}</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
-          AI Tool Reviews
+          {t('reviewsTitle')}
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          {total.toLocaleString()} tools rated {effectiveMin.toFixed(1)}+ by our editorial team, ranked by score and review volume. Each review covers pricing, pros and cons, and real use cases.
+          {t('reviewsIntro', { count: total.toLocaleString(), minRating: effectiveMin.toFixed(1) })}
         </p>
       </div>
 

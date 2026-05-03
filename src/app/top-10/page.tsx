@@ -1,4 +1,5 @@
 import { TOP10_LISTS } from '@/data/top10'
+import { getTranslations } from 'next-intl/server'
 import Top10Grid from './Top10Grid'
 import type { Metadata } from 'next'
 
@@ -19,19 +20,20 @@ const collectionSchema = {
   publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
 }
 
-export default function Top10HubPage() {
+export default async function Top10HubPage() {
+  const t = await getTranslations('HubPages')
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-10">
-        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Rankings</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">{t('top10Eyebrow')}</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
-          Top 10 AI Tool Lists
+          {t('top10Title')}
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          Ranked by editorial merit. Never influenced by affiliate rates.
+          {t('top10Intro')}
         </p>
       </div>
 
