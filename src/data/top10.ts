@@ -2254,6 +2254,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '⚙️',
     slugs: ['augury', 'uptake', 'c3-ai', 'sight-machine'],
   },
+  {
+    slug: 'best-ai-carbon-accounting',
+    title: 'Best AI Carbon Accounting Tools 2026',
+    description: 'The best AI-powered carbon accounting and emissions management platforms in 2026 - from enterprise Scope 3 supplier engagement to SMB-accessible tools that connect to your accounting software.',
+    category: 'Sustainability',
+    emoji: '🌱',
+    slugs: ['watershed', 'persefoni', 'sweep', 'greenly', 'normative'],
+  },
+  {
+    slug: 'best-ai-esg-reporting',
+    title: 'Best AI ESG Reporting Tools 2026',
+    description: 'The best AI-powered ESG reporting and sustainability management platforms in 2026 - from enterprise multi-site data management to full CSRD and TCFD disclosure automation.',
+    category: 'Sustainability',
+    emoji: '♻️',
+    slugs: ['ibm-envizi', 'plan-a', 'watershed', 'persefoni'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
