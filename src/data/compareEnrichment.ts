@@ -1216,6 +1216,366 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Should I use Midjourney instead?', a: 'For pure aesthetic image generation, Midjourney remains the leader. Recraft and Ideogram are the picks when vector or text-in-image are required, both of which Midjourney does poorly.' },
     ],
   },
+
+  'agorapulse-vs-hootsuite': {
+    bottomLine: 'Agorapulse and Hootsuite both target agencies and mid-market social teams. Hootsuite is the longer-running enterprise tool with the broadest feature set and the largest brand. Agorapulse is the value-focused alternative with stronger inbox unification (all comments and DMs in one queue), agency-friendly reporting, and a famously responsive support team. Agorapulse Standard is $69/mo (2 users). Hootsuite Professional is $99/mo (1 user). Pick Hootsuite for enterprise breadth and ad management. Pick Agorapulse for agency workflows and unified social inbox.',
+    whenToPickA: 'You manage social for an agency or mid-market team and live in incoming comments and DMs across many channels. Agorapulse social inbox unification is the strongest in the category. Best for agencies and brands where engagement quality matters more than scheduling volume.',
+    whenToPickB: 'You need the broadest enterprise feature set: paid-ad management, social listening at scale, multi-brand routing, and the largest integration ecosystem. Hootsuite is the safer enterprise pick. Best for enterprise marketing teams and agencies with 10+ social managers.',
+    faqs: [
+      { q: 'Which has better social inbox?', a: 'Agorapulse, by a clear margin. The unified inbox handles comments, DMs, mentions, and reviews across all connected channels in one queue with assignment and approval flows. Hootsuite social inbox is solid but feels more like a tab among many.' },
+      { q: 'Which has better analytics?', a: 'Hootsuite, marginally, especially at the higher tiers with social listening and benchmark data. Agorapulse reporting is cleaner and more agency-friendly but less deep on cross-channel attribution.' },
+      { q: 'Which is cheaper at agency scale?', a: 'Agorapulse, by a meaningful margin. Agorapulse Advanced ($199/mo, 4 users) vs Hootsuite Team ($249/mo, 3 users) shows the pattern. For most agencies under 10 social managers, Agorapulse is the cost-effective pick.' },
+      { q: 'Should I look at Sprout Social instead?', a: 'For mid-market and enterprise with budget for premium tooling, yes. Sprout sits between Hootsuite and Agorapulse on price and feels more polished than either. Agorapulse remains the value pick; Hootsuite remains the broadest legacy choice.' },
+    ],
+  },
+
+  'later-vs-buffer': {
+    bottomLine: 'Later and Buffer compete for creators and small social teams with different optimisations. Later started Instagram-first and is still the strongest tool for visual planning, link-in-bio (Linkin.bio), and social commerce. Buffer is the more general-purpose scheduler with the cleanest UX, broad multi-network coverage, and the best free tier in the category. Later Starter is $25/mo. Buffer Essentials is $5/channel/mo (Free tier covers 3 channels). Pick Later for Instagram-heavy and visual-first workflows. Pick Buffer for general-purpose multi-network scheduling on a budget.',
+    whenToPickA: 'Instagram is your primary channel and you want visual planning, grid preview, and link-in-bio integration. Later was built around the Instagram visual planner and remains the category leader for that workflow. Best for creators, brands, and ecommerce shops with Instagram-first strategy.',
+    whenToPickB: 'You schedule across many networks and want the simplest, cleanest tool with the best free tier. Buffer essentials are unmatched at $5/channel/mo and the free tier is genuinely usable. Best for solo creators, small marketing teams, and budget-conscious users.',
+    faqs: [
+      { q: 'Which has better Instagram features?', a: 'Later, clearly. Visual grid preview, hashtag suggestions, optimal posting times calibrated to Instagram, and Linkin.bio (link-in-bio page) are first-class. Buffer Instagram support is fine but less specialised.' },
+      { q: 'Which has the better free tier?', a: 'Buffer, by a wide margin. Buffer Free covers 3 social channels with 10 scheduled posts per channel. Later free tier is much tighter (1 user, limited posts). For free use, Buffer is the practical pick.' },
+      { q: 'Does either include analytics?', a: 'Both include basic analytics on paid plans. Later analytics tilt toward Instagram and TikTok metrics; Buffer analytics tilt toward cross-network views and engagement. Neither matches Hootsuite or Sprout for enterprise depth.' },
+      { q: 'Which has better link-in-bio?', a: 'Later (Linkin.bio) is purpose-built and ties directly to Instagram product tags and ecommerce. Buffer Start Page is a competitive alternative but newer and less integrated.' },
+    ],
+  },
+
+  'sprinklr-vs-hootsuite': {
+    bottomLine: 'Sprinklr and Hootsuite both target enterprise social management but at very different scales. Sprinklr is the unified customer experience platform that goes beyond social: marketing, customer service, sales, and research all on one customer record across 30+ channels. Hootsuite is the focused social management tool with deep scheduling, analytics, and ad workflows. Sprinklr pricing is custom and starts mid-five figures annually. Hootsuite Business is $739/mo. Pick Sprinklr when you are a global enterprise unifying social across functions. Pick Hootsuite when you want a focused social management tool at predictable cost.',
+    whenToPickA: 'You are a Fortune 500 or large enterprise unifying marketing, service, sales, and research across all customer-facing channels. Sprinklr is the only tool with that breadth on one platform. Best for global brands managing 50+ regional accounts across 30+ channels.',
+    whenToPickB: 'You manage social specifically and want predictable per-seat pricing with strong scheduling, analytics, and ad workflows. Hootsuite is the focused social tool that mid-market and enterprise marketing teams default to. Best for marketing teams under 50 social managers.',
+    faqs: [
+      { q: 'Is Sprinklr really an order of magnitude bigger?', a: 'Yes. Sprinklr is a customer experience platform that includes social management as one module. Hootsuite is a social management tool. Pick Sprinklr only if you are unifying multiple functions; otherwise the breadth is overhead you do not need.' },
+      { q: 'How much does Sprinklr cost?', a: 'Custom enterprise pricing starting mid-five figures annually. Most public deployments are $50K-$500K+/year depending on functions enabled and seat count. Hootsuite Business is $739/mo, two orders of magnitude cheaper for mid-market scale.' },
+      { q: 'Which has better AI features?', a: 'Sprinklr AI+ covers content generation, sentiment analysis, conversation routing, and predictive analytics across the platform. Hootsuite OwlyWriter is solid but narrower. For AI breadth at enterprise scale, Sprinklr leads.' },
+      { q: 'Should I look at Sprout Social instead?', a: 'For mid-market between Hootsuite and Sprinklr, Sprout is the natural choice. It costs more than Hootsuite but a fraction of Sprinklr, with strong UX, social inbox, and listening. Most brands at $50M-$500M revenue end up on Sprout.' },
+    ],
+  },
+
+  'sprout-social-vs-hootsuite': {
+    bottomLine: 'Sprout Social and Hootsuite are the two dominant mid-market and enterprise social management platforms. Sprout is the polished newer leader: clean UX, strong social inbox (Smart Inbox), listening, and the best customer support in the category. Hootsuite is the longer-running tool with broader integration coverage, deeper ad workflow support, and lower entry pricing. Sprout Standard is $249/seat/mo. Hootsuite Professional is $99/mo (1 user) or Team $249/mo (3 users). Pick Sprout for UX, listening, and a polished mid-market tool. Pick Hootsuite for budget flexibility and the broadest integration ecosystem.',
+    whenToPickA: 'You are mid-market or enterprise marketing and value UX polish, strong social inbox, and listening features. Sprout consistently rates highest on user experience and customer support in the category. Best for brands at $50M-$1B revenue with dedicated social teams.',
+    whenToPickB: 'You want predictable per-seat pricing, broad integration coverage, and strong ad workflow tools. Hootsuite is the safer choice for mid-market teams cost-sensitive on tooling. Best for marketing teams that need scheduling and ad management more than listening or inbox depth.',
+    faqs: [
+      { q: 'Which has better social inbox?', a: 'Sprout Smart Inbox is consistently rated above Hootsuite for unification, sentiment scoring, and assignment workflows. Hootsuite social inbox is solid but feels less integrated.' },
+      { q: 'Which is more expensive?', a: 'Sprout, clearly. Sprout Standard at $249/seat/mo vs Hootsuite Professional at $99/mo (1 user). At 5+ seats, Sprout costs roughly 2-3x Hootsuite. The pricing reflects positioning - Sprout targets premium mid-market.' },
+      { q: 'Which has better listening?', a: 'Sprout Listening is purpose-built and includes sentiment, share-of-voice, and competitor benchmarks at a strong UX. Hootsuite Insights covers similar ground but feels older and less actionable.' },
+      { q: 'Should I look at Agorapulse for cost reasons?', a: 'Yes if you are a smaller team or agency. Agorapulse offers a strong social inbox at significantly lower cost than Sprout. The trade-off is less listening depth and a smaller integration ecosystem.' },
+    ],
+  },
+
+  'jasper-vs-copy-ai': {
+    bottomLine: 'Jasper and Copy.ai are both AI marketing content platforms that compete head-on at the seat level. Jasper is the more enterprise-positioned tool with brand voice training, team templates, SEO mode, and stronger workflow features. Copy.ai is the broader, more flexible platform that has expanded beyond copywriting into marketing automation and GTM workflows. Jasper Creator is $39/seat/mo. Copy.ai Pro is $36/seat/mo. Pick Jasper when content production and brand voice are the centre of your work. Pick Copy.ai when you want a broader marketing automation surface plus copywriting.',
+    whenToPickA: 'You produce marketing content at volume and brand voice consistency matters. Jasper Brand Voice training is the strongest in the category and team templates accelerate production. Best for content marketing teams, agencies producing client work, and ecommerce brands generating high-volume copy.',
+    whenToPickB: 'You want AI marketing automation that goes beyond copywriting: GTM workflows, sales cadences, and content production in one tool. Copy.ai has pivoted toward broader marketing AI and competes with workflow tools. Best for revenue teams and B2B marketing operators.',
+    faqs: [
+      { q: 'Which has better brand voice control?', a: 'Jasper, by a meaningful margin. Brand Voice training plus persona controls produce consistent on-brand output across long content. Copy.ai brand controls exist but feel less polished for sustained content campaigns.' },
+      { q: 'Which is better for short-form copy?', a: 'Roughly equivalent for ads, social posts, and email subject lines. Both ship strong template libraries. Copy.ai has slight edge on UX speed for one-off generations; Jasper has slight edge on brand-consistent output.' },
+      { q: 'How does pricing compare at team scale?', a: 'Roughly equal at $36-$39/seat/mo entry. Higher tiers diverge: Jasper Pro at $59/seat for advanced features; Copy.ai Team for marketing automation workflows. Compare features at the tier you actually need.' },
+      { q: 'Should I look at Writesonic or Sudowrite instead?', a: 'For lower-cost SMB content, Writesonic or Rytr are cheaper. For long-form fiction or storytelling, Sudowrite is purpose-built and beats both Jasper and Copy.ai. Pick by content type and team size.' },
+    ],
+  },
+
+  'writesonic-vs-rytr': {
+    bottomLine: 'Writesonic and Rytr are budget AI writing tools that compete with Jasper and Copy.ai at much lower price points. Writesonic is the broader platform with article writer, paraphrase, summariser, AI image generation, and chatbot builder. Rytr is the simpler, cleaner copywriting tool focused on short-form content with the friendliest free tier. Writesonic Standard is $19/mo. Rytr Saver is $9/mo. Pick Writesonic for a broader content suite at SMB price. Pick Rytr for the simplest, cheapest AI copy tool with a usable free tier.',
+    whenToPickA: 'You produce blog posts, ad copy, product descriptions, and want a single tool that also handles paraphrase, summary, image generation, and basic chatbot. Writesonic feature breadth at $19/mo is hard to match. Best for SMB marketers and indie creators.',
+    whenToPickB: 'You write short-form copy (emails, social posts, landing pages) and want the simplest, cheapest tool. Rytr UX is clean, the free tier is genuinely usable, and the Saver tier at $9/mo covers most personal use. Best for solopreneurs and freelancers cost-sensitive on tooling.',
+    faqs: [
+      { q: 'Which has the better free tier?', a: 'Rytr, marginally. Rytr Free includes 10K characters per month with all features unlocked. Writesonic Free includes 10K words per month but with rate limits on image generation and advanced models. Both are usable for casual users.' },
+      { q: 'Which is better for long-form articles?', a: 'Writesonic, by a clear margin. The Article Writer 6.0 produces more coherent long-form than Rytr long-form. For 1500+ word articles, Writesonic is the better tool.' },
+      { q: 'Should I just use ChatGPT or Claude?', a: 'For most general writing, yes. The frontier LLMs at $20/mo cover everything Writesonic and Rytr do, often better. Writesonic and Rytr win on workflow templates and repeatable formats; the frontier LLMs win on raw quality.' },
+      { q: 'Which is cheaper at scale?', a: 'Rytr, clearly. Rytr Unlimited is $29/mo. Writesonic Premium is $99/mo for unlimited words. For high-volume single-user use, Rytr Unlimited is the cost-effective pick.' },
+    ],
+  },
+
+  'grammarly-vs-writesonic': {
+    bottomLine: 'Grammarly and Writesonic solve different problems despite both being AI writing tools. Grammarly is a writing assistant: grammar, clarity, tone, and rewrite suggestions everywhere you type. Writesonic is a content generator: produce blog posts, ad copy, and articles from prompts. Grammarly Premium is $12/mo. Writesonic Standard is $19/mo. Pick Grammarly to improve writing you produce yourself. Pick Writesonic to generate marketing content from scratch.',
+    whenToPickA: 'You write across email, docs, Slack, and the web and want a consistent assistant catching errors and tightening prose. Grammarly desktop and browser extension reach is unmatched. Best for individual professionals, students, and teams who want better writing without changing where they work.',
+    whenToPickB: 'You produce marketing content (blog posts, ads, product descriptions) at volume and need a tool that generates from prompts plus templates. Writesonic feature breadth at $19/mo covers article writer, paraphrase, summary, and image generation. Best for SMB marketers.',
+    faqs: [
+      { q: 'Can I use both?', a: 'Yes, and many marketers do. Writesonic to draft, Grammarly to polish across everyday writing in email, docs, and Slack. Combined cost is around $31/mo which is justifiable for content-heavy roles.' },
+      { q: 'Does Grammarly do generation?', a: 'GrammarlyGO can draft short outputs and rewrite paragraphs but is not built for long-form blog generation. For 1500-word articles written from a prompt, Writesonic or Jasper are the right tools.' },
+      { q: 'Which is cheaper?', a: 'Grammarly, clearly. Premium at $12/mo vs Writesonic Standard at $19/mo. For pure writing assistance, Grammarly is the cheaper, more focused pick.' },
+      { q: 'Which is better for non-native English writers?', a: 'Grammarly, by a meaningful margin. The fluency and tone suggestions are more granular and the goals system explicitly trains for native-feel English. Writesonic generates content but does not coach the writer.' },
+    ],
+  },
+
+  'originality-ai-vs-grammarly': {
+    bottomLine: 'Originality.ai and Grammarly target different jobs and only overlap loosely. Originality.ai is an AI content detector and plagiarism checker built for publishers and SEO teams who need to verify human authorship. Grammarly is a writing assistant for grammar, clarity, and tone. Originality.ai pricing is credit-based starting around $14.95/mo. Grammarly Premium is $12/mo. Pick Originality.ai when you need AI detection or plagiarism scanning. Pick Grammarly when you need a daily writing assistant.',
+    whenToPickA: 'You publish content at scale and need to verify whether submissions are AI-generated or contain plagiarism. Originality.ai is the leading AI content detector for publishers, agencies, and academic use. Best for content directors, SEO agencies, and publishers managing freelance contributors.',
+    whenToPickB: 'You write yourself and want grammar, clarity, and tone help across every app. Grammarly desktop reach and AI rewrite features make it the daily writing assistant for millions. Best for individual writers and teams improving daily output quality.',
+    faqs: [
+      { q: 'Are AI content detectors actually accurate?', a: 'Originality.ai claims 95%+ accuracy on GPT-4o and Claude generations on long-form text. Independent tests show 80-90% real-world accuracy with false-positive rates around 2-5% on heavily edited human writing. Treat detection as signal, not verdict.' },
+      { q: 'Does Grammarly detect AI content?', a: 'No, Grammarly is not built for AI detection. It is a writing assistant. For detection, use Originality.ai, GPTZero, or Copyleaks.' },
+      { q: 'Should I use both?', a: 'For publishers and agencies, yes - Originality.ai for verification, Grammarly for editing the human-authored content that survives detection. Combined cost is around $27/mo.' },
+      { q: 'Which has better plagiarism checking?', a: 'Originality.ai includes plagiarism scanning alongside AI detection in the same workflow. Grammarly Premium also includes plagiarism checking. Originality.ai is more publisher-grade; Grammarly plagiarism is good for individual writers.' },
+    ],
+  },
+
+  'clearscope-vs-surfer-seo': {
+    bottomLine: 'Clearscope and Surfer SEO are both content optimisation tools that score how well your draft ranks against the top SERP results. Clearscope is the premium, polished tool used by enterprise content teams with the cleanest UX and best-in-class topic recommendations. Surfer SEO is the broader platform with content editor, audit, and SERP analyzer at lower price points. Clearscope Essentials starts at $189/mo. Surfer Essential is $99/mo. Pick Clearscope for premium polish and enterprise content teams. Pick Surfer for broader SEO features and SMB pricing.',
+    whenToPickA: 'You run a serious content operation at enterprise scale and want the cleanest content optimisation tool with the most reliable topic recommendations. Clearscope is the premium pick used by Fortune 500 content teams. Best for enterprise content operations and high-budget SEO agencies.',
+    whenToPickB: 'You want broader SEO tooling - content editor plus audit plus SERP analyzer - at a more accessible price. Surfer feature breadth and SMB-friendly pricing make it the popular choice for in-house teams and agencies. Best for SMB and mid-market content operations.',
+    faqs: [
+      { q: 'Which has better content scoring?', a: 'Clearscope, marginally. The grade is more reliable and the term recommendations feel more curated. Surfer scoring is solid but tends to surface more terms, some of which are noise.' },
+      { q: 'How much does Clearscope cost vs Surfer?', a: 'Clearscope Essentials at $189/mo vs Surfer Essential at $99/mo. Higher tiers diverge: Clearscope Business is $475/mo+; Surfer Advanced is $219/mo. Surfer is roughly half the cost at every tier.' },
+      { q: 'Which has more features?', a: 'Surfer, by a clear margin. Content audit, SERP analyzer, AI-driven outline builder, and integrations with Google Docs and WordPress are all standard. Clearscope stays narrowly focused on the content editor and grade.' },
+      { q: 'Should I look at Frase or MarketMuse instead?', a: 'Frase is comparable to Surfer at lower cost with stronger AI generation. MarketMuse is enterprise-positioned like Clearscope but with topic intelligence as the differentiator. Pick by team size and use case.' },
+    ],
+  },
+
+  'marketmuse-vs-clearscope': {
+    bottomLine: 'MarketMuse and Clearscope are both premium content optimisation tools for enterprise content teams. MarketMuse is the topic intelligence platform that maps your entire content strategy: gap analysis, content briefs, topic clusters, and competitive intelligence. Clearscope is the focused content editor that scores individual drafts against SERP leaders. MarketMuse Optimize is $149/mo. Clearscope Essentials is $189/mo. Pick MarketMuse for strategic content planning across a site. Pick Clearscope for per-article optimisation polish.',
+    whenToPickA: 'You plan content strategy at the site level and need topic gap analysis, content briefs, and authority mapping. MarketMuse Strategy and content briefs are unique and save substantial planning time for enterprise content teams. Best for content directors managing site-wide topical authority.',
+    whenToPickB: 'You optimise individual articles against SERP leaders and want the cleanest, most reliable content editor. Clearscope is the simpler, more focused tool with best-in-class per-article workflow. Best for individual writers and teams who want optimisation without strategic planning overhead.',
+    faqs: [
+      { q: 'Are MarketMuse and Clearscope substitutes or complements?', a: 'Mostly complements. MarketMuse handles strategic planning (what to write, what cluster gaps exist). Clearscope handles tactical optimisation (how to rank a specific draft). Many enterprise content teams run both.' },
+      { q: 'Which is better for small teams?', a: 'Neither is ideal for very small teams - both are premium-priced. For SMB content optimisation, Surfer SEO at $99/mo is the more accessible alternative. MarketMuse and Clearscope justify their pricing at enterprise scale.' },
+      { q: 'Which has better AI features?', a: 'MarketMuse First Draft generates AI content briefs and outlines as part of the strategic workflow. Clearscope AI features are tactical - draft within the editor. The AI investment differs because the products differ.' },
+      { q: 'Can I use just one?', a: 'Yes, depending on your role. Content directors usually pick MarketMuse for strategy. Individual writers usually pick Clearscope or Surfer for tactical optimisation. The choice depends on who in the org is doing the work.' },
+    ],
+  },
+
+  'attio-vs-affinity': {
+    bottomLine: 'Attio and Affinity both build modern relationship CRM that competes with Salesforce and HubSpot for VC, PE, and dealflow-driven teams. Attio is the cleaner, newer platform with database-style flexibility, real-time team collaboration, and bidirectional API. Affinity is the dominant relationship intelligence tool used by most VC firms with relationship strength scoring and email graph analysis. Attio Pro is $34/user/mo. Affinity pricing is custom and starts around $150/user/mo. Pick Attio for modern dealflow CRM at a reasonable price. Pick Affinity if relationship intelligence is mission-critical and budget allows.',
+    whenToPickA: 'You build a modern dealflow CRM for a VC firm, business development team, or any role tracking many relationships. Attio combines Notion-like flexibility with CRM structure at a price most firms can justify. Best for emerging-manager VC, BD teams, and modern startups.',
+    whenToPickB: 'You run an established VC firm or relationship-driven sales team where the strength of relationships across the firm needs to be visible. Affinity email graph analysis and relationship scoring are unique. Best for established VC, PE, and IB firms where relationships are the product.',
+    faqs: [
+      { q: 'Is Attio really competing with Affinity?', a: 'Yes, increasingly. Attio has closed much of the relationship-tracking gap with Affinity and offers comparable workflow at significantly lower price. For new VC funds, Attio is the more practical first choice.' },
+      { q: 'How much cheaper is Attio?', a: 'Roughly 4-5x cheaper. Attio Pro at $34/user/mo vs Affinity at $150+/user/mo. For small firms, the cost difference matters. For large firms, Affinity relationship intelligence often justifies the premium.' },
+      { q: 'Does Attio have email graph analysis?', a: 'Yes, but less mature than Affinity. Attio analyses email and calendar to enrich contact records and surface relationship signals. The depth is closing fast but Affinity remains more sophisticated.' },
+      { q: 'Should I just use HubSpot or Salesforce?', a: 'For traditional B2B sales, yes. Attio and Affinity are specifically built for relationship-driven work (VC, BD, IB) where every contact matters and the relationship graph is the asset. For commercial sales pipelines, HubSpot or Salesforce remain stronger.' },
+    ],
+  },
+
+  'pipedrive-vs-close-crm': {
+    bottomLine: 'Pipedrive and Close are sales-focused CRMs that target SMB and mid-market sales teams. Pipedrive is the polished visual pipeline tool with the cleanest UX and broadest integration ecosystem. Close is the calling-first sales CRM built for high-velocity sales teams with native phone, SMS, and email automation. Pipedrive Essential is $14/user/mo. Close Startup is $49/user/mo. Pick Pipedrive for visual pipeline management at a reasonable price. Pick Close when calling and outbound velocity are the centre of sales motion.',
+    whenToPickA: 'You run a B2B sales team that lives in pipeline visualisation, deal stages, and CRM-driven workflow. Pipedrive UX and integration breadth make it the popular SMB and mid-market pick. Best for SaaS sales teams and any B2B sales motion driven by pipeline rather than calling.',
+    whenToPickB: 'You run an outbound sales team where calling, email cadences, and high-velocity outreach are the core. Close native phone and SMS integration is unmatched among CRMs. Best for inside sales, outbound SDR teams, and high-touch sales operations.',
+    faqs: [
+      { q: 'Which has better calling features?', a: 'Close, by a clear margin. Native phone with click-to-call, recording, transcription, and Power Dialer is built into the product. Pipedrive needs CallRail or Aircall integrations to match.' },
+      { q: 'Which is cheaper?', a: 'Pipedrive, clearly. Pipedrive Essential at $14/user/mo vs Close Startup at $49/user/mo. The 3.5x price differential reflects positioning - Close targets sales-first teams; Pipedrive targets broader SMB.' },
+      { q: 'Which has more integrations?', a: 'Pipedrive, by a wide margin. The Marketplace covers 400+ apps. Close integrations are fewer but deeper (especially around calling and email).' },
+      { q: 'Should I use HubSpot CRM Free instead?', a: 'For very small teams or solo founders, HubSpot CRM Free is genuinely usable and free. Pipedrive and Close earn their pricing once you cross 5+ sales reps and need pipeline depth or calling features.' },
+    ],
+  },
+
+  'instantly-ai-vs-apollo': {
+    bottomLine: 'Instantly.ai and Apollo target outbound sales but with different scopes. Instantly is the cold email infrastructure tool with unlimited inbox warmup, deliverability optimisation, and automated multi-inbox campaigns. Apollo is the broader sales engagement platform with email, dialer, B2B contact database (270M+ contacts), sequences, and CRM. Instantly Growth is $37/mo. Apollo Basic is $59/user/mo. Pick Instantly for cold email infrastructure at scale. Pick Apollo for full sales engagement with built-in contact database.',
+    whenToPickA: 'You run cold email at high volume and need inbox warmup, multi-inbox rotation, and deliverability tooling. Instantly is the leader in cold email infrastructure and is what most outbound agencies use. Best for outbound agencies, growth marketers, and lead-gen specialists.',
+    whenToPickB: 'You want a complete sales engagement platform: B2B contact data, email sequences, dialer, and CRM in one tool. Apollo all-in-one approach reduces stack complexity and cost vs separate tools. Best for SDR teams, founders doing outbound, and revenue teams under 50.',
+    faqs: [
+      { q: 'Are Instantly and Apollo competitors or complements?', a: 'Increasingly competitive. Apollo added email infrastructure features in 2024-2025 to compete with Instantly. Instantly added some lead-gen features. For pure cold email at scale, Instantly remains stronger; for an integrated stack, Apollo wins.' },
+      { q: 'Does Apollo include a contact database?', a: 'Yes, 270M+ B2B contacts with verified email and phone. This is core to Apollo value and what justifies its higher price. Instantly does not include a contact database; bring your own.' },
+      { q: 'Which has better deliverability?', a: 'Instantly, by a clear margin. Inbox warmup, deliverability network, and inbox rotation are first-class. Apollo deliverability is decent but not specialised the way Instantly is.' },
+      { q: 'How does pricing compare at team scale?', a: 'Apollo at $59/seat is more expensive but includes contact data. Instantly at $37/mo flat (not per-seat) is cheaper for a sender but does not include leads. Total cost depends on how you source contacts.' },
+    ],
+  },
+
+  'lemlist-vs-reply-io': {
+    bottomLine: 'Lemlist and Reply.io both target B2B cold email with personalisation and multi-channel sequences. Lemlist is the creative outbound tool with strong personalised image generation, video personalisation, and a recognisable brand among growth marketers. Reply.io is the more mature, broader sales engagement platform with multi-channel sequences (email, LinkedIn, calls, SMS) and a cleaner enterprise feature set. Lemlist Smart Reach is $59/user/mo. Reply.io Multichannel is $99/user/mo. Pick Lemlist for creative cold email at SMB price. Pick Reply.io for multi-channel sequences at enterprise scale.',
+    whenToPickA: 'You run creative cold outbound with personalised images, videos, and email-first sequences. Lemlist personalisation features are unique and the brand is recognisable in growth communities. Best for indie outbounders, growth marketers, and SMB sales teams.',
+    whenToPickB: 'You run multi-channel outbound at scale with SDRs working email, LinkedIn, calls, and SMS in coordinated sequences. Reply.io feature depth and team management are stronger. Best for enterprise SDR teams and organised inside-sales operations.',
+    faqs: [
+      { q: 'Which has better email personalisation?', a: 'Lemlist, marginally. The personalised image and video features are unique and produce noticeable lift on cold email response rates. Reply.io personalisation is solid but less creative.' },
+      { q: 'Which is better for LinkedIn outreach?', a: 'Reply.io, by a clear margin. The LinkedIn integration is more mature and the multi-channel cadence engine handles email plus LinkedIn smoothly. Lemlist LinkedIn features are newer.' },
+      { q: 'Which is cheaper?', a: 'Lemlist, by roughly 40%. Lemlist Smart Reach at $59/user vs Reply Multichannel at $99/user. For cost-sensitive SMB outbound, Lemlist is the practical pick.' },
+      { q: 'Should I use Instantly instead?', a: 'For very high-volume cold email infrastructure (think outbound agencies), Instantly is purpose-built and cheaper. Lemlist and Reply.io target slightly more strategic outbound where personalisation and multi-channel matter more than volume.' },
+    ],
+  },
+
+  'gong-io-vs-outreach': {
+    bottomLine: 'Gong and Outreach are both major sales engagement platforms but solve different jobs. Gong is the revenue intelligence platform: call recording, conversation intelligence, deal warnings, and forecasting from real customer data. Outreach is the sales engagement platform: sequences, email, dialer, and execution workflow for SDRs and AEs. Both run custom enterprise pricing in the $100-200/user/mo range. Pick Gong when revenue intelligence and forecasting are the priority. Pick Outreach when execution velocity (sequences and outreach) is the priority.',
+    whenToPickA: 'You run revenue at a scale where understanding what is happening in calls and deals matters more than execution mechanics. Gong AI summaries, deal warnings, and forecasting are best-in-class. Best for VP Sales and revenue leaders at companies past 50 reps.',
+    whenToPickB: 'You run an SDR or AE team that needs to execute sequences, calls, and follow-ups at high velocity with team management. Outreach engagement features are stronger and more mature. Best for inside sales orgs and revenue teams focused on outbound execution.',
+    faqs: [
+      { q: 'Are Gong and Outreach substitutes?', a: 'They overlap but serve different primary jobs. Gong has added engagement features; Outreach has added intelligence features. At scale, many companies run both - Gong for intelligence, Outreach for execution.' },
+      { q: 'Which has better call intelligence?', a: 'Gong, by a clear margin. The AI summaries, deal warnings, and conversation analytics are best-in-class and what most enterprise sales orgs default to. Outreach Kaia covers similar ground but trails on depth.' },
+      { q: 'How much does each cost?', a: 'Both run custom enterprise pricing typically $100-200/user/mo all-in. Real total depends on seat count, modules, and contract term. Expect to negotiate hard at any size.' },
+      { q: 'Should I look at Salesloft instead?', a: 'Salesloft competes head-on with Outreach and has roughly equivalent feature set with slightly different UX. Most large enterprise sales orgs end up on Outreach or Salesloft, with Gong layered on top for intelligence.' },
+    ],
+  },
+
+  'chorus-vs-modjo': {
+    bottomLine: 'Chorus (now part of ZoomInfo) and Modjo are conversation intelligence tools that compete with Gong at different scales. Chorus is the broader, more enterprise tool with deep ZoomInfo integration, sales coaching, and pipeline intelligence. Modjo is the European-rooted alternative with strong multi-language support, GDPR-friendly architecture, and lower entry pricing. Both run enterprise custom pricing. Modjo entry is around $80/user/mo; Chorus is typically higher. Pick Chorus for ZoomInfo-integrated US-centric enterprise sales. Pick Modjo for European teams or multi-language conversation analysis.',
+    whenToPickA: 'You are a US enterprise already on ZoomInfo and want conversation intelligence integrated into the same data stack. Chorus and ZoomInfo combined produce a strong revenue intelligence picture. Best for established enterprise sales orgs with US-centric customer base.',
+    whenToPickB: 'You are a European company or have multi-language sales calls (English, French, German, Spanish, Italian). Modjo language support and GDPR architecture are genuinely better for European needs. Best for European sales teams and multi-region operations.',
+    faqs: [
+      { q: 'Which has better English conversation analysis?', a: 'Roughly equivalent in 2026 with Chorus marginally ahead on coaching depth. Both produce accurate transcripts, summaries, and deal warnings. The gap on English is small.' },
+      { q: 'How does Modjo handle multi-language?', a: 'Modjo native support covers French, German, Spanish, Italian, Dutch, and Portuguese with quality comparable to English. Chorus multi-language support is more recent and less polished. For European sales orgs, Modjo is the practical pick.' },
+      { q: 'Which is cheaper?', a: 'Modjo, generally. Entry around $80/user/mo vs Chorus often $120-160/user/mo at small scale. Negotiation matters at both - quoted prices rarely match published.' },
+      { q: 'Should I use Gong instead?', a: 'For most US enterprise sales orgs, Gong is still the default leader on conversation intelligence. Chorus is the alternative for ZoomInfo customers; Modjo is the alternative for European teams.' },
+    ],
+  },
+
+  'colossyan-vs-heygen': {
+    bottomLine: 'Colossyan and HeyGen are both AI avatar video tools that target corporate training, learning content, and marketing video. HeyGen is the more polished consumer-and-creator tool with the broadest avatar library, voice clones, and aggressive product velocity. Colossyan is the corporate-focused tool with translation features (auto-dub videos into 70+ languages), video templates for L&D, and team management. HeyGen Creator is $24/mo. Colossyan Starter is $27/mo. Pick HeyGen for the broadest avatar tool. Pick Colossyan for corporate training and multi-language learning content.',
+    whenToPickA: 'You produce avatar videos for marketing, social, or general creator use. HeyGen avatar quality, voice clones, and template library are unmatched in 2026. Best for marketers, creators, and SMBs producing avatar-based content at scale.',
+    whenToPickB: 'You produce corporate training, L&D content, or multi-language internal videos. Colossyan auto-translation into 70+ languages and L&D-focused templates make it the practical corporate pick. Best for L&D teams, internal communications, and global enterprises.',
+    faqs: [
+      { q: 'Which has better avatar quality?', a: 'HeyGen, marginally. The avatar library is larger and the lip-sync feels more natural at the high end. Colossyan avatar quality is solid but the library is smaller.' },
+      { q: 'Which has better translation?', a: 'Colossyan, by a clear margin. The video translation tool produces lip-synced versions of a single video in 70+ languages with the same speaker voice. HeyGen translation is improving but trails Colossyan for L&D-style use.' },
+      { q: 'Should I use Synthesia instead?', a: 'Synthesia is the larger competitor in this space, especially for enterprise corporate training. Colossyan competes head-on with Synthesia; HeyGen targets a broader creator and SMB audience.' },
+      { q: 'Which is cheaper?', a: 'Roughly equivalent at $24-27/mo entry. Higher tiers diverge: HeyGen Business at $89/mo; Colossyan Pro at $87/mo. Pick by feature set rather than price at this tier.' },
+    ],
+  },
+
+  'captions-ai-vs-opus-clip': {
+    bottomLine: 'Captions and Opus Clip target the same job (turn long video into short-form social clips) but at very different angles. Opus Clip is the long-to-short clip generator with auto-detection of viral moments, captions, and reframing for vertical formats. Captions is the broader AI video editor with caption generation, AI dubbing, AI eye contact, and an end-to-end mobile-first creator suite. Opus Clip Pro is $29/mo. Captions Pro is $24/mo. Pick Opus Clip for cutting long content into short clips. Pick Captions for a broader AI-first video editor.',
+    whenToPickA: 'You repurpose long content (podcasts, webinars, YouTube videos) into short-form clips for TikTok, Reels, and Shorts. Opus Clip is purpose-built for that flow and the viral-moment detection is unique. Best for podcasters, YouTubers, and content marketers repurposing long content.',
+    whenToPickB: 'You produce short-form video and want a single AI-first editor: captions, AI dub, eye contact, virtual camera, and templates. Captions feature breadth covers the full creator workflow. Best for short-form creators, social media managers, and indie content creators.',
+    faqs: [
+      { q: 'Which has better viral-moment detection?', a: 'Opus Clip, clearly. The ClipAnything feature scores moments by virality signal and produces ready-to-post clips. Captions has clip generation but is not specialised for viral-moment scoring.' },
+      { q: 'Which has better captions?', a: 'Captions, marginally, by name and product focus. The caption generation is highly accurate, the styles are creator-friendly, and word-level animation is built in. Opus Clip captions are also strong but feel more standard.' },
+      { q: 'Which is cheaper?', a: 'Captions, slightly. Captions Pro at $24/mo vs Opus Clip Pro at $29/mo. For pure caption work, Captions is the cheaper specialist.' },
+      { q: 'Should I use both?', a: 'Some creators do. Opus Clip for repurposing long content into clips; Captions for editing those clips with stylised captions and AI features. Combined cost around $53/mo.' },
+    ],
+  },
+
+  'klap-vs-opus-clip': {
+    bottomLine: 'Klap and Opus Clip both turn long content into short clips with AI. Opus Clip is the more established tool with viral-moment detection (ClipAnything), caption generation, and broader creator features. Klap is the simpler, lower-priced alternative with auto-clip generation and reframing optimised for TikTok and Reels. Opus Clip Pro is $29/mo. Klap Pro is $29/mo. Pick Opus Clip for the more polished tool with the strongest viral-detection feature. Pick Klap when budget matters and you want a simpler clip generator.',
+    whenToPickA: 'You want the most polished long-to-short clip generator with the strongest viral-moment detection and broadest caption controls. Opus Clip is the leader in 2026 by feature depth and brand. Best for podcasters and creators serious about clip output quality.',
+    whenToPickB: 'You want a simpler clip generator at the same price with cleaner UX and faster export. Klap workflow is faster end to end and the auto-clip output is competitive. Best for creators producing high volume where speed matters.',
+    faqs: [
+      { q: 'Which has better viral detection?', a: 'Opus Clip, by a clear margin. The ClipAnything feature scores moments by virality signal across the source video. Klap detection is solid but less specialised.' },
+      { q: 'How do export speeds compare?', a: 'Klap, marginally faster. The product is more focused which translates to faster batch export. Opus Clip has more options which slows the export pipeline.' },
+      { q: 'Which has better captions?', a: 'Roughly equivalent in 2026. Both ship word-level animated captions with style controls. Caption quality is good in both tools.' },
+      { q: 'Should I use Captions instead?', a: 'For broader AI video editing (dub, eye contact, virtual camera), Captions is the better pick. For clip-specific workflows, Opus Clip and Klap remain the leaders.' },
+    ],
+  },
+
+  'podcastle-vs-descript': {
+    bottomLine: 'Podcastle and Descript both target podcasters and content creators but with different scopes. Descript is the broader text-based audio and video editor with transcription, multi-track editing, AI voice clone (Overdub), screen recording, and a wide creator workflow. Podcastle is the focused remote podcast recording tool with multi-track studio recording, AI noise reduction, and royalty-free music library. Descript Creator is $19/mo. Podcastle Storyteller is $14.99/mo. Pick Descript for an end-to-end editor that handles podcast and video. Pick Podcastle for clean remote recording with podcast-specific defaults.',
+    whenToPickA: 'You produce podcasts plus video and want one tool that handles both with text-based editing, AI features, and screen recording. Descript breadth is unmatched for solo creators and small teams producing multi-format content. Best for indie creators producing podcast plus YouTube plus Twitter clips.',
+    whenToPickB: 'You record remote interview podcasts and want a clean, focused tool optimised for that workflow. Podcastle multi-track recording, royalty-free music library, and AI noise reduction make it a clean podcast studio. Best for podcast hosts and producers focused specifically on podcast workflow.',
+    faqs: [
+      { q: 'Which has better remote recording?', a: 'Podcastle, marginally. The remote recording UX is purpose-built and the local-record-then-upload model produces clean per-speaker audio. Descript remote recording also works but feels less specialised.' },
+      { q: 'Which has better editing?', a: 'Descript, by a clear margin. The text-based editor (edit transcript, audio cuts) is the strongest in the category and handles complex multi-track podcast plus video projects. Podcastle editing is fine for simple cases.' },
+      { q: 'Should I use Riverside instead?', a: 'Riverside is the strongest competitor to Podcastle for remote recording, with arguably better video quality. Descript and Riverside often pair well (record in Riverside, edit in Descript).' },
+      { q: 'Which has better transcription?', a: 'Roughly equivalent in 2026. Both produce accurate transcripts with speaker identification and timestamps. Descript transcript-driven editing makes the transcript more central to the workflow.' },
+    ],
+  },
+
+  'supernormal-vs-fathom': {
+    bottomLine: 'Supernormal and Fathom both target meeting note automation but at different angles. Fathom is the free meeting recorder and AI summariser used by individuals and small teams - generous free tier, clean Zoom and Google Meet integration, and CRM-bound action items. Supernormal is the more team-positioned tool with shared workspaces, custom note templates, and agenda-driven structure. Fathom Free is genuinely useful; Premium is $19/user/mo. Supernormal Pro is $18/user/mo. Pick Fathom for individual or small-team meeting notes with a strong free tier. Pick Supernormal for team-wide meeting workflow with custom templates.',
+    whenToPickA: 'You want clean meeting recording and AI summaries for individual or small-team use with a generous free tier. Fathom Free covers most personal use and the Premium tier is the lowest-friction pick for SMBs. Best for solo professionals, small teams, and any role spending most time in meetings.',
+    whenToPickB: 'You run team meetings with structured templates (1:1s, sales calls, customer interviews) and want the workflow standardised across the team. Supernormal templates and team workspace are the differentiator. Best for teams with codified meeting processes.',
+    faqs: [
+      { q: 'Is Fathom really free forever?', a: 'Yes, the free tier is unlimited recordings and unlimited AI summaries with no time cap. Premium adds team features, custom templates, and CRM integrations. The free tier is unusual in this category and is what drives adoption.' },
+      { q: 'Which has better summaries?', a: 'Roughly equivalent in 2026. Both produce accurate summaries, action items, and chapter markers. Supernormal feels slightly more structured; Fathom feels slightly more conversational. Pick by template needs.' },
+      { q: 'Which integrates better with Salesforce or HubSpot?', a: 'Fathom, marginally. The CRM integration is purpose-built and pushes meeting notes and action items into the CRM directly. Supernormal CRM integration exists but is less native.' },
+      { q: 'Should I use Otter or Fireflies?', a: 'Otter is broader (note-taking, live captions, summaries) but feels older. Fireflies is comparable to Fathom in scope. Most users in 2026 default to Fathom for the free tier and Otter for live caption workflows.' },
+    ],
+  },
+
+  'grain-vs-read-ai': {
+    bottomLine: 'Grain and Read AI both produce meeting intelligence but with different focuses. Grain is the polished meeting notes and clip tool with a strong UX for sales teams - record meetings, auto-generate clips, share specific moments, and sync to CRM. Read AI is the broader meeting intelligence platform that scores meetings on engagement, participation, and sentiment, plus produces summaries and action items. Grain Business is $39/user/mo. Read AI Pro is $19.99/user/mo. Pick Grain for sales-focused meeting clips and CRM integration. Pick Read AI for cross-meeting analytics and engagement scoring.',
+    whenToPickA: 'You run a sales team and meeting clips, action items, and CRM-linked notes are the core. Grain clip-sharing and Salesforce/HubSpot sync make it natural for sales workflows. Best for SDR, AE, and customer-success teams.',
+    whenToPickB: 'You want analytics across all meetings: how engaged were participants, what topics dominated, how do certain meeting types compare. Read AI engagement scoring and meeting analytics are unique. Best for ops teams, executives, and anyone managing meeting load across an org.',
+    faqs: [
+      { q: 'Which has better summaries?', a: 'Roughly equivalent in 2026. Both produce accurate summaries with action items. Read AI summaries include engagement signals; Grain summaries are more sales-flow focused.' },
+      { q: 'Which has better clip generation?', a: 'Grain, by a clear margin. The clip tool is purpose-built for sales coaching and customer-quote sharing. Read AI clips are basic by comparison.' },
+      { q: 'Which is cheaper?', a: 'Read AI, by roughly half. Read AI Pro at $19.99/user vs Grain Business at $39/user. For analytics-focused use, Read AI is meaningfully cheaper.' },
+      { q: 'Should I use Otter or Fathom instead?', a: 'For free-tier or solo use, Fathom remains strongest. Grain and Read AI both target team-level deployments where the workflow integration justifies the higher cost.' },
+    ],
+  },
+
+  'notta-vs-tactiq': {
+    bottomLine: 'Notta and Tactiq both target real-time meeting transcription and notes with different positioning. Notta is the broader transcription platform with multi-language support (104 languages), audio file transcription, voice notes, and a robust mobile app. Tactiq is the Chrome-extension-driven Google Meet, Zoom, and Teams transcription tool with focus on AI-driven follow-ups and transcript export. Notta Pro is $14.99/mo. Tactiq Pro is $20/mo. Pick Notta for broad multi-language transcription with mobile and web flow. Pick Tactiq for browser-based meeting transcription with AI follow-ups.',
+    whenToPickA: 'You need transcription beyond just video meetings - audio files, voice notes, recorded calls, multi-language support. Notta breadth and 104-language coverage make it the broader pick. Best for multi-region teams, journalists, and anyone with diverse transcription needs.',
+    whenToPickB: 'Your transcription is meeting-focused (Google Meet, Zoom, Teams) and you want a clean Chrome extension that works without setup. Tactiq lower friction and AI-driven follow-up emails make meeting workflows faster. Best for sales teams and individuals living in browser-based meetings.',
+    faqs: [
+      { q: 'Which has better transcription accuracy?', a: 'Roughly equivalent in 2026 for English. Notta multi-language support is broader and more accurate on non-English. For English-only meeting transcripts, both are fine.' },
+      { q: 'Which is cheaper?', a: 'Notta, marginally. Notta Pro at $14.99/mo vs Tactiq Pro at $20/mo. Both have free tiers; both are usable for casual users.' },
+      { q: 'Does either integrate with CRM?', a: 'Tactiq, marginally better. The AI follow-up email and transcript export integrations work well with Salesforce, HubSpot, and Slack. Notta integrations are growing but newer.' },
+      { q: 'Should I use Otter or Fireflies?', a: 'Otter is the larger competitor with enterprise polish and live captions. Fireflies competes head-on with broader workflow. Notta and Tactiq target slightly different niches (multi-language and browser-extension respectively).' },
+    ],
+  },
+
+  'seekout-vs-eightfold': {
+    bottomLine: 'SeekOut and Eightfold both target AI-driven talent acquisition but at different scales. Eightfold is the comprehensive AI talent intelligence platform with deep learning models for matching, internal mobility, and DEI analytics - used by large enterprises managing global talent pools. SeekOut is the AI-powered sourcing and recruitment tool focused on diverse candidate sourcing across the open web with strong signal-driven filters. Both run enterprise custom pricing typically $10K-$100K+ annually. Pick Eightfold for enterprise talent intelligence at scale. Pick SeekOut for AI-driven candidate sourcing with diverse-candidate focus.',
+    whenToPickA: 'You are an enterprise unifying talent acquisition, internal mobility, and workforce planning under one AI platform. Eightfold breadth and deep-learning matching are unmatched at scale. Best for Fortune 500 talent ops and global enterprises.',
+    whenToPickB: 'Your primary need is AI-driven candidate sourcing with diverse-candidate filters and signal-rich filtering across the open web. SeekOut sourcing is purpose-built and the diversity-recruitment workflow is genuinely differentiated. Best for in-house recruiting teams and agencies focused on hard-to-fill roles.',
+    faqs: [
+      { q: 'Are these substitutes or complements?', a: 'Increasingly substitutes at the enterprise level since Eightfold has expanded into sourcing. For primarily-sourcing use, SeekOut remains stronger. For talent-intelligence breadth, Eightfold wins.' },
+      { q: 'How does pricing compare?', a: 'Both run enterprise custom pricing. Eightfold tends to be more expensive at the same employee count because the platform is broader. SeekOut focused scope often translates to lower TCO for sourcing-heavy use.' },
+      { q: 'Which has better diversity sourcing?', a: 'SeekOut, by a clear margin. The diversity filters across open-web profiles are purpose-built and produce noticeably more diverse candidate slates. Eightfold has diversity analytics but the sourcing surface is less specialised.' },
+      { q: 'Should I look at Greenhouse or Lever instead?', a: 'Those are ATS (applicant tracking) tools - different category. SeekOut and Eightfold are sourcing and intelligence; ATS handles the pipeline once candidates apply. Most enterprises run both an ATS and one of these intelligence tools.' },
+    ],
+  },
+
+  'talentlms-vs-absorb-lms': {
+    bottomLine: 'TalentLMS and Absorb LMS are both well-rated learning management systems but target different organisation sizes. TalentLMS is the SMB-friendly LMS with a clean UX, generous free tier (up to 5 users), and predictable per-user pricing - widely adopted by SMB and mid-market. Absorb LMS is the enterprise-positioned platform with deep customisation, branded learner experience, advanced analytics, and Salesforce-grade integrations. TalentLMS Starter is $89/mo (40 users). Absorb LMS pricing is custom and typically starts $20K+/year. Pick TalentLMS for SMB with predictable per-user cost. Pick Absorb LMS for enterprise with brand customisation and deep analytics.',
+    whenToPickA: 'You are SMB or mid-market deploying training without an enterprise budget. TalentLMS UX is genuinely simple, the free tier is usable, and pricing scales linearly. Best for SMB compliance training, customer education, and partner enablement.',
+    whenToPickB: 'You are enterprise needing white-label brand experience, advanced reporting, deep customisation, and integrations with Salesforce and HRIS. Absorb LMS is the premium pick for organisations where LMS is core. Best for enterprise L&D and customer-education platforms.',
+    faqs: [
+      { q: 'How does pricing compare at 100 users?', a: 'TalentLMS at 100 users is around $159/mo ($1,908/year). Absorb at 100 users is custom but typically $15K-$30K/year. The 8-15x cost differential reflects positioning.' },
+      { q: 'Which has better customisation?', a: 'Absorb, by a clear margin. White-label branding, custom workflows, and deep integration depth are first-class. TalentLMS customisation covers basic branding and themes.' },
+      { q: 'Which is easier to roll out?', a: 'TalentLMS, decisively. The product is simpler and most SMB deployments go live within a week. Absorb implementation is more involved (typically 2-3 months) because the platform is broader.' },
+      { q: 'Should I look at Docebo or LearnUpon instead?', a: 'Docebo competes head-on with Absorb at enterprise scale with strong AI features. LearnUpon is comparable to TalentLMS at slightly different price point. Pick by team size and complexity needs.' },
+    ],
+  },
+
+  'mentimeter-vs-genially': {
+    bottomLine: 'Mentimeter and Genially are both interactive content creation tools but target different jobs. Mentimeter is the live-audience polling and Q&A tool used in classrooms, conferences, and team meetings - real-time votes, word clouds, quizzes, all visible to the audience. Genially is the broader interactive content platform: presentations, infographics, training materials, and games with hover and click interactions. Mentimeter Basic is $11.99/user/mo. Genially Basic is $7.49/user/mo. Pick Mentimeter for live audience interaction. Pick Genially for interactive content creation more generally.',
+    whenToPickA: 'You present to live audiences and want real-time polling, Q&A, word clouds, and quizzes. Mentimeter is the category leader for live-audience interaction and the integration with PowerPoint and Google Slides is clean. Best for trainers, teachers, conference speakers, and team facilitators.',
+    whenToPickB: 'You create interactive content meant to be viewed self-paced (training, infographics, microlearning, games). Genially focus is on rich interactivity within a static content piece. Best for L&D content, marketing infographics, and educational creators.',
+    faqs: [
+      { q: 'Are these substitutes?', a: 'Mostly not. Mentimeter is for live interaction during a presentation; Genially is for self-paced interactive content. Some overlap on quizzes and polls, but the primary use cases differ.' },
+      { q: 'Which is cheaper?', a: 'Genially, modestly. Genially Basic at $7.49/user vs Mentimeter Basic at $11.99/user. Both are reasonably priced for SMB use.' },
+      { q: 'Which has better engagement metrics?', a: 'Mentimeter for live engagement metrics (vote counts, response patterns in real time). Genially for view tracking on self-paced content. Pick by what you measure.' },
+      { q: 'Should I use Slido instead?', a: 'Slido competes head-on with Mentimeter and is owned by Cisco (deeper Webex integration). For Webex-heavy orgs, Slido is the natural pick. For broader use, Mentimeter remains the popular default.' },
+    ],
+  },
+
+  'cal-com-vs-savvycal': {
+    bottomLine: 'Cal.com and SavvyCal are both modern Calendly alternatives at different angles. Cal.com is the open-source, self-hostable scheduling platform with broad routing logic, team scheduling, and a generous free tier. SavvyCal is the polished, premium-feeling tool focused on best-in-class scheduling experience for the booker (overlay calendars, ranked times, no-friction UX). Cal.com Teams is $15/user/mo. SavvyCal Premium is $12/user/mo. Pick Cal.com for open-source flexibility, self-hosting, or generous free tier. Pick SavvyCal when scheduling experience polish is the priority.',
+    whenToPickA: 'You want open-source scheduling that you can self-host, or you value the generous free tier. Cal.com routing logic, team scheduling, and developer-friendly architecture are unique. Best for technical teams, self-hosting requirements, and indie hackers building on top.',
+    whenToPickB: 'You schedule with high-value people (executives, customers, candidates) and want the best booker experience available. SavvyCal overlay-calendar, ranked-times, and presented-options UX are noticeably better than Calendly. Best for sales, executive assistants, and recruiters.',
+    faqs: [
+      { q: 'Is Cal.com really free?', a: 'The Cloud Free tier covers individual use with most features. Self-hosted is fully free with no feature limits. SavvyCal does not have a similar free tier.' },
+      { q: 'Which has better booker experience?', a: 'SavvyCal, by a clear margin. The overlay-calendar feature lets the booker see their own calendar alongside yours, ranked times de-emphasises the choice, and the UX is consistently rated as the best in the category.' },
+      { q: 'Should I just use Calendly?', a: 'Calendly remains the broad default and is fine for most users. Cal.com is the open-source alternative; SavvyCal is the premium polish alternative. Pick based on whether self-hosting or booker experience is the priority.' },
+      { q: 'Which has better team features?', a: 'Cal.com, by a clear margin. Round-robin, collective scheduling, and routing form workflows are more developed. SavvyCal team features are growing but less mature.' },
+    ],
+  },
+
+  'clockwise-vs-reclaim-ai': {
+    bottomLine: 'Clockwise and Reclaim AI both auto-manage your calendar with AI but at different angles. Clockwise focuses on creating focus time across teams by intelligently shuffling meetings to maximise contiguous deep-work blocks. Reclaim AI is the broader smart-scheduling tool that auto-blocks time for tasks, habits, 1:1s, and meetings on top of intelligent scheduling. Clockwise Teams is $9.75/user/mo. Reclaim AI Lite is free; Pro is $10/user/mo. Pick Clockwise for team-wide focus-time optimisation. Pick Reclaim AI for personal smart scheduling and task time-blocking.',
+    whenToPickA: 'You manage a team of knowledge workers and want to maximise team-wide focus time by intelligently shuffling meetings. Clockwise team-coordination is unmatched and the focus-time analytics are useful for managers. Best for engineering teams, design teams, and any group where deep work is critical.',
+    whenToPickB: 'You want personal smart scheduling that auto-blocks tasks, habits, and 1:1s on top of meetings, plus intelligent rescheduling when conflicts hit. Reclaim feature breadth covers more of the personal calendar workflow. Best for individuals managing complex personal calendars.',
+    faqs: [
+      { q: 'Are these substitutes?', a: 'They overlap but solve different primary jobs. Clockwise is team focus-time optimisation. Reclaim AI is personal smart scheduling. Some users run both - Clockwise at the team level, Reclaim AI for personal task blocking.' },
+      { q: 'Which has the better free tier?', a: 'Reclaim AI, clearly. Reclaim Lite is free with smart-scheduling and task-blocking. Clockwise has a free tier but caps focus-time features.' },
+      { q: 'Which has better Google Calendar integration?', a: 'Roughly equivalent in 2026. Both work natively with Google Calendar and Outlook. Reclaim integration with task tools (Asana, Linear, Todoist) is broader.' },
+      { q: 'Should I use Motion instead?', a: 'Motion is comparable to Reclaim AI but more aggressive on full task management plus calendar. For personal smart scheduling at lower cost, Reclaim wins; for full all-in-one task and calendar, Motion competes.' },
+    ],
+  },
+
+  'sunsama-vs-motion': {
+    bottomLine: 'Sunsama and Motion both target daily planning but with very different philosophies. Sunsama is the deliberate, mindful daily planner that slows you down to choose what to do each day - integrate tasks from any tool, plan deliberately, ritualise the workflow. Motion is the AI-aggressive auto-scheduler that puts tasks on your calendar based on priority and deadline without you choosing each block. Sunsama is $20/mo. Motion is $34/mo. Pick Sunsama for thoughtful, deliberate daily planning. Pick Motion when you want AI to schedule everything automatically.',
+    whenToPickA: 'You want a daily planning ritual that helps you choose deliberately what to do today rather than auto-scheduling everything. Sunsama design is intentionally slow and reflective. Best for knowledge workers who value thoughtful planning over automation.',
+    whenToPickB: 'You want AI to handle calendar blocking entirely - feed in tasks and deadlines, let Motion schedule them automatically, reschedule when conflicts hit. Motion automation is more aggressive than any competitor. Best for high-task-volume professionals who do not want to plan manually.',
+    faqs: [
+      { q: 'Which is more powerful?', a: 'Motion, by automation depth. Auto-scheduling all tasks based on deadline and priority is unique. Sunsama is intentionally less automated because the philosophy is deliberate planning.' },
+      { q: 'Which has better task integration?', a: 'Sunsama, marginally. The integrations with Asana, Linear, Notion, Trello, GitHub, Gmail, and Slack are clean and pull tasks naturally. Motion integrations are growing but less polished.' },
+      { q: 'Which is cheaper?', a: 'Sunsama, by 40%. Sunsama at $20/mo vs Motion at $34/mo. The price gap reflects feature scope.' },
+      { q: 'Should I use Reclaim AI instead?', a: 'For personal smart scheduling at lower cost, Reclaim AI is comparable to Motion at $10/mo. Motion is the premium aggressive automation; Reclaim is the lighter alternative; Sunsama is the deliberate-planning alternative.' },
+    ],
+  },
+
+  'basecamp-vs-notion-ai': {
+    bottomLine: 'Basecamp and Notion solve adjacent project management problems but with very different philosophies. Basecamp is the opinionated all-in-one project tool by 37signals: to-dos, schedules, message boards, and chat in a flat-rate $99/mo team package. Notion is the flexible workspace platform with docs, databases, projects, and wiki, with Notion AI as the $10/user/mo add-on for AI features. Basecamp is $99/mo flat (unlimited users). Notion Plus is $10/user/mo with Notion AI another $10/user/mo. Pick Basecamp for opinionated project workflow at a flat price. Pick Notion for flexible workspace with extensive customisation.',
+    whenToPickA: 'You want a simple, opinionated project tool that works out of the box without configuration. Basecamp 37signals defaults are deliberate, the flat $99/mo price is hard to beat at scale, and the philosophy avoids feature bloat. Best for agencies, consultancies, and SMB teams who want simple project management.',
+    whenToPickB: 'You want a flexible workspace where you build the workflow that fits your team. Notion adapts to nearly any process and the AI features add summarisation, autofill, and Q&A on top. Best for SaaS teams, knowledge-work organisations, and any team where docs and projects intersect.',
+    faqs: [
+      { q: 'Is Basecamp really $99/mo for unlimited users?', a: 'Yes, that is the Pro Unlimited tier. For teams over 10-15 users, the flat-rate pricing is genuinely cheaper than per-seat alternatives. For solo or 2-3 person teams, the flat rate is harder to justify vs free tools.' },
+      { q: 'Which is more flexible?', a: 'Notion, by a wide margin. You build the structure that fits your team. Basecamp is intentionally inflexible because the philosophy is "opinionated defaults remove decision fatigue."' },
+      { q: 'Which has better project tracking?', a: 'Both work for basic project tracking. Notion handles complex multi-database workflows; Basecamp handles simple to-do plus schedules with less mental overhead. Pick by how much complexity you want to manage.' },
+      { q: 'Which is cheaper?', a: 'Basecamp at scale (10+ users), Notion for small teams (1-9 users). At 10 users, Notion Plus + AI costs $200/mo vs Basecamp $99/mo flat. Crossover is around 5-7 users.' },
+    ],
+  },
 }
 
 export function getCompareEnrichment(slug: string): CompareEnrichment | null {
