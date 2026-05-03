@@ -1,6 +1,34 @@
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export default function Footer() {
+  const t = useTranslations('Footer')
+  const year = new Date().getFullYear()
+
+  const discoverLinks = [
+    { href: '/tools', label: t('tools') },
+    { href: '/categories', label: t('categories') },
+    { href: '/top-10', label: t('top10') },
+    { href: '/deals', label: t('deals') },
+    { href: '/tools?filter=free', label: t('freeTools') },
+  ]
+
+  const reviewsLinks = [
+    { href: '/reviews', label: t('reviews') },
+    { href: '/compare', label: t('compare') },
+    { href: '/blog', label: t('blog') },
+    { href: '/submit', label: t('submit') },
+  ]
+
+  const companyLinks = [
+    { href: '/about', label: t('about') },
+    { href: '/methodology', label: t('howWeRank') },
+    { href: '/transparency', label: t('transparency') },
+    { href: '/about#affiliate', label: t('affiliateDisclosure') },
+    { href: '/privacy', label: t('privacyPolicy') },
+    { href: '/contact', label: t('contact') },
+  ]
+
   return (
     <footer className="bg-card border-t border-border mt-16">
       <div className="max-w-7xl mx-auto px-4 md:px-5 py-12">
@@ -27,21 +55,15 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-[13px] text-muted-foreground leading-relaxed">
-              AI & SaaS tools, curated for professionals.
+              {t('tagline')}
             </p>
           </div>
 
           {/* Discover */}
           <div>
-            <h4 className="text-[12px] font-bold uppercase tracking-wider text-foreground mb-3">Discover</h4>
+            <h4 className="text-[12px] font-bold uppercase tracking-wider text-foreground mb-3">{t('discoverHeading')}</h4>
             <ul className="space-y-2">
-              {[
-                { href: '/tools', label: 'All Tools' },
-                { href: '/categories', label: 'Categories' },
-                { href: '/top-10', label: 'Top 10 Lists' },
-                { href: '/deals', label: 'Deals & LTDs' },
-                { href: '/tools?filter=free', label: 'Free Tools' },
-              ].map(l => (
+              {discoverLinks.map(l => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-[13px] text-muted-foreground hover:text-blue-600 transition-colors">
                     {l.label}
@@ -53,14 +75,9 @@ export default function Footer() {
 
           {/* Reviews */}
           <div>
-            <h4 className="text-[12px] font-bold uppercase tracking-wider text-foreground mb-3">Reviews</h4>
+            <h4 className="text-[12px] font-bold uppercase tracking-wider text-foreground mb-3">{t('reviewsHeading')}</h4>
             <ul className="space-y-2">
-              {[
-                { href: '/reviews', label: 'Latest Reviews' },
-                { href: '/compare', label: 'Comparisons' },
-                { href: '/blog', label: 'Blog' },
-                { href: '/submit', label: 'Submit a Tool' },
-              ].map(l => (
+              {reviewsLinks.map(l => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-[13px] text-muted-foreground hover:text-blue-600 transition-colors">
                     {l.label}
@@ -72,16 +89,9 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-[12px] font-bold uppercase tracking-wider text-foreground mb-3">Company</h4>
+            <h4 className="text-[12px] font-bold uppercase tracking-wider text-foreground mb-3">{t('companyHeading')}</h4>
             <ul className="space-y-2">
-              {[
-                { href: '/about', label: 'About' },
-                { href: '/methodology', label: 'How We Rank' },
-                { href: '/transparency', label: 'Transparency' },
-                { href: '/about#affiliate', label: 'Affiliate Disclosure' },
-                { href: '/privacy', label: 'Privacy Policy' },
-                { href: '/contact', label: 'Contact' },
-              ].map(l => (
+              {companyLinks.map(l => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-[13px] text-muted-foreground hover:text-blue-600 transition-colors">
                     {l.label}
@@ -95,10 +105,10 @@ export default function Footer() {
         {/* Disclosure + copyright */}
         <div className="border-t border-border pt-6 space-y-3">
           <p className="text-[12px] text-muted-foreground leading-relaxed max-w-2xl">
-            <span className="font-semibold">Affiliate Disclosure:</span> Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our rankings are never influenced by affiliate relationships.
+            <span className="font-semibold">{t('affiliateDisclosure')}:</span> Some links on this site are affiliate links. We may earn a commission at no extra cost to you. Our rankings are never influenced by affiliate relationships.
           </p>
           <p className="text-[12px] text-muted-foreground">
-            © {new Date().getFullYear()} MytheAi. All rights reserved.
+            {t('copyright', { year })}
           </p>
         </div>
       </div>

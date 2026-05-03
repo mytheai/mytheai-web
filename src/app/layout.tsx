@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
+import { NextIntlClientProvider } from 'next-intl'
+import { getLocale, getMessages } from 'next-intl/server'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -64,22 +66,26 @@ const websiteSchema = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale()
+  const messages = await getMessages()
   return (
-    <html lang="en" className={`${inter.variable} antialiased`} suppressHydrationWarning>
+    <html lang={locale} className={`${inter.variable} antialiased`} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col bg-background text-foreground">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <StickyMobileBar />
-        <Script
-          src="https://plausible.io/js/script.outbound-links.file-downloads.js"
-          data-domain="mytheai.com"
-          strategy="afterInteractive"
-          defer
-        />
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <StickyMobileBar />
+          <Script
+            src="https://plausible.io/js/script.outbound-links.file-downloads.js"
+            data-domain="mytheai.com"
+            strategy="afterInteractive"
+            defer
+          />
+        </NextIntlClientProvider>
       </body>
     </html>
   )

@@ -1,134 +1,57 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 
 const LANGS = [
   { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'zh-CN', label: '中文', flag: '🇨🇳' },
-  { code: 'hi', label: 'हिन्दी', flag: '🇮🇳' },
-  { code: 'es', label: 'Español', flag: '🇪🇸' },
   { code: 'fr', label: 'Français', flag: '🇫🇷' },
 ] as const
 
-const INCLUDED = LANGS.map(l => l.code).join(',')
+const LOCALE_COOKIE = 'NEXT_LOCALE'
 
-declare global {
-  interface Window {
-    google?: {
-      translate?: {
-        TranslateElement: new (
-          opts: { pageLanguage: string; includedLanguages: string; autoDisplay: boolean },
-          el: string
-        ) => unknown
-      }
-    }
-    googleTranslateElementInit?: () => void
-  }
-}
-
-function readCookie(): string {
-  if (typeof document === 'undefined') return 'en'
-  const m = document.cookie.match(/(?:^|; )googtrans=\/en\/([^;]+)/)
-  return m ? decodeURIComponent(m[1]) : 'en'
-}
-
-function writeCookie(code: string) {
+function setLocaleCookie(code: string) {
   const host = window.location.hostname
   const root = host.split('.').slice(-2).join('.')
-  if (code === 'en') {
-    const expire = 'expires=Thu, 01 Jan 1970 00:00:00 GMT'
-    document.cookie = `googtrans=; path=/; ${expire}`
-    document.cookie = `googtrans=; domain=${host}; path=/; ${expire}`
-    document.cookie = `googtrans=; domain=.${root}; path=/; ${expire}`
-    return
-  }
-  const value = `/en/${code}`
-  document.cookie = `googtrans=${value}; path=/`
-  document.cookie = `googtrans=${value}; domain=${host}; path=/`
-  document.cookie = `googtrans=${value}; domain=.${root}; path=/`
+  const oneYear = 60 * 60 * 24 * 365
+  document.cookie = `${LOCALE_COOKIE}=${code}; path=/; max-age=${oneYear}; SameSite=Lax`
+  document.cookie = `${LOCALE_COOKIE}=${code}; domain=.${root}; path=/; max-age=${oneYear}; SameSite=Lax`
 }
 
 export default function LanguagePicker() {
+  const t = useTranslations('Header')
+  const locale = useLocale()
+  const router = useRouter()
+  const [, startTransition] = useTransition()
   const [open, setOpen] = useState(false)
-  const [current, setCurrent] = useState<string>('en')
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    setCurrent(readCookie())
-
-    if (!document.getElementById('gt-script')) {
-      window.googleTranslateElementInit = () => {
-        const T = window.google?.translate?.TranslateElement
-        if (T) {
-          new T(
-            { pageLanguage: 'en', includedLanguages: INCLUDED, autoDisplay: false },
-            'google_translate_element'
-          )
-        }
-      }
-      const s = document.createElement('script')
-      s.id = 'gt-script'
-      s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
-      s.async = true
-      document.body.appendChild(s)
-    }
-
-    // Defensive: remove GT banner iframe + reset body offset whenever they reappear.
-    // CSS rules sometimes lose to Google's inline style on body (top: 40px).
-    function purgeBanner() {
-      document
-        .querySelectorAll<HTMLElement>(
-          'iframe.skiptranslate, iframe.goog-te-banner-frame, .goog-te-banner-frame'
-        )
-        .forEach(el => el.remove())
-      if (document.body.style.top) document.body.style.top = ''
-      if (document.documentElement.style.top) document.documentElement.style.top = ''
-    }
-    const purgeInterval = window.setInterval(purgeBanner, 300)
-    const stopPurge = window.setTimeout(() => window.clearInterval(purgeInterval), 8000)
-
     function onClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
     }
     document.addEventListener('mousedown', onClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', onClickOutside)
-      window.clearInterval(purgeInterval)
-      window.clearTimeout(stopPurge)
-    }
+    return () => document.removeEventListener('mousedown', onClickOutside)
   }, [])
 
   function pick(code: string) {
-    writeCookie(code)
-    setCurrent(code)
     setOpen(false)
-
-    // Switching back to English requires a hard reload: Google Translate
-    // does not restore the original DOM content via combo.value='' alone,
-    // it only translates forward in-place. Reload reads the cleared
-    // googtrans cookie and renders the original EN HTML.
-    if (code === 'en') {
-      window.location.reload()
-      return
-    }
-
-    const combo = document.querySelector<HTMLSelectElement>('select.goog-te-combo')
-    if (combo) {
-      combo.value = code
-      combo.dispatchEvent(new Event('change'))
-      return
-    }
-    window.location.reload()
+    if (code === locale) return
+    setLocaleCookie(code)
+    startTransition(() => {
+      router.refresh()
+    })
   }
 
-  const cur = LANGS.find(l => l.code === current) ?? LANGS[0]
+  const cur = LANGS.find(l => l.code === locale) ?? LANGS[0]
 
   return (
-    <div ref={ref} className="relative notranslate" translate="no">
+    <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(o => !o)}
         className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[13px] font-medium text-muted-foreground hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-        aria-label="Select language"
+        aria-label={t('selectLanguage')}
         aria-haspopup="listbox"
         aria-expanded={open}
       >
@@ -142,10 +65,10 @@ export default function LanguagePicker() {
       {open && (
         <div
           role="listbox"
-          className="absolute right-0 top-full mt-2 w-48 rounded-xl border border-border bg-card shadow-lg overflow-hidden z-50"
+          className="absolute right-0 top-full mt-2 w-44 rounded-xl border border-border bg-card shadow-lg overflow-hidden z-50"
         >
           {LANGS.map(l => {
-            const selected = l.code === current
+            const selected = l.code === locale
             return (
               <button
                 key={l.code}
@@ -166,8 +89,6 @@ export default function LanguagePicker() {
           })}
         </div>
       )}
-
-      <div id="google_translate_element" style={{ display: 'none' }} />
     </div>
   )
 }

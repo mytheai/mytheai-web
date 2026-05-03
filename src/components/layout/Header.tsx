@@ -2,20 +2,22 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import SearchDropdown from '@/components/search/SearchDropdown'
 import LanguagePicker from '@/components/layout/LanguagePicker'
 
-const NAV_LINKS = [
-  { href: '/tools', label: 'Tools' },
-  { href: '/compare', label: 'Compare' },
-  { href: '/top-10', label: 'Top 10' },
-  { href: '/roles', label: 'By Role' },
-  { href: '/blog', label: 'Blog' },
-]
-
 export default function Header() {
+  const t = useTranslations('Header')
   const [menuOpen, setMenuOpen] = useState(false)
   const [dark, setDark] = useState(false)
+
+  const NAV_LINKS = [
+    { href: '/tools', label: t('tools') },
+    { href: '/compare', label: t('compare') },
+    { href: '/top-10', label: t('top10') },
+    { href: '/roles', label: t('byRole') },
+    { href: '/blog', label: t('blog') },
+  ]
 
   useEffect(() => {
     const saved = localStorage.getItem('dm') === '1'
@@ -76,7 +78,7 @@ export default function Header() {
             <button
               onClick={toggleDark}
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-muted-foreground transition-colors"
-              aria-label="Toggle dark mode"
+              aria-label={t('toggleDarkMode')}
             >
               {dark ? (
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -97,14 +99,14 @@ export default function Header() {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M12 2l2.5 8H22l-7 5 2.5 8.5L12 19l-6.5 4.5L8 15l-7-5h7.5z" />
               </svg>
-              Find Your Stack
+              {t('findYourStack')}
             </Link>
 
             {/* Mobile hamburger */}
             <button
               onClick={() => setMenuOpen(o => !o)}
               className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-muted-foreground transition-colors"
-              aria-label="Toggle menu"
+              aria-label={t('toggleMenu')}
             >
               {menuOpen ? (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -147,7 +149,7 @@ export default function Header() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2l2.5 8H22l-7 5 2.5 8.5L12 19l-6.5 4.5L8 15l-7-5h7.5z" />
                 </svg>
-                Find Your Stack
+                {t('findYourStack')}
               </Link>
             </div>
           </nav>

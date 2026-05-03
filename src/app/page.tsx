@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
 import LogoImage from '@/components/ui/LogoImage'
 import { createStaticClient } from '@/lib/supabase'
 import { mockCategories } from '@/data/mock'
@@ -215,12 +216,15 @@ function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, view
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [editorPicks, trending, top10Data, stats, recentlyAdded] = await Promise.all([
+  const [editorPicks, trending, top10Data, stats, recentlyAdded, tHero, tTrust, tSection] = await Promise.all([
     getEditorPicks(),
     getTrending(),
     getTop10Data(),
     getDirectoryStats(),
     getRecentlyAdded(),
+    getTranslations('Hero'),
+    getTranslations('TrustBar'),
+    getTranslations('HomeSections'),
   ])
 
   const rankColors = ['#F59E0B', '#9CA3AF', '#92400E']
@@ -241,8 +245,8 @@ export default async function HomePage() {
             className="text-[34px] sm:text-[44px] md:text-[56px] font-extrabold leading-[1.08] mb-6 text-foreground"
             style={{ letterSpacing: '-0.03em' }}
           >
-            Find the AI Tool<br />
-            <span className="text-blue-600">You Actually Need</span>
+            {tHero('h1Line1')}<br />
+            <span className="text-blue-600">{tHero('h1Line2')}</span>
           </h1>
 
           {/* Search bar - primary CTA. Instant search dropdown (Session 67). */}
@@ -251,19 +255,24 @@ export default async function HomePage() {
           </div>
 
           <p className="text-[14px] text-muted-foreground mb-5">
-            Honest reviews. Real comparisons. No pay-to-rank.
+            {tHero('tagline')}
           </p>
 
           {/* Quick search pills - kept visible for SEO and direct links */}
           <div className="flex flex-wrap justify-center items-center gap-2 text-[12px] text-muted-foreground">
-            <span className="font-medium">Popular:</span>
-            {['ChatGPT alternatives', 'Free AI tools', 'AI for coding', 'Best SEO tools'].map(q => (
+            <span className="font-medium">{tHero('popular')}</span>
+            {[
+              { en: 'ChatGPT alternatives', label: tHero('popularChip1') },
+              { en: 'Free AI tools', label: tHero('popularChip2') },
+              { en: 'AI for coding', label: tHero('popularChip3') },
+              { en: 'Best SEO tools', label: tHero('popularChip4') },
+            ].map(q => (
               <Link
-                key={q}
-                href={`/tools?q=${encodeURIComponent(q)}`}
+                key={q.en}
+                href={`/tools?q=${encodeURIComponent(q.en)}`}
                 className="px-3 py-1 rounded-full border border-border bg-card hover:border-blue-300 hover:text-blue-600 transition-colors"
               >
-                {q}
+                {q.label}
               </Link>
             ))}
           </div>
@@ -275,18 +284,18 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-center gap-6 md:gap-12 text-xs font-medium text-muted-foreground flex-wrap">
           <span className="flex items-center gap-1.5 whitespace-nowrap">
             <span style={{ color: '#10B981' }}>✓</span>
-            <strong className="text-foreground">{stats.tools.toLocaleString()}</strong> tools reviewed
+            {tTrust('toolsReviewed', { count: stats.tools.toLocaleString() })}
           </span>
           <span className="flex items-center gap-1.5 whitespace-nowrap">
             <span style={{ color: '#10B981' }}>✓</span>
-            <strong className="text-foreground">{stats.comparisons.toLocaleString()}</strong> head-to-head comparisons
+            {tTrust('comparisons', { count: stats.comparisons.toLocaleString() })}
           </span>
           <Link href="/transparency" className="flex items-center gap-1.5 whitespace-nowrap hover:text-blue-600 transition-colors">
             <span style={{ color: '#10B981' }}>✓</span>
-            <span className="underline-offset-4 hover:underline">No pay-to-rank</span>
+            <span className="underline-offset-4 hover:underline">{tTrust('noPayToRank')}</span>
           </Link>
           <span className="flex items-center gap-1.5 whitespace-nowrap">
-            <span style={{ color: '#10B981' }}>✓</span> Updated weekly
+            <span style={{ color: '#10B981' }}>✓</span> {tTrust('updatedWeekly')}
           </span>
         </div>
       </div>
