@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import LogoImage from '@/components/ui/LogoImage'
 import ToolScreenshot from '@/components/ui/ToolScreenshot'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import { createClient, createStaticClient } from '@/lib/supabase'
 import ReviewForm from '@/components/reviews/ReviewForm'
 import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
@@ -198,6 +199,7 @@ export default async function ToolPage({
   const scoresValid = isValidScores(tool.scores)
   const scores = scoresValid ? (tool.scores as ToolScores) : null
   const evidence = isValidEvidence(tool.scores_evidence) ? tool.scores_evidence : null
+  const t = await getTranslations('ToolDetail')
 
   // Combined aggregate: editorial baseline (tool.rating, tool.review_count)
   // plus approved user reviews. User-weighted rating ranks higher with more user input.
@@ -318,7 +320,7 @@ export default async function ToolPage({
               </span>
               {tool.editor_pick && (
                 <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#1E40AF]">
-                  Editor's Pick
+                  {(await getTranslations('HomeSections'))('editorTitle')}
                 </span>
               )}
             </div>
@@ -329,11 +331,11 @@ export default async function ToolPage({
                 {tool.review_count.toLocaleString()} reviews
               </span>
               {tool.trending && (
-                <span className="text-[12px] font-semibold text-[#F59E0B]">🔥 Trending</span>
+                <span className="text-[12px] font-semibold text-[#F59E0B]">{t('trending')}</span>
               )}
             </div>
             <p className="text-[12px] text-muted-foreground mt-2">
-              Last verified: {updatedDate}
+              {t('lastUpdated')}: {updatedDate}
             </p>
           </div>
         </div>
@@ -346,7 +348,7 @@ export default async function ToolPage({
             rel="noopener noreferrer sponsored"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[14px] transition-colors"
           >
-            Visit {tool.name} →
+            {t('visit', { name: tool.name })} →
           </a>
           {tool.website_url && (
             <a
@@ -387,11 +389,11 @@ export default async function ToolPage({
             {/* Pros & Cons */}
             {((tool.pros && tool.pros.length > 0) || (tool.cons && tool.cons.length > 0)) && (
               <section>
-                <h2 className="text-[18px] font-bold text-foreground mb-4">Pros & Cons</h2>
+                <h2 className="text-[18px] font-bold text-foreground mb-4">{t('prosAndCons')}</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {tool.pros && tool.pros.length > 0 && (
                     <div className="border border-border rounded-xl p-4 bg-card">
-                      <p className="text-[12px] font-bold uppercase tracking-wide text-[#10B981] mb-3">Pros</p>
+                      <p className="text-[12px] font-bold uppercase tracking-wide text-[#10B981] mb-3">{t('pros')}</p>
                       <ul className="space-y-2">
                         {tool.pros.map((pro, i) => (
                           <li key={i} className="flex items-start gap-2 text-[13px] text-foreground">
@@ -404,7 +406,7 @@ export default async function ToolPage({
                   )}
                   {tool.cons && tool.cons.length > 0 && (
                     <div className="border border-border rounded-xl p-4 bg-card">
-                      <p className="text-[12px] font-bold uppercase tracking-wide text-[#EF4444] mb-3">Cons</p>
+                      <p className="text-[12px] font-bold uppercase tracking-wide text-[#EF4444] mb-3">{t('cons')}</p>
                       <ul className="space-y-2">
                         {tool.cons.map((con, i) => (
                           <li key={i} className="flex items-start gap-2 text-[13px] text-foreground">
@@ -422,7 +424,7 @@ export default async function ToolPage({
             {/* Use Cases */}
             {tool.use_cases && tool.use_cases.length > 0 && (
               <section>
-                <h2 className="text-[18px] font-bold text-foreground mb-3">Best Use Cases</h2>
+                <h2 className="text-[18px] font-bold text-foreground mb-3">{t('bestUseCases')}</h2>
                 <ul className="space-y-2">
                   {tool.use_cases.map((uc, i) => (
                     <li key={i} className="flex items-start gap-2 text-[14px] text-muted-foreground">
@@ -437,7 +439,7 @@ export default async function ToolPage({
             {/* Tags */}
             {tool.tags && tool.tags.length > 0 && (
               <section>
-                <h2 className="text-[18px] font-bold text-foreground mb-3">Categories</h2>
+                <h2 className="text-[18px] font-bold text-foreground mb-3">{t('categories')}</h2>
                 <div className="flex flex-wrap gap-2">
                   {tool.tags.map(tag => (
                     <Link
@@ -454,7 +456,7 @@ export default async function ToolPage({
 
             {/* Screenshot */}
             <section>
-              <h2 className="text-[18px] font-bold text-foreground mb-3">{tool.name} Preview</h2>
+              <h2 className="text-[18px] font-bold text-foreground mb-3">{t('preview', { name: tool.name })}</h2>
               <ToolScreenshot websiteUrl={tool.website_url} name={tool.name} />
               <p className="text-[12px] text-muted-foreground mt-2">
                 Live screenshot of {tool.name} homepage. {tool.website_url && (
@@ -565,7 +567,7 @@ export default async function ToolPage({
               {relatedCompares.length > 0 && (
                 <div className="p-5 rounded-xl border border-border bg-card">
                   <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-3">
-                    Compared with ({relatedCompares.length})
+                    {t('comparedWith', { name: tool.name })} ({relatedCompares.length})
                   </p>
                   <ul className="space-y-2">
                     {relatedCompares.map(c => {
@@ -585,7 +587,7 @@ export default async function ToolPage({
               {relatedTop10.length > 0 && (
                 <div className="p-5 rounded-xl border border-border bg-card">
                   <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-3">
-                    Ranked in ({relatedTop10.length})
+                    {t('rankedIn')} ({relatedTop10.length})
                   </p>
                   <ul className="space-y-2">
                     {relatedTop10.map(l => (
