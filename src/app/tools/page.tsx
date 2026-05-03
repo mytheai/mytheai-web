@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 import ToolCard from '@/components/tools/ToolCard'
 import SearchFilterBar from '@/components/tools/SearchFilterBar'
 import { createClient } from '@/lib/supabase'
@@ -89,20 +90,26 @@ export default async function ToolsPage({
 }) {
   const { category, pricing, q, sort, page: pageParam } = await searchParams
   const page = Math.max(1, parseInt(pageParam ?? '1') || 1)
-  const { tools, total } = await getTools(category, pricing, q, sort, page)
+  const [{ tools, total }, t] = await Promise.all([
+    getTools(category, pricing, q, sort, page),
+    getTranslations('ToolsPage'),
+  ])
   const totalPages = Math.ceil(total / PAGE_SIZE)
   const filterParams = { category, pricing, q, sort }
+  const totalDisplay = total.toLocaleString()
+  const from = total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1
+  const to = Math.min(page * PAGE_SIZE, total)
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Directory</p>
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">{t('eyebrow')}</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-2">
-          All AI & SaaS Tools
+          {t('title')}
         </h1>
         <p className="text-[15px] text-muted-foreground">
-          500+ tools reviewed, compared, and ranked. Filter by category, pricing, or use case.
+          {t('intro', { count: totalDisplay })}
         </p>
       </div>
 
@@ -112,7 +119,7 @@ export default async function ToolsPage({
           showCategory
           showPricing
           showSort
-          searchPlaceholder="Search 480+ AI tools..."
+          searchPlaceholder={t('searchPlaceholder', { count: totalDisplay })}
         />
       </Suspense>
 
@@ -124,16 +131,16 @@ export default async function ToolsPage({
         </div>
       ) : (
         <div className="py-20 text-center">
-          <p className="text-muted-foreground text-[15px]">No tools found for this filter.</p>
-          <a href="/tools" className="mt-3 inline-block text-blue-600 text-[14px] hover:underline">Clear filters</a>
+          <p className="text-muted-foreground text-[15px]">{t('noResults')}</p>
+          <a href="/tools" className="mt-3 inline-block text-blue-600 text-[14px] hover:underline">{t('clearFilters')}</a>
         </div>
       )}
 
       <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-[13px] text-muted-foreground">
-          Showing {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, total)} of {total} tool{total !== 1 ? 's' : ''}
-          {q ? ` for "${q}"` : ''}
-          {category ? ` in ${category}` : ''}
+          {t('showing', { from, to, total: totalDisplay })}
+          {q ? ` ${t('showingFor', { q })}` : ''}
+          {category ? ` ${t('showingIn', { category })}` : ''}
         </p>
 
         {totalPages > 1 && (
@@ -143,23 +150,23 @@ export default async function ToolsPage({
                 href={buildPageUrl(filterParams, page - 1)}
                 className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground hover:border-blue-300 hover:text-blue-600 transition-colors"
               >
-                ← Previous
+                {t('previous')}
               </Link>
             ) : (
-              <span className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground opacity-40 cursor-not-allowed">← Previous</span>
+              <span className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground opacity-40 cursor-not-allowed">{t('previous')}</span>
             )}
             <span className="text-[13px] text-muted-foreground px-2">
-              Page {page} of {totalPages}
+              {t('pageOfPages', { page, total: totalPages })}
             </span>
             {page < totalPages ? (
               <Link
                 href={buildPageUrl(filterParams, page + 1)}
                 className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground hover:border-blue-300 hover:text-blue-600 transition-colors"
               >
-                Next →
+                {t('next')}
               </Link>
             ) : (
-              <span className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground opacity-40 cursor-not-allowed">Next →</span>
+              <span className="px-3 py-1.5 rounded-lg border border-border text-[13px] font-medium text-muted-foreground opacity-40 cursor-not-allowed">{t('next')}</span>
             )}
           </div>
         )}

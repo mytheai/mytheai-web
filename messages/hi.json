@@ -108,6 +108,20 @@
     "alreadySubscribed": "आप पहले से सब्सक्राइब हैं।",
     "invalidEmail": "कृपया एक मान्य ईमेल दर्ज करें।"
   },
+  "ToolsPage": {
+    "eyebrow": "डायरेक्टरी",
+    "title": "सभी AI और SaaS टूल्स",
+    "intro": "{count}+ टूल्स की समीक्षा, तुलना और रैंकिंग। श्रेणी, मूल्य या उपयोग के अनुसार फ़िल्टर करें।",
+    "searchPlaceholder": "{count}+ AI टूल्स में खोजें…",
+    "noResults": "इस फ़िल्टर के लिए कोई टूल नहीं मिला।",
+    "clearFilters": "फ़िल्टर साफ़ करें",
+    "showing": "{total} में से {from}-{to} टूल्स दिखा रहे हैं",
+    "showingFor": "\"{q}\" के लिए",
+    "showingIn": "{category} में",
+    "previous": "← पिछला",
+    "next": "अगला →",
+    "pageOfPages": "पृष्ठ {page} / {total}"
+  },
   "Roles": {
     "developer": "डेवलपर",
     "developerDesc": "कोडिंग और AI एजेंट",

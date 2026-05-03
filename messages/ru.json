@@ -108,6 +108,20 @@
     "alreadySubscribed": "Вы уже подписаны.",
     "invalidEmail": "Введите корректный email."
   },
+  "ToolsPage": {
+    "eyebrow": "Каталог",
+    "title": "Все ИИ и SaaS инструменты",
+    "intro": "{count}+ инструментов с обзорами, сравнениями и рейтингами. Фильтр по категории, цене или сценарию.",
+    "searchPlaceholder": "Поиск среди {count}+ ИИ-инструментов...",
+    "noResults": "Инструменты по этому фильтру не найдены.",
+    "clearFilters": "Сбросить фильтры",
+    "showing": "Показано {from}-{to} из {total} инструментов",
+    "showingFor": "по запросу «{q}»",
+    "showingIn": "в категории {category}",
+    "previous": "← Назад",
+    "next": "Далее →",
+    "pageOfPages": "Страница {page} из {total}"
+  },
   "Roles": {
     "developer": "Разработчик",
     "developerDesc": "Код и ИИ-агенты",

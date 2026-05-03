@@ -108,6 +108,20 @@
     "alreadySubscribed": "أنت مشترك بالفعل.",
     "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح."
   },
+  "ToolsPage": {
+    "eyebrow": "الدليل",
+    "title": "كل أدوات الذكاء الاصطناعي و SaaS",
+    "intro": "{count}+ أداة تمت مراجعتها ومقارنتها وتصنيفها. صفّ حسب الفئة أو السعر أو حالة الاستخدام.",
+    "searchPlaceholder": "ابحث في {count}+ أداة ذكاء اصطناعي...",
+    "noResults": "لا توجد أدوات لهذا الفلتر.",
+    "clearFilters": "إعادة ضبط الفلاتر",
+    "showing": "عرض {from}-{to} من أصل {total} أداة",
+    "showingFor": "للبحث عن \"{q}\"",
+    "showingIn": "في {category}",
+    "previous": "→ السابق",
+    "next": "التالي ←",
+    "pageOfPages": "صفحة {page} من {total}"
+  },
   "Roles": {
     "developer": "مطور",
     "developerDesc": "البرمجة ووكلاء الذكاء الاصطناعي",

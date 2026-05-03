@@ -108,6 +108,20 @@
     "alreadySubscribed": "You're already subscribed.",
     "invalidEmail": "Please enter a valid email."
   },
+  "ToolsPage": {
+    "eyebrow": "Directory",
+    "title": "All AI & SaaS Tools",
+    "intro": "{count}+ tools reviewed, compared, and ranked. Filter by category, pricing, or use case.",
+    "searchPlaceholder": "Search {count}+ AI tools...",
+    "noResults": "No tools found for this filter.",
+    "clearFilters": "Clear filters",
+    "showing": "Showing {from}-{to} of {total} tools",
+    "showingFor": "for \"{q}\"",
+    "showingIn": "in {category}",
+    "previous": "← Previous",
+    "next": "Next →",
+    "pageOfPages": "Page {page} of {total}"
+  },
   "Roles": {
     "developer": "Developer",
     "developerDesc": "Coding & AI agents",

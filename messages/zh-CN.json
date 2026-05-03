@@ -108,6 +108,20 @@
     "alreadySubscribed": "你已订阅。",
     "invalidEmail": "请输入有效的邮箱地址。"
   },
+  "ToolsPage": {
+    "eyebrow": "目录",
+    "title": "所有 AI 与 SaaS 工具",
+    "intro": "{count}+ 款工具已评测、对比和排名。按分类、价格或使用场景筛选。",
+    "searchPlaceholder": "搜索 {count}+ 款 AI 工具……",
+    "noResults": "没有匹配此筛选的工具。",
+    "clearFilters": "清除筛选",
+    "showing": "显示 {from}-{to} 共 {total} 款工具",
+    "showingFor": "搜索 “{q}”",
+    "showingIn": "在 {category} 分类",
+    "previous": "← 上一页",
+    "next": "下一页 →",
+    "pageOfPages": "第 {page} 页,共 {total} 页"
+  },
   "Roles": {
     "developer": "开发者",
     "developerDesc": "编程与 AI 代理",

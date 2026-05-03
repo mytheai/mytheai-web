@@ -108,6 +108,20 @@
     "alreadySubscribed": "Você já está inscrito.",
     "invalidEmail": "Por favor, insira um email válido."
   },
+  "ToolsPage": {
+    "eyebrow": "Diretório",
+    "title": "Todas as ferramentas IA e SaaS",
+    "intro": "{count}+ ferramentas analisadas, comparadas e classificadas. Filtre por categoria, preço ou caso de uso.",
+    "searchPlaceholder": "Pesquisar {count}+ ferramentas IA...",
+    "noResults": "Nenhuma ferramenta encontrada para este filtro.",
+    "clearFilters": "Limpar filtros",
+    "showing": "Exibindo {from}-{to} de {total} ferramentas",
+    "showingFor": "para \"{q}\"",
+    "showingIn": "em {category}",
+    "previous": "← Anterior",
+    "next": "Próximo →",
+    "pageOfPages": "Página {page} de {total}"
+  },
   "Roles": {
     "developer": "Desenvolvedor",
     "developerDesc": "Código e agentes IA",
