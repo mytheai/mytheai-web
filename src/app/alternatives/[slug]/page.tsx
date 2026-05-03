@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import LogoImage from '@/components/ui/LogoImage'
 import AuthorBio from '@/components/layout/AuthorBio'
+import { getAuthorJsonLd } from '@/data/authors'
 import { createStaticClient } from '@/lib/supabase'
 import type { Metadata } from 'next'
 
@@ -158,17 +159,28 @@ export default async function AlternativesPage({ params }: { params: Promise<{ s
   const year = new Date().getFullYear()
   const primaryTag = tool.tags?.[0] ?? 'AI'
 
-  const itemListJsonLd = {
+  const collectionPageJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'ItemList',
+    '@type': 'CollectionPage',
     name: `${tool.name} Alternatives ${year}`,
-    numberOfItems: alternatives.length,
-    itemListElement: alternatives.map((a, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: a.name,
-      url: `https://mytheai.com/tools/${a.slug}`,
-    })),
+    description: `${alternatives.length} top competitors to ${tool.name} in ${year}, ranked by rating and adoption.`,
+    url: `https://mytheai.com/alternatives/${tool.slug}`,
+    inLanguage: 'en',
+    isPartOf: { '@type': 'WebSite', name: 'MytheAi', url: 'https://mytheai.com' },
+    author: getAuthorJsonLd(),
+    publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+    dateModified: new Date().toISOString().slice(0, 10),
+    mainEntity: {
+      '@type': 'ItemList',
+      name: `${tool.name} Alternatives ${year}`,
+      numberOfItems: alternatives.length,
+      itemListElement: alternatives.map((a, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: a.name,
+        url: `https://mytheai.com/tools/${a.slug}`,
+      })),
+    },
   }
 
   const breadcrumbJsonLd = {
@@ -184,7 +196,7 @@ export default async function AlternativesPage({ params }: { params: Promise<{ s
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">

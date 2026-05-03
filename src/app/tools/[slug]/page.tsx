@@ -9,6 +9,7 @@ import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
 import ScoringTable from '@/components/tools/ScoringTable'
 import StickyMobileCTA from '@/components/tools/StickyMobileCTA'
 import SourcesBlock from '@/components/tools/SourcesBlock'
+import VerifyExternalBlock from '@/components/tools/VerifyExternalBlock'
 import AuthorBio from '@/components/layout/AuthorBio'
 import { getAuthorJsonLd } from '@/data/authors'
 import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidence } from '@/lib/scoring'
@@ -50,6 +51,8 @@ interface RelatedCompare {
   slug: string
   tool_a_slug: string
   tool_b_slug: string
+  winner: string | null
+  summary: string | null
 }
 
 interface RelatedTop10 {
@@ -100,7 +103,7 @@ async function getRelatedCompares(slug: string): Promise<RelatedCompare[]> {
   const supabase = await createClient()
   const { data } = await supabase
     .from('comparisons')
-    .select('slug, tool_a_slug, tool_b_slug')
+    .select('slug, tool_a_slug, tool_b_slug, winner, summary')
     .or(`tool_a_slug.eq.${slug},tool_b_slug.eq.${slug}`)
     .limit(8)
   return (data ?? []) as RelatedCompare[]
@@ -411,8 +414,17 @@ export default async function ToolPage({
                 <span className="text-[12px] font-semibold text-[#F59E0B]">{t('trending')}</span>
               )}
             </div>
-            <p className="text-[12px] text-muted-foreground mt-2">
-              {t('lastUpdated')}: {updatedDate}
+            <p className="text-[12px] text-muted-foreground mt-2 flex flex-wrap items-center gap-1.5">
+              <span className="inline-flex items-center gap-1 text-emerald-700 dark:text-emerald-400 font-semibold">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-3-3a1 1 0 111.4-1.4L9 11.6l6.3-6.3a1 1 0 011.4 0z" clipRule="evenodd" />
+                </svg>
+                Verified by editorial
+              </span>
+              <span className="text-muted-foreground/60">·</span>
+              <span>{t('lastUpdated')}: {updatedDate}</span>
+              <span className="text-muted-foreground/60">·</span>
+              <Link href="/methodology" className="text-blue-600 hover:underline">How we rank</Link>
             </p>
           </div>
         </div>
@@ -642,8 +654,11 @@ export default async function ToolPage({
         {/* Editorial scoring breakdown */}
         {scores && <ScoringTable scores={scores} toolName={tool.name} evidence={evidence} />}
 
-        {/* External sources bibliography */}
+        {/* External sources bibliography (when seeded) */}
         <SourcesBlock evidence={evidence} verifiedDate={updatedDate} />
+
+        {/* Programmatic third-party verification links (every tool) */}
+        <VerifyExternalBlock name={tool.name} slug={tool.slug} websiteUrl={tool.website_url} />
 
         {/* Related comparisons + Top 10 lists - internal linking */}
         {(relatedCompares.length > 0 || relatedTop10.length > 0) && (
@@ -657,15 +672,29 @@ export default async function ToolPage({
                   <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-3">
                     {t('comparedWith', { name: tool.name })} ({relatedCompares.length})
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {relatedCompares.map(c => {
                       const otherSlug = c.tool_a_slug === tool.slug ? c.tool_b_slug : c.tool_a_slug
                       const otherName = otherSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
+                      const winsHere = c.winner === tool.slug
+                      const losesHere = c.winner && c.winner !== tool.slug
                       return (
-                        <li key={c.slug}>
-                          <Link href={`/compare/${c.slug}`} className="text-[13px] text-foreground hover:text-blue-600 hover:underline">
+                        <li key={c.slug} className="leading-snug">
+                          <Link href={`/compare/${c.slug}`} className="text-[13px] font-semibold text-foreground hover:text-blue-600 hover:underline">
                             {tool.name} vs {otherName} →
                           </Link>
+                          {winsHere && (
+                            <span className="ml-2 text-[10px] font-bold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">{tool.name} wins</span>
+                          )}
+                          {losesHere && (
+                            <span className="ml-2 text-[10px] font-bold uppercase tracking-wide text-amber-700 dark:text-amber-400">{otherName} wins</span>
+                          )}
+                          {!c.winner && (
+                            <span className="ml-2 text-[10px] font-bold uppercase tracking-wide text-muted-foreground">tie</span>
+                          )}
+                          {c.summary && (
+                            <p className="text-[12px] text-muted-foreground mt-1 line-clamp-2">{c.summary}</p>
+                          )}
                         </li>
                       )
                     })}

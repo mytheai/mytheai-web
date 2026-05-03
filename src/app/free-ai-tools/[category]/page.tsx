@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import LogoImage from '@/components/ui/LogoImage'
 import AuthorBio from '@/components/layout/AuthorBio'
+import { getAuthorJsonLd } from '@/data/authors'
 import { createStaticClient } from '@/lib/supabase'
 import type { Metadata } from 'next'
 
@@ -192,17 +193,38 @@ export default async function FreeAIToolsPage({ params }: { params: Promise<{ ca
   const tools = await getFreeToolsForCategory(cat.tag)
   const year = new Date().getFullYear()
 
-  const itemListJsonLd = {
+  const collectionPageJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'ItemList',
+    '@type': 'CollectionPage',
     name: `${cat.title} ${year}`,
-    numberOfItems: tools.length,
-    itemListElement: tools.map((t, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: t.name,
-      url: `https://mytheai.com/tools/${t.slug}`,
-    })),
+    description: cat.intro.split('.')[0] + '.',
+    url: `https://mytheai.com/free-ai-tools/${category}`,
+    inLanguage: 'en',
+    isPartOf: { '@type': 'WebSite', name: 'MytheAi', url: 'https://mytheai.com' },
+    author: getAuthorJsonLd(),
+    publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+    dateModified: new Date().toISOString().slice(0, 10),
+    mainEntity: {
+      '@type': 'ItemList',
+      name: `${cat.title} ${year}`,
+      numberOfItems: tools.length,
+      itemListElement: tools.map((t, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: t.name,
+        url: `https://mytheai.com/tools/${t.slug}`,
+      })),
+    },
+  }
+
+  // FAQPage schema from the static "What you get" / "When to upgrade" copy
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: `What does the free tier of ${cat.title.replace(/^Best Free /, '')} include?`, acceptedAnswer: { '@type': 'Answer', text: cat.whatYouGet } },
+      { '@type': 'Question', name: 'When should you upgrade from a free tier?', acceptedAnswer: { '@type': 'Answer', text: cat.whenToUpgrade } },
+    ],
   }
 
   const breadcrumbJsonLd = {
@@ -217,8 +239,9 @@ export default async function FreeAIToolsPage({ params }: { params: Promise<{ ca
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 

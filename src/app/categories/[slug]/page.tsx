@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { createStaticClient } from '@/lib/supabase'
 import { mockCategories } from '@/data/mock'
 import CategoryToolsFilter from '@/components/tools/CategoryToolsFilter'
+import AuthorBio from '@/components/layout/AuthorBio'
+import { getAuthorJsonLd } from '@/data/authors'
 import type { Tool } from '@/types'
 import type { Metadata } from 'next'
 
@@ -73,18 +75,30 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const tools = await getCategoryTools(slug)
   const year = new Date().getFullYear()
 
-  const jsonLd = {
+  // CollectionPage wraps the ItemList for richer schema. Includes Person author
+  // attribution and category description via the about field.
+  const collectionPageJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'ItemList',
+    '@type': 'CollectionPage',
     name: `Best ${cat.name} Tools ${year}`,
+    description: cat.description ?? `${tools.length} ${cat.name.toLowerCase()} tools reviewed and ranked by editorial merit.`,
     url: `https://mytheai.com/categories/${slug}`,
-    numberOfItems: tools.length,
-    itemListElement: tools.map((t, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      name: t.name,
-      url: `https://mytheai.com/tools/${t.slug}`,
-    })),
+    inLanguage: 'en',
+    isPartOf: { '@type': 'WebSite', name: 'MytheAi', url: 'https://mytheai.com' },
+    author: getAuthorJsonLd(),
+    publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+    dateModified: new Date().toISOString().slice(0, 10),
+    mainEntity: {
+      '@type': 'ItemList',
+      name: `Best ${cat.name} Tools ${year}`,
+      numberOfItems: tools.length,
+      itemListElement: tools.map((t, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: t.name,
+        url: `https://mytheai.com/tools/${t.slug}`,
+      })),
+    },
   }
 
   const breadcrumbJsonLd = {
@@ -99,7 +113,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
       <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
@@ -135,7 +149,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
         <CategoryToolsFilter tools={tools} />
 
-        <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
+        {/* Author */}
+        <div className="mt-10">
+          <AuthorBio context="curated" />
+        </div>
+
+        <div className="mt-6 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
           <strong>Editorial note:</strong> Rankings are based on rating, review count, and feature quality. Affiliate relationships never influence placement.
         </div>
       </div>
