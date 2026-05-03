@@ -2270,6 +2270,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '♻️',
     slugs: ['ibm-envizi', 'plan-a', 'watershed', 'persefoni'],
   },
+  {
+    slug: 'best-ai-civic-engagement',
+    title: 'Best AI Civic Engagement Tools 2026',
+    description: 'The best AI-powered civic engagement and community intelligence platforms in 2026 - from resident sentiment monitoring and structured polling to participatory budgeting simulations for local government.',
+    category: 'GovTech',
+    emoji: '🏛️',
+    slugs: ['zencity', 'polco', 'civicplus', 'granicus', 'balancing-act'],
+  },
+  {
+    slug: 'best-ai-public-safety',
+    title: 'Best AI Public Safety Tools 2026',
+    description: 'The best AI-powered public safety platforms in 2026 - from cloud-native police CAD and records management to AI report generation from body camera audio and automated evidence management.',
+    category: 'GovTech',
+    emoji: '🚔',
+    slugs: ['mark43', 'axon-ai', 'tyler-technologies', 'accela', 'opengov'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
