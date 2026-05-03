@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: '/tools', label: 'Tools' },
   { href: '/compare', label: 'Compare' },
   { href: '/top-10', label: 'Top 10' },
+  { href: '/roles', label: 'By Role' },
   { href: '/blog', label: 'Blog' },
 ]
 

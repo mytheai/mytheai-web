@@ -95,13 +95,40 @@ interface ToolRow {
 
 async function getEditorPicks(): Promise<ToolRow[]> {
   const supabase = createStaticClient()
-  const { data } = await supabase
+  const COLUMNS = 'id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending'
+
+  const { data: picks } = await supabase
     .from('tools')
-    .select('id,slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,rating,review_count,tags,editor_pick,trending')
+    .select(COLUMNS)
     .eq('editor_pick', true)
     .order('rating', { ascending: false })
-    .limit(3)
-  return data ?? []
+
+  const seen = new Set((picks ?? []).map(p => p.slug))
+  const need = 6 - (picks?.length ?? 0)
+  let topRated: ToolRow[] = []
+  if (need > 0) {
+    const { data } = await supabase
+      .from('tools')
+      .select(COLUMNS)
+      .gte('rating', 4.7)
+      .order('rating', { ascending: false })
+      .order('review_count', { ascending: false })
+      .limit(need + 5)
+    topRated = (data ?? []).filter(t => !seen.has(t.slug)).slice(0, need)
+  }
+  return [...(picks ?? []), ...topRated]
+}
+
+async function getDirectoryStats() {
+  const supabase = createStaticClient()
+  const [toolsRes, comparesRes] = await Promise.all([
+    supabase.from('tools').select('*', { count: 'exact', head: true }),
+    supabase.from('comparisons').select('*', { count: 'exact', head: true }),
+  ])
+  return {
+    tools: toolsRes.count ?? 0,
+    comparisons: comparesRes.count ?? 0,
+  }
 }
 
 async function getTrending(): Promise<ToolRow[]> {
@@ -176,10 +203,11 @@ function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, view
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [editorPicks, trending, top10Data] = await Promise.all([
+  const [editorPicks, trending, top10Data, stats] = await Promise.all([
     getEditorPicks(),
     getTrending(),
     getTop10Data(),
+    getDirectoryStats(),
   ])
 
   const rankColors = ['#F59E0B', '#9CA3AF', '#92400E']
@@ -229,14 +257,24 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── TRUST BAR - 3 signals ─────────────────────────────────────────── */}
+      {/* ── TRUST BAR - live directory stats ───────────────────────────── */}
       <div className="bg-card border-y border-border">
         <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-center gap-6 md:gap-12 text-xs font-medium text-muted-foreground flex-wrap">
-          {['500+ tools reviewed', 'No pay-to-rank', 'Updated weekly'].map(t => (
-            <span key={t} className="flex items-center gap-1.5 whitespace-nowrap">
-              <span style={{ color: '#10B981' }}>✓</span> {t}
-            </span>
-          ))}
+          <span className="flex items-center gap-1.5 whitespace-nowrap">
+            <span style={{ color: '#10B981' }}>✓</span>
+            <strong className="text-foreground">{stats.tools.toLocaleString()}</strong> tools reviewed
+          </span>
+          <span className="flex items-center gap-1.5 whitespace-nowrap">
+            <span style={{ color: '#10B981' }}>✓</span>
+            <strong className="text-foreground">{stats.comparisons.toLocaleString()}</strong> head-to-head comparisons
+          </span>
+          <Link href="/transparency" className="flex items-center gap-1.5 whitespace-nowrap hover:text-blue-600 transition-colors">
+            <span style={{ color: '#10B981' }}>✓</span>
+            <span className="underline-offset-4 hover:underline">No pay-to-rank</span>
+          </Link>
+          <span className="flex items-center gap-1.5 whitespace-nowrap">
+            <span style={{ color: '#10B981' }}>✓</span> Updated weekly
+          </span>
         </div>
       </div>
 
@@ -314,7 +352,7 @@ export default async function HomePage() {
 
         {/* FIND TOOLS FOR YOUR ROLE */}
         <section aria-label="Find tools by role">
-          <SectionHeader eyebrow="Your Workflow" title="Find Tools For Your Role" />
+          <SectionHeader eyebrow="Your Workflow" title="Find Tools For Your Role" viewAll="See all roles →" viewAllHref="/roles" />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {ROLES.map(role => (
               <Link

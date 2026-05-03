@@ -77,6 +77,7 @@ export default function Footer() {
               {[
                 { href: '/about', label: 'About' },
                 { href: '/methodology', label: 'How We Rank' },
+                { href: '/transparency', label: 'Transparency' },
                 { href: '/about#affiliate', label: 'Affiliate Disclosure' },
                 { href: '/privacy', label: 'Privacy Policy' },
                 { href: '/contact', label: 'Contact' },
