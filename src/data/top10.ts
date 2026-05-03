@@ -2238,6 +2238,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '📄',
     slugs: ['kira-systems', 'draftwise', 'definely', 'lexion', 'brightflag'],
   },
+  {
+    slug: 'best-ai-quality-inspection',
+    title: 'Best AI Quality Inspection Tools 2026',
+    description: 'The best AI-powered visual quality inspection tools in 2026 - from deep learning machine vision systems for high-speed production lines to self-deployable inspection AI for SMB manufacturers.',
+    category: 'Manufacturing',
+    emoji: '🔍',
+    slugs: ['cognex', 'landing-ai', 'instrumental', 'relimetrics', 'elementary'],
+  },
+  {
+    slug: 'best-ai-predictive-maintenance',
+    title: 'Best AI Predictive Maintenance Tools 2026',
+    description: 'The best AI-powered predictive maintenance platforms in 2026 - from continuous vibration monitoring for rotating equipment to industrial AI platforms for heavy asset fleets.',
+    category: 'Manufacturing',
+    emoji: '⚙️',
+    slugs: ['augury', 'uptake', 'c3-ai', 'sight-machine'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
