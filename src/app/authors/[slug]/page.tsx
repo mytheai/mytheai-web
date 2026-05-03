@@ -74,6 +74,20 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
     worksFor: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
   }
 
+  // ProfilePage schema makes the author a first-class entity for Google
+  // (eligible for "Author" rich result + Knowledge Graph linkage)
+  const profilePageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    dateCreated: '2026-01-01T00:00:00.000Z',
+    dateModified: new Date().toISOString().split('T')[0],
+    mainEntity: {
+      ...getAuthorJsonLd(slug),
+      knowsAbout: ['Artificial Intelligence', 'SaaS', 'Machine Learning', 'Software Reviews', 'AI Tools', 'Editorial Methodology'],
+      worksFor: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
+    },
+  }
+
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -86,6 +100,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ slug: s
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 

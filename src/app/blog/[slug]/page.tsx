@@ -191,17 +191,41 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       '@type': 'Organization',
       name: 'MytheAi',
       url: 'https://mytheai.com',
-      logo: { '@type': 'ImageObject', url: 'https://mytheai.com/api/logo', width: 512, height: 512 },
+      logo: { '@type': 'ImageObject', url: 'https://mytheai.com/icon-512.png', width: 512, height: 512 },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://mytheai.com/blog/${slug}` },
     image: `https://mytheai.com/api/og/blog?title=${encodeURIComponent(article.title)}&category=${encodeURIComponent(article.category)}`,
     articleSection: article.category,
   }
 
+  // HowTo schema for listicle blogs ("Best X Tools 2026") - extract H2 headings as steps
+  // Eligible for HowTo rich result on Google SERP, big CTR boost
+  const isListicle = /^best\s+/i.test(article.title) || /how\s+to/i.test(article.title)
+  const h2Headings = isListicle
+    ? [...article.content.matchAll(/^##\s+(.+)$/gm)]
+        .map(m => m[1].trim())
+        .filter(h => !/^(faq|frequently|conclusion|summary|tldr|tl;dr|methodology|sources|footnotes?)/i.test(h))
+        .slice(0, 12)
+    : []
+  const howToJsonLd = h2Headings.length >= 3 ? {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: article.title,
+    description: article.excerpt,
+    totalTime: 'PT' + Math.max(5, parseInt(article.readTime) || 8) + 'M',
+    step: h2Headings.map((heading, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: heading,
+      url: `https://mytheai.com/blog/${slug}#${heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`,
+    })),
+  } : null
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      {howToJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />}
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       {/* Breadcrumb */}

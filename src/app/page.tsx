@@ -58,7 +58,7 @@ const jsonLd = {
       url: 'https://mytheai.com',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://mytheai.com/api/logo',
+        url: 'https://mytheai.com/icon-512.png',
         width: 512,
         height: 512,
       },

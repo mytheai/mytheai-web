@@ -3,6 +3,7 @@ import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
 import { createClient, createStaticClient } from '@/lib/supabase'
 import { getCompareEnrichment } from '@/data/compareEnrichment'
+import { getAuthorJsonLd } from '@/data/authors'
 import { linkGlossary } from '@/lib/glossary-linker'
 import type { Metadata } from 'next'
 
@@ -157,12 +158,12 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
     image: ogImageUrl,
     datePublished: cmp.updated_at,
     dateModified: cmp.updated_at,
-    author: { '@type': 'Organization', name: 'MytheAi Editorial', url: 'https://mytheai.com/about' },
+    author: getAuthorJsonLd(),
     publisher: {
       '@type': 'Organization',
       name: 'MytheAi',
       url: 'https://mytheai.com',
-      logo: { '@type': 'ImageObject', url: 'https://mytheai.com/logo.png' },
+      logo: { '@type': 'ImageObject', url: 'https://mytheai.com/icon-512.png', width: 512, height: 512 },
     },
     mainEntityOfPage: { '@type': 'WebPage', '@id': `https://mytheai.com/compare/${slug}` },
     about: [
@@ -170,7 +171,13 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         '@type': 'SoftwareApplication',
         name: toolA.name,
         applicationCategory: 'WebApplication',
+        operatingSystem: 'Web',
         url: `https://mytheai.com/tools/${toolA.slug}`,
+        offers: {
+          '@type': 'Offer',
+          price: toolA.pricing_starting_price ?? 0,
+          priceCurrency: 'USD',
+        },
         aggregateRating: toolA.review_count > 0 ? {
           '@type': 'AggregateRating',
           ratingValue: toolA.rating,
@@ -181,7 +188,13 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         '@type': 'SoftwareApplication',
         name: toolB.name,
         applicationCategory: 'WebApplication',
+        operatingSystem: 'Web',
         url: `https://mytheai.com/tools/${toolB.slug}`,
+        offers: {
+          '@type': 'Offer',
+          price: toolB.pricing_starting_price ?? 0,
+          priceCurrency: 'USD',
+        },
         aggregateRating: toolB.review_count > 0 ? {
           '@type': 'AggregateRating',
           ratingValue: toolB.rating,
