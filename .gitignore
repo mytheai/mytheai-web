@@ -47,3 +47,9 @@ suspect-tools.md
 false-positives.md
 verify-suspects-report.json
 scripts-output*.log
+
+# S86b audit artifacts (regenerable, not source-of-truth)
+scripts/final-audit-report.json
+scripts/final-audit-suspects.md
+scripts/dead-tools-report.json
+scripts/false-positives-suspects.md

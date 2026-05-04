@@ -34,6 +34,9 @@ const MANUAL_DEAD_SLUGS = [
   'plan-a',          // ERR_TLS_CERT_ALTNAME_INVALID on plan-a.earth
   'skyline-ai',      // ECONNRESET x2
   'snapsheet',       // ECONNRESET x2
+  // S86b final audit 2026-05-04 (verified by reading body HTML):
+  'chorus',          // chorus.ai serves redirect stub to zoominfo.com (absorbed product)
+  'pyn',             // pyn.com returns "WordPress > Error" (acquired by Sana 2024, abandoned)
   // add more here after manual verification
 ]
 
