@@ -2318,6 +2318,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🔬',
     slugs: ['schrodinger', 'isomorphic-labs', 'deep-genomics', 'valence-labs', 'generate-biomedicines'],
   },
+  {
+    slug: 'best-ai-defense-platforms',
+    title: 'Best AI Defense Platforms 2026',
+    description: 'The best AI platforms for defense and national security in 2026 - from mission-critical intelligence fusion and autonomous systems to AI-native defense software challenging traditional prime contractors.',
+    category: 'Government AI',
+    emoji: '🛡️',
+    slugs: ['palantir', 'anduril', 'shield-ai', 'helsing', 'rebellion-defense'],
+  },
+  {
+    slug: 'best-ai-satellite-analytics',
+    title: 'Best AI Satellite Analytics Tools 2026',
+    description: 'The best AI-powered satellite imagery and geospatial intelligence platforms in 2026 - from high-resolution commercial imagery and daily global monitoring to RF geolocation and space domain awareness.',
+    category: 'Government AI',
+    emoji: '🛰️',
+    slugs: ['maxar', 'planet-labs', 'slingshot-aerospace', 'hawkeye-360', 'scale-ai-defense'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
