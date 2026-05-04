@@ -1,0 +1,176 @@
+---
+title: "How to Run an SEO Audit with AI in 2026"
+excerpt: "A working playbook for running a comprehensive SEO audit using Ahrefs or Semrush plus AI synthesis - covering technical, content, backlink, and competitor gaps without paying agency fees."
+date: "May 4, 2026"
+category: "Guide"
+readTime: "13 min read"
+---
+
+A full SEO audit used to cost $5,000-$15,000 from a competent agency or 20-40 hours of senior SEO time in-house. AI compresses both numbers significantly while maintaining quality - the agency-grade output is now achievable in 4-6 hours by anyone who pairs the right SEO tool with the right AI synthesis workflow. The result is usable as a real action plan, not a generic checklist.
+
+This guide covers the working 2026 playbook: which tools to use, the exact data to pull, how to feed it to AI for synthesis, and the manual judgment calls AI cannot make for you.
+
+## Step 1: Choose Your SEO Data Source
+
+You need one of [Ahrefs](/tools/ahrefs) ($129/mo Lite) or [Semrush](/tools/semrush) ($139.95/mo Pro). For a one-off audit, either works; subscribe for one month, run the audit, cancel if you do not need ongoing tracking.
+
+Ahrefs wins on backlink data quality and Site Audit accuracy. Semrush wins on broader keyword data and the Position Tracking module if you need ongoing rank monitoring afterwards. For most audit work, Ahrefs is the slightly safer pick because the Site Audit catches more technical issues per dollar.
+
+If budget is a constraint, [Ahrefs Webmaster Tools](https://ahrefs.com/webmaster-tools) is free for verified site owners and covers Site Audit + basic backlink data. Limited but workable for solo blog audits.
+
+## Step 2: Run the Technical Site Audit First
+
+Start the Site Audit on your domain in your chosen tool. Wait 2-4 hours for the crawl to complete on a typical 50-500-page site. Larger sites take longer.
+
+Once complete, export the issues to CSV. The default export covers: 4xx errors, redirect chains, broken images, slow pages, missing H1s, duplicate titles, thin content warnings, missing meta descriptions, and mobile-usability issues. For a typical site you will see 200-2,000 issues; the AI step below converts this into prioritised actions.
+
+## Step 3: Synthesise Technical Findings with AI
+
+Open [Claude](/tools/claude) Pro or [ChatGPT](/tools/chatgpt) Plus. Paste the CSV (or upload it) with this prompt:
+
+```
+You are a senior SEO consultant. I am running a technical SEO audit on [DOMAIN, BRIEF DESCRIPTION].
+
+Below is the issues export from [Ahrefs/Semrush] Site Audit. For each issue category, group them by severity (critical / important / nice-to-have), explain the SEO impact in plain language, and recommend a specific fix with the exact priority order.
+
+Format the output as:
+1. Critical issues (fix this week)
+2. Important issues (fix this month)
+3. Nice-to-have issues (fix when time allows)
+
+For each, include:
+- Exact issue type
+- Number of pages affected
+- Why this matters for organic traffic
+- Specific fix steps
+- Estimated effort (1-4 hours / 4-16 hours / 16+ hours)
+
+[paste CSV or describe key columns]
+```
+
+This converts a raw issues list into an actionable plan in 60 seconds. The output handles 80% of the prioritisation an SEO consultant would do; the remaining 20% is manual judgement based on your business priorities.
+
+## Step 4: Pull Top 50 Content Performance Data
+
+In Ahrefs, go to Top Pages or Site Explorer and export your top 50 pages by organic traffic. Include: URL, monthly traffic, top keyword, position, top referring domain, and word count. In Semrush, the equivalent is Organic Research > Pages.
+
+Then pull the next 50 pages with declining traffic - pages that ranked well 6-12 months ago but have lost positions. These are your refresh candidates and represent the highest-ROI content work.
+
+## Step 5: Synthesise Content Opportunities with AI
+
+Paste the two CSVs into Claude with this prompt:
+
+```
+I have two lists below: my top 50 pages by organic traffic, and 50 pages that lost traffic in the last 6 months.
+
+For the top 50:
+- Identify content clusters where I am winning (multiple pages on related topics)
+- Flag pages where I should expand the topic into a hub-and-spoke cluster
+- Identify pages where I have one strong page but no internal links from related topics
+
+For the declining 50:
+- Group by likely cause (competitor outranked me, keyword cannibalisation, content stale, technical issue, intent shift)
+- Recommend specific refresh actions
+- Prioritise the top 10 most worth refreshing
+
+Format both as actionable lists with specific URL recommendations.
+
+[paste both CSVs]
+```
+
+Output is the foundation of your content strategy for the quarter. Pair this with [Surfer SEO](/tools/surfer-seo) or [Frase](/tools/frase) for per-page optimisation briefs once you know which pages to refresh.
+
+## Step 6: Audit Backlink Profile
+
+Pull your backlink profile from Ahrefs or Semrush. Export: domain, page, anchor text, first seen, traffic of source domain, and "first seen" date.
+
+Filter for the last 12 months. AI synthesis prompt:
+
+```
+This is my backlink profile from the last 12 months. Help me identify:
+
+1. Which links drive actual traffic to my site (vs. just sitting in the index)
+2. Patterns in my best link sources (industries, content types, content formats)
+3. Toxic or low-quality links worth disavowing
+4. Anchor text patterns that look natural vs over-optimised
+5. Which of my pages attract the most links and why
+
+Recommend a focused link-building strategy for the next 90 days based on what is actually working.
+
+[paste backlinks CSV]
+```
+
+This produces a focused link-building plan instead of the typical "do guest posts and digital PR" agency boilerplate. The AI catches patterns humans miss in large datasets (e.g. "your gardening listicle posts from 2024 attract 5x more natural links than any other content type").
+
+## Step 7: Run Competitor Gap Analysis
+
+Pick 3-5 direct competitors. In Ahrefs, use the Competitive Analysis or Content Gap tool. Export keywords your competitors rank for that you do not. Filter for: keyword difficulty under 30 (achievable), monthly volume over 100, commercial or informational intent (skip navigational).
+
+The output is your keyword opportunity list for the next 90 days. Feed it to AI:
+
+```
+This is a list of keywords my competitors rank for that I do not. Please:
+
+1. Group by topic cluster
+2. Identify the 10-20 highest-priority keywords (based on volume, difficulty, and how much it would shift my brand authority in the category)
+3. For each priority keyword, recommend either: refresh an existing page, write a new page, or a new content cluster
+4. Identify any keywords that look low-priority despite high volume (intent does not match my product, audience too broad)
+
+Output as a prioritised content plan.
+
+[paste keyword gap CSV]
+```
+
+This step converts a 500-keyword list into a 20-keyword content plan in 60 seconds.
+
+## Step 8: Use AI for Content Outlines
+
+For each priority keyword from steps 5 and 7, generate a content brief in Surfer SEO or Frase. Then ask Claude to outline the actual article:
+
+```
+You are an SEO content strategist. The brief below is for a target keyword [KEYWORD].
+
+Write an outline for a 1,500-2,000 word article that:
+- Covers the key topics suggested in the brief
+- Goes deeper on [specific angle relevant to my audience]
+- Includes a unique perspective or contrarian take that would not appear on a generic listicle
+- Has H2 structure that maps to common related keywords
+- Includes a section that addresses the most common reader questions
+- Includes a sensible CTA matching my product
+
+[paste Surfer/Frase brief]
+```
+
+This produces a content brief in 30 seconds that previously took a content strategist 1-2 hours.
+
+## Step 9: Build the Audit Report
+
+The final deliverable is a 5-10 page report covering:
+
+1. Technical issues prioritised (from step 3)
+2. Content cluster wins and gaps (from step 5)
+3. Top 10 page refresh candidates with specific actions (from step 5)
+4. Backlink-acquisition strategy for next 90 days (from step 6)
+5. Top 20 keyword targets with content recommendations (from step 7)
+6. Quarterly action plan (combining all of the above)
+
+Compile this in [Notion](/tools/notion-ai) or Google Docs. Use Claude to write the executive summary that ties it all together (200-300 words). Total elapsed time for the full audit: 4-6 hours including all crawl waits.
+
+## Step 10: Set Up Ongoing Tracking
+
+After the audit, configure ongoing rank tracking on the 30-50 priority keywords identified. Both Ahrefs and Semrush handle this; track weekly and review monthly. Re-run the audit quarterly.
+
+## What to Avoid
+
+- **Skipping Ahrefs or Semrush in favor of "free SEO audit" tools.** The free tools miss too much. Audit value comes from comprehensive crawl + accurate backlink data; both require paid tools.
+- **Letting AI invent keywords or backlinks.** Always feed it real exported data; never let it generate keyword lists from imagination. Hallucinated keywords waste content production time.
+- **Running the audit and not implementing the actions.** A great audit + no implementation = wasted budget. Block 2-3 days/week for 4 weeks after the audit to ship the critical fixes.
+- **Trusting AI for keyword difficulty estimates.** Use the SEO tool's KD score; AI does not have current ranking data.
+
+## Decision Matrix
+
+- **Solo blogger / small business:** Ahrefs $129/mo + Claude Pro $20/mo. Total $150/mo for one month + ongoing $20/mo. Audit takes 6-8 hours.
+- **In-house SEO at SMB:** Ahrefs Pro $249/mo + Surfer SEO $99/mo + Claude Team $25/user/mo. Total ~$400/mo. Audit takes 4-6 hours; quarterly cadence.
+- **Agency / multi-client SEO:** Ahrefs Advanced or Enterprise + Surfer Team + Claude Team. Audit per client takes 6-8 hours; AI compresses the synthesis layer most.
+
+Browse our [SEO tool comparisons](/compare) or take our [60-second quiz](/quiz) for a stack tailored to your audit volume.

@@ -1,0 +1,166 @@
+---
+title: "How to Do Customer Research with AI in 2026"
+excerpt: "A working playbook for running customer research interviews, surveys, and synthesis with AI - from interview transcription to thematic analysis without losing the qualitative depth."
+date: "May 4, 2026"
+category: "Guide"
+readTime: "12 min read"
+---
+
+Customer research is the work most teams underinvest in because it is slow. A proper round of 15-20 customer interviews, full transcription, thematic synthesis, and a write-up for the team takes 4-6 weeks of senior PM or research time. AI compresses the synthesis layer by 70-80% without sacrificing depth - if you do the interviews well and avoid the failure modes that turn AI into a confidence machine for whatever you already believed.
+
+This guide covers the working playbook for product, design, and marketing teams running customer research in 2026.
+
+## Step 1: Set Up the Recording and Transcription Stack
+
+Before scheduling any interviews, lock down the tools. The right setup in 2026:
+
+- [Otter.ai](/tools/otter-ai) Business ($20/seat/mo) or [Fathom](/tools/fathom) for recording and transcription. Both auto-join Zoom/Meet/Teams calls, transcribe with speaker labels, generate AI summaries and action items.
+- [Claude](/tools/claude) Team ($25/user/mo) for thematic synthesis. The 200K context window handles 15-20 interview transcripts in a single prompt without losing thread.
+- [Notion](/tools/notion-ai) ($10-20/user/mo) for the research repo: interview notes, themes, quotes, and the eventual write-up.
+
+Confirm consent at the start of every call: "I am recording and transcribing this conversation for research purposes. The transcript stays internal and only my team will see it. Is that OK with you?" State law varies on recording consent; this is best practice everywhere and required in two-party-consent jurisdictions.
+
+## Step 2: Recruit a Real Sample
+
+The sample matters more than the synthesis. Twenty interviews with the wrong people produce less useful insight than five interviews with the right people. The right people are:
+
+- Recent customers (signed up in the last 90 days) who can recall the buying decision
+- Active power users (defined by your product's usage signal) who can articulate the workflow
+- Recently churned customers (last 90 days) who can articulate why they left
+- Prospects who recently chose a competitor (if you can find them - they are gold)
+- Avoid: friends, advisors, people who joined 2+ years ago
+
+Recruit via [Calendly](https://calendly.com) or [SavvyCal](/tools/savvycal). Offer a $50-$100 incentive if you are interviewing power users or churned customers; recent customers usually accept without incentive. Aim for 15-20 interviews; below 12, themes do not emerge clearly; above 25, you are paying diminishing returns.
+
+## Step 3: Design the Interview Questions
+
+The biggest research mistake is leading questions that confirm what you already believe. Use the "5 Whys" technique and avoid "do you like / would you use / is this useful" framings.
+
+The 2026 working interview structure:
+- 5 minutes: warm-up, build rapport, get them talking
+- 10 minutes: their workflow before they used your product (or ours, if churned)
+- 15 minutes: how they discovered solutions, what they tried, what they ruled out
+- 15 minutes: their experience with our product (or with the alternative they chose)
+- 10 minutes: what is missing, what is broken, what would change their mind
+- 5 minutes: anything else they want to share
+
+Use [Claude](/tools/claude) to draft a structured interview guide:
+
+```
+You are a research lead. I am interviewing [SEGMENT] customers about [PRODUCT/PROBLEM]. The research goal is [SPECIFIC GOAL].
+
+Write a 60-minute structured interview guide that:
+- Avoids leading questions
+- Uses the "Jobs to Be Done" framing (what they were trying to accomplish)
+- Includes 3-5 follow-up "5 Whys" prompts for the most important moments
+- Surfaces specific stories rather than abstract opinions
+- Ends with one question that gives them space to volunteer something we did not ask about
+
+Output as a structured guide with timing and probing follow-ups.
+```
+
+Save the guide. Use it for every interview - consistency is what makes thematic analysis possible later.
+
+## Step 4: Run the Interviews
+
+Conduct each interview with full attention. Do not type notes during the call - the transcript captures everything; your job is to listen and ask good follow-ups. The "5 Whys" pattern: when someone says something interesting ("we needed something faster"), probe with "why?" until you get to the real underlying problem ("our team is distributed across 4 timezones and async review takes too long"). The fifth "why" usually surfaces the root cause.
+
+Common failure modes in interviews:
+- Asking "would you use this feature?" - speculation, not evidence
+- Confirming your own theory with leading follow-ups - get an outside person to review the transcripts
+- Cutting people off when they go on a tangent - the tangents often contain the real signal
+- Wrapping up at the question mark on the script - extend if the interview is producing real insight
+
+Each interview produces 6,000-12,000 words of transcript. After 15 interviews, you have 100,000-180,000 words to synthesise. AI is the only practical way to handle this volume.
+
+## Step 5: Synthesise Themes with AI
+
+After all interviews are complete, paste the transcripts into Claude with this prompt:
+
+```
+You are a research lead. Below are 15 interview transcripts about [TOPIC]. Each starts with [INTERVIEW N: name, segment, date].
+
+Please:
+1. Identify the 5-8 strongest themes that recur across multiple interviews (a theme requires 4+ interviews mentioning related ideas)
+2. For each theme, list:
+   - The theme statement (what we are seeing)
+   - 4-6 verbatim quotes from different interviews supporting it (use exact words)
+   - The interview numbers and approximate transcript locations
+   - Counter-evidence (interviews that contradict the theme, if any)
+   - The implication for our product or strategy
+
+Be specific. Do not generalise to themes like "users want better UX" - require concrete and specific.
+
+Constraints:
+- Do not invent quotes. Every quote must be verbatim.
+- Flag any theme where evidence is mixed or weak.
+- Note 2-3 surprising things that did not fit any theme.
+
+[paste all transcripts]
+```
+
+This produces a 5-page thematic synthesis in 5 minutes. The output is the raw material for the research write-up; verify every quote against the transcript before publishing.
+
+## Step 6: Verify Quotes and Themes
+
+The single most important manual step: verify every quote in the AI synthesis against the original transcript. Models occasionally paraphrase quotes that "sound right" - this is the most common AI failure mode in research. Use Notion's split-view or have the transcript open in another tab while reading the synthesis.
+
+Estimated time: 30-60 minutes for a 15-interview synthesis. This is non-negotiable. Hallucinated quotes destroy research credibility forever once anyone catches one.
+
+## Step 7: Pressure-Test the Themes
+
+Before writing up the findings, share the synthesis with someone who was not in the interviews. A senior teammate, advisor, or peer in another company. Ask them: "Do these themes match what you would expect? What is missing?" Outsider perspective catches blind spots.
+
+Use Claude as a second pass:
+
+```
+Below is my thematic synthesis from 15 customer interviews. Help me identify:
+
+1. Themes that look strong but might be sample-biased (e.g. all churned customers complain about price - is the theme "we are too expensive" or "the segment that churns is price-sensitive"?)
+2. Themes that are weakly supported despite sounding important
+3. Counter-evidence in the transcripts that I might have downplayed
+4. What questions I should have asked but did not
+
+[paste synthesis]
+```
+
+This catches confirmation bias that the first synthesis pass missed.
+
+## Step 8: Write the Findings Document
+
+Synthesise into a 4-6 page write-up. Use this structure:
+
+1. **Headline finding** (one sentence the team needs to internalise)
+2. **Key themes** (5-8 themes with verbatim quotes)
+3. **Surprising findings** (things that contradicted assumptions)
+4. **Implications by team** (what product, marketing, sales should do differently)
+5. **Open questions** (what we still do not know that would benefit from another round)
+6. **Methodology** (sample, recruitment, questions, who synthesised)
+
+Use Claude to draft the headline finding and the executive summary; write the implications and open questions yourself. The team needs to feel your judgment, not AI synthesis.
+
+## Step 9: Distribute and Discuss
+
+Schedule a 60-minute team session to review the findings. Walk through: the headline, the themes with verbatim quotes (not paraphrased), the implications, and the open questions. Encourage challenge - "where is this wrong?" - rather than agreement. The team conversation is where research becomes action.
+
+Save the write-up in Notion alongside all transcripts. Tag it for the relevant teams and link it from the OKR planning doc for the next quarter.
+
+## Step 10: Plan the Next Round
+
+After 90 days, re-evaluate. Have the implications shipped? Did the action change the metric? What new questions emerged? Customer research is not a one-time project - it is a quarterly cadence. Each round refines the previous understanding.
+
+## What to Avoid
+
+- **AI synthesis without quote verification.** Hallucinated quotes destroy credibility.
+- **Bulk-mining old transcripts to "validate" a theory.** Run real interviews; do not retrofit.
+- **Replacing interviews with AI-generated synthetic personas.** This is research theater. Models do not know what your customers think; only your customers do.
+- **Sharing raw transcripts widely.** Customers shared in confidence. Quote in research write-ups; do not pass full transcripts around.
+- **Skipping recruitment of churned customers.** They produce more useful insight than active customers, and they are harder to get on the call.
+
+## Decision Matrix
+
+- **Solo founder doing 5-10 interviews/quarter:** Otter Pro $10/mo + Claude Pro $20/mo + Notion free. Total $30/mo. Synthesis takes 1 day.
+- **Product team running quarterly research:** Otter Business $20/seat/mo + Claude Team $25/seat/mo + Notion Team $10/seat/mo + SavvyCal for scheduling. Total ~$70/researcher/mo. 15-20 interviews/quarter.
+- **Dedicated research team:** Same plus Lookback or UserTesting for moderated tests, Dovetail or Maze for repository management. Different scale; this guide is the foundation.
+
+Browse our [research tool comparisons](/compare) or take our [60-second quiz](/quiz) for a stack tailored to your team and research cadence.

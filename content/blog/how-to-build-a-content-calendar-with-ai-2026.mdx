@@ -1,0 +1,182 @@
+---
+title: "How to Build a Content Calendar with AI in 2026"
+excerpt: "A working playbook for building a 90-day content calendar that ships - keyword strategy, multi-channel planning, and AI-assisted production without the templated output trap."
+date: "May 4, 2026"
+category: "Guide"
+readTime: "11 min read"
+---
+
+Most content calendars die in week three. The ambitious 12-month spreadsheet looks great in January and is abandoned by mid-February. The 2026 working alternative: a focused 90-day calendar built from real keyword data, mapped to specific business outcomes, and produced with AI assistance that compresses the production layer without sacrificing quality. The output is a calendar your team actually ships, not a Notion page that gets stale.
+
+This guide covers the working playbook: which tools to use, how to structure the calendar, the AI workflows that compress production, and the manual judgment AI cannot replace.
+
+## Step 1: Define Your Calendar's Purpose Before Building It
+
+Before opening any tool, answer three questions in writing:
+
+- What business outcome does this content drive? (Pipeline, brand authority, organic traffic, customer education, lead nurture - pick one primary)
+- Who is the reader, specifically? (Job title, seniority, pain point, decision they need to make)
+- What is the publishing cadence you can actually sustain? (2/week is better than 5/week if your team is small)
+
+This 30-minute exercise determines everything downstream. Calendars that try to serve "every audience for every goal" produce content that converts no one. AI cannot fix wrong strategy; it amplifies whichever direction you point it.
+
+## Step 2: Build Your Topic Cluster Map
+
+Open [Ahrefs](/tools/ahrefs) or [Semrush](/tools/semrush). Use Keyword Explorer to identify 5-7 topic clusters that align with your business outcome. Each cluster has:
+
+- One pillar keyword (high volume, high difficulty - aspirational target)
+- 5-8 supporting keywords (lower volume, lower difficulty - achievable in 90 days)
+- A clear semantic relationship between the pillar and supporting topics
+
+Export the keyword data to a spreadsheet. For each keyword: monthly volume, keyword difficulty, search intent (informational / commercial / transactional), and current rank if you have one.
+
+This is the data foundation. AI without this is just speculation.
+
+## Step 3: Use AI to Map Topic Clusters to Content Formats
+
+Paste the keyword data into [Claude](/tools/claude) Pro with this prompt:
+
+```
+You are a content strategist. Below is a keyword research export for [BUSINESS, AUDIENCE, GOAL].
+
+For each topic cluster, recommend:
+1. The pillar piece format (long-form guide, comparison, deep tutorial, original research, opinion piece)
+2. 5-8 supporting pieces and their formats (how-to, listicle, news commentary, FAQ, case study)
+3. The primary CTA each piece should drive
+4. The internal-link structure (which supporting pieces should link to which pillar)
+5. Estimated effort per piece (1-2 hours, 4-8 hours, 8-16 hours)
+
+Constraint: prioritise commercial-intent and bottom-of-funnel pieces over generic "what is X" content. Recommend skipping any keyword where the SERP is dominated by generic listicles we cannot meaningfully outrank.
+
+[paste keyword data]
+```
+
+Output is a 30-50 piece content plan with formats, priorities, and effort estimates. Review and edit manually - AI tends to over-recommend long-form pillars; trim to what your team can actually ship.
+
+## Step 4: Sequence the Calendar with Dependency Awareness
+
+Some pieces should ship before others. Pillar pieces typically come first because supporting pieces link to them. Pieces requiring original research need lead time for the research. Pieces requiring case studies need customer interviews scheduled.
+
+Use Claude to sequence:
+
+```
+Below is my content plan with 30-50 pieces. Please sequence them into a 12-week calendar with these constraints:
+
+- 2 pieces shipped per week
+- Pillar pieces ship before their supporting cluster pieces
+- Pieces requiring case study or original research are flagged with 3-week lead time
+- Mix formats across weeks to avoid reader fatigue
+- Pieces tied to product launch dates [LIST DATES] ship in the appropriate week
+
+Output as a week-by-week table with publish dates, titles, formats, and any prep notes.
+
+[paste content plan]
+```
+
+Move the AI output into your team's PM tool ([Notion](/tools/notion-ai), [Linear](/tools/linear), [Airtable](/tools/airtable), or [Asana](/tools/asana)) for tracking.
+
+## Step 5: Generate Briefs in Batch
+
+For each piece scheduled in the next 4 weeks, generate a content brief upfront. Use [Surfer SEO](/tools/surfer-seo) or [Frase](/tools/frase) for SEO-optimised pieces (keyword targets, recommended word count, semantic keywords, top-ranking competitor analysis).
+
+Then use Claude for the deeper editorial brief:
+
+```
+You are an editor. The SEO brief below is for the article [TITLE] targeting [KEYWORD].
+
+Write a complete editorial brief that includes:
+- The single key point the reader should take away
+- The target reader\'s state of mind when they land (what they searched for, what frustration brought them here)
+- 3 unique angles or perspectives we should include that are NOT in the top-ranking competitors
+- A specific story, data point, or case study that anchors the piece
+- The piece\'s CTA and how it connects to the rest of the cluster
+- Headline options (5 variants)
+- Opening sentence options (3 variants)
+
+[paste Surfer/Frase brief plus internal context about audience and product]
+```
+
+This produces a 10-minute editorial brief in 60 seconds. Pair with Surfer for the SEO-optimisation layer.
+
+## Step 6: Draft First Drafts with AI, Edit Heavily
+
+For pieces under 2,000 words and where editorial polish is more important than original analysis, AI-generated first drafts save 50-70% of writing time. Pieces requiring original research, expert interviews, or contrarian takes still need a human writer.
+
+Use Claude or ChatGPT for first drafts. Feed it the brief from step 5 plus example writing from your existing top-performing pieces (paste 2-3 published articles as voice samples). The output is a 70%-quality first draft that needs 1-2 hours of editing rather than 4-6 hours of writing from scratch.
+
+For brand-voice-critical pieces, use [Jasper](/tools/jasper) ($49/user/mo) instead - the Brand Voice training keeps every piece in your tone across multiple writers. Worth it for marketing teams of 3+.
+
+## Step 7: Repurpose Each Piece into 5-10 Derivative Assets
+
+A single 2,000-word pillar piece should produce: 1 long-form blog, 3-5 LinkedIn posts, 5-10 Twitter posts, 1 email newsletter section, 1 short video script, 2-3 social graphics. Producing each of these manually would take 4-6 hours per pillar; AI compresses to 30 minutes.
+
+Use [Castmagic](/tools/castmagic) for podcast-to-content repurposing if you publish audio. For text-to-text repurposing, Claude with a structured prompt:
+
+```
+The article below is my pillar piece for the topic [TOPIC]. Repurpose it into:
+
+1. 5 LinkedIn posts (each 1,200 characters, no hashtags, 1-2 specific takeaways per post, end with a question)
+2. 8 Twitter posts (each under 280 chars, specific takeaway each, no quote-tweets format)
+3. 1 email newsletter section (250 words, summarises the key point, links to full piece)
+4. 3 short video scripts (each 60-90 seconds when spoken, hook + payoff + CTA structure)
+
+Maintain the original voice. Do not over-summarise; keep specific numbers and quotes.
+
+[paste article]
+```
+
+Schedule the derivative content in your social tool ([Buffer](https://buffer.com), [Hootsuite](https://hootsuite.com), or LinkedIn-specific tools).
+
+## Step 8: Set Up Performance Tracking
+
+After 30 days of publishing, track per-piece:
+- Organic traffic (Google Search Console + Ahrefs)
+- Conversion to email signup or trial (your CRM or analytics)
+- Backlinks earned (Ahrefs)
+- Social engagement (LinkedIn, Twitter analytics)
+
+After 60 days, the patterns become clear. Use Claude to synthesise:
+
+```
+Below is performance data for the 16 pieces I published in the last 60 days.
+
+Please identify:
+1. Which formats are performing best (and why)
+2. Which topic clusters are gaining traction vs flat
+3. Which pieces underperformed and why (likely cause: weak format, wrong keyword, weak headline, low promotion)
+4. Three recommendations for the next 30 days based on this data
+
+[paste performance data]
+```
+
+This converts raw analytics into actionable strategy adjustments. Re-prioritise the calendar based on what is actually working.
+
+## Step 9: Refresh the Calendar Quarterly
+
+Every 90 days: review performance, archive content that did not perform, double down on clusters that did, and add new clusters based on emerging keyword opportunities. Use Claude to synthesise the quarterly review:
+
+```
+This is my quarterly content performance review. Help me prepare the next 90 days of calendar based on:
+
+1. Which clusters from Q1 should I expand vs prune
+2. Which formats earned the highest ROI (traffic per hour invested)
+3. Which gaps in the keyword landscape should I fill in Q2
+4. Which underperforming pieces should I refresh vs delete
+
+[paste Q1 calendar and performance data]
+```
+
+## What to Avoid
+
+- **Building a 12-month calendar before publishing anything.** Constraint to 90 days. Adjust based on what actually works.
+- **AI-generating 30 pieces in a week and publishing them all.** Quality fall-off is visible to readers and to Google. Better to ship 2/week consistently than 10/week briefly.
+- **Skipping the keyword research step.** AI without real data produces topics that look reasonable but do not rank or convert. The keyword tool data is non-negotiable.
+- **Letting AI write pieces that should be expert-led.** Original research, contrarian takes, and case studies need human writers; AI cannot fake the depth that those formats require.
+
+## Decision Matrix
+
+- **Solo content marketer:** Ahrefs $129/mo + Claude Pro $20/mo + Surfer SEO $99/mo + Notion AI $20/mo. Total $268/mo. Ship 2 pieces/week.
+- **Marketing team of 3-5:** Same plus Jasper $49/user/mo for brand-voice consistency, Castmagic if you have a podcast. Ship 4-6 pieces/week across cluster pillars.
+- **Agency / multi-client:** Ahrefs Advanced + Surfer Team + Claude Team + Frase + dedicated content briefs per client. Different game; this guide is the foundation.
+
+Browse our [content tool comparisons](/compare) or take our [60-second quiz](/quiz) for a stack tailored to your team and publishing cadence.
