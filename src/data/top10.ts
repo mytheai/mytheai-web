@@ -1863,7 +1863,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top sales conversation intelligence platforms for 2026 - AI tools that record, transcribe, and analyse sales calls to identify coaching opportunities, track objections, and improve win rates.',
     category: 'Sales',
     emoji: '📞',
-    slugs: ['chorus', 'modjo', 'grain', 'read-ai', 'tactiq'],
+    slugs: [
+      'modjo', 'grain', 'read-ai', 'tactiq'
+    ],
   },
   {
     slug: 'best-ai-design-tools',
@@ -2052,7 +2054,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tools for ecommerce stores in 2026 - from on-site assistants and personalization engines to visual search and product description generators.',
     category: 'E-commerce',
     emoji: '🛒',
-    slugs: ['shopify-magic', 'rep-ai', 'octane-ai', 'rebuy', 'recart'],
+    slugs: [
+      'shopify-magic', 'octane-ai', 'recart'
+    ],
   },
   {
     slug: 'best-ai-shopify-apps',
@@ -2060,7 +2064,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered apps for Shopify and Shopify Plus stores - personalization, search, reviews, and conversion optimization that scale with your store.',
     category: 'E-commerce',
     emoji: '🛍️',
-    slugs: ['rep-ai', 'octane-ai', 'rebuy', 'recart', 'stamped-io', 'shopify-magic'],
+    slugs: [
+      'octane-ai', 'recart', 'shopify-magic'
+    ],
   },
   {
     slug: 'best-ai-customer-service-tools',
@@ -2068,7 +2074,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI customer service tools in 2026 - autonomous resolution agents, ticket triage, and multilingual support automation for support orgs of every size.',
     category: 'Customer Support',
     emoji: '💬',
-    slugs: ['intercom-fin', 'decagon-ai', 'forethought-ai', 'yellow-ai'],
+    slugs: [
+      'intercom-fin', 'decagon-ai', 'yellow-ai'
+    ],
   },
   {
     slug: 'best-ai-helpdesk-automation',
@@ -2076,7 +2084,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tools for helpdesk automation in 2026 - deflection AI, ticket routing, and agent assist that reduce ticket volume and handle time.',
     category: 'Customer Support',
     emoji: '🎫',
-    slugs: ['intercom-fin', 'decagon-ai', 'forethought-ai', 'yellow-ai', 'lang-io'],
+    slugs: [
+      'intercom-fin', 'decagon-ai', 'yellow-ai'
+    ],
   },
   {
     slug: 'best-ai-medical-scribes',
@@ -2092,7 +2102,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tools for clinical decision support in 2026 - real-time diagnosis assistance, imaging triage, and evidence-based care recommendations for clinicians.',
     category: 'Healthcare AI',
     emoji: '🏥',
-    slugs: ['regard-clinical', 'atropos-health', 'tempus-ai', 'viz-ai', 'paige-ai'],
+    slugs: [
+      'viz-ai'
+    ],
   },
   {
     slug: 'best-ai-compliance-automation',
@@ -2100,7 +2112,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI compliance automation platforms in 2026 - automated SOC 2, ISO 27001, and HIPAA certification tools that cut audit prep from months to weeks.',
     category: 'Compliance & Security',
     emoji: '🔒',
-    slugs: ['vanta', 'secureframe', 'sprinto', 'auditboard'],
+    slugs: [
+      'vanta'
+    ],
   },
   {
     slug: 'best-ai-contract-intelligence',
@@ -2108,7 +2122,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI contract intelligence platforms in 2026 - tools that extract obligations, renewal dates, and risk terms from contract repositories at scale.',
     category: 'Legal AI',
     emoji: '📋',
-    slugs: ['linksquares', 'onetrust', 'bigid', 'securiti'],
+    slugs: [
+      'onetrust'
+    ],
   },
   {
     slug: 'best-ai-real-estate-tools',
@@ -2116,7 +2132,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered real estate platforms in 2026 - from brokerage intelligence that identifies likely sellers before they list, to commercial property data platforms for off-market deal origination.',
     category: 'Real Estate',
     emoji: '🏠',
-    slugs: ['compass', 'reonomy', 'cherre', 'leverton'],
+    slugs: [
+      'compass'
+    ],
   },
   {
     slug: 'best-ai-property-data-platforms',
@@ -2124,7 +2142,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI property data and analytics platforms in 2026 - commercial real estate intelligence, multifamily portfolio analytics, and institutional data unification tools.',
     category: 'Real Estate',
     emoji: '🏢',
-    slugs: ['reonomy', 'cherre', 'leverton'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-construction-tools',
@@ -2132,7 +2152,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI construction site capture, progress monitoring, and document intelligence tools in 2026 - platforms that reduce documentation overhead and surface schedule risk before delays compound.',
     category: 'Construction AI',
     emoji: '🏗️',
-    slugs: ['openspace', 'buildots', 'disperse', 'togal-ai', 'trunk-tools'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-design-and-architecture-tools',
@@ -2140,7 +2162,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI generative design and development feasibility tools in 2026 - platforms that compress early-stage massing analysis, regulatory compliance checking, and site feasibility from weeks to minutes.',
     category: 'Construction AI',
     emoji: '🏛️',
-    slugs: ['archistar', 'testfit', 'spacemaker', 'join-build'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-tutoring-tools',
@@ -2148,7 +2172,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tutoring and homework help tools in 2026 - from instant math problem solving to conversational concept coaching and adaptive study for students at every level.',
     category: 'Education',
     emoji: '📚',
-    slugs: ['photomath', 'mathgpt', 'socratic', 'coursera-coach'],
+    slugs: [
+      'photomath', 'coursera-coach'
+    ],
   },
   {
     slug: 'best-ai-classroom-tools',
@@ -2156,7 +2182,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tools for teachers and classrooms in 2026 - from automated grading and interactive lesson creation to game-based review and differentiated instruction generation.',
     category: 'Education',
     emoji: '🎓',
-    slugs: ['gradescope-ai', 'kahoot-ai', 'nearpod-ai', 'edpuzzle-ai'],
+    slugs: [
+      'gradescope-ai', 'kahoot-ai', 'edpuzzle-ai'
+    ],
   },
   {
     slug: 'best-ai-performance-management',
@@ -2164,7 +2192,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered performance management platforms in 2026 - from continuous check-in tools and OKR tracking to flight risk detection and AI-assisted review writing.',
     category: 'HR',
     emoji: '📊',
-    slugs: ['lattice', '15five', 'leapsome', 'culture-amp', 'peakon'],
+    slugs: [
+      'lattice', '15five', 'culture-amp'
+    ],
   },
   {
     slug: 'best-ai-hris-tools',
@@ -2180,7 +2210,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered insurance claims automation platforms in 2026 - from computer vision damage assessment and virtual appraisal workflows to fraud detection and straight-through claims processing.',
     category: 'Insurance',
     emoji: '🔍',
-    slugs: ['tractable', 'shift-technology', 'coalition', 'planck'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-insurance-platforms',
@@ -2188,7 +2220,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-native insurance platforms and InsurTech tools in 2026 - from instant digital consumer and small business coverage to broker recommendation engines and modern policy administration systems.',
     category: 'Insurance',
     emoji: '🛡️',
-    slugs: ['lemonade', 'next-insurance', 'coalition', 'socotra', 'zelros'],
+    slugs: [
+      'lemonade'
+    ],
   },
   {
     slug: 'best-ai-hotel-management-tools',
@@ -2196,7 +2230,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered hotel management platforms in 2026 - from modern cloud PMS and channel distribution to guest experience automation and direct booking optimization.',
     category: 'Hospitality',
     emoji: '🏨',
-    slugs: ['mews', 'cloudbeds', 'siteminder', 'guesty', 'revinate'],
+    slugs: [
+      'mews', 'cloudbeds', 'guesty'
+    ],
   },
   {
     slug: 'best-ai-revenue-management',
@@ -2204,7 +2240,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered hotel revenue management platforms in 2026 - from enterprise open pricing and demand forecasting to automated dynamic pricing for independent properties.',
     category: 'Hospitality',
     emoji: '📈',
-    slugs: ['atomize', 'revinate', 'mews'],
+    slugs: [
+      'mews'
+    ],
   },
   {
     slug: 'best-ai-supply-chain-platforms',
@@ -2212,7 +2250,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered supply chain planning and visibility platforms in 2026 - from concurrent planning for complex global networks to enterprise demand forecasting and distribution management.',
     category: 'Supply Chain',
     emoji: '🚚',
-    slugs: ['kinaxis', 'blue-yonder', 'o9-solutions', 'manhattan-associates', 'project44'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-shipping-and-logistics',
@@ -2220,7 +2260,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI shipping, freight, and logistics tools in 2026 - multi-carrier shipping APIs, digital freight forwarding, and cloud supply chain platforms for e-commerce and mid-market brands.',
     category: 'Supply Chain',
     emoji: '📦',
-    slugs: ['shippo', 'easypost', 'flexport', 'transfix', 'stord'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-ediscovery-tools',
@@ -2228,7 +2270,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered e-discovery platforms in 2026 - from cloud-native litigation review and predictive coding to contract repository management and case management for high-volume matters.',
     category: 'Legal AI',
     emoji: '⚖️',
-    slugs: ['everlaw', 'relativity', 'lexion', 'filevine'],
+    slugs: [
+      'everlaw'
+    ],
   },
   {
     slug: 'best-ai-contract-review-tools',
@@ -2236,7 +2280,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI contract review and analysis tools in 2026 - from M&A due diligence extraction and precedent-based drafting assistance to legal spend management and contract navigation.',
     category: 'Legal AI',
     emoji: '📄',
-    slugs: ['kira-systems', 'draftwise', 'definely', 'lexion', 'brightflag'],
+    slugs: [
+      'kira-systems', 'draftwise'
+    ],
   },
   {
     slug: 'best-ai-quality-inspection',
@@ -2244,7 +2290,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered visual quality inspection tools in 2026 - from deep learning machine vision systems for high-speed production lines to self-deployable inspection AI for SMB manufacturers.',
     category: 'Manufacturing',
     emoji: '🔍',
-    slugs: ['landing-ai', 'instrumental', 'relimetrics', 'elementary'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-predictive-maintenance',
@@ -2252,7 +2300,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered predictive maintenance platforms in 2026 - from continuous vibration monitoring for rotating equipment to industrial AI platforms for heavy asset fleets.',
     category: 'Manufacturing',
     emoji: '⚙️',
-    slugs: ['augury', 'uptake', 'c3-ai', 'sight-machine'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-carbon-accounting',
@@ -2260,7 +2310,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered carbon accounting and emissions management platforms in 2026 - from enterprise Scope 3 supplier engagement to SMB-accessible tools that connect to your accounting software.',
     category: 'Sustainability',
     emoji: '🌱',
-    slugs: ['watershed', 'persefoni', 'sweep', 'greenly', 'normative'],
+    slugs: [
+      'watershed', 'persefoni', 'greenly'
+    ],
   },
   {
     slug: 'best-ai-esg-reporting',
@@ -2268,7 +2320,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered ESG reporting and sustainability management platforms in 2026 - from enterprise multi-site data management to full CSRD and TCFD disclosure automation.',
     category: 'Sustainability',
     emoji: '♻️',
-    slugs: ['ibm-envizi', 'watershed', 'persefoni'],
+    slugs: [
+      'watershed', 'persefoni'
+    ],
   },
   {
     slug: 'best-ai-civic-engagement',
@@ -2276,7 +2330,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered civic engagement and community intelligence platforms in 2026 - from resident sentiment monitoring and structured polling to participatory budgeting simulations for local government.',
     category: 'GovTech',
     emoji: '🏛️',
-    slugs: ['zencity', 'polco', 'civicplus', 'granicus'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-public-safety',
@@ -2284,7 +2340,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered public safety platforms in 2026 - from cloud-native police CAD and records management to AI report generation from body camera audio and automated evidence management.',
     category: 'GovTech',
     emoji: '🚔',
-    slugs: ['mark43', 'axon-ai', 'tyler-technologies', 'accela', 'opengov'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-procurement-platforms',
@@ -2292,7 +2350,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered procurement and source-to-pay platforms in 2026 - from enterprise business spend management and autonomous sourcing to modern intake-to-procure tools for high-growth companies.',
     category: 'Finance',
     emoji: '🛒',
-    slugs: ['coupa', 'jaggaer', 'ivalua', 'zip-procurement', 'pactum'],
+    slugs: [
+      'coupa'
+    ],
   },
   {
     slug: 'best-ai-spend-management',
@@ -2300,7 +2360,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered spend management and procurement automation tools in 2026 - from team expense control and virtual cards to purchase order workflows and supplier spend analytics.',
     category: 'Finance',
     emoji: '💳',
-    slugs: ['spendesk', 'precoro', 'procurify', 'zip-procurement', 'coupa'],
+    slugs: [
+      'coupa'
+    ],
   },
   {
     slug: 'best-ai-drug-discovery',
@@ -2308,7 +2370,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI platforms accelerating drug discovery in 2026 - from generative molecular design and phenomics-driven target identification to clinical success prediction and automated medicinal chemistry.',
     category: 'Healthcare AI',
     emoji: '🧬',
-    slugs: ['insilico-medicine', 'recursion', 'benevolentai', 'atomwise', 'exscientia'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-biotech-platforms',
@@ -2316,7 +2380,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered biotech research platforms in 2026 - from physics-based computational chemistry and AlphaFold-powered protein design to open-source foundation models and generative protein therapeutics.',
     category: 'Healthcare AI',
     emoji: '🔬',
-    slugs: ['schrodinger', 'isomorphic-labs', 'deep-genomics', 'valence-labs', 'generate-biomedicines'],
+    slugs: [
+      
+    ],
   },
   {
     slug: 'best-ai-defense-platforms',
@@ -2324,7 +2390,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI platforms for defense and national security in 2026 - from mission-critical intelligence fusion and autonomous systems to AI-native defense software challenging traditional prime contractors.',
     category: 'Government AI',
     emoji: '🛡️',
-    slugs: ['palantir', 'anduril', 'shield-ai', 'rebellion-defense'],
+    slugs: [
+      'palantir', 'anduril'
+    ],
   },
   {
     slug: 'best-ai-satellite-analytics',
@@ -2332,7 +2400,9 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered satellite imagery and geospatial intelligence platforms in 2026 - from high-resolution commercial imagery and daily global monitoring to RF geolocation and space domain awareness.',
     category: 'Government AI',
     emoji: '🛰️',
-    slugs: ['maxar', 'planet-labs', 'slingshot-aerospace', 'hawkeye-360', 'scale-ai-defense'],
+    slugs: [
+      
+    ],
   },
 ]
 
