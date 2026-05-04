@@ -452,7 +452,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for research, fact-finding, and knowledge synthesis, for academics, analysts, and curious professionals.',
     category: 'Research AI',
     emoji: '🔬',
-    slugs: ['perplexity', 'notebooklm', 'elicit', 'consensus', 'julius-ai'],
+    slugs: ['perplexity', 'notebooklm', 'consensus', 'julius-ai'],
     intro: 'AI research tools in 2026 split into two camps: web-search agents that pull and cite live sources, and corpus-aware tools that read documents you provide. The five tools below are the best in each lane. Perplexity for live web research with citations, NotebookLM for analyzing your own documents, Elicit and Consensus for academic literature, and Julius for data-driven research. Picking the right one depends on whether your sources are public, private, academic, or numerical.',
     methodology: 'We evaluated each tool on citation quality (do answers link to verifiable sources), reasoning depth (can the tool follow a multi-step research question), source coverage (web vs academic vs your own documents), free tier generosity, and the failure mode when the tool does not know an answer. Tools that hallucinate without acknowledging uncertainty were ranked lower.',
     picks: [
@@ -699,7 +699,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for academic research, literature review, and knowledge discovery - helping researchers and students work through complex information faster.',
     category: 'Research',
     emoji: '🔬',
-    slugs: ['perplexity', 'notebooklm', 'scispace', 'elicit', 'consensus'],
+    slugs: ['perplexity', 'notebooklm', 'consensus'],
   },
   {
     slug: 'best-ai-transcription-tools',
@@ -956,7 +956,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered customer support and helpdesk platforms for reducing ticket volume, speeding up resolution, and delivering better customer experiences at scale.',
     category: 'Business',
     emoji: '🎧',
-    slugs: ['zendesk', 'freshdesk', 'helpscout', 'gorgias', 'intercom'],
+    slugs: ['freshdesk', 'helpscout', 'gorgias', 'intercom'],
     intro: 'Customer support platforms in 2026 are AI-augmented at every touchpoint: ticket triage, AI-drafted responses, multilingual chat, and now agent-side copilots. The five tools below are the leaders by adoption and AI feature depth across SMB, mid-market, and ecommerce verticals. Picking the right one depends mostly on company size, channels (email vs chat vs voice), and whether ecommerce-specific features matter. Each tool now resolves 30-60% of Tier 1 tickets without human involvement.',
     methodology: 'We rated each platform on AI deflection rate (auto-resolution percentage), AI response quality, native channel support (email, chat, voice, SMS, social), CRM integration depth, knowledge base authoring tools, and pricing fairness for SMB and mid-market. Each tested with at least 100 real tickets across diverse complexity.',
     picks: [
@@ -1197,7 +1197,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI image generation tools for creating stunning visuals from text prompts - from photorealistic renders to artistic styles and commercial-safe content.',
     category: 'Design',
     emoji: '🎨',
-    slugs: ['midjourney', 'ideogram', 'flux', 'stability-ai', 'adobe-firefly'],
+    slugs: ['flux', 'stability-ai', 'adobe-firefly'],
     intro: 'AI image generators in 2026 are no longer interchangeable. Midjourney leads on artistic quality, Ideogram dominates on accurate text rendering, Flux is the open-weight choice for technical users, Stability AI ships the developer-friendly API, and Adobe Firefly wins on commercial safety. The five tools below cover every meaningful use case from concept art to e-commerce product mockups. Picking the right one depends entirely on what you are generating and where you will use it.',
     methodology: 'We tested each tool on five prompts across categories: photorealistic portrait, abstract illustration, product mockup with embedded text, brand asset, and stylized hero image. Criteria: output quality at default settings, prompt adherence (does it match the description), text rendering accuracy, commercial license clarity, and workflow integration with downstream design tools.',
     picks: [
@@ -1266,7 +1266,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for creative professionals - image generation, design, video creation, and visual content production for designers, marketers, and content creators.',
     category: 'Design',
     emoji: '✨',
-    slugs: ['midjourney', 'adobe-firefly', 'canva-ai', 'ideogram', 'flux'],
+    slugs: ['adobe-firefly', 'canva-ai', 'flux'],
   },
   {
     slug: 'best-ai-seo-content-tools',
@@ -1436,7 +1436,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for K-12 and higher education - from AI tutoring assistants and lesson plan generators to interactive classroom platforms and curriculum differentiation tools.',
     category: 'Education',
     emoji: '🎓',
-    slugs: ['notebooklm', 'gamma', 'claude', 'perplexity', 'grammarly'],
+    slugs: ['notebooklm', 'claude', 'perplexity', 'grammarly'],
   },
   {
     slug: 'best-ai-tools-for-teachers',
@@ -1452,7 +1452,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered presentation and slide tools for creating polished decks faster - from auto-generated pitch decks and interactive slides to visual storytelling platforms.',
     category: 'Productivity',
     emoji: '📊',
-    slugs: ['pitch', 'gamma', 'beautiful-ai', 'canva-ai', 'decktopus'],
+    slugs: ['pitch', 'beautiful-ai', 'canva-ai', 'decktopus'],
     intro: 'AI presentation tools in 2026 split into two camps: prompt-to-deck generators that produce a working presentation from a description (Gamma, Decktopus), and template-driven design tools with AI assistance (Pitch, Beautiful.ai, Canva). Both have their place. For founders pitching to investors or salespeople prepping for a meeting, AI generators ship a 10-slide deck in 30 seconds. For brand teams or agencies that need visual control, the design-first tools win. The five below are the best in each lane.',
     methodology: 'We tested each tool on three real briefs: an investor pitch deck, an internal training presentation, and a sales proposal. Criteria: quality of AI-generated initial draft, design quality at default settings, ease of editing after generation, brand consistency tools, export and sharing options, and price for solo or team use.',
     picks: [
@@ -1940,7 +1940,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered proposal tools for 2026 - from all-in-one document automation platforms with e-signature and CRM integration, to interactive web-based proposals and agency-focused proposal management software.',
     category: 'Business',
     emoji: '📄',
-    slugs: ['pandadoc', 'proposify', 'qwilr', 'better-proposals', 'oneflow'],
+    slugs: ['pandadoc', 'proposify', 'qwilr', 'better-proposals'],
   },
   {
     slug: 'best-contract-management-tools',
@@ -1948,7 +1948,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered contract management and CLM platforms for 2026 - from live negotiation documents and structured contract repositories to enterprise legal operations platforms with playbook-based AI review.',
     category: 'Business',
     emoji: '📝',
-    slugs: ['juro', 'ironclad', 'contractbook', 'oneflow', 'pandadoc'],
+    slugs: ['juro', 'ironclad', 'contractbook', 'pandadoc'],
   },
   {
     slug: 'best-customer-success-platforms',
@@ -2068,7 +2068,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI customer service tools in 2026 - autonomous resolution agents, ticket triage, and multilingual support automation for support orgs of every size.',
     category: 'Customer Support',
     emoji: '💬',
-    slugs: ['intercom-fin', 'ada-ai', 'decagon-ai', 'forethought-ai', 'ultimate-ai', 'yellow-ai'],
+    slugs: ['intercom-fin', 'decagon-ai', 'forethought-ai', 'yellow-ai'],
   },
   {
     slug: 'best-ai-helpdesk-automation',
@@ -2076,7 +2076,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tools for helpdesk automation in 2026 - deflection AI, ticket routing, and agent assist that reduce ticket volume and handle time.',
     category: 'Customer Support',
     emoji: '🎫',
-    slugs: ['intercom-fin', 'decagon-ai', 'forethought-ai', 'ultimate-ai', 'yellow-ai', 'lang-io'],
+    slugs: ['intercom-fin', 'decagon-ai', 'forethought-ai', 'yellow-ai', 'lang-io'],
   },
   {
     slug: 'best-ai-medical-scribes',
@@ -2084,7 +2084,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI ambient medical scribes in 2026 - tools that listen to patient encounters and generate clinical notes automatically, cutting documentation time for clinicians.',
     category: 'Healthcare AI',
     emoji: '🩺',
-    slugs: ['heidi-health', 'freed-ai', 'deepscribe', 'ambience-healthcare', 'abridge'],
+    slugs: ['freed-ai', 'deepscribe', 'ambience-healthcare', 'abridge'],
   },
   {
     slug: 'best-ai-clinical-decision-support',
@@ -2100,7 +2100,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI compliance automation platforms in 2026 - automated SOC 2, ISO 27001, and HIPAA certification tools that cut audit prep from months to weeks.',
     category: 'Compliance & Security',
     emoji: '🔒',
-    slugs: ['vanta', 'drata', 'secureframe', 'sprinto', 'auditboard'],
+    slugs: ['vanta', 'secureframe', 'sprinto', 'auditboard'],
   },
   {
     slug: 'best-ai-contract-intelligence',
@@ -2124,7 +2124,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI property data and analytics platforms in 2026 - commercial real estate intelligence, multifamily portfolio analytics, and institutional data unification tools.',
     category: 'Real Estate',
     emoji: '🏢',
-    slugs: ['reonomy', 'cherre', 'skyline-ai', 'leverton'],
+    slugs: ['reonomy', 'cherre', 'leverton'],
   },
   {
     slug: 'best-ai-construction-tools',
@@ -2140,7 +2140,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI generative design and development feasibility tools in 2026 - platforms that compress early-stage massing analysis, regulatory compliance checking, and site feasibility from weeks to minutes.',
     category: 'Construction AI',
     emoji: '🏛️',
-    slugs: ['autodesk-forma', 'archistar', 'testfit', 'spacemaker', 'join-build'],
+    slugs: ['archistar', 'testfit', 'spacemaker', 'join-build'],
   },
   {
     slug: 'best-ai-tutoring-tools',
@@ -2148,7 +2148,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tutoring and homework help tools in 2026 - from instant math problem solving to conversational concept coaching and adaptive study for students at every level.',
     category: 'Education',
     emoji: '📚',
-    slugs: ['photomath', 'mathgpt', 'socratic', 'quizlet-q-chat', 'coursera-coach'],
+    slugs: ['photomath', 'mathgpt', 'socratic', 'coursera-coach'],
   },
   {
     slug: 'best-ai-classroom-tools',
@@ -2156,7 +2156,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI tools for teachers and classrooms in 2026 - from automated grading and interactive lesson creation to game-based review and differentiated instruction generation.',
     category: 'Education',
     emoji: '🎓',
-    slugs: ['gradescope-ai', 'kahoot-ai', 'nearpod-ai', 'edpuzzle-ai', 'eduaide-ai'],
+    slugs: ['gradescope-ai', 'kahoot-ai', 'nearpod-ai', 'edpuzzle-ai'],
   },
   {
     slug: 'best-ai-performance-management',
@@ -2172,7 +2172,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered HR information systems in 2026 - from modern HRIS for mid-market teams to all-in-one payroll and benefits platforms for growing US businesses.',
     category: 'HR',
     emoji: '👥',
-    slugs: ['hibob', 'gusto', 'rippling', 'bamboohr', 'lattice'],
+    slugs: ['hibob', 'rippling', 'bamboohr', 'lattice'],
   },
   {
     slug: 'best-ai-claims-automation',
@@ -2180,7 +2180,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered insurance claims automation platforms in 2026 - from computer vision damage assessment and virtual appraisal workflows to fraud detection and straight-through claims processing.',
     category: 'Insurance',
     emoji: '🔍',
-    slugs: ['tractable', 'shift-technology', 'snapsheet', 'coalition', 'planck'],
+    slugs: ['tractable', 'shift-technology', 'coalition', 'planck'],
   },
   {
     slug: 'best-ai-insurance-platforms',
@@ -2204,7 +2204,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered hotel revenue management platforms in 2026 - from enterprise open pricing and demand forecasting to automated dynamic pricing for independent properties.',
     category: 'Hospitality',
     emoji: '📈',
-    slugs: ['duetto', 'atomize', 'revinate', 'mews'],
+    slugs: ['atomize', 'revinate', 'mews'],
   },
   {
     slug: 'best-ai-supply-chain-platforms',
@@ -2244,7 +2244,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered visual quality inspection tools in 2026 - from deep learning machine vision systems for high-speed production lines to self-deployable inspection AI for SMB manufacturers.',
     category: 'Manufacturing',
     emoji: '🔍',
-    slugs: ['cognex', 'landing-ai', 'instrumental', 'relimetrics', 'elementary'],
+    slugs: ['landing-ai', 'instrumental', 'relimetrics', 'elementary'],
   },
   {
     slug: 'best-ai-predictive-maintenance',
@@ -2268,7 +2268,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered ESG reporting and sustainability management platforms in 2026 - from enterprise multi-site data management to full CSRD and TCFD disclosure automation.',
     category: 'Sustainability',
     emoji: '♻️',
-    slugs: ['ibm-envizi', 'plan-a', 'watershed', 'persefoni'],
+    slugs: ['ibm-envizi', 'watershed', 'persefoni'],
   },
   {
     slug: 'best-ai-civic-engagement',
@@ -2276,7 +2276,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI-powered civic engagement and community intelligence platforms in 2026 - from resident sentiment monitoring and structured polling to participatory budgeting simulations for local government.',
     category: 'GovTech',
     emoji: '🏛️',
-    slugs: ['zencity', 'polco', 'civicplus', 'granicus', 'balancing-act'],
+    slugs: ['zencity', 'polco', 'civicplus', 'granicus'],
   },
   {
     slug: 'best-ai-public-safety',
@@ -2324,7 +2324,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The best AI platforms for defense and national security in 2026 - from mission-critical intelligence fusion and autonomous systems to AI-native defense software challenging traditional prime contractors.',
     category: 'Government AI',
     emoji: '🛡️',
-    slugs: ['palantir', 'anduril', 'shield-ai', 'helsing', 'rebellion-defense'],
+    slugs: ['palantir', 'anduril', 'shield-ai', 'rebellion-defense'],
   },
   {
     slug: 'best-ai-satellite-analytics',

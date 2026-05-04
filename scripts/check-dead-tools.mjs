@@ -23,6 +23,17 @@ const MANUAL_DEAD_SLUGS = [
   'shorts-ai',
   'detangle-ai',
   'lensa-ai',
+  // S86 follow-up cleanup 2026-05-04 (verified via direct curl probe):
+  'awhere',          // awhere.com -> HTTP 403 Caddy parking (post-acquisition zombie)
+  'prospera',        // prospera.ag -> ETIMEDOUT (Valmont absorbed product)
+  'autodesk-forma',  // forma.autodesk.com -> ENOTFOUND
+  'balancing-act',   // EAI_AGAIN (DNS perma-fail)
+  'duetto',          // CERT_HAS_EXPIRED on duettocloud.com
+  'espressive',      // HTTP 404
+  'heidi-health',    // ERR_TLS_CERT_ALTNAME_INVALID on heidihealth.com.au
+  'plan-a',          // ERR_TLS_CERT_ALTNAME_INVALID on plan-a.earth
+  'skyline-ai',      // ECONNRESET x2
+  'snapsheet',       // ECONNRESET x2
   // add more here after manual verification
 ]
 
