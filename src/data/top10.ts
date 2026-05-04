@@ -264,67 +264,6 @@ export const TOP10_LISTS: Top10List[] = [
     ],
   },
   {
-    slug: 'best-seo-ai-tools',
-    title: 'Best AI SEO Tools',
-    description: 'The top AI-powered SEO tools for growing organic traffic: keyword research, content optimization, and competitive analysis.',
-    category: 'SEO & Marketing',
-    emoji: '📈',
-    slugs: ['semrush', 'ahrefs', 'surfer-seo', 'grammarly', 'jasper'],
-    intro: 'SEO in 2026 is AI from end to end - keyword research, content briefs, drafts, optimization, and reporting all happen with AI assistance now. The five tools below are the ones that have integrated AI deeply enough to genuinely accelerate the SEO workflow, not just bolted on a chatbot. Some are full SEO suites with AI features layered in (Semrush, Ahrefs); others are AI-first writing tools that target SEO output (Surfer, Jasper); one is the editor that makes everything cleaner (Grammarly). Together they cover every step from idea to published page.',
-    methodology: 'We tested each tool against a real content workflow: research a topic cluster, build a brief, draft a 2,000-word blog, optimize for target keywords, and publish. Criteria were keyword data quality, AI brief generation accuracy, content optimization scoring, integration depth, and ROI per seat. We weighted tools that genuinely change SEO output velocity over tools that just package existing data with a chat layer.',
-    picks: [
-      {
-        slug: 'semrush',
-        whyPicked: 'Semrush remains the most complete AI SEO suite in 2026. Keyword Magic Tool, the Topic Research AI, and Content Shake AI cover idea-to-draft in one platform with the largest keyword database in the industry. Semrush AI Toolkit added in 2025 unifies competitive analysis, brand monitoring, and content gap analysis with a chat interface. The right pick for in-house SEO teams and agencies that need one tool for everything.',
-        bestFor: 'In-house SEO teams, agencies, and marketing managers who need keyword data plus content tools in one place.',
-        limitation: 'Pricing is enterprise-tier; overkill for solo bloggers or sites under 10K monthly visitors.',
-      },
-      {
-        slug: 'ahrefs',
-        whyPicked: 'Ahrefs is the SEO professionals choice for backlink data and now AI-assisted content workflows. Keywords Explorer remains the gold standard for keyword difficulty and traffic estimation. AI Content Helper gives smarter optimization scores than competitors because it weighs SERP intent, not just keyword density. Ahrefs is what serious SEO consultants reach for, especially for technical SEO and link building.',
-        bestFor: 'SEO consultants, technical SEOs, and content teams where backlink and ranking data quality drives decisions.',
-        limitation: 'AI features less polished than Semrush AI Toolkit; the chat interfaces are still bolt-ons rather than native.',
-      },
-      {
-        slug: 'surfer-seo',
-        whyPicked: 'Surfer SEO is the AI content optimizer. Open the Content Editor with a target keyword and Surfer scores your draft live against the top SERP results - keyword density, headings, length, related entities. The 2026 Surfer AI now drafts entire briefs and 2,000-word optimized blogs in one shot. For pure content optimization velocity, no other tool gets you to a Google-friendly draft this fast.',
-        bestFor: 'Content teams shipping 2+ SEO blog posts per week who need to optimize fast and consistently.',
-        limitation: 'Not a full SEO suite; you still need Semrush or Ahrefs for keyword research and tracking.',
-      },
-      {
-        slug: 'grammarly',
-        whyPicked: 'Grammarly is on this list because Google rewards clear, well-edited content and penalizes sloppy AI-generated drafts. Running every Surfer or Jasper draft through Grammarly Premium catches the awkward AI sentence patterns Google models can detect, improves readability scores (which Surfer measures), and adds the polish that turns ranking content into shareable content. Cheapest high-leverage SEO tool you can buy.',
-        bestFor: 'Any SEO writer producing AI-assisted drafts that need polish before publishing.',
-        limitation: 'Not an SEO tool per se; pairs with Surfer or Jasper rather than replacing them.',
-      },
-      {
-        slug: 'jasper',
-        whyPicked: 'Jasper is on this SEO list because of its Surfer SEO integration and Brand Voice features. Jasper drafts inside the Surfer Content Editor mean you can write SEO-optimized content with brand voice consistency across hundreds of pieces. For content teams already on Surfer, adding Jasper turns a one-person SEO writer into the output of three. Pricing is the main objection.',
-        bestFor: 'Marketing teams that already use Surfer SEO and need brand-voice consistency across many writers.',
-        limitation: 'Solo SEO bloggers will find Jasper plus Surfer pricing too high; cheaper to write with ChatGPT or Claude inside Surfer.',
-      },
-    ],
-    bottomLine: 'Pick Semrush if you need one full SEO suite covering keyword research, content briefs, and competitive analysis with native AI. Pick Ahrefs if backlink data and ranking accuracy matter most and you accept more bolt-on AI. Pick Surfer SEO if your bottleneck is going from brief to optimized draft fast. Pick Grammarly to polish every draft from any of these tools - cheapest high-leverage add. Pick Jasper if you have a marketing team and need brand voice consistency at SEO content scale.',
-    faqs: [
-      {
-        q: 'Can AI SEO tools rank my site without me writing anything?',
-        a: 'No. Tools like Surfer AI generate a draft, but unedited AI content is the fastest path to Google Helpful Content penalties. The right workflow is AI drafts plus human editing, fact-checking, and original perspective. Tools accelerate the work; they do not replace the judgment.',
-      },
-      {
-        q: 'Do I need Semrush AND Ahrefs?',
-        a: 'No - pick one. Semrush is broader and more team-friendly; Ahrefs has cleaner data and better backlink coverage. Most agencies pick one and use the free tier of the other for spot-checks. Solo bloggers and small teams should not pay for both.',
-      },
-      {
-        q: 'Is Surfer SEO worth it for a small blog?',
-        a: 'If you publish 1+ blog post per month and care about ranking, yes - the time saved on optimization and the lift in rankings pay back the $89/month within 2-3 posts. If you publish less than once a month or do not measure organic traffic, skip it.',
-      },
-      {
-        q: 'Will AI SEO tools work for non-English markets?',
-        a: 'Semrush and Ahrefs cover most major languages with full keyword data. Surfer SEO supports 50+ languages for content optimization. Jasper and Grammarly work primarily in English with limited support for major European languages. Niche language SEO is still better served by local-language specific tools.',
-      },
-    ],
-  },
-  {
     slug: 'best-ai-tools-for-marketers',
     title: 'Best AI Tools for Marketers',
     description: 'The top AI tools used by marketing teams to create content faster, optimize campaigns, and scale their output.',
@@ -630,14 +569,6 @@ export const TOP10_LISTS: Top10List[] = [
     ],
   },
   {
-    slug: 'best-social-media-ai-tools',
-    title: 'Best AI Social Media Tools',
-    description: 'The top AI-powered social media management and content creation tools for scheduling, publishing, and growing an audience.',
-    category: 'Marketing',
-    emoji: '📱',
-    slugs: ['hootsuite', 'buffer', 'typefully', 'canva-ai', 'jasper'],
-  },
-  {
     slug: 'best-ai-tools-for-students',
     title: 'Best AI Tools for Students',
     description: 'The top free and affordable AI tools that give students a genuine academic edge: from research and writing to coding and presentations.',
@@ -678,44 +609,12 @@ export const TOP10_LISTS: Top10List[] = [
     slugs: ['notebooklm', 'chatpdf', 'readwise', 'claude'],
   },
   {
-    slug: 'best-ai-voice-generators',
-    title: 'Best AI Voice Generators',
-    description: 'The top AI text-to-speech and voice generation tools for creators, businesses, and developers - ranked by voice quality, language support, and value.',
-    category: 'Voice AI',
-    emoji: '🗣️',
-    slugs: ['elevenlabs', 'wellsaid', 'murf', 'riverside'],
-  },
-  {
-    slug: 'best-ai-video-generators',
-    title: 'Best AI Video Generators',
-    description: 'The top AI text-to-video and image-to-video generation tools for creators and marketers - ranked by video quality, motion realism, and prompt accuracy.',
-    category: 'Video AI',
-    emoji: '🎬',
-    slugs: ['runway', 'luma-ai', 'kling', 'hailuo', 'pika'],
-  },
-  {
-    slug: 'best-ai-research-assistants',
-    title: 'Best AI Research Assistants',
-    description: 'The top AI tools for academic research, literature review, and knowledge discovery - helping researchers and students work through complex information faster.',
-    category: 'Research',
-    emoji: '🔬',
-    slugs: ['perplexity', 'notebooklm', 'consensus'],
-  },
-  {
     slug: 'best-ai-transcription-tools',
     title: 'Best AI Transcription Tools',
     description: 'The top AI-powered transcription and speech-to-text tools for meetings, interviews, podcasts, and video content - ranked by accuracy, speed, and speaker identification.',
     category: 'Voice AI',
     emoji: '📝',
     slugs: ['otter-ai', 'fireflies-ai', 'fathom', 'avoma', 'tldv'],
-  },
-  {
-    slug: 'best-ai-tools-for-ecommerce',
-    title: 'Best AI Tools for E-commerce',
-    description: 'The top AI tools helping online stores write product content, automate customer support, optimise email marketing, and increase conversion rates.',
-    category: 'Business',
-    emoji: '🛒',
-    slugs: ['klaviyo', 'jasper', 'tidio', 'canva-ai', 'semrush'],
   },
   {
     slug: 'best-ai-music-tools',
@@ -732,22 +631,6 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Business',
     emoji: '💰',
     slugs: ['julius-ai', 'claude', 'grammarly', 'zapier', 'notion-ai'],
-  },
-  {
-    slug: 'best-ai-tools-for-hr',
-    title: 'Best AI Tools for HR Teams',
-    description: 'The top AI tools helping HR professionals automate recruiting, improve onboarding, handle communications, and analyse people data - freeing time for human-first work.',
-    category: 'Business',
-    emoji: '👥',
-    slugs: ['clay', 'notion-ai', 'loom', 'fireflies-ai', 'zapier'],
-  },
-  {
-    slug: 'best-ai-podcast-production-tools',
-    title: 'Best AI Podcast Production Tools',
-    description: 'The top AI tools for recording, editing, transcribing, and repurposing podcast content - from solo creators to professional production teams.',
-    category: 'Podcasting',
-    emoji: '🎙️',
-    slugs: ['descript', 'riverside', 'podcastle', 'castmagic', 'adobe-podcast'],
   },
   {
     slug: 'best-ai-legal-tools',
@@ -947,67 +830,6 @@ export const TOP10_LISTS: Top10List[] = [
       {
         q: 'How much does a no-code stack cost?',
         a: 'Free tiers exist on Lovable, Glide, and Webflow. Paid plans run $20-100/month for solo use. Bubble and Retool have higher pricing for production apps, often $100-500/month for serious commercial use. Compared to engineering hires, all five are dramatically cheaper.',
-      },
-    ],
-  },
-  {
-    slug: 'best-ai-customer-support-tools',
-    title: 'Best AI Customer Support Tools',
-    description: 'The top AI-powered customer support and helpdesk platforms for reducing ticket volume, speeding up resolution, and delivering better customer experiences at scale.',
-    category: 'Business',
-    emoji: '🎧',
-    slugs: ['freshdesk', 'helpscout', 'gorgias', 'intercom'],
-    intro: 'Customer support platforms in 2026 are AI-augmented at every touchpoint: ticket triage, AI-drafted responses, multilingual chat, and now agent-side copilots. The five tools below are the leaders by adoption and AI feature depth across SMB, mid-market, and ecommerce verticals. Picking the right one depends mostly on company size, channels (email vs chat vs voice), and whether ecommerce-specific features matter. Each tool now resolves 30-60% of Tier 1 tickets without human involvement.',
-    methodology: 'We rated each platform on AI deflection rate (auto-resolution percentage), AI response quality, native channel support (email, chat, voice, SMS, social), CRM integration depth, knowledge base authoring tools, and pricing fairness for SMB and mid-market. Each tested with at least 100 real tickets across diverse complexity.',
-    picks: [
-      {
-        slug: 'zendesk',
-        whyPicked: 'Zendesk remains the dominant enterprise helpdesk in 2026 and the Zendesk AI suite (formerly Ultimate, acquired) now ships deep deflection and agent copilot features. Used by mid-market and enterprise support orgs for omnichannel ticketing. The 2026 Zendesk AI Agents resolve 50%+ of common tickets autonomously with brand-voice consistency. Best pick when scale, omnichannel, and enterprise support contracts matter.',
-        bestFor: 'Mid-market and enterprise support orgs, multi-channel customer service operations, B2B SaaS at scale.',
-        limitation: 'Pricing scales steeply; SMB teams will overpay for capabilities they do not need.',
-      },
-      {
-        slug: 'freshdesk',
-        whyPicked: 'Freshdesk is the SMB-friendly alternative to Zendesk with strong AI features at lower pricing. Freddy AI handles ticket categorization, auto-responses, and agent suggestions. The 2026 Freshworks Customer Service Suite combines helpdesk, chat, and CRM. Best value pick for support teams under 50 agents. Cleaner UX than Zendesk for non-technical support managers.',
-        bestFor: 'SMB and mid-market support teams, companies switching from email-only support to a real platform.',
-        limitation: 'Enterprise scale features (advanced workflow, custom analytics) lag Zendesk.',
-      },
-      {
-        slug: 'helpscout',
-        whyPicked: 'Help Scout is the email-first helpdesk that feels like Gmail. Best UX for SMB B2B support teams that primarily handle email tickets and value simplicity over feature depth. The 2026 AI Assist features include draft generation, ticket summary, and tone matching. Fixed per-seat pricing without complex tier structures.',
-        bestFor: 'SMB B2B support teams, email-heavy support workflows, companies that want simplicity over feature breadth.',
-        limitation: 'Less powerful for multichannel (chat, voice, SMS); not the right pick for ecommerce or high-volume support.',
-      },
-      {
-        slug: 'gorgias',
-        whyPicked: 'Gorgias is purpose-built for ecommerce customer service. Native Shopify integration means every customer ticket pulls in order history, tracking, and customer LTV automatically. The 2026 Gorgias AI handles 30-50% of common ecommerce tickets (where is my order, return request, sizing) without human intervention. The right pick for any DTC brand on Shopify with 500+ tickets per month.',
-        bestFor: 'DTC ecommerce brands on Shopify, BigCommerce, or Magento; high-volume ecommerce support.',
-        limitation: 'Not the right pick for B2B SaaS support; pricing assumes ecommerce-volume scale.',
-      },
-      {
-        slug: 'intercom',
-        whyPicked: 'Intercom is the AI-first customer messaging platform built around the 2026 Fin AI Agent. Fin resolves 50-70% of customer questions autonomously with content from your help center. Used heavily by B2B SaaS and tech-forward consumer brands. The chat-first UX is more aligned with modern user expectations than email-ticket workflows.',
-        bestFor: 'B2B SaaS, consumer apps, modern tech brands prioritizing chat-first proactive support.',
-        limitation: 'Pricing per resolution can scale unpredictably; less optimal for traditional ticket-based support workflows.',
-      },
-    ],
-    bottomLine: 'Pick Zendesk if you run an enterprise support org with omnichannel needs and budget. Pick Freshdesk for the same job at SMB pricing. Pick Help Scout for simple email-heavy support where UX matters more than features. Pick Gorgias if you sell physical products on Shopify and ecommerce-specific features matter. Pick Intercom if you run modern chat-first support and the Fin AI Agent fits your help center content. Many B2B SaaS teams run Intercom for chat-first plus Zendesk or Freshdesk for ticketing.',
-    faqs: [
-      {
-        q: 'Can AI really resolve customer tickets autonomously?',
-        a: 'Yes for 30-60% of common Tier 1 tickets in 2026 - "where is my order", "how do I reset my password", "what is your refund policy". Complex tickets (escalations, edge cases, emotional situations) still need human agents. The AI deflection layer reduces agent load, not the need for agents.',
-      },
-      {
-        q: 'Zendesk vs Intercom - which is better?',
-        a: 'They serve different jobs. Zendesk is a ticket-based omnichannel helpdesk. Intercom is a chat-first messaging platform with strong AI deflection. B2B SaaS often picks Intercom; multichannel mid-market often picks Zendesk. Some teams use both for different functions.',
-      },
-      {
-        q: 'How much does AI customer support cost?',
-        a: 'Per-seat pricing runs $25-200/agent/month depending on tier. AI deflection is usually billed per resolution (Intercom) or included (Zendesk Ultimate). Total cost of ownership for a 10-agent team typically lands $5K-15K/year.',
-      },
-      {
-        q: 'What about voice and phone support?',
-        a: 'Zendesk and Freshdesk both have native voice channels. Help Scout and Gorgias do not include native voice (use third-party). For voice-heavy support, the better choice is Talkdesk or Five9 paired with one of these helpdesks for ticket management.',
       },
     ],
   },
@@ -1354,75 +1176,6 @@ export const TOP10_LISTS: Top10List[] = [
     slugs: ['plane-so', 'huly', 'n8n', 'flowise', 'posthog'],
   },
   {
-    slug: 'best-ai-customer-success-tools',
-    title: 'Best AI Customer Success Tools',
-    description: 'The top AI-powered customer support and success platforms for reducing ticket volume, automating Tier-1 resolution, and delivering faster, more personalised service at scale.',
-    category: 'Business',
-    emoji: '🎧',
-    slugs: ['chatwoot', 'kustomer', 'plain', 'forethought', 'capacity'],
-    intro: 'Customer success tools in 2026 split between full-platform CS suites (Kustomer, Plain) and AI-augmentation layers that bolt onto existing helpdesks (Forethought, Capacity). Chatwoot rounds out the list as the open-source option for teams who want self-hosting. Picking right depends on whether you are starting from scratch, already on Zendesk, or have data sovereignty requirements that rule out hosted SaaS.',
-    methodology: 'We rated each platform on AI deflection rate, integration depth with CRM and product analytics, agent productivity tools, escalation workflow quality, and pricing structure. Platforms tested with diverse ticket types from B2B SaaS, ecommerce, and developer tools.',
-    picks: [
-      {
-        slug: 'chatwoot',
-        whyPicked: 'Chatwoot is the open-source customer engagement platform that has matured into a real Zendesk alternative in 2026. Self-hostable, with multichannel support (email, chat, WhatsApp, Instagram, Twitter) and AI features for response suggestion and ticket categorization. Free if self-hosted, hosted Cloud option also available. Best pick for teams that need data sovereignty or want to avoid per-seat SaaS pricing at scale.',
-        bestFor: 'Open-source advocates, government and education, teams with strict data residency requirements, cost-sensitive scale-ups.',
-        limitation: 'Self-hosting requires DevOps capacity; AI features lag commercial alternatives slightly.',
-      },
-      {
-        slug: 'kustomer',
-        whyPicked: 'Kustomer (acquired by Meta) is the customer service CRM with deep AI features for omnichannel conversations. Unified customer view across all channels, with conversation routing, agent copilots, and chatbots that share state across email, chat, and SMS. Used by mid-market and enterprise consumer brands. The 2026 Kustomer AI features include autonomous deflection and proactive outreach.',
-        bestFor: 'Mid-market and enterprise consumer brands, multichannel customer service operations, retail and ecommerce.',
-        limitation: 'Pricing is enterprise-tier; Meta acquisition has raised concerns for some buyers about data and roadmap.',
-      },
-      {
-        slug: 'plain',
-        whyPicked: 'Plain is the modern customer support platform built specifically for B2B SaaS in 2026. Email-first workflow, deep Slack integration, native developer-friendly APIs, and customer profile that pulls in product data automatically. Used by tech-forward B2B SaaS companies that find Zendesk overkill and Help Scout under-powered. The AI features focus on agent assist rather than full deflection.',
-        bestFor: 'B2B SaaS companies, developer tool companies, modern tech startups serving other businesses.',
-        limitation: 'Newer platform with smaller integration ecosystem; not the right pick for non-tech B2C support.',
-      },
-      {
-        slug: 'forethought',
-        whyPicked: 'Forethought is the AI layer that bolts onto Zendesk, Salesforce Service Cloud, or Freshdesk to add autonomous deflection and agent copilot. SupportGPT handles 30-50% of common tickets without agent involvement. Best pick when you have an existing helpdesk you cannot replace but want to add genuine AI deflection. The 2026 Forethought Solve resolves tickets end-to-end including refunds and account changes.',
-        bestFor: 'Mid-market and enterprise companies committed to existing helpdesk, support orgs adding AI without platform migration.',
-        limitation: 'Depends on existing helpdesk infrastructure; pricing tiers are high.',
-      },
-      {
-        slug: 'capacity',
-        whyPicked: 'Capacity is the AI knowledge automation platform for internal IT and HR support as well as customer support. Federated search across documents and ticket history, with AI answering questions in chat or Teams. The 2026 Capacity Workflow Builder adds no-code automation across the support stack. Best pick when employee-facing support (IT helpdesk, HR questions) is as much a problem as customer support.',
-        bestFor: 'Mid-market companies running both internal and external support, IT helpdesks, HR shared services.',
-        limitation: 'Less polished pure customer support workflows vs Zendesk or Kustomer; broader scope dilutes focus.',
-      },
-    ],
-    bottomLine: 'Pick Chatwoot if data sovereignty, open-source, or cost-at-scale matter most. Pick Kustomer if you run multichannel consumer-brand support at mid-market or enterprise scale. Pick Plain if you are a B2B SaaS company that finds Zendesk too heavy. Pick Forethought to add AI deflection to an existing Zendesk or Salesforce deployment. Pick Capacity when internal IT and HR support are equal priorities to customer support.',
-    faqs: [
-      {
-        q: 'Customer success vs customer support - what is the difference here?',
-        a: 'In this list both are covered because the tools overlap heavily in 2026. Customer support is reactive (handle tickets). Customer success is proactive (drive adoption, reduce churn). Modern platforms (Kustomer, Plain) increasingly blend both. Pure customer success platforms like Gainsight or Catalyst are a separate category not covered here.',
-      },
-      {
-        q: 'Should I add Forethought to Zendesk or just upgrade Zendesk AI?',
-        a: 'Zendesk Ultimate (the rebranded former Ultimate AI) now covers most deflection use cases. Forethought makes sense if you need deeper customization or are on Salesforce Service Cloud. For pure Zendesk shops, the native AI suite is usually sufficient.',
-      },
-      {
-        q: 'Can these tools fully automate customer support?',
-        a: 'No. AI handles 30-60% of Tier 1 tickets autonomously. Complex tickets, emotional escalations, and edge cases still need humans. The right framing is AI deflection plus AI agent copilot reduces required headcount by 30-50%, not 100%.',
-      },
-      {
-        q: 'What about ecommerce-specific tools like Gorgias?',
-        a: 'Gorgias is covered in best-ai-customer-support-tools and is the right pick for Shopify ecommerce. The list above focuses on B2B SaaS and consumer brand customer success, where Gorgias is less relevant.',
-      },
-    ],
-  },
-  {
-    slug: 'best-ai-video-editing-tools',
-    title: 'Best AI Video Editing Tools',
-    description: 'The top AI-powered video editing platforms for creators, marketers, and teams - from text-based editing and automatic silence removal to short-form repurposing and subtitle generation.',
-    category: 'Video',
-    emoji: '🎬',
-    slugs: ['descript', 'capcut', 'veed-io', 'opus-clip', 'kapwing'],
-  },
-  {
     slug: 'best-ai-avatar-tools',
     title: 'Best AI Avatar Video Tools',
     description: 'The top AI avatar video platforms for creating professional presenter-led videos without a camera - from enterprise training and multilingual marketing to social content and interactive digital humans.',
@@ -1437,14 +1190,6 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Education',
     emoji: '🎓',
     slugs: ['notebooklm', 'claude', 'perplexity', 'grammarly'],
-  },
-  {
-    slug: 'best-ai-tools-for-teachers',
-    title: 'Best AI Teaching Tools',
-    description: 'The top AI tools built specifically for K-12 teachers - covering lesson planning, reading differentiation, formative assessment, interactive slides, and safe classroom AI deployment.',
-    category: 'Education',
-    emoji: '📚',
-    slugs: ['khanmigo', 'schoolai', 'curipod', 'brisk-teaching', 'diffit'],
   },
   {
     slug: 'best-ai-presentation-tools',
@@ -1506,14 +1251,6 @@ export const TOP10_LISTS: Top10List[] = [
         a: 'All five support major European languages well. Gamma and Canva have the broadest language coverage including Asian languages. Quality is best in English; non-English output benefits from native-speaker editing on idioms and cultural references.',
       },
     ],
-  },
-  {
-    slug: 'best-ai-tools-for-presentations',
-    title: 'Best AI Slide and Deck Builders',
-    description: 'The top AI presentation builders for creating investor pitch decks, sales proposals, and interactive slide decks - from startup-focused pitch builders to live audience engagement platforms.',
-    category: 'Productivity',
-    emoji: '🖥️',
-    slugs: ['slidebean', 'storydoc', 'prezi', 'visme', 'genially'],
   },
   {
     slug: 'best-ai-tools-for-remote-work',
@@ -1585,14 +1322,6 @@ export const TOP10_LISTS: Top10List[] = [
     ],
   },
   {
-    slug: 'best-ai-tools-for-doctors',
-    title: 'Best AI Tools for Physicians',
-    description: 'The top AI tools built specifically for physicians - from ambient documentation that writes clinical notes automatically to clinical reasoning assistants and professional networking.',
-    category: 'Business',
-    emoji: '🩺',
-    slugs: ['nabla', 'suki-ai', 'glass-health', 'doximity', 'regard'],
-  },
-  {
     slug: 'best-ai-data-analysis-tools',
     title: 'Best AI Data Analysis Tools',
     description: 'The top AI-powered data analysis tools for business teams in 2026 - covering no-code machine learning, natural language SQL, AI spreadsheets, collaborative notebooks, and big data exploration without requiring coding skills.',
@@ -1609,75 +1338,12 @@ export const TOP10_LISTS: Top10List[] = [
     slugs: ['akkio', 'obviously-ai', 'rows', 'polymer', 'gigasheet'],
   },
   {
-    slug: 'best-ai-recruiting-tools',
-    title: 'Best AI Recruiting Tools',
-    description: 'The top AI-powered recruiting platforms for 2026 - from structured hiring ATS and candidate CRMs to talent sourcing intelligence, automated interview scheduling, and AI interview notes.',
-    category: 'Business',
-    emoji: '🎯',
-    slugs: ['ashby', 'greenhouse', 'lever', 'goodtime'],
-    intro: 'Recruiting tooling in 2026 has shifted from job boards plus spreadsheets to AI-augmented full-funnel platforms. The five tools below cover four jobs: applicant tracking (Ashby, Greenhouse, Lever), interview scheduling (GoodTime), and outbound sourcing (SeekOut). Most TA orgs run an ATS plus one specialized tool. Picking the ATS right is the high-stakes call because data lives there for years - the others are easier to swap.',
-    methodology: 'We rated each platform on AI feature depth (smart scoring, pipeline analytics, interview assistance), structured-hiring rigor (does the tool enforce best practices), integration ecosystem (HR systems, sourcing tools, assessment vendors), pricing per hire vs per seat, and adoption signals from real TA teams. Ranked weighted on AI quality + structured-hiring fit.',
-    picks: [
-      {
-        slug: 'ashby',
-        whyPicked: 'Ashby is the modern ATS that combines applicant tracking with deep analytics, scheduling, and CRM in one platform. The 2026 Ashby AI features include automated candidate scoring, pipeline drop-off analytics, and AI interview note generation. Used by venture-backed scale-ups (10-1000 employees) that want analytics-first hiring without stitching together multiple vendors. Best UX in the ATS category.',
-        bestFor: 'Venture-backed startups and scale-ups, TA orgs that prioritize analytics and structured hiring.',
-        limitation: 'Pricing is enterprise-tier even at small scale; mid-market without dedicated TA may find it overkill.',
-      },
-      {
-        slug: 'greenhouse',
-        whyPicked: 'Greenhouse is the dominant enterprise ATS for structured hiring. The 2026 Greenhouse AI features include candidate matching, interview kit generation, and bias detection in job descriptions. Used by enterprise TA orgs with 50+ recruiters because the workflow rigor and integration ecosystem are unmatched. The right pick when hiring volume is 100+ per quarter and process consistency matters.',
-        bestFor: 'Enterprise TA orgs, regulated industries needing compliance audit trails, companies hiring 100+ per quarter.',
-        limitation: 'Setup and configuration overhead is heavy; small teams will find Ashby easier to deploy.',
-      },
-      {
-        slug: 'lever',
-        whyPicked: 'Lever is the candidate-CRM-first ATS that emphasizes proactive outreach over reactive applications. Pipeline of passive candidates with strong nurture features. The 2026 Lever AI Sourcing surfaces candidates from internal CRM and external sources matched to open roles. Best pick for TA orgs running heavy executive search or hard-to-fill roles where applications alone are insufficient.',
-        bestFor: 'Executive search firms, in-house TA running senior or hard-to-fill roles, companies with heavy passive-candidate nurture.',
-        limitation: 'Less analytical depth than Ashby; less rigorous structured-hiring than Greenhouse.',
-      },
-      {
-        slug: 'goodtime',
-        whyPicked: 'GoodTime is the AI interview scheduling tool that eliminates the ping-pong of finding interview slots. Scheduling intelligence matches interviewer availability, candidate preferences, and panel composition automatically. The 2026 GoodTime AI Notetaker captures interview content and routes it to the ATS. Used by companies hiring 50+ per quarter where coordinator time is the bottleneck.',
-        bestFor: 'High-volume hiring teams, companies running 5+ interviews per role, in-house TA with dedicated coordinators.',
-        limitation: 'Standalone scheduling tool - not an ATS; pricing assumes high interview volume.',
-      },
-    ],
-    bottomLine: 'Pick Ashby if you are a venture-backed scale-up and want analytics-first hiring in one tool. Pick Greenhouse if you are enterprise scale and need structured hiring rigor with a deep integration ecosystem. Pick Lever if proactive candidate nurture is core to your motion. Pick GoodTime when scheduling is the actual bottleneck. Most growth-stage companies run Ashby or Greenhouse plus GoodTime as the modern recruiting stack.',
-    faqs: [
-      {
-        q: 'Ashby vs Greenhouse - which to pick?',
-        a: 'Ashby for venture-backed scale-ups under 500 employees who value analytics and modern UX. Greenhouse for enterprise scale with established TA processes and dedicated integration needs. Both are strong; the right pick depends on whether modern UX (Ashby) or process rigor (Greenhouse) matters more to your TA leader.',
-      },
-      {
-        q: 'Are AI candidate scoring tools biased?',
-        a: 'Potentially yes if not designed carefully. The five tools above all build in bias detection or audit logs. Always validate AI scoring with structured human review, especially for protected classes. Some jurisdictions (NYC, EU) require bias audits for AI hiring tools - check local regulation.',
-      },
-      {
-        q: 'Can AI replace recruiters?',
-        a: 'No. AI accelerates sourcing, scheduling, note-taking, and pipeline analytics. The relationship work, candidate experience, negotiation, and closing remain firmly human. The role is shifting from administrative work to higher-leverage candidate engagement.',
-      },
-      {
-        q: 'How much does a recruiting stack cost?',
-        a: 'For SMB (under 100 employees, 1-2 recruiters): Ashby + LinkedIn Recruiter runs $1,500-3,000/month. For mid-market (100-1000 employees, 5-10 recruiters): Greenhouse + GoodTime + SeekOut runs $5,000-15,000/month. ROI usually shows up in time-to-fill and quality-of-hire metrics within 1-2 quarters.',
-      },
-    ],
-  },
-  {
     slug: 'best-ai-hr-tools',
     title: 'Best AI HR Tools',
     description: 'The top AI-powered HR and workforce management platforms for 2026 - covering HRIS, onboarding automation, skills-based hiring, talent intelligence, and interview quality improvement.',
     category: 'Business',
     emoji: '👥',
     slugs: ['rippling', 'bamboohr', 'beamery', 'eightfold', 'metaview'],
-  },
-  {
-    slug: 'best-ai-content-writing-tools',
-    title: 'Best AI Content Writing Tools',
-    description: 'The top specialized AI writing platforms for content teams in 2026 - covering e-commerce copy, content operations, fact-verified long-form, all-in-one marketing content, and enterprise writing governance.',
-    category: 'Writing',
-    emoji: '✍️',
-    slugs: ['narrato', 'hypotenuse-ai', 'longshot-ai', 'cohesive-ai', 'simplified'],
   },
   {
     slug: 'best-ai-tools-for-writers',
@@ -1779,14 +1445,6 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Education',
     emoji: '🎓',
     slugs: ['talentlms', 'docebo', 'learnupon', 'absorb-lms', '360learning'],
-  },
-  {
-    slug: 'best-ai-elearning-authoring-tools',
-    title: 'Best AI E-Learning Authoring Tools',
-    description: 'The top e-learning authoring tools and platforms for creating interactive corporate training courses, compliance programmes, and customer education content in 2026.',
-    category: 'Education',
-    emoji: '📚',
-    slugs: ['articulate', 'ispring', 'cornerstone', 'skilljar', 'litmos'],
   },
   {
     slug: 'best-ai-knowledge-management-tools',
@@ -2001,14 +1659,6 @@ export const TOP10_LISTS: Top10List[] = [
     slugs: ['weglot', 'lokalise', 'crowdin', 'transifex', 'poeditor'],
   },
   {
-    slug: 'best-ai-social-media-tools',
-    title: 'Best AI Social Media Tools',
-    description: 'The top AI-powered social media tools for 2026 - from LinkedIn content engines and visual post generators to all-in-one social media management platforms for creators, marketers, and agencies.',
-    category: 'Marketing',
-    emoji: '📱',
-    slugs: ['predis-ai', 'taplio', 'contentstudio', 'publer', 'flick-social', 'vista-social', 'supergrow'],
-  },
-  {
     slug: 'best-linkedin-ai-tools',
     title: 'Best AI Tools for LinkedIn Growth',
     description: 'The top AI-powered LinkedIn tools for growing your personal brand and audience in 2026 - from AI content writers that match your voice to automation tools for scheduling, engagement, and warm lead tracking.',
@@ -2031,22 +1681,6 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Automation',
     emoji: '⚡',
     slugs: ['zapier', 'make-com', 'integrately', 'activepieces', 'bardeen', 'albato'],
-  },
-  {
-    slug: 'best-ai-crm-tools',
-    title: 'Best AI CRM Tools 2026',
-    description: 'The best AI-powered CRMs in 2026 - from Salesforce Einstein for enterprise to Folk for startups. Real pricing, honest tradeoffs, and which CRM fits your team.',
-    category: 'CRM & Sales',
-    emoji: '📇',
-    slugs: ['salesforce-einstein', 'zoho-crm', 'freshsales', 'folk', 'close', 'streak'],
-  },
-  {
-    slug: 'best-ai-sales-tools',
-    title: 'Best AI Sales Tools 2026',
-    description: 'The best AI-powered sales tools in 2026 - revenue forecasting, AI cold outbound, and sales engagement platforms for modern revenue teams.',
-    category: 'CRM & Sales',
-    emoji: '💼',
-    slugs: ['clari', 'amplemarket', 'smartlead', 'salesforce-einstein', 'kommo', 'freshsales'],
   },
   {
     slug: 'best-ai-ecommerce-tools',
@@ -2076,332 +1710,6 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '💬',
     slugs: [
       'intercom-fin', 'decagon-ai', 'yellow-ai'
-    ],
-  },
-  {
-    slug: 'best-ai-helpdesk-automation',
-    title: 'Best AI Helpdesk Automation Tools 2026',
-    description: 'The best AI tools for helpdesk automation in 2026 - deflection AI, ticket routing, and agent assist that reduce ticket volume and handle time.',
-    category: 'Customer Support',
-    emoji: '🎫',
-    slugs: [
-      'intercom-fin', 'decagon-ai', 'yellow-ai'
-    ],
-  },
-  {
-    slug: 'best-ai-medical-scribes',
-    title: 'Best AI Medical Scribe Tools 2026',
-    description: 'The best AI ambient medical scribes in 2026 - tools that listen to patient encounters and generate clinical notes automatically, cutting documentation time for clinicians.',
-    category: 'Healthcare AI',
-    emoji: '🩺',
-    slugs: ['freed-ai', 'deepscribe', 'ambience-healthcare', 'abridge'],
-  },
-  {
-    slug: 'best-ai-clinical-decision-support',
-    title: 'Best AI Clinical Decision Support Tools 2026',
-    description: 'The best AI tools for clinical decision support in 2026 - real-time diagnosis assistance, imaging triage, and evidence-based care recommendations for clinicians.',
-    category: 'Healthcare AI',
-    emoji: '🏥',
-    slugs: [
-      'viz-ai'
-    ],
-  },
-  {
-    slug: 'best-ai-compliance-automation',
-    title: 'Best AI Compliance Automation Tools 2026',
-    description: 'The best AI compliance automation platforms in 2026 - automated SOC 2, ISO 27001, and HIPAA certification tools that cut audit prep from months to weeks.',
-    category: 'Compliance & Security',
-    emoji: '🔒',
-    slugs: [
-      'vanta'
-    ],
-  },
-  {
-    slug: 'best-ai-contract-intelligence',
-    title: 'Best AI Contract Intelligence Tools 2026',
-    description: 'The best AI contract intelligence platforms in 2026 - tools that extract obligations, renewal dates, and risk terms from contract repositories at scale.',
-    category: 'Legal AI',
-    emoji: '📋',
-    slugs: [
-      'onetrust'
-    ],
-  },
-  {
-    slug: 'best-ai-real-estate-tools',
-    title: 'Best AI Real Estate Tools 2026',
-    description: 'The best AI-powered real estate platforms in 2026 - from brokerage intelligence that identifies likely sellers before they list, to commercial property data platforms for off-market deal origination.',
-    category: 'Real Estate',
-    emoji: '🏠',
-    slugs: [
-      'compass'
-    ],
-  },
-  {
-    slug: 'best-ai-property-data-platforms',
-    title: 'Best AI Property Data Platforms 2026',
-    description: 'The best AI property data and analytics platforms in 2026 - commercial real estate intelligence, multifamily portfolio analytics, and institutional data unification tools.',
-    category: 'Real Estate',
-    emoji: '🏢',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-construction-tools',
-    title: 'Best AI Construction Tools 2026',
-    description: 'The best AI construction site capture, progress monitoring, and document intelligence tools in 2026 - platforms that reduce documentation overhead and surface schedule risk before delays compound.',
-    category: 'Construction AI',
-    emoji: '🏗️',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-design-and-architecture-tools',
-    title: 'Best AI Design and Architecture Tools 2026',
-    description: 'The best AI generative design and development feasibility tools in 2026 - platforms that compress early-stage massing analysis, regulatory compliance checking, and site feasibility from weeks to minutes.',
-    category: 'Construction AI',
-    emoji: '🏛️',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-tutoring-tools',
-    title: 'Best AI Tutoring Tools 2026',
-    description: 'The best AI tutoring and homework help tools in 2026 - from instant math problem solving to conversational concept coaching and adaptive study for students at every level.',
-    category: 'Education',
-    emoji: '📚',
-    slugs: [
-      'photomath', 'coursera-coach'
-    ],
-  },
-  {
-    slug: 'best-ai-classroom-tools',
-    title: 'Best AI Classroom Tools 2026',
-    description: 'The best AI tools for teachers and classrooms in 2026 - from automated grading and interactive lesson creation to game-based review and differentiated instruction generation.',
-    category: 'Education',
-    emoji: '🎓',
-    slugs: [
-      'gradescope-ai', 'kahoot-ai', 'edpuzzle-ai'
-    ],
-  },
-  {
-    slug: 'best-ai-performance-management',
-    title: 'Best AI Performance Management Tools 2026',
-    description: 'The best AI-powered performance management platforms in 2026 - from continuous check-in tools and OKR tracking to flight risk detection and AI-assisted review writing.',
-    category: 'HR',
-    emoji: '📊',
-    slugs: [
-      'lattice', '15five', 'culture-amp'
-    ],
-  },
-  {
-    slug: 'best-ai-hris-tools',
-    title: 'Best AI HRIS Tools 2026',
-    description: 'The best AI-powered HR information systems in 2026 - from modern HRIS for mid-market teams to all-in-one payroll and benefits platforms for growing US businesses.',
-    category: 'HR',
-    emoji: '👥',
-    slugs: ['hibob', 'rippling', 'bamboohr', 'lattice'],
-  },
-  {
-    slug: 'best-ai-claims-automation',
-    title: 'Best AI Claims Automation Tools 2026',
-    description: 'The best AI-powered insurance claims automation platforms in 2026 - from computer vision damage assessment and virtual appraisal workflows to fraud detection and straight-through claims processing.',
-    category: 'Insurance',
-    emoji: '🔍',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-insurance-platforms',
-    title: 'Best AI Insurance Platforms 2026',
-    description: 'The best AI-native insurance platforms and InsurTech tools in 2026 - from instant digital consumer and small business coverage to broker recommendation engines and modern policy administration systems.',
-    category: 'Insurance',
-    emoji: '🛡️',
-    slugs: [
-      'lemonade'
-    ],
-  },
-  {
-    slug: 'best-ai-hotel-management-tools',
-    title: 'Best AI Hotel Management Tools 2026',
-    description: 'The best AI-powered hotel management platforms in 2026 - from modern cloud PMS and channel distribution to guest experience automation and direct booking optimization.',
-    category: 'Hospitality',
-    emoji: '🏨',
-    slugs: [
-      'mews', 'cloudbeds', 'guesty'
-    ],
-  },
-  {
-    slug: 'best-ai-revenue-management',
-    title: 'Best AI Revenue Management Tools 2026',
-    description: 'The best AI-powered hotel revenue management platforms in 2026 - from enterprise open pricing and demand forecasting to automated dynamic pricing for independent properties.',
-    category: 'Hospitality',
-    emoji: '📈',
-    slugs: [
-      'mews'
-    ],
-  },
-  {
-    slug: 'best-ai-supply-chain-platforms',
-    title: 'Best AI Supply Chain Platforms 2026',
-    description: 'The best AI-powered supply chain planning and visibility platforms in 2026 - from concurrent planning for complex global networks to enterprise demand forecasting and distribution management.',
-    category: 'Supply Chain',
-    emoji: '🚚',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-shipping-and-logistics',
-    title: 'Best AI Shipping and Logistics Tools 2026',
-    description: 'The best AI shipping, freight, and logistics tools in 2026 - multi-carrier shipping APIs, digital freight forwarding, and cloud supply chain platforms for e-commerce and mid-market brands.',
-    category: 'Supply Chain',
-    emoji: '📦',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-ediscovery-tools',
-    title: 'Best AI E-Discovery Tools 2026',
-    description: 'The best AI-powered e-discovery platforms in 2026 - from cloud-native litigation review and predictive coding to contract repository management and case management for high-volume matters.',
-    category: 'Legal AI',
-    emoji: '⚖️',
-    slugs: [
-      'everlaw'
-    ],
-  },
-  {
-    slug: 'best-ai-contract-review-tools',
-    title: 'Best AI Contract Review Tools 2026',
-    description: 'The best AI contract review and analysis tools in 2026 - from M&A due diligence extraction and precedent-based drafting assistance to legal spend management and contract navigation.',
-    category: 'Legal AI',
-    emoji: '📄',
-    slugs: [
-      'kira-systems', 'draftwise'
-    ],
-  },
-  {
-    slug: 'best-ai-quality-inspection',
-    title: 'Best AI Quality Inspection Tools 2026',
-    description: 'The best AI-powered visual quality inspection tools in 2026 - from deep learning machine vision systems for high-speed production lines to self-deployable inspection AI for SMB manufacturers.',
-    category: 'Manufacturing',
-    emoji: '🔍',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-predictive-maintenance',
-    title: 'Best AI Predictive Maintenance Tools 2026',
-    description: 'The best AI-powered predictive maintenance platforms in 2026 - from continuous vibration monitoring for rotating equipment to industrial AI platforms for heavy asset fleets.',
-    category: 'Manufacturing',
-    emoji: '⚙️',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-carbon-accounting',
-    title: 'Best AI Carbon Accounting Tools 2026',
-    description: 'The best AI-powered carbon accounting and emissions management platforms in 2026 - from enterprise Scope 3 supplier engagement to SMB-accessible tools that connect to your accounting software.',
-    category: 'Sustainability',
-    emoji: '🌱',
-    slugs: [
-      'watershed', 'persefoni', 'greenly'
-    ],
-  },
-  {
-    slug: 'best-ai-esg-reporting',
-    title: 'Best AI ESG Reporting Tools 2026',
-    description: 'The best AI-powered ESG reporting and sustainability management platforms in 2026 - from enterprise multi-site data management to full CSRD and TCFD disclosure automation.',
-    category: 'Sustainability',
-    emoji: '♻️',
-    slugs: [
-      'watershed', 'persefoni'
-    ],
-  },
-  {
-    slug: 'best-ai-civic-engagement',
-    title: 'Best AI Civic Engagement Tools 2026',
-    description: 'The best AI-powered civic engagement and community intelligence platforms in 2026 - from resident sentiment monitoring and structured polling to participatory budgeting simulations for local government.',
-    category: 'GovTech',
-    emoji: '🏛️',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-public-safety',
-    title: 'Best AI Public Safety Tools 2026',
-    description: 'The best AI-powered public safety platforms in 2026 - from cloud-native police CAD and records management to AI report generation from body camera audio and automated evidence management.',
-    category: 'GovTech',
-    emoji: '🚔',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-procurement-platforms',
-    title: 'Best AI Procurement Platforms 2026',
-    description: 'The best AI-powered procurement and source-to-pay platforms in 2026 - from enterprise business spend management and autonomous sourcing to modern intake-to-procure tools for high-growth companies.',
-    category: 'Finance',
-    emoji: '🛒',
-    slugs: [
-      'coupa'
-    ],
-  },
-  {
-    slug: 'best-ai-spend-management',
-    title: 'Best AI Spend Management Tools 2026',
-    description: 'The best AI-powered spend management and procurement automation tools in 2026 - from team expense control and virtual cards to purchase order workflows and supplier spend analytics.',
-    category: 'Finance',
-    emoji: '💳',
-    slugs: [
-      'coupa'
-    ],
-  },
-  {
-    slug: 'best-ai-drug-discovery',
-    title: 'Best AI Drug Discovery Tools 2026',
-    description: 'The best AI platforms accelerating drug discovery in 2026 - from generative molecular design and phenomics-driven target identification to clinical success prediction and automated medicinal chemistry.',
-    category: 'Healthcare AI',
-    emoji: '🧬',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-biotech-platforms',
-    title: 'Best AI Biotech Platforms 2026',
-    description: 'The best AI-powered biotech research platforms in 2026 - from physics-based computational chemistry and AlphaFold-powered protein design to open-source foundation models and generative protein therapeutics.',
-    category: 'Healthcare AI',
-    emoji: '🔬',
-    slugs: [
-      
-    ],
-  },
-  {
-    slug: 'best-ai-defense-platforms',
-    title: 'Best AI Defense Platforms 2026',
-    description: 'The best AI platforms for defense and national security in 2026 - from mission-critical intelligence fusion and autonomous systems to AI-native defense software challenging traditional prime contractors.',
-    category: 'Government AI',
-    emoji: '🛡️',
-    slugs: [
-      'palantir', 'anduril'
-    ],
-  },
-  {
-    slug: 'best-ai-satellite-analytics',
-    title: 'Best AI Satellite Analytics Tools 2026',
-    description: 'The best AI-powered satellite imagery and geospatial intelligence platforms in 2026 - from high-resolution commercial imagery and daily global monitoring to RF geolocation and space domain awareness.',
-    category: 'Government AI',
-    emoji: '🛰️',
-    slugs: [
-      
     ],
   },
 ]
