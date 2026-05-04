@@ -111,6 +111,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mytheai.com/transparency', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: 'https://mytheai.com/press', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: 'https://mytheai.com/roles', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    ...['developer','marketer','creator','designer','founder','student','sales','support'].map(s => ({
+      url: `https://mytheai.com/roles/${s}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    })),
     { url: 'https://mytheai.com/quiz', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     ...['ai-assistants','writing-ai','image-ai','video-ai','code-ai','seo-marketing','productivity','voice-audio','analytics','automation'].map(c => ({
       url: `https://mytheai.com/free-ai-tools/${c}`,

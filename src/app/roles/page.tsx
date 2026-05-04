@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server'
 import LogoImage from '@/components/ui/LogoImage'
 import { createStaticClient } from '@/lib/supabase'
 import { TOP10_LISTS } from '@/data/top10'
+import { ROLES as RICH_ROLES } from '@/data/roles'
 
 export const revalidate = 86400
 
@@ -140,10 +141,11 @@ export default async function RolesHubPage() {
           const previewSlugs = list ? list.slugs.slice(0, 5) : []
           const previewTools = previewSlugs.map(s => toolMap[s]).filter(Boolean) as ToolMeta[]
 
+          const hasRichPage = RICH_ROLES.some(r => r.slug === role.slug)
           return (
             <Link
               key={role.slug}
-              href={`/top-10/${role.topListSlug}`}
+              href={hasRichPage ? `/roles/${role.slug}` : `/top-10/${role.topListSlug}`}
               className="group block border border-border rounded-xl p-5 bg-card transition-all duration-150 hover:border-blue-300 hover:shadow-lg hover:-translate-y-0.5"
             >
               <div className="flex items-start gap-4 mb-3">
@@ -173,7 +175,7 @@ export default async function RolesHubPage() {
               )}
 
               <p className="mt-4 text-[12px] font-semibold text-blue-600 group-hover:underline">
-                See full Top 10 →
+                {hasRichPage ? 'See full role guide →' : 'See full Top 10 →'}
               </p>
             </Link>
           )
