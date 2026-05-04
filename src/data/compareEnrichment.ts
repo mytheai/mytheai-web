@@ -2250,6 +2250,186 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Which has better cost tracking?', a: 'AgentOps has more developed per-task cost attribution out of the box, which matters for agent applications where one user request can trigger 10+ LLM calls. LangSmith tracks costs but the agent-specific aggregation is less mature.' },
     ],
   },
+
+  'semrush-vs-ahrefs': {
+    bottomLine: 'Semrush and Ahrefs are the two dominant SEO platforms in 2026, and almost every serious SEO team picks one and goes deep. Ahrefs leads on backlink data quality and indexer freshness - the link database is widely considered the most accurate of any SEO tool. Semrush leads on breadth (PPC, social, content marketing modules built in) and the larger keyword database. For pure technical SEO and link analysis, Ahrefs wins. For all-in-one digital marketing platforms covering SEO plus paid plus content plus social in one subscription, Semrush wins. Pricing is comparable - Ahrefs Lite $129/mo, Semrush Pro $139.95/mo. Most teams pick based on existing familiarity and the specific workflows their org uses.',
+    whenToPickA: 'You run a multi-channel digital marketing program (SEO + PPC + social + content) and want one platform covering it all. Semrush\'s additional modules (Position Tracking, Social Media Toolkit, Content Marketing Platform) reduce tool sprawl. Best for in-house marketing teams and full-service agencies.',
+    whenToPickB: 'You run an SEO-focused practice where backlink intelligence is the daily workflow. Ahrefs\' link database, Site Audit, and Content Explorer are the gold standard. Best for SEO agencies, link-building specialists, and content-led growth teams who measure success by organic traffic alone.',
+    faqs: [
+      { q: 'Which has better keyword data?', a: 'Semrush has the larger keyword database (~25 billion keywords vs Ahrefs ~22 billion). Both update daily. Semrush wins on long-tail volume estimates; Ahrefs wins on keyword difficulty accuracy. For most teams the difference is marginal.' },
+      { q: 'Which has better backlink data?', a: 'Ahrefs by a wide margin. The crawler is faster, the index larger, and the link metrics (DR, UR) are more widely cited as the industry default. Semrush backlink data has improved but still trails Ahrefs in most independent benchmarks.' },
+      { q: 'Are there free tiers?', a: 'Both offer limited free access via Webmaster Tools (Ahrefs) and basic free dashboard (Semrush). Neither free tier is sufficient for serious work. Both offer 7-day or 30-day trials at higher tiers.' },
+      { q: 'Which integrates with Google Search Console better?', a: 'Both integrate with GSC for site-specific data. Ahrefs Webmaster Tools (free) gives Site Audit and rank tracking against your own GSC data. Semrush has similar GSC integration on paid tiers.' },
+    ],
+  },
+
+  'pika-vs-runway': {
+    bottomLine: 'Pika and Runway compete for the consumer-and-prosumer text-to-video seat in 2026. Runway is the more polished platform with stronger camera-control parameters, longer maximum clip lengths, and a richer ecosystem of professional creator features (Inpainting, Director Mode, Motion Brush). Pika is more accessible with a generous free tier, simpler UX, and faster iteration cycles for casual users. For professional creative work, Runway wins clearly. For social-content creators experimenting with AI video, Pika is the better starting point. Pricing: Pika Standard $10/mo, Runway Standard $15/mo. Quality on equivalent tiers favors Runway in late 2026.',
+    whenToPickA: 'You make social content, experiment with AI video, or want a low-commitment entry point with a real free tier. Pika ships fast, the UI is approachable, and the generous free tier lets you test prompts without paying. Best for hobbyists and creators starting out.',
+    whenToPickB: 'You produce paid creative work, ad spots, or short films and need camera control, longer clips, and the polish that holds up in client deliverables. Runway also leads on integration with traditional editing workflows (Premiere export, ProRes). Best for professional creators and ad agencies.',
+    faqs: [
+      { q: 'Which has better quality output?', a: 'Runway by a margin in late 2026, especially on prompts that involve specific camera moves, character consistency across cuts, or longer-than-3-second clips. Pika quality has improved but still produces more obvious AI artifacts on complex prompts.' },
+      { q: 'How long are the clips?', a: 'Pika maxes at 4-10 seconds depending on tier. Runway Gen-3 produces up to 16 seconds with extension options. For montage and social, both are sufficient; for narrative work, Runway has more headroom.' },
+      { q: 'Which has a better free tier?', a: 'Pika clearly. The free tier is genuinely usable for casual experimentation. Runway free is more limited (credits-based with watermark). For trial purposes, start with Pika.' },
+      { q: 'Can either replace traditional video editing?', a: 'Neither. Both are generation tools that produce raw footage; the editing, sound design, and color work still happen in DaVinci Resolve, Premiere, or Final Cut. Generation is one tile in the modern video stack, not the whole stack.' },
+    ],
+  },
+
+  'udio-vs-suno': {
+    bottomLine: 'Udio and Suno are the two leading AI music generators in 2026 and the choice between them is genuinely close. Suno is the broader platform with a wider style range, better lyrics generation, and a more polished consumer UX. Udio focuses harder on audio fidelity and produces output that mixing engineers describe as more "production-ready" out of the box. For most creators making demos, social audio, or lyrical pop, Suno wins on usability. For producers who want masters they can layer real instruments over, Udio has the edge. Pricing comparable: both offer free tiers and $10-$30/mo paid tiers. Most serious users subscribe to both because the strengths are complementary.',
+    whenToPickA: 'You want maximum audio fidelity for tracks you will mix and master. Udio output sounds cleaner, with less compression artifact and better stereo imaging. Best for music producers, sound designers, and creators making backing tracks they will layer real recordings on top of.',
+    whenToPickB: 'You want a broader range of styles, better lyrics, and a more approachable UX. Suno covers everything from country to drill to ambient with consistent quality. Best for songwriters working out demos, social creators making backing tracks, and anyone whose primary output is the song itself rather than the master.',
+    faqs: [
+      { q: 'Which has better lyrics generation?', a: 'Suno wins clearly on lyrics quality and rhyme structure. Udio lyrics are usable but tend to repeat phrases and sometimes break meter. For lyric-driven songs, Suno is the better tool.' },
+      { q: 'How are the licensing terms?', a: 'Both grant commercial use rights on paid tiers. Verify the latest terms before client deliverables - both platforms have updated commercial licensing policies multiple times in 2025-2026.' },
+      { q: 'Can I export stems?', a: 'Both support stem export on paid tiers (separated drums, bass, vocals, melody). Stem quality is competitive between the two; mixing engineers generally find both usable inputs to a real DAW.' },
+      { q: 'Which is better for podcasts and ad backing tracks?', a: 'Suno produces shorter usable backing tracks faster and the broader style range covers ad-style cues well. Udio is better when audio quality is the deciding factor (e.g. premium brand work).' },
+    ],
+  },
+
+  'lattice-vs-15five': {
+    bottomLine: 'Lattice and 15Five are the two most-adopted performance-management and engagement platforms for mid-market companies in 2026. Lattice is the more comprehensive platform with stronger goals (OKRs), reviews, and analytics layered together. 15Five is more lightweight and focused on continuous performance check-ins, weekly self-reflection, and engagement pulses. Companies that want one platform covering reviews + OKRs + engagement + 1:1s pick Lattice. Companies that prioritise engagement and weekly check-ins over formal review cycles pick 15Five. Pricing comparable - both around $8-$15/user/mo on standard tiers.',
+    whenToPickA: 'You run formal performance reviews, OKR cycles, and want one platform handling reviews + goals + engagement + analytics. Lattice scales well from 50 to 5,000+ employees and has the deepest analytics across the category. Best for mid-market companies with established performance processes.',
+    whenToPickB: 'You prioritise continuous feedback, weekly check-ins, and lightweight engagement pulses over formal review cycles. 15Five\'s weekly Check-In + High Five + Best-Self workflow is simpler and faster to adopt. Best for fast-growing 50-500-employee companies and people-first cultures.',
+    faqs: [
+      { q: 'Which has better OKR support?', a: 'Lattice clearly. The Goals module is well-integrated with reviews and 1:1s. 15Five has Objectives but it is less developed than Lattice Goals. For companies serious about OKRs, Lattice is the better pick.' },
+      { q: 'How do they handle 1:1 meetings?', a: 'Both ship 1:1 templates and shared agenda features. Lattice 1:1s integrate with Goals and Reviews, which is useful for managers running structured cycles. 15Five 1:1s are simpler and tied to the weekly Check-In workflow.' },
+      { q: 'Which is easier to roll out?', a: '15Five wins on time-to-value. The product is more focused and rollout typically takes weeks rather than months. Lattice is broader, which means rollout takes longer but covers more territory.' },
+      { q: 'Can either replace BambooHR or HiBob?', a: 'Neither replaces a core HRIS. Both layer on top of an HRIS for performance and engagement. Most mid-market companies run BambooHR or HiBob for core HR plus Lattice or 15Five for performance.' },
+    ],
+  },
+
+  'culture-amp-vs-15five': {
+    bottomLine: 'Culture Amp and 15Five overlap on engagement surveys but diverge on the rest. Culture Amp is the gold standard for engagement and DEI surveys at scale - the benchmarking dataset (drawn from millions of employee responses) and the analytics depth are best-in-class. 15Five covers engagement plus performance reviews plus OKRs plus 1:1s in one platform. For pure engagement programs, Culture Amp wins. For companies wanting one tool for performance + engagement, 15Five is the broader fit. Pricing: Culture Amp enterprise-priced (typically $5-$10/user/mo at scale); 15Five $8-$15/user/mo on standard tiers.',
+    whenToPickA: 'You want best-in-class engagement surveys, DEI insights, and benchmarking against an industry-leading dataset. Culture Amp also handles 360 reviews and onboarding programs at depth. Best for 200-5,000-employee companies that prioritise people analytics.',
+    whenToPickB: 'You want one platform handling engagement plus performance plus OKRs plus continuous feedback. 15Five covers more ground at lower cost. Best for fast-growing 50-500-employee companies that do not need Culture Amp\'s analytics depth.',
+    faqs: [
+      { q: 'Which has better survey methodology?', a: 'Culture Amp clearly. The platform was built around survey science and the benchmarking dataset is the industry leader. 15Five surveys are competent but less academically rigorous.' },
+      { q: 'How do they compare on price?', a: 'Culture Amp is enterprise-priced and typically negotiated. 15Five has transparent self-serve pricing. For sub-200-employee companies, 15Five is usually faster to procure and cheaper. At 1,000+ employees, the gap narrows.' },
+      { q: 'Can either handle performance reviews?', a: '15Five includes performance reviews; Culture Amp added Performance in recent years but it is less mature than Lattice Performance. For review cycles, 15Five or Lattice are stronger picks; Culture Amp shines on engagement specifically.' },
+      { q: 'Which integrates with HRIS better?', a: 'Both integrate with major HRIS platforms (BambooHR, Workday, ADP, HiBob). Culture Amp\'s integrations are deeper at the enterprise tier. 15Five is sufficient for most SMB integrations.' },
+    ],
+  },
+
+  'readwise-vs-notebooklm': {
+    bottomLine: 'Readwise and NotebookLM both work with your saved reading material but solve different jobs. Readwise is a knowledge-management tool optimised for spaced-repetition recall - import highlights from Kindle, Pocket, web articles, podcasts; review them daily; build a long-term knowledge corpus. NotebookLM is a Google research tool that takes any document corpus you upload and lets you chat with it as a grounded source. For "remember what I read over time," Readwise wins. For "synthesize this corpus right now," NotebookLM wins. They are complementary rather than substitutes - serious readers often run both.',
+    whenToPickA: 'You read constantly and want to actually retain what you read. Readwise\'s daily review surfaces highlights via spaced repetition, and the integration with note-taking tools (Roam, Obsidian, Notion) builds a knowledge graph automatically. Best for lifelong learners and researchers building long-term knowledge corpora.',
+    whenToPickB: 'You have a specific corpus (course notes, research papers, internal docs) and want to query it now. NotebookLM grounds answers only in your uploaded sources, which is ideal for synthesis tasks. Best for students preparing for exams and researchers synthesising domain literature.',
+    faqs: [
+      { q: 'Can NotebookLM do spaced repetition?', a: 'No. NotebookLM is purely a synthesis and Q&A tool. For spaced-repetition recall, Readwise or Anki are the right tools.' },
+      { q: 'Can Readwise summarise documents?', a: 'Limited. Readwise\'s strength is highlighting and review, not document synthesis. For summarisation, NotebookLM or Claude are stronger.' },
+      { q: 'How does pricing compare?', a: 'Readwise $7.99/mo standalone or $11.99/mo with Reader. NotebookLM is free with a Google account. Different value propositions; pricing is not directly comparable.' },
+      { q: 'Which is better for academics?', a: 'Both have a place. NotebookLM for synthesising paper corpora and answering domain questions; Readwise for retaining reading over years. Most academics benefit from both.' },
+    ],
+  },
+
+  'reflect-vs-notebooklm': {
+    bottomLine: 'Reflect and NotebookLM target different jobs in the personal-knowledge category. Reflect is a daily-notes app with bidirectional links and AI-assisted writing - optimised for the journaling and second-brain workflow that Roam and Obsidian users will recognise. NotebookLM is a research tool that lets you query a fixed corpus (uploaded PDFs, Docs, audio) with AI grounded only in those sources. Reflect is where you write and accumulate; NotebookLM is where you analyse and query. Pricing: Reflect $10/mo, NotebookLM free.',
+    whenToPickA: 'You journal daily, want bidirectional links between notes, and value end-to-end encryption for personal writing. Reflect is the modern second-brain app for individual users who care about polish and privacy. Best for personal knowledge management and daily writing.',
+    whenToPickB: 'You have a research corpus you need to query and synthesise. NotebookLM is free, the Audio Overview feature is genuinely useful, and the focus on grounded answers from your sources is unmatched at the price. Best for students, researchers, and anyone with reading-heavy work.',
+    faqs: [
+      { q: 'Can Reflect handle a research corpus?', a: 'Yes, but it is not optimised for it. Reflect is a daily-notes app, not a query interface. For research-corpus work, NotebookLM is purpose-built.' },
+      { q: 'Is NotebookLM private?', a: 'Free tier data is processed by Google but not used for training. Reflect is end-to-end encrypted by default, which is a different privacy posture - personal data never reaches a server unencrypted.' },
+      { q: 'Which has better mobile?', a: 'Reflect ships native iOS and Android apps with offline support. NotebookLM is web-only with limited mobile experience. For on-the-go capture, Reflect wins.' },
+      { q: 'Can I use them together?', a: 'Yes. Use Reflect as your daily-notes home; export specific corpora to NotebookLM when you need to query them. The two tools cover different parts of the knowledge stack.' },
+    ],
+  },
+
+  'retool-vs-noloco': {
+    bottomLine: 'Retool and Noloco both build internal tools without writing full applications, but they target different user profiles. Retool is the developer-leaning platform - drag UI components, write JavaScript or SQL for logic, deploy production-grade internal tools. Noloco is the no-code platform - point at a database, configure layouts visually, deploy without writing code. For engineering teams, Retool is the obvious choice. For ops teams, founders, and non-technical builders, Noloco is dramatically faster. Pricing: Retool $10-$50/user/mo by tier; Noloco $39+/mo per workspace with seat tiers.',
+    whenToPickA: 'You have engineers building internal tools and want production-grade reliability with full code control. Retool ships state management, Git versioning, audit logs, and SSO that scale to enterprise. Best for engineering teams replacing custom React + Postgres dashboards.',
+    whenToPickB: 'You are a founder, ops lead, or non-technical user who wants to build customer portals, CRM dashboards, or internal admin panels without writing code. Noloco connects to Airtable, Google Sheets, Postgres, MySQL, and produces clean white-label portals. Best for SMBs and ops teams.',
+    faqs: [
+      { q: 'Can Noloco handle production-grade reliability?', a: 'For most SMB use cases yes. For high-traffic or complex business-logic workflows, Retool is more proven. Noloco is best for portals, dashboards, and CRUD apps; Retool for anything that needs custom logic at scale.' },
+      { q: 'Which has better integrations?', a: 'Retool has more native database and API integrations and a broader integration marketplace. Noloco has the integrations that matter for SMB workflows (Airtable, Sheets, Stripe, HubSpot) but less depth.' },
+      { q: 'Is Noloco truly no-code?', a: 'Mostly. Some advanced workflows benefit from formula-style scripting (similar to Airtable). Truly zero-code for common admin-panel and portal use cases.' },
+      { q: 'Which has better mobile?', a: 'Noloco produces responsive portals usable on mobile out of the box. Retool ships Retool Mobile separately for native mobile-app builders. Different mobile stories; pick based on whether you need native app or responsive web.' },
+    ],
+  },
+
+  'snyk-vs-aikido-security': {
+    bottomLine: 'Snyk and Aikido are both developer-focused security platforms that scan code, dependencies, containers, and IaC. Snyk is the established leader with the deepest vulnerability database, the broadest language coverage, and the most mature enterprise integrations. Aikido is the upstart that bundles 10+ security tools (SAST, SCA, DAST, container scanning, secrets, IaC, malware) into one platform at a fraction of the price. For enterprise teams with compliance requirements, Snyk\'s maturity wins. For startups and SMBs that need broad security coverage on a tight budget, Aikido is dramatically cheaper. Pricing: Snyk free + $52+/dev/mo; Aikido free + $379/mo for unlimited developers.',
+    whenToPickA: 'You are an enterprise team with SOC 2 or ISO requirements, deep CI/CD pipelines, and need the most polished AppSec platform. Snyk has 12+ years of vulnerability database and integrates everywhere. Best for enterprises and high-compliance industries.',
+    whenToPickB: 'You are a startup or SMB that needs broad security coverage (SAST + SCA + container + secrets + IaC) without paying per-developer. Aikido bundles tools that would cost 5-10x in separate vendors. Best for resource-constrained teams that need real coverage fast.',
+    faqs: [
+      { q: 'Is Aikido as accurate as Snyk?', a: 'For top-language coverage (JS, Python, Go, Java) Aikido is competitive on accuracy. Snyk has deeper coverage for niche languages and longer-tail vulnerabilities. For most teams the gap is small.' },
+      { q: 'Which has better IDE integration?', a: 'Snyk\'s IDE plugins (VS Code, JetBrains) are more polished and have more features. Aikido has IDE integration but it is newer. For developers who do most security review in the IDE, Snyk is smoother.' },
+      { q: 'How does pricing scale?', a: 'Snyk charges per-developer which scales fast at large teams. Aikido has flat-rate pricing per workspace which is dramatically cheaper at 50+ developer headcounts. For teams above 50 devs, Aikido often saves 80%+.' },
+      { q: 'Which has better compliance reporting?', a: 'Snyk\'s compliance dashboards and audit logs are more mature for SOC 2, ISO 27001, and FedRAMP requirements. Aikido has compliance reporting but it is younger. For audit-heavy industries, Snyk is the safer pick.' },
+    ],
+  },
+
+  'replicate-vs-together-ai': {
+    bottomLine: 'Replicate and Together AI both host open-source models behind APIs but serve different audiences. Replicate is the broader catalog with thousands of community-contributed models (Stable Diffusion forks, niche image models, audio models, custom fine-tunes) and a developer-friendly UX with versioned model URLs. Together AI is more focused on text and code LLMs with production-grade pricing, faster inference, and enterprise features (dedicated endpoints, SOC 2). For experimenting across model types, Replicate wins. For production LLM workloads at scale, Together AI is more cost-effective. Pricing: both pay-per-use with comparable rates; Together has enterprise tiers Replicate lacks.',
+    whenToPickA: 'You want to experiment with the widest range of open-source models including images, audio, video, and niche specialty models. Replicate\'s catalog has thousands of community-contributed models with one-line API calls. Best for prototyping and creative AI work.',
+    whenToPickB: 'You run production LLM workloads at scale and need fast, cheap inference on Llama, Qwen, Mixtral, and similar text models. Together AI optimises for throughput and offers dedicated endpoints for enterprise SLAs. Best for production AI applications.',
+    faqs: [
+      { q: 'Which has cheaper LLM inference?', a: 'Together AI typically. The inference stack is optimised for throughput on text models, which translates to lower per-token cost on Llama, Qwen, and Mixtral. Replicate LLM pricing is competitive but Together usually edges it.' },
+      { q: 'Can I fine-tune on either?', a: 'Both support fine-tuning. Together AI ships first-class fine-tuning workflows with dedicated billing. Replicate supports fine-tuning for many models but the workflow is more developer-managed.' },
+      { q: 'Which has better non-text models?', a: 'Replicate dramatically. Image, audio, video, and specialty models are the platform\'s strength. Together AI focuses primarily on text LLMs.' },
+      { q: 'How do they compare to OpenAI / Anthropic APIs?', a: 'Both offer access to open-source models that the closed-API providers do not host. For Llama, Qwen, Mixtral, and similar, Replicate and Together are the primary options. They do not compete with GPT-4 or Claude on closed-model quality but offer cost and customisation advantages.' },
+    ],
+  },
+
+  'shopify-magic-vs-octane-ai': {
+    bottomLine: 'Shopify Magic and Octane AI both bring AI to Shopify but solve different jobs. Shopify Magic is bundled into the Shopify admin and covers in-platform AI tasks: product description writing, email draft assistance, FAQ generation, image background removal. Octane AI is a third-party app focused on conversational commerce - quizzes that recommend products, post-purchase surveys, AI-powered SMS and email flows that lift conversion. Shopify Magic is free with any Shopify plan; Octane AI starts at $50/mo. Most stores use both - Shopify Magic for in-admin productivity, Octane AI for the customer-facing conversion lift.',
+    whenToPickA: 'You want AI productivity inside the Shopify admin without paying extra. Shopify Magic generates product descriptions, drafts emails, and handles basic AI tasks bundled with your Shopify subscription. Best for solo merchants and stores that want zero-cost AI.',
+    whenToPickB: 'You want AI that lifts conversion on the storefront via quizzes, recommendation flows, and post-purchase journeys. Octane AI specialises in this and consistently lifts AOV and conversion 5-15% on stores that deploy it well. Best for stores doing $200K+ revenue with quiz-amenable products.',
+    faqs: [
+      { q: 'Is Shopify Magic free?', a: 'Yes, bundled with all Shopify plans at no additional cost. Includes product copywriting, email drafting, FAQ generation, and image tools.' },
+      { q: 'Does Octane AI replace Klaviyo?', a: 'No. Octane AI complements Klaviyo - the quizzes capture data, the data flows into Klaviyo for downstream email/SMS automation. Most stores run both.' },
+      { q: 'Can I use both?', a: 'Yes, this is the typical pattern. Shopify Magic for in-admin tasks, Octane AI for customer-facing conversion features.' },
+      { q: 'Which has better ROI?', a: 'Octane AI typically lifts conversion 5-15%; Shopify Magic saves admin time but does not directly lift revenue. For revenue-conscious stores, Octane AI shows in the metrics; Shopify Magic shows in the team\'s hours.' },
+    ],
+  },
+
+  'scalenut-vs-frase': {
+    bottomLine: 'Scalenut and Frase are both SEO content platforms that brief, draft, and optimise blog posts for organic ranking. Frase is the lighter-weight tool with a cleaner UX, faster brief generation, and a more polished WordPress integration. Scalenut is broader - brief generation plus AI drafting plus topical authority mapping plus internal-link suggestions in one platform. For solo bloggers and lean teams, Frase is faster to learn and cheaper to start. For agencies running content programs across multiple sites, Scalenut\'s broader feature set scales better. Pricing: Frase $14.99-$114.99/mo; Scalenut $39-$149/mo.',
+    whenToPickA: 'You want broader functionality - brief + drafting + topical authority + internal linking - in one platform. Scalenut also includes the SEO Hub for content cluster planning. Best for agencies and content teams running 5+ sites or 50+ posts/month.',
+    whenToPickB: 'You want a focused, well-priced SEO content tool with a clean UX and fast brief generation. Frase is faster to learn and the WordPress plugin is the smoothest in the category. Best for solo bloggers, indie writers, and small agencies.',
+    faqs: [
+      { q: 'Which has better SERP analysis?', a: 'Roughly equal. Both pull SERP data for keyword targets and surface the questions, headings, and entities top-ranking pages cover. Frase\'s UI is slightly cleaner; Scalenut surfaces more data points.' },
+      { q: 'Can either replace Surfer SEO?', a: 'For brief generation and on-page scoring yes. Scalenut and Frase both compete with Surfer. Surfer leads on real-time content scoring depth; Scalenut and Frase are stronger on broader content workflow.' },
+      { q: 'Which has better AI drafting?', a: 'Scalenut\'s drafting is stronger out of the box - the Cruise Mode produces longer first drafts that need less editing. Frase drafting is competent but more conservative.' },
+      { q: 'How do they integrate with WordPress?', a: 'Frase\'s WordPress plugin is more polished and widely used. Scalenut has WordPress integration but it is less mature.' },
+    ],
+  },
+
+  'mews-vs-cloudbeds': {
+    bottomLine: 'Mews and Cloudbeds are the two leading cloud PMS (property management systems) for independent and boutique hotels in 2026. Mews leads on UX and modern API ecosystem - the platform feels built in 2025, not 2010. Cloudbeds covers a broader range of property types (hostels, vacation rentals, hotels) with a more mature channel manager built in. For boutique hotels prioritising guest experience and modern integrations, Mews wins. For mixed-property portfolios needing a unified system, Cloudbeds is more flexible. Pricing varies by property size; both negotiate with operators.',
+    whenToPickA: 'You operate a boutique hotel or small chain that values modern UX and a strong API ecosystem (POS, loyalty, payments integrations). Mews\'s open platform philosophy attracts a thriving third-party app marketplace. Best for design-led hotels and groups under 50 properties.',
+    whenToPickB: 'You operate a mixed-property portfolio (hotels + hostels + vacation rentals) and need one PMS handling all property types plus a built-in channel manager. Cloudbeds is broader and the channel manager (MyAllocator) has the deepest distribution coverage. Best for diverse portfolios and hostel/vacation-rental specialists.',
+    faqs: [
+      { q: 'Which has better channel manager?', a: 'Cloudbeds includes MyAllocator natively; Mews integrates with third-party channel managers. For unified all-in-one, Cloudbeds wins; for best-of-breed channel manager, Mews lets you pick.' },
+      { q: 'Which has better APIs?', a: 'Mews clearly. The Mews Open API is one of the deepest in hospitality and the marketplace of integrations is broader. For tech-forward operators, Mews is the platform.' },
+      { q: 'How does pricing compare?', a: 'Both negotiate per property. For comparable property sizes, pricing is similar. Mews tends to attract premium operators; Cloudbeds is friendlier for smaller properties.' },
+      { q: 'Which has better mobile/staff app?', a: 'Mews\'s staff and guest mobile experiences are more polished. Cloudbeds mobile is functional but less refined. For staff-facing UX, Mews wins.' },
+    ],
+  },
+
+  'watershed-vs-persefoni': {
+    bottomLine: 'Watershed and Persefoni are the two leading carbon-accounting and ESG-reporting platforms for enterprise climate programs in 2026. Watershed is the more polished platform with stronger Scope 3 modeling, better supplier-engagement workflows, and the deeper consultant network for emissions reduction strategy. Persefoni leads on financial-grade audit trails and CFO-facing reporting, especially for SEC climate disclosure compliance. For climate-program leaders building real reduction strategies, Watershed wins. For finance teams preparing audit-ready disclosures, Persefoni is more aligned. Both are enterprise-priced.',
+    whenToPickA: 'You are a Chief Sustainability Officer or climate program lead building a real emissions-reduction strategy beyond just measurement. Watershed\'s Scope 3 modeling, supplier engagement tools, and consulting network are the deepest in the category. Best for ambitious climate programs.',
+    whenToPickB: 'You are a CFO or finance leader preparing audit-ready climate disclosures for SEC, ISSB, or CSRD requirements. Persefoni\'s financial-grade audit trails and accounting integrations make compliance reporting cleaner. Best for finance-led climate compliance.',
+    faqs: [
+      { q: 'Which has better Scope 3 measurement?', a: 'Watershed clearly. Scope 3 modeling for supplier emissions, product life-cycle analysis, and category-level breakdowns are the deepest in the category. Persefoni handles Scope 3 but with less depth.' },
+      { q: 'How do they compare on price?', a: 'Both enterprise-priced and negotiated. Watershed tends to charge more for the platform plus consulting services. Persefoni\'s financial-grade approach often costs less per scope but adds compliance modules separately.' },
+      { q: 'Which is better for SEC climate disclosure compliance?', a: 'Persefoni was purpose-built around financial-grade reporting and SEC alignment. Watershed has compliance reporting but it is one feature among many; Persefoni\'s entire architecture is compliance-first.' },
+      { q: 'Can either replace ERP carbon modules?', a: 'Both go deeper than ERP-bundled carbon modules and integrate with the major ERPs (SAP, Oracle, NetSuite). For serious climate programs, both replace ERP-native tools.' },
+    ],
+  },
+
+  'smartlead-vs-amplemarket': {
+    bottomLine: 'Smartlead and Amplemarket both target outbound sales but at different tiers. Smartlead is the affordable, high-deliverability cold-email platform that lets you scale from one inbox to hundreds of warmed mailboxes per account. Amplemarket is a more expensive end-to-end sales platform that includes prospecting data, multi-channel sequences (email + LinkedIn + phone), AI-personalised outreach, and CRM-grade pipeline management. For lean teams running pure cold-email outbound, Smartlead wins on price and deliverability. For full-stack sales orgs that want one platform from prospecting through close, Amplemarket is broader. Pricing: Smartlead $39-$94/mo; Amplemarket starts at $179/seat/mo.',
+    whenToPickA: 'You run cold-email outbound at scale and need multi-inbox warmup, deliverability optimisation, and per-step A/B testing without paying for a full sales suite. Smartlead is the deliverability leader at the entry tier. Best for agencies, lean SDR teams, and founders running personal-brand outbound.',
+    whenToPickB: 'You want one platform handling prospecting data + multi-channel sequences + AI personalisation + CRM-grade pipeline. Amplemarket replaces 4-5 separate tools (data provider + email tool + LinkedIn tool + dialler + CRM). Best for funded startups and mid-market sales orgs.',
+    faqs: [
+      { q: 'Which has better deliverability?', a: 'Smartlead is the deliverability specialist - the multi-inbox rotation, warmup network, and inbox-rotation logic outperform most generalist tools. Amplemarket deliverability is competent but not in Smartlead\'s league at scale.' },
+      { q: 'Does Amplemarket include prospecting data?', a: 'Yes. Amplemarket includes a contact database with verified emails and direct dials. Smartlead does not include prospecting data; you bring your own list.' },
+      { q: 'Can I use both?', a: 'Some teams do - Amplemarket for prospecting + LinkedIn + dialler, Smartlead for high-volume cold email separately. Most teams pick one to avoid integration complexity.' },
+      { q: 'Which is better for personal-brand outbound?', a: 'Smartlead by a margin. Lower cost, faster to set up, better deliverability for individual senders. Amplemarket is overkill for personal-brand workflows.' },
+    ],
+  },
 }
 
 export function getCompareEnrichment(slug: string): CompareEnrichment | null {
