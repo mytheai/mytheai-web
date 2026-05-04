@@ -11,10 +11,12 @@ import StickyMobileCTA from '@/components/tools/StickyMobileCTA'
 import SourcesBlock from '@/components/tools/SourcesBlock'
 import VerifyExternalBlock from '@/components/tools/VerifyExternalBlock'
 import EmbedBadge from '@/components/tools/EmbedBadge'
+import TrustStack from '@/components/tools/TrustStack'
 import AuthorBio from '@/components/layout/AuthorBio'
 import { getAuthorJsonLd } from '@/data/authors'
 import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidence } from '@/lib/scoring'
 import { linkGlossary } from '@/lib/glossary-linker'
+import { getToolFreeCategory, FREE_CATEGORY_LABELS } from '@/lib/related-seo'
 import { TOP10_LISTS } from '@/data/top10'
 import type { Metadata } from 'next'
 
@@ -249,6 +251,7 @@ export default async function ToolPage({
   const scoresValid = isValidScores(tool.scores)
   const scores = scoresValid ? (tool.scores as ToolScores) : null
   const evidence = isValidEvidence(tool.scores_evidence) ? tool.scores_evidence : null
+  const freeCategory = getToolFreeCategory(tool.tags)
   const t = await getTranslations('ToolDetail')
 
   // Combined aggregate: editorial baseline (tool.rating, tool.review_count)
@@ -636,23 +639,45 @@ export default async function ToolPage({
               </a>
             </div>
 
-            {/* Rating card */}
-            <div className="border border-border rounded-xl p-5 bg-card">
-              <h3 className="text-[14px] font-bold text-foreground mb-3">MytheAi Rating</h3>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-[36px] font-extrabold text-foreground leading-none">
-                  {tool.rating.toFixed(1)}
-                </span>
-                <div>
-                  <Stars rating={tool.rating} />
-                  <p className="text-[12px] text-muted-foreground mt-0.5">
-                    {tool.review_count.toLocaleString()} aggregate ratings
-                  </p>
-                </div>
-              </div>
-              <p className="text-[11px] text-muted-foreground leading-relaxed">
-                Aggregate of third-party review platforms (G2, Capterra, Product Hunt) plus editorial testing. <Link href="/methodology" className="text-blue-600 hover:underline">How we rank</Link>.
+            {/* Trust Stack - 4 distinct trust signals */}
+            <TrustStack
+              externalRating={tool.rating}
+              externalReviewCount={tool.review_count}
+              scores={scores}
+              evidence={evidence}
+              userReviewCount={userReviewCount}
+              pricingVerifiedDate={pricingVerifiedDate}
+              toolSlug={tool.slug}
+            />
+
+            {/* Decision shortcuts - link to programmatic SEO pages */}
+            <div className="border border-border rounded-xl p-4 bg-card space-y-2">
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground mb-2">
+                Decision shortcuts
               </p>
+              <Link
+                href={`/alternatives/${tool.slug}`}
+                className="flex items-center justify-between text-[13px] text-foreground hover:text-blue-600 transition-colors"
+              >
+                <span>Compare {tool.name} alternatives</span>
+                <span className="text-muted-foreground">→</span>
+              </Link>
+              {freeCategory && (
+                <Link
+                  href={`/free-ai-tools/${freeCategory}`}
+                  className="flex items-center justify-between text-[13px] text-foreground hover:text-emerald-600 transition-colors"
+                >
+                  <span>Free {FREE_CATEGORY_LABELS[freeCategory] ?? 'tools'} alternatives</span>
+                  <span className="text-muted-foreground">→</span>
+                </Link>
+              )}
+              <Link
+                href="/compare"
+                className="flex items-center justify-between text-[13px] text-foreground hover:text-blue-600 transition-colors"
+              >
+                <span>Side-by-side comparisons</span>
+                <span className="text-muted-foreground">→</span>
+              </Link>
             </div>
 
             {/* Last verified */}

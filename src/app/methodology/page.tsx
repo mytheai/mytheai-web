@@ -32,6 +32,16 @@ export default async function MethodologyPage() {
       ],
     },
     {
+      title: 'The four trust signals on every tool page',
+      body: [
+        'A single "5 stars from 12,400 reviews" number tells you almost nothing - it blurs editorial verdict, third-party aggregate, and user experience into one figure that nobody can audit. We split trust into four signals you can see and judge separately on every tool page.',
+        'Editorial Score is our hands-on grade against the seven-criteria framework above. It is independent of any external rating. If we have not yet completed editorial review, this row reads "pending" rather than borrowing a number from elsewhere.',
+        'External Aggregate rolls up scores from G2, Capterra, and Product Hunt for tools that have meaningful presence on those platforms. We surface the count so you can weight it - a 4.7/5 from 12,000 ratings carries more weight than a 5.0/5 from 8.',
+        'User Reviews on MytheAi are submitted by readers who have actually used the tool. These are separate from the aggregate above and never inflated. When the count is zero, the page says zero - we never paste in third-party reviews to fill the section.',
+        'Pricing Verified is the date we last opened the official pricing page and confirmed the numbers in our database match. We re-verify on a 90-day cadence, faster for tools that change pricing often. If the date is older than 90 days for a tool you are about to buy, ping us and we will re-verify same day.',
+      ],
+    },
+    {
       title: 'How we test tools',
       body: [
         'For tools we can install or sign up for directly (most SaaS), we run a minimum 8-hour evaluation across two work sessions. We use the tool on real tasks from our backlog - drafting blog posts, comparing legal documents, building UI prototypes, summarizing meeting recordings - rather than synthetic prompts.',

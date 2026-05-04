@@ -12,8 +12,10 @@ import AuthorBio from '@/components/layout/AuthorBio'
 import TLDRBox from '@/components/blog/TLDRBox'
 import FAQBlock from '@/components/blog/FAQBlock'
 import PricingTable from '@/components/blog/PricingTable'
+import RelatedSEO from '@/components/blog/RelatedSEO'
 import { getAuthorJsonLd, getAuthor } from '@/data/authors'
 import { linkGlossary } from '@/lib/glossary-linker'
+import { getBlogRelatedSEO } from '@/lib/related-seo'
 
 export const revalidate = 604800
 
@@ -166,6 +168,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!article) notFound()
 
   const related = getRelatedPosts(slug, article.category)
+  const relatedSEO = getBlogRelatedSEO(slug)
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -300,6 +303,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           Browse all comparisons →
         </Link>
       </div>
+
+      {/* Related programmatic SEO pages - alternatives + free tools */}
+      <RelatedSEO target={relatedSEO} />
 
       <hr className="border-border mt-10 mb-8" />
 
