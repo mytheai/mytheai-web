@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server'
 import LogoImage from '@/components/ui/LogoImage'
 import { createStaticClient } from '@/lib/supabase'
 import CompareFilterBar from '@/components/tools/CompareFilterBar'
+import ComparisonBuilder from '@/components/compare/ComparisonBuilder'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
@@ -60,6 +61,12 @@ async function getToolsMeta(slugs: string[]): Promise<Record<string, ToolMeta>> 
   return map
 }
 
+async function getAllToolOptions(): Promise<{ slug: string; name: string }[]> {
+  const supabase = createStaticClient()
+  const { data } = await supabase.from('tools').select('slug,name').order('name')
+  return (data ?? []) as { slug: string; name: string }[]
+}
+
 function getCategory(tool: ToolMeta): string {
   const primary = tool.tags?.[0] ?? ''
   return TAG_LABELS[primary] ?? 'Other'
@@ -71,9 +78,10 @@ export default async function ComparePage({
   searchParams: Promise<{ category?: string; tool_a?: string }>
 }) {
   const { category, tool_a } = await searchParams
-  const [comparisons, t] = await Promise.all([
+  const [comparisons, t, allToolOptions] = await Promise.all([
     getComparisons(),
     getTranslations('HubPages'),
+    getAllToolOptions(),
   ])
   const allSlugs = [...new Set(comparisons.flatMap(c => [c.tool_a_slug, c.tool_b_slug]))]
   const tools = await getToolsMeta(allSlugs)
@@ -128,6 +136,8 @@ export default async function ComparePage({
             {t('compareIntro')}
           </p>
         </div>
+
+        <ComparisonBuilder toolOptions={allToolOptions} />
 
         <Suspense fallback={<div className="h-16" />}>
           <CompareFilterBar
