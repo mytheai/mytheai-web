@@ -1,0 +1,195 @@
+---
+title: "Best AI Tools That Work Offline 2026"
+excerpt: "AI tools that run locally on your laptop or self-hosted: writing, coding, image generation, voice, and notes - the honest 2026 list for travel, sensitive data, or unreliable internet."
+date: "May 4, 2026"
+category: "Roundup"
+readTime: "11 min read"
+---
+
+Most "AI tools" in 2026 are cloud-only. The local-first AI category is small but maturing fast - and for users with unreliable internet, sensitive data, or simply a preference for owning their stack, local tools are now genuinely viable. The penalty for offline use is real (slower iteration, weaker model quality, hardware costs), but the privacy and resilience compounding are worth it for specific workflows.
+
+This guide covers the AI tools that genuinely work offline in 2026, organised by workflow, with the honest hardware requirements and trade-offs.
+
+## What "offline" actually means
+
+Three meaningful flavours:
+
+- **Fully offline (air-gapped):** runs on your laptop with no internet. Slowest, most private, weakest model quality.
+- **Local-first cloud-optional:** runs locally by default but can call cloud APIs when explicitly authorised.
+- **Self-hosted:** runs on your own server (homelab, VPS, on-prem cluster) that you control. Faster than laptop-local for big models.
+
+Each has different use cases. The rest of this guide flags which flavour each tool falls into.
+
+## Hardware requirements at a glance
+
+| Goal | Recommended hardware | Cost |
+|---|---|---|
+| Run small text models (7-8B parameters) | M-series Mac with 16GB RAM, or Windows laptop with RTX 4060 | $1500-2500 |
+| Run medium text models (13-32B parameters) | M-series Mac with 32GB+ RAM, or RTX 4080+ desktop | $2500-4000 |
+| Run frontier text models (70B+ parameters) | M3/M4 Max/Ultra with 64GB+ RAM, or 2x RTX 4090 | $4000-8000 |
+| Image generation (Stable Diffusion XL, Flux) | RTX 4060+ for hobby use; RTX 4080+ for production | $1500-3500 |
+| Video generation (Stable Video Diffusion) | RTX 4090 for usable speeds | $4000+ |
+
+For most users, an M-series Mac with 32GB+ unified RAM is the most flexible local-AI machine in 2026.
+
+## Writing and reasoning
+
+### [Ollama](https://ollama.ai) (free, local-first)
+
+[Ollama](https://ollama.ai) is the standard tool for running LLMs locally. One-line installer, supports Llama 3.3, Qwen, Mistral, DeepSeek-V3, and 100+ other open-weight models. Runs on Mac, Windows, Linux. Free.
+
+For 32GB Mac users, Llama 3.3 70B (quantized) or Qwen 2.5 72B run at usable speeds (~15-20 tokens/sec) and produce output competitive with frontier cloud models for most non-coding tasks.
+
+### [LM Studio](https://lmstudio.ai) (free, GUI-based)
+
+[LM Studio](https://lmstudio.ai) is Ollama with a polished GUI. Browse and download models from a built-in library, configure inference settings, and chat without using a terminal. Free for personal use.
+
+Best for users who want offline AI without learning command-line tools.
+
+### [GPT4All](https://gpt4all.io) (free, easiest setup)
+
+[GPT4All](https://gpt4all.io) is the simplest "click to install offline AI" experience in 2026. Bundled models work out of the box; chat interface is polished. For users with modest hardware (16GB RAM, no GPU), GPT4All is the best place to start.
+
+Trade-off: smaller models, weaker quality than Ollama or LM Studio.
+
+### Best local model choices in 2026
+
+- **Llama 3.3 70B** - best general-purpose, requires 40GB+ RAM
+- **Qwen 2.5 72B** - best for Mandarin and multilingual, requires 40GB+ RAM
+- **Mistral Small 22B** - excellent quality at smaller size, runs on 32GB RAM
+- **DeepSeek-V3** - best for coding and math, requires 40GB+ RAM
+- **Llama 3.2 3B** - fastest small model, runs on 16GB RAM, weaker quality
+- **Phi-3 Mini** - Microsoft's small model, 4GB RAM, surprisingly capable for size
+
+## Coding
+
+### [Aider](/tools/aider) + Ollama (free)
+
+[Aider](/tools/aider) is open-source and supports any local model via Ollama. The combination produces a fully offline AI coding agent: Aider for the workflow, Ollama for inference. Quality depends on model choice; with Llama 3.3 70B or DeepSeek Coder, the experience is genuinely usable for most coding tasks.
+
+### [Continue.dev](https://continue.dev) (free, IDE plugin)
+
+[Continue.dev](https://continue.dev) is a VS Code and JetBrains plugin that connects to local models via Ollama. The workflow is similar to Copilot but routes inference locally. Free.
+
+Best for developers who want inline AI completions without sending code to cloud APIs.
+
+### [Tabby](https://tabby.tabbyml.com) (self-hosted, free)
+
+[Tabby](https://tabby.tabbyml.com) is a self-hostable AI coding assistant designed for engineering teams. Run on a shared GPU server; engineers connect via VS Code/JetBrains plugins. Open source.
+
+Best for teams that want a Copilot-class experience without sending code to GitHub.
+
+### [Tabnine](/tools/tabnine) Enterprise (on-prem option)
+
+[Tabnine](/tools/tabnine) Enterprise supports air-gapped on-prem deployment. The most production-grade option for organisations that genuinely cannot use any cloud AI.
+
+## Image generation
+
+### [Stable Diffusion](/tools/stable-diffusion) via Forge UI or ComfyUI (free, local)
+
+[Stable Diffusion](/tools/stable-diffusion) via [Fooocus](https://github.com/lllyasviel/Fooocus), Forge UI, or ComfyUI is the standard offline image generation stack in 2026. Hardware requirements: RTX 4060+ for hobby use, RTX 4080/4090 for production speeds.
+
+The open-source ecosystem (LoRAs, ControlNets, custom checkpoints) provides infinite customisation. The trade-off: setup takes 1-2 hours and quality varies by model checkpoint choice.
+
+### [Fooocus](https://github.com/lllyasviel/Fooocus) (free, simplest setup)
+
+[Fooocus](https://github.com/lllyasviel/Fooocus) is a Stable-Diffusion wrapper designed for ease of use. One-click installer, sensible defaults, no parameter overload. For first-time local image generation, Fooocus is the recommended entry point.
+
+### Flux Schnell / Dev (open weights, local-runnable)
+
+The [Flux](/tools/flux) family released open weights for the Schnell and Dev models in late 2024-2025. With a capable GPU (RTX 4080+, 16GB VRAM), Flux runs locally and produces near-Pro quality. Setup via ComfyUI templates.
+
+## Voice and audio
+
+### [Whisper](https://github.com/openai/whisper) (free, local transcription)
+
+OpenAI's [Whisper](https://github.com/openai/whisper) model is open source and runs locally. Whisper.cpp is the optimised C++ port that runs on Macbooks at ~10x real-time speed. For transcribing meetings or interviews offline, Whisper is the standard.
+
+[MacWhisper](https://goodsnooze.gumroad.com/l/macwhisper) is a polished Mac app wrapping Whisper with a GUI; one-time $39 purchase.
+
+### [Piper](https://github.com/rhasspy/piper) (free, local text-to-speech)
+
+[Piper](https://github.com/rhasspy/piper) is an open-source text-to-speech model that runs on a CPU or modest GPU. Quality is competitive with paid cloud TTS for most languages. Ideal for accessibility tools and offline voice generation.
+
+### Local voice cloning
+
+[Bark](https://github.com/suno-ai/bark) and [XTTS](https://github.com/coqui-ai/TTS) provide local voice cloning at quality below ElevenLabs but free and offline.
+
+## Notes and knowledge
+
+### [Obsidian](/tools/obsidian)
+
+[Obsidian](/tools/obsidian) stores notes as plain markdown files locally. The Smart Connections plugin uses local embeddings (via Ollama) for AI search. The Copilot plugin connects to local models for chat and writing assistance.
+
+For users who want a complete offline notes workflow with AI features, Obsidian is the strongest option in 2026.
+
+### [Reflect](/tools/reflect)
+
+[Reflect](/tools/reflect) is end-to-end encrypted with on-device AI search. Not strictly offline (sync requires internet) but the AI computation happens on your device, not in the cloud.
+
+### [Logseq](https://logseq.com) (free, open source)
+
+[Logseq](https://logseq.com) is a free, open-source local-first notes app. Files are markdown stored locally. AI plugins exist but the ecosystem is smaller than Obsidian's.
+
+## Email and writing tools
+
+### Local LLM + browser extension
+
+The combination of [Ollama](https://ollama.ai) running locally + a browser extension like [Page Assist](https://github.com/n4ze3m/page-assist) provides offline AI email assistance without sending content to cloud APIs.
+
+### [LanguageTool](https://languagetool.org) self-hosted
+
+[LanguageTool](https://languagetool.org) supports self-hosted deployment. Run on your laptop or a VPS for grammar and style checking without cloud calls.
+
+## Suggested offline stacks
+
+### Solo professional with M2 Mac 32GB RAM ($0 software cost)
+- [Ollama](https://ollama.ai) + Llama 3.3 70B (writing/reasoning)
+- [Continue.dev](https://continue.dev) + DeepSeek Coder via Ollama (coding)
+- [Fooocus](https://github.com/lllyasviel/Fooocus) on local Mac (limited to small images)
+- [MacWhisper](https://goodsnooze.gumroad.com/l/macwhisper) ($39 one-time, for transcription)
+- [Obsidian](/tools/obsidian) + Smart Connections plugin
+
+### Engineering team with on-prem GPU server ($5-15K hardware)
+- [Tabby](https://tabby.tabbyml.com) self-hosted (Copilot-class coding)
+- [Aider](/tools/aider) + DeepSeek-V3 via on-prem inference
+- [Stable Diffusion](/tools/stable-diffusion) for design work
+- [n8n](/tools/n8n) self-hosted for automation
+
+### Air-gapped government / defence team
+On-prem only. [Tabnine](/tools/tabnine) on-prem + [Aider](/tools/aider) with local Llama 3.3 + [Stable Diffusion](/tools/stable-diffusion) self-hosted + [Whisper](https://github.com/openai/whisper) for transcription. No cloud AI, fully air-gapped.
+
+### Travel-heavy professional with laptop only
+- [LM Studio](https://lmstudio.ai) with Mistral Small 22B (writing/reasoning)
+- [Whisper.cpp](https://github.com/openai/whisper) for offline transcription
+- [Obsidian](/tools/obsidian) for notes
+- Sync to cloud when on WiFi via end-to-end-encrypted services
+
+## Honest trade-offs of going local
+
+**You give up:**
+- ~30-40% model quality vs frontier cloud (Claude Sonnet 4.5, GPT-5)
+- Faster cloud iteration speeds (10-50 tokens/sec local vs 100-200 cloud)
+- Tooling ecosystem maturity (Custom GPTs, ChatGPT Plugins, etc. don't exist for local)
+- Hands-free upgrades (you maintain models locally vs the cloud handling it)
+
+**You gain:**
+- Full data privacy (nothing leaves your hardware)
+- No usage limits or rate caps
+- No subscription costs after hardware
+- Resilience (works on planes, in low-internet regions, during outages)
+- Customisation (fine-tune models on your own data legally)
+
+For solopreneurs whose work is 90% writing, summarisation, and basic coding, local AI on an M-series Mac is genuinely viable in 2026 and produces $200-400/month savings vs equivalent cloud subscriptions over 24 months.
+
+For teams whose work is research-grade, requires the absolute frontier of model quality, or demands tooling integrations (Cursor, Granola, Notion AI), cloud remains the right choice.
+
+## Setup tips
+
+- **Start with [LM Studio](https://lmstudio.ai)** if you've never run a local model. Easiest UX.
+- **Move to [Ollama](https://ollama.ai)** once you want to integrate with other tools (Aider, Continue.dev, Obsidian Smart Connections).
+- **Test 2-3 models** before committing - quality varies more than cloud models. Llama 3.3 70B and Qwen 2.5 72B are the safe defaults.
+- **Buy hardware once, save subscriptions for years.** A $2500 Mac running local AI replaces $50-100/mo of cloud subscriptions over 24-36 months.
+- **Hybrid is fine.** Most local-first users still pay for one cloud tool (usually Claude Pro or ChatGPT Plus) for the highest-stakes work and run local for everything else.
+
+The local AI stack in 2026 is finally good enough that "fully offline AI workflow" is a real choice, not a sacrifice. Browse our [AI tool comparisons](/compare) for cloud alternatives or take our [60-second quiz](/quiz) for a stack tailored to your hardware and workflow.
