@@ -49,7 +49,7 @@ export default function TrustStack({
           <div className="flex items-baseline justify-between mb-1">
             <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">Editorial Score</p>
             <span className="text-[15px] font-extrabold text-foreground">
-              {editorialScore > 0 ? editorialScore.toFixed(1) : '—'}
+              {editorialScore > 0 ? editorialScore.toFixed(1) : '-'}
               <span className="text-[11px] font-normal text-muted-foreground ml-0.5">/5</span>
             </span>
           </div>
@@ -67,7 +67,7 @@ export default function TrustStack({
           <div className="flex items-baseline justify-between mb-1">
             <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted-foreground">External Aggregate</p>
             <span className="text-[15px] font-extrabold text-foreground">
-              {externalRating > 0 ? externalRating.toFixed(1) : '—'}
+              {externalRating > 0 ? externalRating.toFixed(1) : '-'}
               <span className="text-[11px] font-normal text-muted-foreground ml-0.5">/5</span>
             </span>
           </div>
