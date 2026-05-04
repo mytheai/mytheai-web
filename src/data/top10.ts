@@ -2302,6 +2302,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '💳',
     slugs: ['spendesk', 'precoro', 'procurify', 'zip-procurement', 'coupa'],
   },
+  {
+    slug: 'best-ai-drug-discovery',
+    title: 'Best AI Drug Discovery Tools 2026',
+    description: 'The best AI platforms accelerating drug discovery in 2026 - from generative molecular design and phenomics-driven target identification to clinical success prediction and automated medicinal chemistry.',
+    category: 'Healthcare AI',
+    emoji: '🧬',
+    slugs: ['insilico-medicine', 'recursion', 'benevolentai', 'atomwise', 'exscientia'],
+  },
+  {
+    slug: 'best-ai-biotech-platforms',
+    title: 'Best AI Biotech Platforms 2026',
+    description: 'The best AI-powered biotech research platforms in 2026 - from physics-based computational chemistry and AlphaFold-powered protein design to open-source foundation models and generative protein therapeutics.',
+    category: 'Healthcare AI',
+    emoji: '🔬',
+    slugs: ['schrodinger', 'isomorphic-labs', 'deep-genomics', 'valence-labs', 'generate-biomedicines'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
