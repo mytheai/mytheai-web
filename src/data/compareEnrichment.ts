@@ -2430,6 +2430,186 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Which is better for personal-brand outbound?', a: 'Smartlead by a margin. Lower cost, faster to set up, better deliverability for individual senders. Amplemarket is overkill for personal-brand workflows.' },
     ],
   },
+
+  'close-vs-folk': {
+    bottomLine: 'Close and Folk are both modern CRMs but for very different motions. Close is the inside-sales CRM built around outbound calling and email sequences - the dialler is native, sequences are first-class, and the pipeline view assumes high-volume reps. Folk is the relationship-CRM built around contact-driven workflows - LinkedIn sync, group sharing, and pipeline-as-spreadsheet feel like Notion meets Airtable for a CRM. Pick Close if your team makes calls and runs structured sales sequences. Pick Folk if your work is relationship-led and you want a CRM that does not feel like Salesforce-lite. Pricing: Close $29-$149/seat/mo; Folk $20-$80/seat/mo.',
+    whenToPickA: 'You run inside sales with daily call volume, structured email/SMS cadences, and pipeline-by-rep accountability. Close native power-dialler + sequences + reporting save 5-10 hours/week per rep vs piecing together separate tools. Best for SDR/AE teams of 3-50.',
+    whenToPickB: 'Your work is relationship-driven (consulting, partnerships, founder outreach, agency BD) and you need a CRM that captures notes, LinkedIn context, and group views without the heavy structure of Salesforce or HubSpot. Folk is the cleanest "human CRM" in 2026. Best for solo professionals and small relationship-led teams.',
+    faqs: [
+      { q: 'Does Close include a dialler?', a: 'Yes. Close ships a native power dialler with local presence, call recording, and one-click voicemail drop. Folk does not include calling features; you would integrate Aircall or similar.' },
+      { q: 'Which is better for LinkedIn-heavy outreach?', a: 'Folk by a wide margin. Folk has a polished Chrome extension that captures LinkedIn profiles into the CRM with one click and tracks conversations natively. Close is email and phone first.' },
+      { q: 'Is Folk easier to learn?', a: 'Yes. Folk feels like a slightly-more-structured spreadsheet and most users are productive within an hour. Close has more depth and takes 1-2 weeks for reps to internalise the dialler + sequences workflow.' },
+      { q: 'Which one scales to 50+ reps?', a: 'Close handles larger sales orgs better - reporting, permissions, custom fields, and admin controls are more mature. Folk works at scale for relationship-led teams but the pipeline analytics are thinner than Close at 50+ users.' },
+    ],
+  },
+
+  'clari-vs-folk': {
+    bottomLine: 'Clari and Folk solve completely different problems despite both being labelled "CRM-adjacent." Clari is the enterprise revenue platform - forecasting, deal inspection, pipeline analytics, and call intelligence layered on top of Salesforce. Folk is a lightweight relationship CRM for solo operators and small teams. They almost never compete head-to-head. Pick Clari if you are a VP Sales at a $20M+ ARR company who needs accurate forecasts and deal-by-deal visibility. Pick Folk if you are a founder, consultant, or small-team operator who wants a clean contact and pipeline tool. Pricing: Clari is enterprise-priced (custom, typically $1-$2K/seat/year); Folk is $20-$80/seat/mo.',
+    whenToPickA: 'You run a 20+ rep sales org with a $20M+ pipeline and need executive-grade forecasting + deal inspection + pipeline analytics. Clari sits on top of Salesforce and replaces the manual forecast call. Best for VP Sales, RevOps, and CROs at funded startups through public companies.',
+    whenToPickB: 'You are a founder, consultant, agency owner, or small-team operator who needs a CRM without enterprise complexity. Folk handles relationship management, light pipelines, and group sharing without forcing you into Salesforce admin work. Best for teams of 1-15.',
+    faqs: [
+      { q: 'Does Clari replace Salesforce?', a: 'No. Clari sits on top of Salesforce and reads from it - your reps still use Salesforce for data entry, Clari surfaces analytics and forecasts. Folk is a standalone CRM that replaces Salesforce for small teams.' },
+      { q: 'Which is more expensive?', a: 'Clari by 10-50x. Clari is enterprise-priced (custom, often $1-2K/seat/year). Folk is $20-80/seat/mo. They serve different markets entirely.' },
+      { q: 'Can a startup use Clari?', a: 'Technically yes but it is overkill until you have 20+ reps and $20M+ pipeline. Most startups use HubSpot or a modern CRM until forecasting volume justifies Clari.' },
+      { q: 'Does Folk have forecasting?', a: 'Folk has basic deal-stage tracking but not the forecasting + deal-inspection workflows Clari is built for. For under-15-rep teams Folk is sufficient; above that, you need a dedicated tool.' },
+    ],
+  },
+
+  'castmagic-vs-opus-clip': {
+    bottomLine: 'Castmagic and Opus Clip both repurpose long-form audio and video into derivative content but optimise for different outputs. Castmagic ingests podcast or webinar audio and produces transcripts, show notes, blog posts, social posts, and email newsletters - it is a podcast-to-content factory. Opus Clip takes long-form video (YouTube, Zoom recordings, livestreams) and auto-extracts vertical short-form clips with captions, virality scoring, and platform-ready formats - it is a video-to-shorts factory. They compose well in a stack rather than competing. Pricing: Castmagic $19-$49/mo; Opus Clip $19-$95/mo.',
+    whenToPickA: 'You publish a podcast or webinar series and need text-first derivative content (show notes, blog posts, social copy, email summaries) generated from audio. Castmagic is the podcast-content workhorse. Best for podcasters, B2B marketers running webinar series, and creators monetising via written content + email.',
+    whenToPickB: 'You record long-form video (YouTube, livestreams, Zoom recordings) and need short-form vertical clips for TikTok, Reels, and Shorts. Opus Clip auto-extracts the most viral moments and adds captions in the platform-correct format. Best for YouTubers, course creators, and creators distributing to short-form platforms.',
+    faqs: [
+      { q: 'Can I use both together?', a: 'Yes - many podcasters do. Castmagic handles the podcast-to-text-content workflow; Opus Clip handles podcast-to-shorts on YouTube/TikTok. Combined cost ~$60/mo replaces a $2-3K/mo content team.' },
+      { q: 'Does Opus Clip work for podcast video?', a: 'Yes. If you record video alongside audio (Riverside, StreamYard, Zoom), upload to Opus Clip and it extracts vertical clips. Audio-only podcasts work less well since visual context is missing.' },
+      { q: 'Which has better captions?', a: 'Both ship strong auto-captions. Opus Clip captions are more visually polished out of the box (animated, branded). Castmagic transcripts are more accurate for text-content use but less visually styled.' },
+      { q: 'Is there a free tier?', a: 'Both have limited free tiers. Castmagic free tier covers a few episodes; Opus Clip free tier covers ~60 minutes of upload per month. Both are usable for testing before committing.' },
+    ],
+  },
+
+  'podcastle-vs-riverside': {
+    bottomLine: 'Podcastle and Riverside are the two leading remote podcast and video recording platforms in 2026. Riverside has the edge on audio and video quality - separate-track local recording, 4K video, lossless audio, and the most-used platform among professional podcasters. Podcastle is the broader creator workspace - record, edit, transcribe, generate AI voices, and publish all in one app. Pick Riverside if recording quality is the most important variable and you have a separate editing workflow. Pick Podcastle if you want one app for record + edit + publish without juggling multiple tools. Pricing: Riverside $15-$29/mo; Podcastle $14.99-$29.99/mo.',
+    whenToPickA: 'You are a serious podcaster or video producer where recording quality is non-negotiable. Riverside separate-track lossless recording is the industry standard for remote interviews. Best for professional podcasts, video shows, and any production where post-edit quality matters.',
+    whenToPickB: 'You are a solo creator or small team who wants a single tool to record, edit, transcribe, and publish without subscribing to 3-4 separate apps. Podcastle bundles AI editing, voice cleanup, and publishing into one workspace. Best for emerging podcasters and one-person creators.',
+    faqs: [
+      { q: 'Which has better audio quality?', a: 'Riverside by a small but real margin - separate-track lossless local recording produces the cleanest source files. Podcastle audio is good but compresses earlier in the chain. For high-end production, Riverside wins.' },
+      { q: 'Does Podcastle include editing?', a: 'Yes. Podcastle ships a polished web-based editor with AI features (filler-word removal, automatic levelling, magic dust noise reduction). Riverside has Magic Edit for similar workflows but it is less mature than Podcastle\'s editor.' },
+      { q: 'Which has better video?', a: 'Riverside up to 4K video; Podcastle caps at 1080p in 2026. For video-heavy podcast workflows or YouTube distribution, Riverside is the safer pick.' },
+      { q: 'Can I use either with mobile guests?', a: 'Both support mobile guests via web browser - no app install required. Both record locally on the guest\'s device for quality. Riverside\'s mobile experience is slightly more polished in 2026.' },
+    ],
+  },
+
+  'playground-ai-vs-nightcafe': {
+    bottomLine: 'Playground AI and NightCafe are both browser-based AI image generation platforms but target different users. Playground AI is the more modern, prosumer-focused tool with its own Playground v3 model, polished UI, and stronger output for photorealism and consistent character work. NightCafe is the social-creative platform - more model variety (SDXL, DALL-E, Stable Diffusion 3), community challenges, and a credit-based pricing model that rewards casual exploration. Pick Playground AI if you want a serious daily-driver image tool with consistent results. Pick NightCafe if you want variety, community, and a casual exploration vibe. Pricing: Playground AI free + $15/mo Pro; NightCafe credit-based, $5.99-$49.99/mo.',
+    whenToPickA: 'You generate images often (5+/day) and want a consistent, modern interface with strong photorealism, in-painting, and a coherent style across sessions. Playground AI Pro is the more polished daily-driver. Best for designers, marketers, and indie creators.',
+    whenToPickB: 'You want variety - 30+ models, community challenges, and a credit-based system that lets you experiment without commitment. NightCafe is more like a creative playground than a production tool. Best for hobbyists, casual creators, and people exploring AI art.',
+    faqs: [
+      { q: 'Which has better photorealism?', a: 'Playground AI v3 wins on consistent photorealism, especially for people and product shots. NightCafe routes to whichever model you pick; with SDXL or SD3 it is competitive but less consistent across multiple generations.' },
+      { q: 'Is there a free tier?', a: 'Both. Playground AI free tier includes 500 generations/day with limited resolution. NightCafe free tier gives daily credits that refresh. Both are usable for testing.' },
+      { q: 'Which has better in-painting?', a: 'Playground AI ships polished in-painting and out-painting in the main editor. NightCafe in-painting is functional but less integrated. For touch-up workflows, Playground wins.' },
+      { q: 'Can I use my own images as reference?', a: 'Both support image-to-image and reference workflows. Playground AI ImagePrompt is more refined; NightCafe Img2Img is functional but less consistent.' },
+    ],
+  },
+
+  'chatwoot-vs-freshchat': {
+    bottomLine: 'Chatwoot and Freshchat are both customer-messaging platforms but with very different cost models. Chatwoot is open-source and self-hostable with a generous cloud free tier - you can run it on your own infrastructure or use Chatwoot Cloud at $19/seat/mo. Freshchat is the AI-augmented chat product from Freshworks, integrated tightly with the broader Freshdesk and Freshsales suite. Pick Chatwoot if you want privacy, self-hosting, or an affordable Intercom alternative without vendor lock-in. Pick Freshchat if you are already in the Freshworks ecosystem and want a turnkey AI-powered chat tool. Pricing: Chatwoot $19-$59/seat/mo cloud or self-host free; Freshchat $19-$79/seat/mo.',
+    whenToPickA: 'You want an Intercom alternative that is open source, self-hostable, and far cheaper. Chatwoot covers website chat, email, WhatsApp, Facebook, Twitter, and Telegram inboxes in one tool. Best for privacy-conscious teams, agencies serving multiple clients, and budget-conscious startups.',
+    whenToPickB: 'You already use Freshdesk or Freshsales and want chat integrated into the same suite. Freshchat ships AI-powered Freddy bots, deflection automation, and CRM context out of the box. Best for SMBs already standardised on Freshworks.',
+    faqs: [
+      { q: 'Is Chatwoot really free?', a: 'The self-hosted version is fully open source and free. Chatwoot Cloud is paid ($19+/seat/mo) and is what most teams choose for ease of use. The self-hosted option is what makes Chatwoot meaningfully cheaper than Freshchat at scale.' },
+      { q: 'Which has better AI features?', a: 'Freshchat has more out-of-the-box AI (Freddy AI bots, deflection, summarisation). Chatwoot ships a smaller AI suite (response suggestions, summaries) but lets you bring your own LLM via API for custom workflows.' },
+      { q: 'Can both handle WhatsApp?', a: 'Yes. Both integrate with WhatsApp Business API for inbound messaging, multi-agent routing, and templated outbound. Setup costs are comparable.' },
+      { q: 'Which scales better?', a: 'Both scale to 500+ agents. Freshchat tends to feel more polished at large scale because of the broader Freshworks admin tooling. Chatwoot self-hosted scales as well as your infrastructure handles it.' },
+    ],
+  },
+
+  'socket-dev-vs-snyk': {
+    bottomLine: 'Socket.dev and Snyk both protect software supply chains but at different layers. Snyk is the established, broader platform - SCA (open source vulnerabilities), SAST, container scanning, IaC scanning, and a deep dependency graph going back years. Socket.dev is the newer, more focused supply-chain risk tool that catches malicious packages, typosquats, install-script behaviour, and risky dependency drifts that pure CVE-based tools miss. They compose well rather than competing - many security teams run both. Pick Snyk if you need broad coverage across many security categories. Pick Socket if your top concern is malicious-package supply-chain attacks. Pricing: Snyk $0-$25/dev/mo; Socket free tier + custom enterprise.',
+    whenToPickA: 'You need a single security platform covering open-source vulnerabilities + first-party code scanning + container + IaC + cloud. Snyk is the broadest of the dev-focused security tools and integrates with most CI/CD systems. Best for security teams at funded startups through enterprise.',
+    whenToPickB: 'Your specific concern is malicious packages, typosquatting, supply-chain attacks, and behavioural anomalies in dependencies (telemetry, install scripts, suspicious permissions). Socket catches these where CVE databases miss them. Best for engineering teams shipping to production daily.',
+    faqs: [
+      { q: 'Do I need both?', a: 'Many security-conscious teams run both. Snyk for breadth (CVEs, SAST, containers); Socket for the specific category of malicious-package risk that Snyk and similar tools miss. The cost is additive but the coverage is genuinely complementary.' },
+      { q: 'Is Socket free?', a: 'Socket has a generous free tier for open-source projects and small teams. Enterprise pricing is custom. Free tier is sufficient to evaluate the malicious-package detection.' },
+      { q: 'Which has better GitHub PR integration?', a: 'Both ship GitHub PR comments. Snyk is more mature; Socket is more focused (only flags supply-chain risk, no false-positive noise from CVEs). For teams overwhelmed by Snyk PR noise, Socket is meaningfully cleaner.' },
+      { q: 'Can Socket replace Snyk for SCA?', a: 'Not currently. Socket complements Snyk on supply-chain risk; Snyk still owns the CVE-based dependency-vulnerability surface. Use both if budget allows.' },
+    ],
+  },
+
+  'adalo-vs-glide': {
+    bottomLine: 'Adalo and Glide are both no-code mobile-first app builders but with different strengths. Glide turns spreadsheets into polished mobile and web apps with the cleanest UX in the category - if your data lives in Google Sheets or Airtable, Glide gets you to a working app fastest. Adalo is the more flexible app builder with native mobile output, more component variety, and a built-in database. Pick Glide if your app is data-display-first and you need the cleanest mobile UX with minimal effort. Pick Adalo if you need real native iOS/Android distribution with custom workflows. Pricing: Glide $25-$249/mo; Adalo $36-$200/mo.',
+    whenToPickA: 'Your data already lives in Google Sheets, Airtable, or BigQuery and you want to expose it as a polished mobile/web app. Glide is the fastest path from spreadsheet to working app - most teams ship a v1 in a weekend. Best for internal tools, directories, and CRUD apps.',
+    whenToPickB: 'You need a real iOS/Android native app you can publish to the App Store and Play Store, with custom workflows beyond simple data display. Adalo native publishing is the differentiator. Best for consumer apps, marketplace MVPs, and product-led startups testing native experiences.',
+    faqs: [
+      { q: 'Can both publish to the App Store?', a: 'Adalo yes, native iOS and Android publishing supported. Glide is web-app-first with PWA install (mobile-app-like but not native distribution). For App Store presence, Adalo is the only one of the two.' },
+      { q: 'Which has the better UX?', a: 'Glide by a clear margin in 2026. Glide-built apps look polished and modern; Adalo apps function well but the default UI is more dated. For consumer-facing apps where polish matters, Glide wins on UX.' },
+      { q: 'Which is cheaper?', a: 'Comparable at the entry tier ($25-$36/mo). At scale Adalo is slightly cheaper because pricing is feature-based rather than per-user. For high-user-count apps, Adalo is meaningfully cheaper.' },
+      { q: 'Can I bring my own database?', a: 'Glide reads from Google Sheets, Airtable, BigQuery, and SQL. Adalo has a native database and can connect to external APIs but Glide\'s spreadsheet-first model is simpler for most teams.' },
+    ],
+  },
+
+  'bland-ai-vs-vapi': {
+    bottomLine: 'Bland AI and Vapi are both voice-AI platforms for building phone agents but with different abstractions. Bland AI is the easier-to-use platform - upload a script, configure a few variables, and ship an outbound or inbound voice agent in an afternoon. Vapi is the developer-platform - more programmatic, better for engineers building voice features into existing products. Pick Bland AI if you want a no-code path to a working voice agent. Pick Vapi if you have engineering bandwidth and want lower-level control. Pricing: Bland AI usage-based ~$0.09/min; Vapi usage-based ~$0.05-$0.10/min.',
+    whenToPickA: 'You want to ship a working voice agent (outbound calling, inbound IVR, scheduling) without writing much code. Bland AI prompt-based configuration is the fastest path to a live phone agent. Best for SMB teams, agencies building voice agents for clients, and product teams testing voice features.',
+    whenToPickB: 'You have engineering resources and want full programmatic control - custom voice models, function calling, deep integrations with your application. Vapi is the developer-platform of the two. Best for SaaS teams adding voice to existing products and infra-heavy implementations.',
+    faqs: [
+      { q: 'Which is easier to start with?', a: 'Bland AI by a clear margin. Most users ship a first agent within a few hours. Vapi requires engineering work and is best for teams with developer resources.' },
+      { q: 'Can both handle outbound calling?', a: 'Yes. Both support outbound campaigns, retry logic, and webhooks for call results. Bland AI has more polished campaign UX out of the box; Vapi requires you to build the orchestration.' },
+      { q: 'Which has better voice quality?', a: 'Both ship modern TTS (ElevenLabs, Cartesia, others) and the voice-quality difference is small in 2026. Latency tends to be slightly lower on Vapi, which matters for natural conversational feel.' },
+      { q: 'Is the pricing comparable?', a: 'Both charge per-minute. Vapi tends slightly cheaper per minute; Bland AI bundles more services into the per-minute rate. For high-volume use cases, Vapi is usually cheaper.' },
+    ],
+  },
+
+  'akkio-vs-obviously-ai': {
+    bottomLine: 'Akkio and Obviously AI are both no-code predictive analytics tools letting business teams build ML models without data scientists. Akkio is the more polished, modern option in 2026 with a Chat-with-Data interface, time-series forecasting, and direct CRM integrations (Salesforce, HubSpot). Obviously AI is the older, broader platform with a wider model variety and longer track record but a more dated UI. Pick Akkio if you want the cleanest modern UX and CRM-integrated predictions. Pick Obviously AI if you need broader model variety or are already an Obviously customer. Pricing: Akkio $50-$1500/mo; Obviously AI $75-$399/mo.',
+    whenToPickA: 'You are a marketing, sales, or RevOps lead who wants to predict churn, forecast pipeline, or score leads using your CRM data without involving data scientists. Akkio Salesforce/HubSpot direct integration is the killer feature. Best for SMB and mid-market teams.',
+    whenToPickB: 'You need broader model variety (classification, regression, time series, NLP) and a more flexible workflow. Obviously AI has been in the no-code-ML space longer and supports more diverse use cases. Best for analytics teams running varied ML projects.',
+    faqs: [
+      { q: 'Which is easier for non-technical users?', a: 'Akkio in 2026. The Chat-with-Data interface lets you ask questions in plain language. Obviously AI requires more upfront understanding of model selection and metrics.' },
+      { q: 'Does either replace data scientists?', a: 'For straightforward predictive use cases (churn, pipeline forecast, lead scoring), yes. For novel ML problems or production-grade ML systems, neither is a substitute for an actual ML team.' },
+      { q: 'Can I integrate with Salesforce?', a: 'Both support Salesforce. Akkio integration is more polished and includes bidirectional sync (predictions write back to records). Obviously AI integration is one-way export by default.' },
+      { q: 'Is there a free trial?', a: 'Both offer free trials. Akkio is more generous (no credit card, full features). Obviously AI requires a sales call for full evaluation in 2026.' },
+    ],
+  },
+
+  'juro-vs-ironclad': {
+    bottomLine: 'Juro and Ironclad are both AI-powered contract lifecycle management (CLM) platforms but at different tiers. Juro is the modern, mid-market-friendly CLM with a polished editor, Slack integration, and pricing accessible to SMBs and scaleups. Ironclad is the enterprise CLM platform - deeper workflow automation, more powerful AI clause analysis, and SOC 2 + ISO 27001 with extensive audit trails. Pick Juro if you are 50-500 person company wanting modern CLM without enterprise pricing. Pick Ironclad if you are 500+ employees with complex contract workflows and need enterprise-grade controls. Pricing: Juro custom (typically $20-$50K/year); Ironclad custom (typically $50K+/year).',
+    whenToPickA: 'You are a 50-500 person company tired of Word + email + DocuSign and want a modern CLM with collaborative editing, automated approvals, and AI clause review. Juro Slack-native experience is the differentiator. Best for SaaS, fintech, and PE-backed scaleups.',
+    whenToPickB: 'You are a 500+ person company or enterprise with complex contract workflows (mergers, partnerships, regulated industries). Ironclad workflow designer + Smart Import + AI Assist handle complexity Juro does not. Best for legal teams at large enterprises.',
+    faqs: [
+      { q: 'Which has better AI?', a: 'Ironclad AI Assist is more mature in 2026 - clause comparison, automated review, and risk flagging are stronger. Juro AI is competent and improving fast but trails on the most complex use cases.' },
+      { q: 'Is Juro cheaper?', a: 'Yes. Juro typical contracts are $20-50K/year; Ironclad starts around $50K and scales up significantly for enterprise. For mid-market budgets, Juro is meaningfully more accessible.' },
+      { q: 'Can I edit contracts in either?', a: 'Both ship native editors. Juro editor is more polished for collaborative drafting. Ironclad supports both native editing and Word round-trip for legacy workflows.' },
+      { q: 'Which integrates with Salesforce?', a: 'Both. Ironclad has the more mature Salesforce integration with bidirectional CPQ-to-contract flows. Juro Salesforce integration is functional and improving.' },
+    ],
+  },
+
+  'slidebean-vs-pitch': {
+    bottomLine: 'Slidebean and Pitch are both modern presentation platforms but with different audiences. Slidebean is the AI-pitch-deck tool optimised for founders raising venture capital - templates from successful YC and Sequoia decks, AI deck-building from a few prompts, and pitch-coaching content. Pitch is the broader collaborative presentation tool competing with PowerPoint and Keynote - real-time co-editing, integrations with productivity tools, and a polished design system. Pick Slidebean if you are building a pitch deck for fundraising. Pick Pitch if you need a general-purpose presentation tool for team work. Pricing: Slidebean $19-$49/mo; Pitch $0-$80/seat/mo.',
+    whenToPickA: 'You are a founder building a fundraising deck and want AI-assisted drafting, proven templates from successful raises, and pitch-coaching workflows. Slidebean is the niche specialist for VC-pitch decks. Best for pre-seed through Series A founders.',
+    whenToPickB: 'You need a modern presentation tool for ongoing team work - sales decks, customer presentations, internal updates, board materials. Pitch real-time collaboration is the differentiator. Best for marketing, sales, and product teams.',
+    faqs: [
+      { q: 'Which has better AI deck generation?', a: 'Both ship AI deck generation in 2026. Slidebean output is more pitch-deck-optimised; Pitch output is more general-purpose. For fundraising specifically, Slidebean produces more usable first drafts.' },
+      { q: 'Is Pitch really free?', a: 'Pitch has a generous free tier including unlimited presentations and most features. The paid tier ($80/seat/mo) adds advanced collaboration, analytics, and admin controls. Slidebean has no truly free tier.' },
+      { q: 'Which is better for sales decks?', a: 'Pitch by a clear margin. Real-time collaboration, branded templates, and analytics on viewer engagement make it more practical for sales teams. Slidebean is overkill for sales work.' },
+      { q: 'Can I export to PowerPoint?', a: 'Both export to PPTX. Pitch export fidelity is higher; Slidebean exports work but require some manual cleanup for complex layouts.' },
+    ],
+  },
+
+  'flick-social-vs-pallyy': {
+    bottomLine: 'Flick and Pallyy are both modern social media management tools but with different specialisations. Flick is the AI-first content tool - hashtag intelligence, AI caption writing, and content idea generation are best-in-class for solo creators and small brands. Pallyy is the more polished scheduler and analytics platform with a beautiful UI, full Instagram and TikTok support, and unlimited social profiles on the entry plan. Pick Flick if AI content assistance is the highest priority. Pick Pallyy if you want the cleanest scheduler with comprehensive analytics. Pricing: Flick $14-$36/mo; Pallyy $18-$36/mo.',
+    whenToPickA: 'You are a solo creator, freelancer, or small-brand operator who needs AI-powered content ideas, captions, and hashtag strategies. Flick AI features are the most opinionated and useful for content-first workflows. Best for personal-brand and small DTC accounts.',
+    whenToPickB: 'You manage 5+ social accounts and want a polished scheduler + comprehensive analytics + visual content planning in one tool. Pallyy unlimited accounts on the entry plan is the value differentiator. Best for agencies and multi-brand operators.',
+    faqs: [
+      { q: 'Which has better AI?', a: 'Flick AI is more opinionated and content-first - hashtag intelligence, AI captions, and trend analysis stand out. Pallyy ships AI captions but the AI is less central to the product.' },
+      { q: 'Which has unlimited social accounts?', a: 'Pallyy entry plan ($18/mo) supports unlimited social profiles. Flick limits accounts on lower tiers. For agencies, Pallyy is meaningfully cheaper at scale.' },
+      { q: 'Do both support TikTok?', a: 'Yes. Both integrate with TikTok Business API for scheduling, analytics, and trend insights. Pallyy TikTok features are slightly more polished in 2026.' },
+      { q: 'Which has better analytics?', a: 'Pallyy by a clear margin. The visual analytics and competitor tracking are more comprehensive. Flick analytics are functional but less rich.' },
+    ],
+  },
+
+  'lilt-vs-unbabel': {
+    bottomLine: 'Lilt and Unbabel are both enterprise translation platforms combining AI with human-in-the-loop, but with different specialisations. Lilt is the technology-translation platform with adaptive neural machine translation that learns from your domain over time - best for product strings, documentation, and ongoing localisation. Unbabel is the customer-experience translation platform optimised for support tickets, live chat, and email translations with cultural appropriateness layered on top. Pick Lilt for product/documentation localisation. Pick Unbabel for multilingual customer support. Pricing: both enterprise (custom, typically $10K-$200K+/year).',
+    whenToPickA: 'You localise software, documentation, and marketing content across 10+ languages and want adaptive MT that improves with your domain. Lilt translator-in-the-loop workflow produces consistent terminology over time. Best for SaaS, gaming, and consumer-tech companies with ongoing localisation needs.',
+    whenToPickB: 'You operate multilingual customer support and need real-time translation of tickets, chat, and email with cultural appropriateness. Unbabel customer-care focus and Zendesk/Salesforce integrations are the differentiators. Best for global SaaS support teams and travel/hospitality.',
+    faqs: [
+      { q: 'Which is better for ongoing software localisation?', a: 'Lilt by a clear margin. The adaptive MT layer learns from your specific domain (product strings, UI copy, technical terms) and produces increasingly consistent translations. Unbabel is not optimised for this workflow.' },
+      { q: 'Does Unbabel integrate with Zendesk?', a: 'Yes. Unbabel ships polished Zendesk and Salesforce integrations for translating support tickets in real time. Lilt does not have this customer-care integration depth.' },
+      { q: 'Which has more language coverage?', a: 'Both cover 50+ languages. Lilt has deeper coverage for technical and rare languages. Unbabel coverage is broader on consumer markets and tourism-heavy languages.' },
+      { q: 'Can I use either for one-off projects?', a: 'Both target enterprise contracts (annual, custom-priced). For one-off small projects, both are overkill - DeepL Pro or human-only services are cheaper and faster.' },
+    ],
+  },
+
+  'crowdin-vs-transifex': {
+    bottomLine: 'Crowdin and Transifex are the two leading translation management systems (TMS) for software localisation. Crowdin is the more product-oriented platform with deeper developer integrations, in-context editing, and pricing accessible to startups (free for open source, $29+/mo for small teams). Transifex is the more enterprise-focused platform with stronger workflow automation, RBAC, and process compliance. Pick Crowdin if you are a startup or open-source project. Pick Transifex if you are a mid-market or enterprise localisation team. Pricing: Crowdin $0-$10K+/mo; Transifex $70-custom/mo.',
+    whenToPickA: 'You are a startup, scale-up, or open-source project localising software and want developer-friendly tooling, in-context editing, and accessible pricing. Crowdin GitHub/GitLab integration and free open-source plan are the differentiators. Best for SaaS startups and open source maintainers.',
+    whenToPickB: 'You are a mid-market or enterprise localisation team needing workflow automation, RBAC, and process compliance for distributed translator teams. Transifex enterprise controls and approval workflows are stronger than Crowdin\'s. Best for established companies with mature localisation programs.',
+    faqs: [
+      { q: 'Which has better developer integrations?', a: 'Crowdin in 2026. Crowdin GitHub Action, GitLab CI plugin, and CLI tooling are more polished. Transifex has solid integrations but Crowdin developer experience is the better.' },
+      { q: 'Is Crowdin free for open source?', a: 'Yes. Crowdin Free Open Source plan covers unlimited projects and translators for OSS projects. This makes Crowdin the default for open-source localisation in 2026.' },
+      { q: 'Which has better workflow automation?', a: 'Transifex by a clear margin for complex enterprise workflows (multi-stage approvals, RBAC, audit trails). Crowdin workflows are simpler but sufficient for most teams.' },
+      { q: 'Can both handle 50+ languages?', a: 'Yes. Both support 100+ languages and include in-context translation editors. The choice between them is more about workflow and pricing than language coverage.' },
+    ],
+  },
 }
 
 export function getCompareEnrichment(slug: string): CompareEnrichment | null {
