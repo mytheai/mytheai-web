@@ -263,17 +263,17 @@ export default async function HomePage() {
           <div className="flex flex-wrap justify-center items-center gap-2 text-[12px] text-muted-foreground">
             <span className="font-medium">{tHero('popular')}</span>
             {[
-              { en: 'ChatGPT alternatives', label: tHero('popularChip1') },
-              { en: 'Free AI tools', label: tHero('popularChip2') },
-              { en: 'AI for coding', label: tHero('popularChip3') },
-              { en: 'Best SEO tools', label: tHero('popularChip4') },
-            ].map(q => (
+              { href: '/alternatives/chatgpt', label: tHero('popularChip1') },
+              { href: '/tools?pricing=free', label: tHero('popularChip2') },
+              { href: '/categories/code-ai', label: tHero('popularChip3') },
+              { href: '/top-10/best-seo-ai-tools', label: tHero('popularChip4') },
+            ].map(p => (
               <Link
-                key={q.en}
-                href={`/tools?q=${encodeURIComponent(q.en)}`}
+                key={p.href}
+                href={p.href}
                 className="px-3 py-1 rounded-full border border-border bg-card hover:border-blue-300 hover:text-blue-600 transition-colors"
               >
-                {q.label}
+                {p.label}
               </Link>
             ))}
           </div>
