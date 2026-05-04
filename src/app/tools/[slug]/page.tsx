@@ -409,9 +409,9 @@ export default async function ToolPage({
             <p className="text-[16px] text-muted-foreground mb-3">{tool.tagline}</p>
             <div className="flex flex-wrap items-center gap-4">
               <Stars rating={tool.rating} />
-              <span className="text-[13px] text-muted-foreground">
-                {tool.review_count.toLocaleString()} reviews
-              </span>
+              <Link href="/methodology" className="text-[13px] text-muted-foreground hover:text-blue-600 hover:underline" title="Aggregate score from third-party review platforms (G2, Capterra, Product Hunt) and editorial testing. See methodology.">
+                {tool.review_count.toLocaleString()} aggregate ratings
+              </Link>
               {tool.trending && (
                 <span className="text-[12px] font-semibold text-[#F59E0B]">{t('trending')}</span>
               )}
@@ -646,10 +646,13 @@ export default async function ToolPage({
                 <div>
                   <Stars rating={tool.rating} />
                   <p className="text-[12px] text-muted-foreground mt-0.5">
-                    {tool.review_count.toLocaleString()} reviews
+                    {tool.review_count.toLocaleString()} aggregate ratings
                   </p>
                 </div>
               </div>
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                Aggregate of third-party review platforms (G2, Capterra, Product Hunt) plus editorial testing. <Link href="/methodology" className="text-blue-600 hover:underline">How we rank</Link>.
+              </p>
             </div>
 
             {/* Last verified */}

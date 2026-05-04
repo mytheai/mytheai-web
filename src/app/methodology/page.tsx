@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import AuthorBio from '@/components/layout/AuthorBio'
+import { getSiteStats } from '@/lib/stats'
+
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'How We Rank AI Tools: Editorial Methodology | MytheAi',
-  description: 'The exact methodology MytheAi uses to score, rank, and compare 559 AI and SaaS tools. Seven-criteria scoring system, sourcing, and update cadence explained.',
+  description: 'The exact methodology MytheAi uses to score, rank, and compare AI and SaaS tools. Seven-criteria scoring system, sourcing, and update cadence explained.',
   alternates: { canonical: 'https://mytheai.com/methodology' },
   openGraph: {
     title: 'How We Rank AI Tools: Editorial Methodology | MytheAi',
@@ -12,7 +15,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function MethodologyPage() {
+export default async function MethodologyPage() {
+  const stats = await getSiteStats()
   const sections: { title: string; body: string[] }[] = [
     {
       title: 'Why methodology matters',
@@ -52,7 +56,7 @@ export default function MethodologyPage() {
     {
       title: 'How we choose which tools to include',
       body: [
-        'We do not list every AI tool that exists. The directory is curated, currently 559 tools selected for one of three reasons: significant user adoption (10K+ verified users or recognized brand presence), notable category innovation (introduces a workflow or capability others do not have), or fills a real demand gap that readers ask us about.',
+        `We do not list every AI tool that exists. The directory is curated, currently ${stats.tools} tools selected for one of three reasons: significant user adoption (10K+ verified users or recognized brand presence), notable category innovation (introduces a workflow or capability others do not have), or fills a real demand gap that readers ask us about.`,
         'Tools are removed from the directory when they shut down, get acquired and folded into another product, or fail our automated dead-tool scan (DNS failure, certificate error, 404 on homepage, parking domain). We run this scan monthly. Last cleanup removed 11 dead tools in Session 67.',
       ],
     },
@@ -95,7 +99,7 @@ export default function MethodologyPage() {
     '@type': 'WebPage',
     name: 'How We Rank AI Tools: Editorial Methodology',
     url: 'https://mytheai.com/methodology',
-    description: 'The exact methodology MytheAi uses to score, rank, and compare 559 AI and SaaS tools.',
+    description: `The exact methodology MytheAi uses to score, rank, and compare ${stats.tools} AI and SaaS tools.`,
   }
 
   return (
@@ -120,7 +124,7 @@ export default function MethodologyPage() {
             How we rank AI tools
           </h1>
           <p className="text-[16px] text-muted-foreground leading-relaxed">
-            The exact framework MytheAi uses to score 559 AI and SaaS tools. No black box, no commission-driven ranking, no sponsored placements in editorial lists. Read the criteria, audit any score, challenge any ranking.
+            The exact framework MytheAi uses to score {stats.tools} AI and SaaS tools. No black box, no commission-driven ranking, no sponsored placements in editorial lists. Read the criteria, audit any score, challenge any ranking.
           </p>
         </div>
 

@@ -32,14 +32,14 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Code AI',
     emoji: '💻',
     slugs: ['cursor', 'windsurf', 'v0', 'aider', 'bolt', 'replit'],
-    intro: 'AI coding tools have moved from autocomplete to true pair programming in 2026. The five tools below have separated themselves from the pack by combining strong language models with editor-native UX, repo-aware context, and increasingly autonomous agent modes. If you are choosing your first AI coding assistant, the gap between the top three and everything else is now wide enough that the choice matters more for daily speed than your editor or language. We focus on what shipping engineers actually feel after a week of use, not synthetic benchmarks.',
+    intro: 'AI coding tools have moved from autocomplete to true pair programming in 2026. The six tools below have separated themselves from the pack by combining strong language models with editor-native UX, repo-aware context, and increasingly autonomous agent modes. If you are choosing your first AI coding assistant, the gap between the top three and everything else is now wide enough that the choice matters more for daily speed than your editor or language. We focus on what shipping engineers actually feel after a week of use, not synthetic benchmarks.',
     methodology: 'We rank these tools on five weighted criteria: code quality on real production tasks, latency from keystroke to suggestion, repo-wide context handling, agent mode reliability for multi-file edits, and value per dollar at the indie tier. Each tool was used for at least 40 hours of actual work across TypeScript, Python, and Go codebases. We do not rank by feature count or marketing claims.',
     picks: [
       {
         slug: 'cursor',
         whyPicked: 'Cursor remains the default choice for engineers who want maximum AI integration without leaving a familiar VS Code surface. Tab completion is the smoothest in the category, Composer handles multi-file refactors that other tools refuse, and the agent mode is now reliable enough to ship small features end to end. The Pro tier at $20/month pays for itself in week one for most engineers.',
         bestFor: 'Full-time engineers shipping production code daily, especially in TypeScript, Python, and Rust.',
-        limitation: 'Subscription cost adds up across teams; some engineers prefer the leaner Copilot footprint.',
+        limitation: 'Subscription cost adds up across teams; usage caps on the cheapest tier can bite mid-month for heavy users.',
       },
       {
         slug: 'windsurf',
@@ -48,10 +48,22 @@ export const TOP10_LISTS: Top10List[] = [
         limitation: 'Less mature plugin ecosystem than Cursor and slower to adopt new model versions.',
       },
       {
+        slug: 'v0',
+        whyPicked: 'v0 by Vercel is the fastest path from a UI idea to a deployable React/Next.js component. Describe a screen in plain English or paste a screenshot, get production-quality JSX with shadcn/ui patterns and Tailwind that you can drop into your repo. The 2026 v0 chat mode iterates on layouts in seconds and is now reliable enough that designers ship without writing code.',
+        bestFor: 'Frontend engineers, designers, and PMs building Next.js apps who want polished UI scaffolds in minutes.',
+        limitation: 'Frontend-only and React-centric; not useful for backend logic, infra, or non-Next.js stacks.',
+      },
+      {
+        slug: 'aider',
+        whyPicked: 'Aider is the terminal-native AI pair programmer that engineers reach for when they want full control and zero IDE lock-in. Connects to any model (Claude, GPT, DeepSeek, local), respects your git workflow, and lets you steer multi-file edits with surgical precision. The cheapest path to serious AI coding because you bring your own API key and pay only for tokens used.',
+        bestFor: 'Senior engineers, terminal natives, and budget-conscious developers using DeepSeek or other low-cost models.',
+        limitation: 'CLI-only with a learning curve; no GUI, no inline tab completion, and pairing it with a strong model is on you.',
+      },
+      {
         slug: 'bolt',
         whyPicked: 'Bolt.new is not a coding assistant, it is a full app generator that runs in the browser and ships to production. Type a description, get a deployable Next.js or Astro app, then refine in chat. For founders, designers, and PMs who need to build a working prototype without an editor, Bolt is the most reliable option in 2026 - cleaner output than Lovable and faster than v0 for full apps.',
         bestFor: 'Non-engineers, designers, and engineers building throwaway prototypes or MVPs to validate.',
-        limitation: 'Not a daily editor replacement; complex production codebases still need Cursor or Copilot.',
+        limitation: 'Not a daily editor replacement; complex production codebases still need Cursor or Aider.',
       },
       {
         slug: 'replit',
@@ -60,23 +72,23 @@ export const TOP10_LISTS: Top10List[] = [
         limitation: 'Cloud-only; performance lags Cursor for large monorepos and offline work is impossible.',
       },
     ],
-    bottomLine: 'Pick Cursor if you ship production code daily and want the smoothest end-to-end experience. Pick Windsurf if you live in agent mode and are tired of Cursor making decisions you did not ask for. Pick Copilot if your company is already on GitHub or you work in JetBrains. Pick Bolt if you need a working app from a description without opening an editor. Pick Replit if you want everything in the browser, including hosting, and zero local setup matters to you.',
+    bottomLine: 'Pick Cursor if you ship production code daily and want the smoothest end-to-end experience. Pick Windsurf if you live in agent mode and are tired of Cursor making decisions you did not ask for. Pick v0 if your bottleneck is shipping React/Next.js UI fast. Pick Aider if you live in the terminal and want full control with bring-your-own-model pricing. Pick Bolt if you need a working app from a description without opening an editor. Pick Replit if you want everything in the browser, including hosting, and zero local setup matters to you.',
     faqs: [
       {
         q: 'Is Cursor still the best AI coding tool in 2026?',
-        a: 'For full-time engineers shipping daily, yes. Cursor still leads on tab completion smoothness and Composer multi-file edits. Windsurf has caught up on agent mode, but Cursor remains the default unless you specifically prefer Windsurf is more disciplined Cascade flow.',
+        a: 'For full-time engineers shipping daily, yes. Cursor still leads on tab completion smoothness and Composer multi-file edits. Windsurf has caught up on agent mode, but Cursor remains the default unless you specifically prefer Windsurf\'s more disciplined Cascade flow or Aider\'s terminal-native control.',
       },
       {
         q: 'Can I use these AI coding tools for free?',
-        a: 'Windsurf has the most generous free tier and is a real production option. Copilot offers a free plan for verified students and open-source maintainers. Cursor and Bolt have free trials but expect to pay $15-25/month for sustained use. Replit Core covers most learners free.',
+        a: 'Windsurf has the most generous free tier and is a real production option. Aider is free software (you pay only for the API tokens of whichever model you connect). Cursor, v0, and Bolt have free trials but expect to pay $15-25/month for sustained use. Replit Core covers most learners free.',
       },
       {
         q: 'Do these tools work with my language and framework?',
-        a: 'Cursor, Windsurf, and Copilot all handle TypeScript, Python, Go, Rust, Java, C#, and most modern languages well. Performance varies on niche languages like Elixir or Clojure - Copilot tends to be the most consistent there because of its broader training data.',
+        a: 'Cursor, Windsurf, and Aider handle TypeScript, Python, Go, Rust, Java, C#, and most modern languages well. v0 is React/Next.js-specific. Bolt covers Next.js and Astro. For niche languages like Elixir or Clojure, Cursor and Aider tend to be the most consistent because they let you choose stronger models.',
       },
       {
         q: 'Which AI coding tool is best for beginners?',
-        a: 'Replit for true beginners learning to code, because the entire environment runs in the browser and the agent walks you through fixes. For someone with basic skills who wants to ship faster, Cursor with Composer is the gentlest path because the suggestions are accurate enough to learn from.',
+        a: 'Replit for true beginners learning to code, because the entire environment runs in the browser and the agent walks you through fixes. For someone with basic skills who wants to ship faster, Cursor with Composer is the gentlest path because the suggestions are accurate enough to learn from. v0 is excellent for designers learning React by example.',
       },
     ],
   },

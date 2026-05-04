@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import AuthorBio from '@/components/layout/AuthorBio'
+import { getSiteStats } from '@/lib/stats'
+
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'About MytheAi: Our Mission & Editorial Standards',
@@ -12,7 +15,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const stats = await getSiteStats()
   return (
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
@@ -40,7 +44,7 @@ export default function AboutPage() {
       <section className="mb-10">
         <h2 className="text-[20px] font-bold text-foreground mb-3">Our Mission</h2>
         <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
-          The AI tools landscape changes every week. New products launch, pricing shifts, and yesterday&apos;s best option becomes obsolete. We cut through the noise by maintaining a living directory of 559 tools and 266 head-to-head comparisons, each reviewed, verified, and updated regularly.
+          The AI tools landscape changes every week. New products launch, pricing shifts, and yesterday&apos;s best option becomes obsolete. We cut through the noise by maintaining a living directory of {stats.tools} tools and {stats.comparisons} head-to-head comparisons, each reviewed, verified, and updated regularly.
         </p>
         <p className="text-[15px] text-muted-foreground leading-relaxed">
           We believe tool discovery should feel like getting advice from a knowledgeable friend, not scrolling through a sponsorship-laden listicle. Every ranking on MytheAi is based on editorial merit: feature depth, pricing value, user feedback, and real-world use cases. The full ranking framework is documented on the <Link href="/methodology" className="text-blue-600 hover:underline font-medium">methodology page</Link>.
