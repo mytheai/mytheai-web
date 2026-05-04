@@ -1,0 +1,156 @@
+---
+title: "How to Use AI for Market Research in 2026"
+excerpt: "A practical 2026 playbook for using AI to size markets, profile customers, analyse competitors, and synthesise research findings - with the prompts and tools that actually work."
+date: "May 4, 2026"
+category: "Guide"
+readTime: "12 min read"
+---
+
+Market research used to require either expensive consulting firms or weeks of solo analyst grunt work. In 2026, AI tools cover roughly 70% of what professional market researchers used to do, and the remaining 30% (synthesis, judgement, novel insights) is amplified by AI rather than replaced. This guide shows you the workflow that works for founders, product managers, and strategists running real research projects in 2026.
+
+## The Core Insight: AI Does NOT Replace Primary Research
+
+Before we get tactical: the biggest mistake people make in 2026 is treating AI as a substitute for primary research. AI excels at synthesising public information that is already on the internet. It does not excel at telling you what your specific 50 customers actually feel.
+
+The right framing: AI handles the 80% of research that is gathering, filtering, and synthesising existing public information. Save your human research budget (interviews, surveys, observation studies) for the 20% that delivers original insight.
+
+## Step 1: Market Sizing (The TAM/SAM/SOM Question)
+
+The single most over-asked question in market research: "how big is this market?"
+
+[Perplexity](/tools/perplexity) Pro is the right tool for this in 2026. Search-grounded answers with cited sources are dramatically more useful than ChatGPT for sizing questions where verifiable numbers matter.
+
+Working prompt:
+
+```
+You are a market research analyst. I need to size the market for [PRODUCT/SERVICE]. Please answer with sourced data:
+
+1. Total addressable market (TAM) globally - latest available year, with source
+2. Top 5 markets by revenue - country breakdown if possible, with sources
+3. Compound annual growth rate (CAGR) over the last 3-5 years
+4. Top 5 vendors by market share, with their reported revenue if public
+5. Key segments within the market and their sizes
+
+For each number, cite the report or company source. If a number cannot be confidently sourced, mark it as "estimated" with reasoning.
+```
+
+[Consensus](/tools/consensus) and [Elicit](/tools/elicit) are stronger if your sizing question depends on academic research (medical markets, scientific verticals, regulatory categories).
+
+[Glean](/tools/glean) inside a corporate environment surfaces internal research reports your company already paid for. Most large companies have 10x the internal research they remember; Glean makes it findable.
+
+## Step 2: Customer Profiling
+
+The "who is the customer" question. AI is exceptional at synthesising public profiles of personas.
+
+Working prompt for [Claude](/tools/claude):
+
+```
+You are a customer researcher. For [PRODUCT], create detailed buyer personas based on publicly available information. For each persona:
+
+- Demographics (age, role, company size, industry, geography)
+- Jobs-to-be-done (3-5 jobs)
+- Pain points and frustrations (3-5)
+- Tools they currently use to do these jobs
+- Where they get information (publications, podcasts, communities)
+- Buying triggers (what changes in their world that makes them seek a solution)
+- Buying objections (what makes them hesitate)
+- Approximate willingness-to-pay range with reasoning
+
+Source your assumptions where possible. Be explicit about what is data vs inference vs guess.
+```
+
+The personas are starting points, not final answers. Validate with 5-10 customer interviews before treating any persona as real.
+
+## Step 3: Competitor Analysis
+
+The "who else is in this space" question. AI dramatically accelerates the gathering phase.
+
+[Perplexity](/tools/perplexity) Pro handles the broad sweep:
+
+```
+List all competitors in the [MARKET] space, organised into:
+- Direct competitors (same product, same buyer)
+- Adjacent competitors (different product, same buyer)
+- Substitutes (same buyer, different product, achieving similar outcome)
+
+For each, list founding year, latest funding, employee count, key product features, pricing tier, and one sentence on positioning.
+```
+
+For deeper competitor analysis, run their public material through [Claude](/tools/claude):
+
+- Pull their pricing page, homepage, and 5-10 customer testimonials
+- Ask Claude to extract: positioning hypothesis, target customer, top 3 differentiators, pricing model, geographic markets
+- Repeat for 5-10 competitors
+- Ask Claude to synthesise across the set: "what are competitors collectively assuming about this market that might be wrong?"
+
+The "what might everyone be wrong about" prompt is the single most underused insight tool in AI-assisted market research.
+
+## Step 4: Voice-of-Customer at Scale
+
+You have 200 support tickets, 50 customer interview transcripts, 1,000 product reviews. AI synthesises this in minutes instead of weeks.
+
+[Dovetail](/tools/dovetail) is the dedicated tool for research repositories. Upload transcripts, get AI-tagged themes, search across all studies.
+
+For one-off projects without a research-tool budget, [Claude](/tools/claude) Pro with the 200K context window handles roughly 100 full transcripts in a single prompt. Working approach:
+
+1. Concatenate all transcripts into one document
+2. Prompt: "Read all interviews. Extract the top 20 themes mentioned by 3+ customers. For each theme, provide 3 verbatim quotes."
+3. Iterate: "Now group those 20 themes into 5 meta-themes. For each meta-theme, name a hypothesis the data supports."
+4. Validate: pick the strongest hypothesis. Manually re-read the cited transcripts to confirm.
+
+Step 4 is critical. AI hallucinates "consensus themes" that are not actually in the data. Always validate by hand.
+
+## Step 5: Survey Analysis
+
+The "we ran a 500-person survey, now what" problem.
+
+[Sprig](/tools/sprig) ships AI analysis natively for in-product surveys.
+
+[Lyssna](/tools/lyssna) handles standalone survey plus analysis with built-in respondent recruitment.
+
+For survey data exported to a spreadsheet, [Rows](/tools/rows) or [Deepnote](/tools/deepnote) plus their AI assistants handle quantitative cuts faster than Excel.
+
+For qualitative open-text responses, paste them into [Claude](/tools/claude) and ask for theme extraction with verbatim quotes. Validate the top themes against the raw data.
+
+## Step 6: Trend and Signal Detection
+
+The forward-looking research question: "what is changing in this market?"
+
+[Perplexity](/tools/perplexity) Pro for news synthesis: "Summarise the 10 most significant developments in [MARKET] over the last 12 months, with sources."
+
+For competitive intelligence inside your company, [Glean](/tools/glean) surfaces what your sales reps are hearing in deals. Most companies have 10x the trend signal in their CRM that nobody synthesises.
+
+## Step 7: The Synthesis
+
+The hardest job. AI helps but does not replace human judgement here.
+
+A working synthesis workflow:
+
+1. Dump all research into one Notion or Obsidian document
+2. Use [Claude](/tools/claude) (200K context) to summarise: "What are the 5 most significant findings? What are the 3 contradictions in the data? What is the single most important question we did not answer?"
+3. Manually weight findings by data quality. AI cannot do this; you have to.
+4. Write the executive summary yourself. AI drafts can help, but the synthesis judgement IS the deliverable.
+
+The pattern: AI does the gathering and the surfacing. Humans do the weighting and the synthesis.
+
+## Common Mistakes to Avoid
+
+- Over-trusting AI sourcing. AI fabricates citations. Verify every important number against its supposed source.
+- Skipping primary research. AI cannot interview your customers. Allocate 30%+ of research budget to human conversation.
+- Treating synthesis as automated. AI surfaces patterns. Humans pick which patterns matter.
+- Forgetting to refresh research. Markets move. AI-assisted research is so cheap that quarterly refreshes are now feasible. Most companies still treat research as annual.
+
+## A Working Stack
+
+| Job | Tool | Cost |
+|---|---|---|
+| Search-grounded research | Perplexity Pro | $20 |
+| Long-context synthesis | Claude Pro | $20 |
+| Academic research | Consensus + Elicit | Free or $20 |
+| Customer interview synthesis | Dovetail | $200+ |
+| Internal research surfacing | Glean | Enterprise |
+| Survey analysis | Sprig or Lyssna | $75+ |
+
+For a solo founder or PM, $40-80/month covers 80% of professional market research output. For a company with a dedicated research function, layering in Glean and Dovetail multiplies the value.
+
+The bar for "good enough" market research has risen dramatically because AI made the floor so much higher. Companies still doing 2018-style market research are now meaningfully behind.
