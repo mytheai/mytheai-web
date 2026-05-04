@@ -31,7 +31,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered coding assistants and editors ranked by developer adoption, code quality, and workflow integration.',
     category: 'Code AI',
     emoji: '💻',
-    slugs: ['cursor', 'windsurf', 'bolt', 'replit'],
+    slugs: ['cursor', 'windsurf', 'v0', 'aider', 'bolt', 'replit'],
     intro: 'AI coding tools have moved from autocomplete to true pair programming in 2026. The five tools below have separated themselves from the pack by combining strong language models with editor-native UX, repo-aware context, and increasingly autonomous agent modes. If you are choosing your first AI coding assistant, the gap between the top three and everything else is now wide enough that the choice matters more for daily speed than your editor or language. We focus on what shipping engineers actually feel after a week of use, not synthetic benchmarks.',
     methodology: 'We rank these tools on five weighted criteria: code quality on real production tasks, latency from keystroke to suggestion, repo-wide context handling, agent mode reliability for multi-file edits, and value per dollar at the indie tier. Each tool was used for at least 40 hours of actual work across TypeScript, Python, and Go codebases. We do not rank by feature count or marketing claims.',
     picks: [
@@ -208,7 +208,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI video creation and editing tools for content creators, marketers, and video professionals.',
     category: 'Video AI',
     emoji: '🎬',
-    slugs: ['runway', 'luma-ai', 'kling', 'heygen', 'descript'],
+    slugs: ['runway', 'luma-dream-machine', 'kling', 'pika', 'heygen', 'descript'],
     intro: 'AI video tools split into two distinct camps in 2026: text-to-video generators that create new footage from prompts, and AI editors that speed up traditional production. The five tools below are the ones that have separated themselves from the pack on quality, controllability, and real production usability. Which one you pick depends entirely on whether you are creating clips from scratch, automating talking-head content, or speeding up a podcast or course edit. The tools do different jobs and we ranked them by job-fit, not feature breadth.',
     methodology: 'We tested each tool on real production briefs: a 15-second social ad, a 90-second explainer, a 5-minute tutorial. Criteria were generation or render quality at default settings, controllability for art-direction (camera moves, character consistency, voice tone), turnaround time, and cost per finished minute. We disqualified tools whose free preview quality was much higher than the actual paid output.',
     picks: [
@@ -391,7 +391,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI tools for research, fact-finding, and knowledge synthesis, for academics, analysts, and curious professionals.',
     category: 'Research AI',
     emoji: '🔬',
-    slugs: ['perplexity', 'notebooklm', 'consensus', 'julius-ai'],
+    slugs: ['perplexity', 'genspark', 'notebooklm', 'manus', 'consensus', 'julius-ai'],
     intro: 'AI research tools in 2026 split into two camps: web-search agents that pull and cite live sources, and corpus-aware tools that read documents you provide. The five tools below are the best in each lane. Perplexity for live web research with citations, NotebookLM for analyzing your own documents, Elicit and Consensus for academic literature, and Julius for data-driven research. Picking the right one depends on whether your sources are public, private, academic, or numerical.',
     methodology: 'We evaluated each tool on citation quality (do answers link to verifiable sources), reasoning depth (can the tool follow a multi-step research question), source coverage (web vs academic vs your own documents), free tier generosity, and the failure mode when the tool does not know an answer. Tools that hallucinate without acknowledging uncertainty were ranked lower.',
     picks: [
@@ -452,7 +452,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI-powered tools for building web applications and software without writing code: from idea to deployed product.',
     category: 'Code AI',
     emoji: '🏗️',
-    slugs: ['lovable', 'bolt', 'cursor', 'windsurf', 'replit'],
+    slugs: ['lovable', 'bolt', 'v0', 'cursor', 'windsurf', 'replit'],
     intro: 'AI app builders in 2026 split into two clear lanes: prompt-to-app generators that take a description and ship a working deployment (Lovable, Bolt, Replit), and AI-augmented editors where you still write some code but with heavy AI assistance (Cursor, Windsurf). Founders, designers, and PMs who do not write code daily should reach for the first lane. Engineers who want speed without losing control reach for the second. The five tools below win in each category and are tested on real production builds, not toy demos.',
     methodology: 'We tested each tool on three real briefs: a SaaS landing page with auth, a Notion-style note app, and an internal admin dashboard. Criteria: time from prompt to working deployment, output code quality (would a senior engineer ship this), edit-and-iterate friction, deployment polish, and pricing for typical solo or small-team use.',
     picks: [
@@ -770,7 +770,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top platforms and frameworks for building, deploying, and monitoring autonomous AI agents - from LLM orchestration to agent infrastructure and observability.',
     category: 'Code AI',
     emoji: '🤖',
-    slugs: ['devin-ai', 'n8n', 'dify', 'agentops', 'langsmith'],
+    slugs: ['manus', 'crewai', 'langflow', 'devin-ai', 'n8n', 'dify', 'agentops', 'langsmith'],
   },
   {
     slug: 'best-no-code-ai-tools',
@@ -1019,7 +1019,7 @@ export const TOP10_LISTS: Top10List[] = [
     description: 'The top AI image generation tools for creating stunning visuals from text prompts - from photorealistic renders to artistic styles and commercial-safe content.',
     category: 'Design',
     emoji: '🎨',
-    slugs: ['flux', 'stability-ai', 'adobe-firefly'],
+    slugs: ['midjourney', 'flux', 'leonardo-ai', 'ideogram', 'glif', 'adobe-firefly'],
     intro: 'AI image generators in 2026 are no longer interchangeable. Midjourney leads on artistic quality, Ideogram dominates on accurate text rendering, Flux is the open-weight choice for technical users, Stability AI ships the developer-friendly API, and Adobe Firefly wins on commercial safety. The five tools below cover every meaningful use case from concept art to e-commerce product mockups. Picking the right one depends entirely on what you are generating and where you will use it.',
     methodology: 'We tested each tool on five prompts across categories: photorealistic portrait, abstract illustration, product mockup with embedded text, brand asset, and stylized hero image. Criteria: output quality at default settings, prompt adherence (does it match the description), text rendering accuracy, commercial license clarity, and workflow integration with downstream design tools.',
     picks: [
