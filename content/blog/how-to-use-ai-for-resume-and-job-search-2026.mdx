@@ -1,0 +1,222 @@
+---
+title: "How to Use AI for Resume and Job Search in 2026"
+excerpt: "A working playbook for using Claude or ChatGPT to write resumes, cover letters, and prep for interviews - the honest 2026 guide that lifts callback rates without making your application sound AI-generated."
+date: "May 4, 2026"
+category: "Guide"
+readTime: "11 min read"
+---
+
+The job market in 2026 is harder than it has been in a decade and easier than it has ever been - depending on whether you have learned to use AI properly. Recruiters now scan resumes assisted by AI, ATS filters have become more sophisticated, and the bar for "professional polish" rose past what most candidates produce manually. Candidates who use AI well send 10x the applications with higher quality and better targeting. Candidates who use AI badly produce generic, AI-flagged content that lands in the rejection pile faster than ever.
+
+This guide covers the working 2026 playbook: which AI tool to use, the exact prompts that produce hireable resumes and cover letters, how to prep for interviews, and the manual steps you cannot skip.
+
+## Step 1: Set Up the Right AI Tool
+
+Pick one and commit. Switching tools mid-application burns 30+ minutes per session relearning prompts.
+
+[Claude](/tools/claude) Pro at $20/mo is the safer pick for resume and cover-letter work in 2026. The Pro tier produces more careful prose with fewer "AI tells", handles long contexts (job description + your work history + 5-10 example resumes) without losing thread, and the writing feels more like a careful human wrote it.
+
+[ChatGPT](/tools/chatgpt) Plus also works but tends to produce more enthusiastic, exclamation-heavy output. If you are already in the ChatGPT ecosystem with custom GPTs, the workflow inertia might keep you there.
+
+Skip AI resume builders that promise "fully automated resume in 60 seconds." The output is generic, ATS-friendly in the weakest sense, and produces template fatigue at scale. Use a general-purpose AI as a writing partner, not a cover-by-cover automated system.
+
+## Step 2: Build Your Career Context Document
+
+The single biggest lever in AI resume quality is the input data. Generic prompts produce generic output. Build a master "career context" document once, refer to it for every application:
+
+- **Full work history** with bullet-by-bullet accomplishments (10+ bullets per role, not 3-5)
+- **Quantified achievements** wherever possible (revenue, growth, time saved, headcount, dollars)
+- **Technical skills** broken into "expert", "proficient", "exposure"
+- **Education and certifications** with dates and key projects
+- **Notable projects** outside formal employment (open source, side projects, volunteer work)
+- **Voice samples** - 3-5 paragraphs of writing in your natural professional voice
+
+Save this in [Notion](/tools/notion-ai) or [Obsidian](/tools/obsidian) as your single source of truth. Update quarterly. This document is the input for every resume and cover letter you write.
+
+## Step 3: Write the Master Resume
+
+Use [Claude](/tools/claude) with this prompt structure once, then iterate:
+
+```
+You are a career coach who writes resumes for [INDUSTRY] professionals at the [SENIORITY] level. Below is my career context. Write a 1-page resume that:
+
+- Quantifies impact in every bullet (revenue, growth %, time saved, scope)
+- Uses strong action verbs, never weak verbs (managed, helped, was responsible for)
+- Is ATS-friendly (no graphics, no columns, no tables, plain Word-compatible formatting)
+- Tailored to [TARGET ROLE]
+- Removes irrelevant historical detail
+- Ends with a 2-3 line professional summary at the top
+- Uses my actual voice from the writing samples below
+
+Constraints:
+- No "passionate", "results-driven", "innovative", "synergy", "leverage" or similar AI-flagged buzzwords
+- No exclamation points
+- Bullet points start with action verbs, not articles
+- Maximum 1 page in 11pt font
+
+[paste career context document]
+
+[paste 3 paragraphs of your writing as voice samples]
+
+[paste target job description]
+```
+
+This produces a 70-80% finished resume. Edit for 30-60 minutes to polish, fact-check, and remove any output that feels AI-generated.
+
+## Step 4: Tailor Per Application
+
+For each specific job application, do not regenerate from scratch. Take the master resume and tailor it:
+
+```
+Below is my master resume and the specific job description for [COMPANY ROLE]. Tailor the resume to maximise relevance:
+
+1. Reorder bullets to surface the most relevant accomplishments first
+2. Adjust language to mirror keywords from the job description (without keyword-stuffing)
+3. Cut bullets that are not relevant to this specific role
+4. Adjust the professional summary to match the company's industry and seniority level
+5. Output the tailored resume only, no commentary
+
+[paste master resume]
+
+[paste job description]
+```
+
+Tailoring takes 5-10 minutes per application vs writing from scratch. For a job search at scale (50+ applications/month), this is the difference between sending 50 generic vs 50 tailored applications - the latter has 3-5x higher callback rates.
+
+## Step 5: Write Cover Letters That Are Read
+
+Most cover letters are skimmed in 10-30 seconds. The structure that wins:
+
+- **Paragraph 1:** Reference something specific about the company that proves you researched (a recent product launch, a CEO statement, a culture fact). 2 sentences max.
+- **Paragraph 2:** Connect your specific background to the role. One concrete accomplishment with a number that maps to what they need. 2-3 sentences.
+- **Paragraph 3:** What you would specifically do in the role. Not "I bring passion" - actual specifics. 2-3 sentences.
+- **Paragraph 4:** Ask for the conversation. One sentence.
+
+Use this prompt:
+
+```
+Write a 4-paragraph cover letter for [SPECIFIC ROLE AT COMPANY] using the structure below:
+
+P1 (2 sentences): Reference [SPECIFIC RECENT COMPANY THING] in a way that proves I read about it
+P2 (2-3 sentences): Connect my [SPECIFIC PAST ROLE/ACCOMPLISHMENT] to what they need - lead with one quantified outcome
+P3 (2-3 sentences): What I would specifically do in the first 90 days based on what I know about the role
+P4 (1 sentence): Ask for a 30-minute conversation
+
+Constraints:
+- Total under 250 words
+- No "passionate", "results-driven", "I am excited to apply"
+- No "I noticed your company" or "I came across this role" - direct reference instead
+- Match my voice from the samples below
+
+[paste career context]
+[paste voice samples]
+[paste job description]
+```
+
+This produces a cover letter that recruiters actually read. Edit for 5-10 minutes per application.
+
+## Step 6: Optimise for ATS
+
+Most companies route applications through Applicant Tracking Systems before human review. The ATS-friendly resume rules in 2026:
+
+- **Plain Word document or PDF text-layer** (no scanned PDFs)
+- **Standard section headers**: "Experience", "Education", "Skills", "Summary"
+- **No tables, columns, text boxes, headers, footers, or graphics**
+- **Sans-serif font** (Arial, Calibri, Helvetica) at 10-12pt
+- **Standard date formats**: "Jan 2022 - Present" not "01.2022 - now"
+- **Keywords from the job description** woven naturally into bullets and skills section
+- **Save filename as**: "FirstName LastName Resume.pdf"
+
+After every tailoring, run the resume through a free ATS-checker tool (Jobscan free tier, Resume Worded, or paste into a text editor and confirm it parses cleanly).
+
+## Step 7: Prep for Interviews with AI
+
+The behavioural interview is mostly predictable. AI excels at helping you prepare specific stories:
+
+```
+I am interviewing for [SPECIFIC ROLE AT COMPANY]. The role requires [LIST KEY SKILLS]. 
+
+For each of these common behavioural questions, help me prepare a 2-minute STAR-format answer using the specific accomplishments below:
+
+1. Tell me about yourself
+2. Why do you want this role
+3. Tell me about a time you led a difficult project
+4. Tell me about a time you disagreed with a manager
+5. Tell me about a time you failed and what you learned
+6. Where do you see yourself in 5 years
+7. Why are you leaving your current role
+
+For each: provide the structured answer, then 2-3 follow-up questions the interviewer might ask, with sample responses.
+
+[paste career context]
+[paste job description]
+```
+
+This produces 8-10 pages of interview prep material in 2 minutes. Read through, adjust to your voice, and rehearse out loud. Memorise the structure (Situation, Task, Action, Result), not the script.
+
+## Step 8: Research the Company Properly
+
+Generic "research the company" advice misses what actually matters in interviews. Use [Perplexity](/tools/perplexity) Pro at $20/mo for research with citations:
+
+```
+Research [COMPANY NAME] for an interview for [ROLE]. Find:
+
+1. Latest news from the past 90 days (acquisitions, product launches, leadership changes, layoffs, funding)
+2. The CEO's recent public statements (podcasts, interviews, conference talks)
+3. Specific challenges the company is facing publicly (competitive pressure, regulatory issues, growth constraints)
+4. The team I would be joining - LinkedIn search for the hiring manager and 2-3 team members
+5. Glassdoor sentiment and recent reviews about culture, compensation, work-life balance
+
+Output as a structured brief with citations.
+```
+
+Use Perplexity citations to find original sources to mention in the interview. Specific references ("I read your CEO's interview on the podcast last week and was struck by his comment about...") signal high effort and real interest.
+
+## Step 9: Write Thank-You Notes
+
+Within 24 hours of every interview, send a personalised thank-you note. Most candidates skip this; the ones who do not have meaningfully higher conversion to offer.
+
+```
+Write a 4-sentence thank-you email to [INTERVIEWER NAME] who interviewed me today for [ROLE].
+
+Reference [SPECIFIC THING WE DISCUSSED IN THE INTERVIEW] in a way that proves I was paying attention. Mention one specific contribution I would make in the role based on what I learned. Include a forward-looking question that invites further conversation. Sign off naturally.
+
+Constraints: Under 100 words. No "I am excited" or "thank you for taking the time" filler.
+
+[paste interview notes]
+```
+
+## Step 10: Track Applications Systematically
+
+Use [Notion](/tools/notion-ai) free tier or a simple Google Sheet:
+
+| Company | Role | Date Applied | Stage | Last Action | Notes |
+|---|---|---|---|---|---|
+
+Update after every interaction. Apply to 3-5 jobs per day during active search; this hits 50-100 applications per month. At a 5-10% callback rate, that's 5-10 first interviews per month - enough volume to land an offer in 2-4 months.
+
+## What to avoid
+
+- **Generic AI-generated cover letters** that all open with "I am writing to express my interest" - recruiters spot these in 2 seconds
+- **Resume buzzwords** like "passionate", "results-driven", "innovative", "synergy", "leverage" - all AI-flagged in 2026
+- **Listing AI as a skill on your resume** unless you genuinely have it - "AI-savvy" without specifics is a red flag
+- **Sending the same resume to 50 jobs** - tailoring per application takes 10 minutes and 5x the conversion
+- **Copying job-description language verbatim** - ATS catches this; recruiters reject it
+- **AI-generated LinkedIn messages to recruiters** - they get 100/day; AI tells make yours land in spam
+
+## What to focus on
+
+- **Quantify everything** - "Led a team of 5" not "Led a team". "Increased revenue 40% YoY" not "Increased revenue."
+- **Specific company research** - mention something only someone who actually researched would know
+- **Behavioural stories with structure** - 6-8 STAR-format stories memorised cover 80% of behavioural interview questions
+- **Networking + cold outreach** - 30-40% of jobs come from referrals; AI-assisted outreach scales but personalisation cannot be skipped
+- **Practice out loud** - reading interview prep silently produces 30% of the value of actually rehearsing answers verbally
+
+## Decision matrix
+
+- **Active job search (next 90 days):** [Claude](/tools/claude) Pro + [Perplexity](/tools/perplexity) Pro = $40/mo. Cover writing + research. Cancel after landing.
+- **Passive search (testing market over 6+ months):** Add [LinkedIn Premium Career](https://linkedin.com) - varies $30-60/mo. Better visibility into who is viewing your profile and recruiter messaging.
+- **Career change with skill gap:** Add [Coursera](https://coursera.org) ($59/mo) or [Udemy](https://udemy.com) ($16-29/course) for credentials matching the target role.
+- **Senior leadership search (executive):** [Claude](/tools/claude) Pro + [Perplexity](/tools/perplexity) Pro + dedicated executive recruiter relationship. Tools matter less; relationships matter more.
+
+The AI-augmented job search in 2026 produces 5-10x application volume with higher quality and better targeting than manual approaches. The compounding edge is the master career context document, the per-application tailoring discipline, and the manual research and personalisation AI cannot replace. Browse our [career and productivity tool comparisons](/compare) for related tools, or take our [60-second quiz](/quiz) for a stack tailored to your search.
