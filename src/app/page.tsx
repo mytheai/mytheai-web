@@ -13,20 +13,20 @@ import { computeWeightedScore, isValidScores, type ToolScores } from '@/lib/scor
 export const revalidate = 21600
 
 export const metadata: Metadata = {
-  title: 'MytheAi - Find the Best AI Tools 2026 | Honest Reviews & Comparisons',
-  description: 'Discover and compare 500+ AI & SaaS tools. Honest expert reviews, side-by-side comparisons, verified pricing. No pay-to-rank. Find the right AI tool in seconds.',
+  title: 'MytheAi - The Clearest Way to Choose AI Tools in 2026',
+  description: 'A decision-first directory of 500+ AI & SaaS tools. Editorial scores you can audit, side-by-side comparisons that pick a winner, verified pricing. No pay-to-rank.',
   alternates: { canonical: 'https://mytheai.com/' },
   openGraph: {
-    title: 'MytheAi - Find the Best AI Tools 2026',
-    description: 'Discover and compare 500+ AI & SaaS tools. Honest reviews, side-by-side comparisons, verified pricing. No pay-to-rank.',
+    title: 'MytheAi - The Clearest Way to Choose AI Tools',
+    description: 'Decision-first AI tool directory. Editorial scores you can audit, comparisons that pick a winner, verified pricing. No pay-to-rank.',
     url: 'https://mytheai.com/',
     type: 'website',
     images: [{ url: '/api/og/site', width: 1200, height: 630, alt: 'MytheAi - AI & SaaS Tools Directory' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'MytheAi - Find the Best AI Tools 2026',
-    description: 'Discover and compare 500+ AI & SaaS tools. Honest reviews, verified pricing. No pay-to-rank.',
+    title: 'MytheAi - The Clearest Way to Choose AI Tools',
+    description: 'Decision-first AI tool directory. Editorial scores you can audit. No pay-to-rank.',
     images: ['/api/og/site'],
   },
 }
@@ -255,9 +255,17 @@ export default async function HomePage() {
             <SearchDropdown variant="hero" />
           </div>
 
-          <p className="text-[14px] text-muted-foreground mb-5">
+          <p className="text-[14px] text-muted-foreground mb-3">
             {tHero('tagline')}
           </p>
+
+          {/* Inline quiz CTA - decision-first entry point */}
+          <Link
+            href="/quiz"
+            className="inline-flex items-center gap-2 text-[13px] font-semibold text-blue-600 hover:underline mb-5"
+          >
+            {tHero('quizCta')}
+          </Link>
 
           {/* Quick search pills - kept visible for SEO and direct links */}
           <div className="flex flex-wrap justify-center items-center gap-2 text-[12px] text-muted-foreground">

@@ -34,11 +34,12 @@
     "copyright": "© {year} MytheAi. All rights reserved."
   },
   "Hero": {
-    "h1Line1": "Find the AI Tool",
-    "h1Line2": "You Actually Need",
+    "h1Line1": "The Clearest Way",
+    "h1Line2": "to Choose AI Tools",
     "searchPlaceholder": "Try: AI for writing emails, free video tools...",
     "searchButton": "Search",
-    "tagline": "Honest reviews. Real comparisons. No pay-to-rank.",
+    "tagline": "Editorial scores you can audit. Comparisons that pick a winner. No pay-to-rank.",
+    "quizCta": "Not sure where to start? Take the 60-second quiz →",
     "popular": "Popular:",
     "popularChip1": "ChatGPT alternatives",
     "popularChip2": "Free AI tools",

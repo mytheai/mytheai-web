@@ -6,11 +6,11 @@ import { getSiteStats } from '@/lib/stats'
 export const revalidate = 86400
 
 export const metadata: Metadata = {
-  title: 'About MytheAi: Our Mission & Editorial Standards',
-  description: 'MytheAi is an independent AI and SaaS tool directory built for professionals. Learn about our editorial approach, ranking methodology, and affiliate disclosure.',
+  title: 'About MytheAi: A Decision-First AI Tool Directory',
+  description: 'MytheAi is the clearest way to choose AI tools. Editorial scores you can audit, comparisons that pick a winner, verified pricing. No pay-to-rank. Read our editorial standards.',
   alternates: { canonical: 'https://mytheai.com/about' },
   openGraph: {
-    title: 'About MytheAi: Our Mission & Editorial Standards',
+    title: 'About MytheAi: A Decision-First AI Tool Directory',
     url: 'https://mytheai.com/about',
   },
 }
@@ -24,10 +24,10 @@ export default async function AboutPage() {
       <div className="mb-10">
         <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-[#2563EB] mb-1">About</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-3">
-          We help you find the right tool, faster.
+          The clearest way to choose AI tools.
         </h1>
         <p className="text-[16px] text-muted-foreground leading-relaxed">
-          MytheAi is an independent directory and review platform for AI and SaaS tools, built for founders, marketers, developers, and creators who need honest, curated guidance before subscribing to something new.
+          MytheAi is a decision-first directory of AI and SaaS tools. We are not trying to list every product on the internet - we are trying to be the place you visit when you have to make a choice. Editorial scores you can audit, comparisons that pick a winner, pricing verified on a 90-day cycle. No pay-to-rank.
         </p>
       </div>
 
@@ -44,10 +44,10 @@ export default async function AboutPage() {
       <section className="mb-10">
         <h2 className="text-[20px] font-bold text-foreground mb-3">Our Mission</h2>
         <p className="text-[15px] text-muted-foreground leading-relaxed mb-4">
-          The AI tools landscape changes every week. New products launch, pricing shifts, and yesterday&apos;s best option becomes obsolete. We cut through the noise by maintaining a living directory of {stats.tools} tools and {stats.comparisons} head-to-head comparisons, each reviewed, verified, and updated regularly.
+          Most AI tool directories optimise for breadth: thousands of listings, sorted by paid placement, with no opinion on which one fits your job. That is overwhelming, not useful. MytheAi optimises for the moment a real person has to pick: by role, by budget, by team size, by integration need. {stats.tools} curated tools and {stats.comparisons} head-to-head comparisons, each reviewed, scored on a public seven-criteria framework, and re-verified on a 90-day cycle.
         </p>
         <p className="text-[15px] text-muted-foreground leading-relaxed">
-          We believe tool discovery should feel like getting advice from a knowledgeable friend, not scrolling through a sponsorship-laden listicle. Every ranking on MytheAi is based on editorial merit: feature depth, pricing value, user feedback, and real-world use cases. The full ranking framework is documented on the <Link href="/methodology" className="text-blue-600 hover:underline font-medium">methodology page</Link>.
+          Tool discovery should feel like advice from a knowledgeable friend, not scrolling a sponsored listicle. Every score on MytheAi is broken down into four trust signals you can audit independently: Editorial Score, External Aggregate, User Reviews on MytheAi, and Pricing Verified date. The full framework is on the <Link href="/methodology" className="text-blue-600 hover:underline font-medium">methodology page</Link>.
         </p>
       </section>
 
