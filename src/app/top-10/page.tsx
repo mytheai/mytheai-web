@@ -17,6 +17,24 @@ export const metadata: Metadata = {
 // Direct URLs (/top-10/best-ai-tools-for-marketers) still resolve - only hub surfacing changes.
 const USE_CASE_LISTS = TOP10_LISTS.filter(l => !l.slug.startsWith('best-ai-tools-for-'))
 
+// Featured use cases at the top - matches the 12 core categories.
+// Surfaced as a polished card group above the full grid, so users hitting /top-10
+// see the highest-intent lists immediately rather than scanning 61 cards.
+const FEATURED_SLUGS = [
+  'best-code-ai-tools',
+  'best-ai-image-generators',
+  'best-ai-video-tools',
+  'best-ai-writing-tools',
+  'best-ai-voice-tools',
+  'best-ai-seo-tools',
+  'best-ai-research-tools',
+  'best-ai-app-builders',
+]
+const FEATURED_LISTS = FEATURED_SLUGS
+  .map(s => USE_CASE_LISTS.find(l => l.slug === s))
+  .filter(Boolean) as typeof USE_CASE_LISTS
+const REMAINING_LISTS = USE_CASE_LISTS.filter(l => !FEATURED_SLUGS.includes(l.slug))
+
 const collectionSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
@@ -52,7 +70,27 @@ export default async function Top10HubPage() {
         </p>
       </div>
 
-      <Top10Grid items={USE_CASE_LISTS} />
+      {FEATURED_LISTS.length > 0 && (
+        <section className="mb-10">
+          <h2 className="text-[18px] font-bold text-foreground mb-4">Featured use cases</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {FEATURED_LISTS.map(list => (
+              <Link
+                key={list.slug}
+                href={`/top-10/${list.slug}`}
+                className="block p-4 rounded-xl border border-border bg-card hover:border-blue-300 hover:shadow-md transition-all"
+              >
+                <span className="text-2xl block mb-2" aria-hidden="true">{list.emoji}</span>
+                <p className="text-[14px] font-bold text-foreground leading-snug mb-1">{list.title}</p>
+                <p className="text-[11px] text-blue-600 font-semibold">Top {list.slugs.length} →</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <h2 className="text-[18px] font-bold text-foreground mb-4">All use-case lists</h2>
+      <Top10Grid items={REMAINING_LISTS} />
 
       <div className="mt-10 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
         <strong>Editorial note:</strong> All rankings are based on independent editorial review: rating, review count, feature quality, and value. Affiliate relationships never influence placement.
