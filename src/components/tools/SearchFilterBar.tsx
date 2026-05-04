@@ -51,6 +51,23 @@ const PRICING_VALUES = ['', 'free', 'freemium', 'paid', 'ltd'] as const
 const SORT_VALUES = ['', 'newest', 'name'] as const
 const MIN_RATING_VALUES = ['', '4', '4.5'] as const
 
+const BUDGET_OPTIONS: { value: string; label: string }[] = [
+  { value: '',         label: 'Any budget' },
+  { value: 'free',     label: 'Free / $0' },
+  { value: 'lt25',     label: 'Under $25 / mo' },
+  { value: 'lt100',    label: 'Under $100 / mo' },
+  { value: 'lt500',    label: 'Under $500 / mo' },
+]
+
+const INTEGRATION_CHOICES = [
+  { value: 'slack',          label: 'Slack' },
+  { value: 'zapier',         label: 'Zapier' },
+  { value: 'notion',         label: 'Notion' },
+  { value: 'google',         label: 'Google Workspace' },
+  { value: 'github',         label: 'GitHub' },
+  { value: 'hubspot',        label: 'HubSpot' },
+]
+
 const SELECT_CLS =
   'h-9 px-3 rounded-lg border border-border bg-surface text-[13px] text-foreground focus:outline-none focus:border-blue-400 cursor-pointer transition-colors'
 
@@ -60,6 +77,9 @@ interface SearchFilterBarProps {
   showPricing?: boolean
   showSort?: boolean
   showMinRating?: boolean
+  showBudget?: boolean
+  showFreeTier?: boolean
+  showIntegrations?: boolean
   searchPlaceholder?: string
 }
 
@@ -69,6 +89,9 @@ export default function SearchFilterBar({
   showPricing,
   showSort,
   showMinRating,
+  showBudget,
+  showFreeTier,
+  showIntegrations,
   searchPlaceholder,
 }: SearchFilterBarProps) {
   const router = useRouter()
@@ -97,9 +120,15 @@ export default function SearchFilterBar({
   const activePricing   = params.get('pricing')    ?? ''
   const activeSort      = params.get('sort')       ?? ''
   const activeMinRating = params.get('min_rating') ?? ''
+  const activeBudget    = params.get('budget')     ?? ''
+  const activeFreeTier  = params.get('free_tier')  === '1'
+  const activeIntegration = params.get('integration') ?? ''
   const [search, setSearch] = useState(params.get('q') ?? '')
 
-  const hasFilters = !!(search || activeCategory || activePricing || activeSort || activeMinRating)
+  const hasFilters = !!(
+    search || activeCategory || activePricing || activeSort || activeMinRating
+    || activeBudget || activeFreeTier || activeIntegration
+  )
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -146,7 +175,7 @@ export default function SearchFilterBar({
       </div>
 
       {/* Divider */}
-      {(showCategory || showPricing || showSort || showMinRating) && (
+      {(showCategory || showPricing || showSort || showMinRating || showBudget || showFreeTier || showIntegrations) && (
         <div className="hidden sm:block w-px h-6 bg-border" />
       )}
 
@@ -201,6 +230,51 @@ export default function SearchFilterBar({
             <option key={o.value} value={o.value}>{o.label}</option>
           ))}
         </select>
+      )}
+
+      {/* Budget */}
+      {showBudget && (
+        <select
+          value={activeBudget}
+          onChange={e => setFilter('budget', e.target.value)}
+          className={SELECT_CLS}
+          aria-label="Budget"
+        >
+          {BUDGET_OPTIONS.map(o => (
+            <option key={o.value} value={o.value}>{o.label}</option>
+          ))}
+        </select>
+      )}
+
+      {/* Integrations */}
+      {showIntegrations && (
+        <select
+          value={activeIntegration}
+          onChange={e => setFilter('integration', e.target.value)}
+          className={SELECT_CLS}
+          aria-label="Works with"
+        >
+          <option value="">Any integration</option>
+          {INTEGRATION_CHOICES.map(o => (
+            <option key={o.value} value={o.value}>Works with {o.label}</option>
+          ))}
+        </select>
+      )}
+
+      {/* Free tier toggle */}
+      {showFreeTier && (
+        <button
+          type="button"
+          onClick={() => setFilter('free_tier', activeFreeTier ? '' : '1')}
+          aria-pressed={activeFreeTier}
+          className={`h-9 px-3 rounded-lg border text-[13px] font-medium transition-colors ${
+            activeFreeTier
+              ? 'border-emerald-300 bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-300'
+              : 'border-border bg-surface text-muted-foreground hover:border-emerald-300 hover:text-emerald-600'
+          }`}
+        >
+          {activeFreeTier ? '✓ Free tier only' : 'Free tier only'}
+        </button>
       )}
 
       {/* Clear */}

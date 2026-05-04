@@ -15,23 +15,40 @@ export const metadata = {
 
 const PAGE_SIZE = 24
 
-function buildPageUrl(
-  params: { category?: string; pricing?: string; q?: string; sort?: string },
-  page: number
-) {
+interface ToolsFilters {
+  category?: string
+  pricing?: string
+  q?: string
+  sort?: string
+  budget?: string
+  freeTier?: boolean
+  integration?: string
+}
+
+function buildPageUrl(params: ToolsFilters, page: number) {
   const url = new URLSearchParams()
   if (params.category) url.set('category', params.category)
   if (params.pricing) url.set('pricing', params.pricing)
   if (params.q) url.set('q', params.q)
   if (params.sort) url.set('sort', params.sort)
+  if (params.budget) url.set('budget', params.budget)
+  if (params.freeTier) url.set('free_tier', '1')
+  if (params.integration) url.set('integration', params.integration)
   if (page > 1) url.set('page', String(page))
   const str = url.toString()
   return `/tools${str ? `?${str}` : ''}`
 }
 
+const BUDGET_CEILINGS: Record<string, number> = {
+  lt25: 25,
+  lt100: 100,
+  lt500: 500,
+}
+
 async function getTools(
-  category?: string, pricing?: string, q?: string, sort?: string, page = 1
+  filters: ToolsFilters, page = 1
 ): Promise<{ tools: Tool[]; total: number }> {
+  const { category, pricing, q, sort, budget, freeTier, integration } = filters
   const supabase = await createClient()
   let query = supabase.from('tools').select('*', { count: 'exact' })
 
@@ -46,6 +63,22 @@ async function getTools(
   if (category) query = query.contains('tags', [category])
   if (pricing) query = query.eq('pricing_type', pricing)
   if (q) query = query.or(`name.ilike.%${q}%,tagline.ilike.%${q}%`)
+
+  // Budget: 'free' means pricing_type=free OR has free_tier; else cap starting price.
+  if (budget === 'free') {
+    query = query.or('pricing_type.eq.free,pricing_free_tier.eq.true')
+  } else if (budget && BUDGET_CEILINGS[budget] != null) {
+    query = query.or(`pricing_type.eq.free,pricing_starting_price.lte.${BUDGET_CEILINGS[budget]}`)
+  }
+
+  if (freeTier) {
+    query = query.or('pricing_type.eq.free,pricing_free_tier.eq.true')
+  }
+
+  if (integration) {
+    // Match any tool whose integrations array includes the choice.
+    query = query.contains('integrations', [integration])
+  }
 
   const offset = (page - 1) * PAGE_SIZE
   const { data, error, count } = await query.range(offset, offset + PAGE_SIZE - 1)
@@ -86,16 +119,28 @@ async function getTools(
 export default async function ToolsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string; pricing?: string; q?: string; sort?: string; page?: string }>
+  searchParams: Promise<{
+    category?: string; pricing?: string; q?: string; sort?: string; page?: string;
+    budget?: string; free_tier?: string; integration?: string;
+  }>
 }) {
-  const { category, pricing, q, sort, page: pageParam } = await searchParams
-  const page = Math.max(1, parseInt(pageParam ?? '1') || 1)
+  const sp = await searchParams
+  const page = Math.max(1, parseInt(sp.page ?? '1') || 1)
+  const filters: ToolsFilters = {
+    category: sp.category,
+    pricing: sp.pricing,
+    q: sp.q,
+    sort: sp.sort,
+    budget: sp.budget,
+    freeTier: sp.free_tier === '1',
+    integration: sp.integration,
+  }
   const [{ tools, total }, t] = await Promise.all([
-    getTools(category, pricing, q, sort, page),
+    getTools(filters, page),
     getTranslations('ToolsPage'),
   ])
   const totalPages = Math.ceil(total / PAGE_SIZE)
-  const filterParams = { category, pricing, q, sort }
+  const filterParams = filters
   const totalDisplay = total.toLocaleString()
   const from = total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1
   const to = Math.min(page * PAGE_SIZE, total)
@@ -119,6 +164,9 @@ export default async function ToolsPage({
           showCategory
           showPricing
           showSort
+          showBudget
+          showFreeTier
+          showIntegrations
           searchPlaceholder={t('searchPlaceholder', { count: totalDisplay })}
         />
       </Suspense>
@@ -139,8 +187,8 @@ export default async function ToolsPage({
       <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-[13px] text-muted-foreground">
           {t('showing', { from, to, total: totalDisplay })}
-          {q ? ` ${t('showingFor', { q })}` : ''}
-          {category ? ` ${t('showingIn', { category })}` : ''}
+          {filters.q ? ` ${t('showingFor', { q: filters.q })}` : ''}
+          {filters.category ? ` ${t('showingIn', { category: filters.category })}` : ''}
         </p>
 
         {totalPages > 1 && (
