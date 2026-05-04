@@ -122,9 +122,17 @@ export default async function RolesHubPage() {
       <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-3">
         {tPage('rolesTitle')}
       </h1>
-      <p className="text-[15px] text-muted-foreground mb-10 max-w-3xl">
-        Curated stacks for 8 professional roles. Each role gets a Top 10 list scored on the same seven editorial criteria. Pick the role that matches your work, then drill into the ranked picks.
+      <p className="text-[15px] text-muted-foreground mb-6 max-w-3xl">
+        Curated stacks for 8 professional roles. Each role gets a top list scored on the same seven editorial criteria. Pick the role that matches your work, then drill into the ranked picks.
       </p>
+
+      <div className="mb-10 flex items-center gap-2 p-4 rounded-xl border border-blue-200 bg-blue-50/50 dark:bg-blue-900/10 dark:border-blue-800/40 max-w-3xl">
+        <span className="text-xl flex-shrink-0" aria-hidden="true">🔍</span>
+        <p className="text-[13.5px] text-foreground">
+          Searching by use case (coding, image gen, video, SEO)?{' '}
+          <Link href="/top-10" className="text-blue-600 font-semibold hover:underline">Browse Top 10 by use case →</Link>
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {ROLES.map(role => {
