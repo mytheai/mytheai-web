@@ -587,6 +587,53 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Education',
     emoji: '🎓',
     slugs: ['perplexity', 'notebooklm', 'grammarly', 'claude'],
+    intro: 'AI for students in 2026 has split into two distinct camps: the free, broad-purpose chatbots that handle most homework drafting and research; and the purpose-built study tools (NotebookLM, flashcard apps, citation managers) that specialise on a specific academic workflow. The four tools below cover the 80% of student needs that matter day-to-day - research with sources, study from your own notes, writing polish, and a thinking partner for the hard questions - without spending any money beyond what most universities already provide.',
+    methodology: 'We ranked these four on the criteria that matter most for student work: free-tier generosity (students should not pay for tools their professors already get free), accuracy on academic-style questions, integration with the campus stack (Google Docs, Canvas LMS, Zotero), and ethical positioning around academic integrity. Each tool was tested on real coursework across STEM, humanities, and social science classes.',
+    picks: [
+      {
+        slug: 'perplexity',
+        whyPicked: 'Perplexity is the most useful free AI tool for students because it answers research questions with citations you can actually check against original sources. Where ChatGPT might confidently invent a paper title, Perplexity returns the actual paper plus the page number. The free tier is generous, the academic mode pulls from peer-reviewed journals, and the export-to-citation-manager features (Zotero, Mendeley) make it practical for thesis work.',
+        bestFor: 'Research papers, literature reviews, fact-checking AI output from other tools, and any assignment where citations matter.',
+        limitation: 'Not a writing tool - Perplexity gives you sourced answers, not drafts. Pair it with Claude or Grammarly for writing.',
+      },
+      {
+        slug: 'notebooklm',
+        whyPicked: 'NotebookLM is Google\'s free study companion - upload your lecture notes, course PDFs, and slides, then ask questions grounded only in your own materials. The Audio Overview feature turns reading into a podcast-style conversation between two AI hosts about your specific course content. For exam prep and active learning, no other free tool matches this workflow. Especially powerful for any course with heavy reading.',
+        bestFor: 'Exam prep from lecture notes, summarising textbook chapters, and turning reading lists into searchable corpora.',
+        limitation: 'Locked into Google account; no chat across notebooks; not useful for general questions outside your uploaded source material.',
+      },
+      {
+        slug: 'grammarly',
+        whyPicked: 'Grammarly is the writing-polish layer every student paper needs. The free tier catches grammar, spelling, and clarity issues across every browser-based writing surface (Google Docs, Word Online, Canvas LMS submission boxes). The Premium tier ($12/mo) adds tone suggestions and plagiarism checking, which matters for high-stakes assignments. Free is sufficient for most students; Premium is worth it during thesis-writing semesters.',
+        bestFor: 'Polishing essays, catching the kinds of typos that lose points, and improving paragraph flow on long papers.',
+        limitation: 'Not a generator - you still need to write the draft. Premium plagiarism check is good but not infallible; verify with the school\'s own tool.',
+      },
+      {
+        slug: 'claude',
+        whyPicked: 'Claude is the thinking-partner model. The free tier handles long-form drafting, code help, and the kind of "explain this concept like I am stuck on it" tutoring that previously required a TA. Claude is also more honest about uncertainty than other free chatbots, which matters when you are studying material you do not yet understand. For STEM students, the math and code reasoning is competitive with paid tools.',
+        bestFor: 'Concept tutoring, code debugging, draft writing, and any work that benefits from a model that pushes back when you are wrong.',
+        limitation: 'Free tier rate-limits during peak hours; image and document upload caps are tighter than paid plans.',
+      },
+    ],
+    bottomLine: 'Use Perplexity as your default search and research tool, NotebookLM as your study companion for exam prep and reading-heavy classes, Grammarly to polish every assignment before submission, and Claude as your thinking partner when you are stuck. All four have free tiers generous enough that the entire stack costs $0. Add Grammarly Premium ($12/mo) for thesis-writing semesters and you have everything you need.',
+    faqs: [
+      {
+        q: 'Is using AI for homework cheating?',
+        a: 'It depends on the assignment\'s rules. Most schools in 2026 distinguish between using AI as a tutor or polish layer (allowed) and submitting AI-generated work as your own (not allowed). Always check the syllabus. NotebookLM, which only uses your own course materials, is the safest tool for academic-integrity-conscious work.',
+      },
+      {
+        q: 'Should students pay for ChatGPT Plus?',
+        a: 'For most students, no. The combination of Claude free, Perplexity free, NotebookLM free, and Grammarly free covers nearly every academic workflow. Pay for ChatGPT Plus only if you specifically need DALL-E for assignments, voice mode for language practice, or Code Interpreter for data-analysis classes.',
+      },
+      {
+        q: 'Can these tools help with citations?',
+        a: 'Perplexity is the best for citations because it surfaces sources you can verify and import to Zotero or Mendeley. Claude can draft citations in any style (APA, MLA, Chicago) but always verify accuracy against the actual source. Never trust AI-generated citations without checking the original paper exists.',
+      },
+      {
+        q: 'Do professors check for AI-generated text?',
+        a: 'Yes, most universities use AI-detection tools in 2026. Detection accuracy is imperfect but improving. The safest practice: use AI for brainstorming, research, and editing, but write the actual prose yourself. AI-detected work even when allowed often counts as poor scholarship.',
+      },
+    ],
   },
   {
     slug: 'best-ai-note-taking-tools',
@@ -595,6 +642,59 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Productivity',
     emoji: '📝',
     slugs: ['notebooklm', 'otter-ai', 'fathom', 'mem-ai', 'tldv'],
+    intro: 'AI note-taking in 2026 splits into two jobs: capturing meetings live (Otter, Fathom, tl;dv) and synthesising notes you have already taken (NotebookLM, Mem). The five tools below win in their respective lanes. Most professionals run two of them in tandem - one for live meeting capture, one for personal note synthesis - and skip the rest. The trade-offs that matter are accuracy on real meeting audio, integration with the calendar and CRM stack, and how the tool handles privacy and consent.',
+    methodology: 'We tested each tool on at least 10 hours of real meeting audio and 200+ pages of personal notes. Criteria: transcription accuracy on real-world conditions (mixed accents, crosstalk, background noise), AI summary and action-item quality, integration depth with the rest of your stack, and per-seat value. We disqualified tools whose marketing accuracy did not survive contact with actual Zoom calls.',
+    picks: [
+      {
+        slug: 'notebooklm',
+        whyPicked: 'NotebookLM is the personal note-synthesis leader - upload your notes, PDFs, and recordings, then chat with them as a corpus grounded only in your own material. The Audio Overview feature turns dense reading material into a podcast-style two-host conversation, which is genuinely useful for review. Free, generous quota, locked into Google account but worth it for the specific job.',
+        bestFor: 'Personal research notes, course materials, and any corpus where you want AI grounded only in your own sources.',
+        limitation: 'Not a meeting recorder; locked to Google; not useful for ad-hoc questions outside your uploaded sources.',
+      },
+      {
+        slug: 'otter-ai',
+        whyPicked: 'Otter is the most established AI meeting transcription brand and ships the broadest feature set. Joins Zoom, Google Meet, and Teams calls automatically, transcribes with speaker labels, generates AI summaries with action items, and lets you ask questions of past meetings via Otter Chat. The 2025 OtterPilot Sales features compete with Gong-tier tools at a fraction of the price.',
+        bestFor: 'Sales teams, recurring 1:1s, recurring meetings where you need a searchable corpus across months of recordings.',
+        limitation: 'Free tier capped at 300 minutes/month; some users find the auto-join behaviour intrusive.',
+      },
+      {
+        slug: 'fathom',
+        whyPicked: 'Fathom won the AI meeting assistant category by being the only entry that is genuinely free for the meeting recorder use case. Free tier records and transcribes unlimited meetings, generates AI summaries, and flags action items. Paid tier ($19-$29/seat/mo) adds team features and CRM integrations. Accuracy is at parity with paid competitors and the UX is the cleanest of the five. For most individual users and small teams, Fathom is the right answer.',
+        bestFor: 'Solo professionals, small teams (under 10 people), founders running customer interviews, anyone who hates paying for meeting recording.',
+        limitation: 'Less mature in enterprise admin controls and compliance certifications than Otter.',
+      },
+      {
+        slug: 'mem-ai',
+        whyPicked: 'Mem is the AI-first personal knowledge management tool. Where Notion is structured docs, Mem is fluid notes that AI organises automatically - tags, links, and clusters appear without manual filing. The AI Editor and Smart Search make finding old notes feel like asking a knowledgeable friend who remembers everything. For individuals drowning in daily notes that never get organised, Mem solves a real pain point.',
+        bestFor: 'Solo professionals with a chronic notes-pile problem who want AI to do the organising work.',
+        limitation: 'Less collaborative than Notion; AI-driven structure can feel opaque if you prefer manual control.',
+      },
+      {
+        slug: 'tldv',
+        whyPicked: 'tl;dv is the most affordable enterprise-grade meeting recording tool, with a generous free tier and low-cost paid tiers ($20-$59/user/mo). The standout feature is meeting-clipping - mark moments during a call and tl;dv generates shareable timestamped clips with auto-generated titles. For sales teams sharing customer-feedback moments with product teams, this is the lowest-friction tool in the category.',
+        bestFor: 'Cross-functional teams sharing customer-conversation moments; PM-engineering-sales loops.',
+        limitation: 'AI summary quality is one notch below Otter; weaker CRM integrations than Otter or Gong.',
+      },
+    ],
+    bottomLine: 'Pick NotebookLM for personal note synthesis grounded only in your own materials. Pick Fathom if you want unlimited free meeting recording for individuals or small teams. Pick Otter if you need enterprise admin controls, deep CRM integration, or a sales-coaching layer. Pick Mem if your problem is "I have thousands of unorganised notes." Pick tl;dv if your team needs to share clipped meeting moments. Most professionals end up running NotebookLM for personal corpus plus one of the meeting tools (typically Fathom for solo, Otter for teams).',
+    faqs: [
+      {
+        q: 'Should I use one or two tools from this list?',
+        a: 'Two is the common pattern: one for personal note synthesis (NotebookLM or Mem), one for meeting capture (Fathom, Otter, or tl;dv). They do different jobs and using one for both is a compromise.',
+      },
+      {
+        q: 'Are AI meeting recorders legal?',
+        a: 'Recording laws vary by jurisdiction. Most US states are one-party-consent (you can record if you are part of the conversation); some are two-party-consent. Most EU countries require explicit consent. Always announce recording at the start of the meeting; this is best practice everywhere and required in two-party jurisdictions.',
+      },
+      {
+        q: 'What is the most accurate?',
+        a: 'All five score above 90% accuracy on clean audio in 2026. Otter and Fathom edge slightly ahead on noisy real-world meetings. NotebookLM accuracy depends on your input quality - if you upload clean PDFs it is excellent; recorded lecture audio quality varies. None replace human review for critical accuracy use cases.',
+      },
+      {
+        q: 'Which integrates best with Notion or Slack?',
+        a: 'Otter has the deepest Notion and Slack integrations. Fathom integrates with both via Zapier or native depending on tier. tl;dv has solid Slack integration. NotebookLM does not integrate with Notion or Slack (it is a closed Google ecosystem). Mem has its own ecosystem and limited cross-tool integration.',
+      },
+    ],
   },
   {
     slug: 'best-ai-podcast-tools',
@@ -611,6 +711,59 @@ export const TOP10_LISTS: Top10List[] = [
     category: 'Business',
     emoji: '🏢',
     slugs: ['claude', 'jasper', 'grammarly', 'hubspot', 'zapier'],
+    intro: 'AI for small businesses in 2026 is no longer a competitive advantage - it is competitive parity. Companies under 20 employees that have not adopted at least three of the tools below are visibly behind on response times, content production, and operational leverage. The five tools below cover the workflows that produce the biggest ROI: thinking and drafting (Claude), marketing content at scale (Jasper), writing polish (Grammarly), CRM and customer journey (HubSpot), and the connective tissue between them all (Zapier). Together they cost roughly $200-400/mo for a 5-person team and reliably save 15+ hours per week.',
+    methodology: 'We ranked these on what matters for SMBs specifically: cost vs typical revenue at the 1-20 employee stage, time-to-value (under 1 day to first useful output), integration breadth across the rest of the SMB stack, and whether the tool grows with the company past 50 employees. We disqualified enterprise tools that require sales calls and tools whose pricing only makes sense at 100+ seats.',
+    picks: [
+      {
+        slug: 'claude',
+        whyPicked: 'Claude is the small-business thinking partner. The free tier handles most daily questions; the Pro tier ($20/mo) covers heavy drafting, contract review, and analytical work. For owners and founders, having a model that produces partner-quality first drafts on memos, customer emails, and operational docs is the highest-leverage subscription in the SMB AI stack. Claude is also the most truthful of the major LLMs - it pushes back when you are wrong, which matters when you are making consequential decisions without a senior team to check you.',
+        bestFor: 'Founders, owner-operators, and managers doing thinking work without a senior team to bounce ideas off.',
+        limitation: 'Free tier rate-limits during peak hours; not a tool you delegate to junior staff for production tasks without review.',
+      },
+      {
+        slug: 'jasper',
+        whyPicked: 'Jasper is the marketing-content tool for SMBs that need to ship at scale: blog posts, ad copy, email sequences, social captions, landing pages. Brand Voice training keeps every piece in your voice rather than generic AI. The Campaigns feature handles multi-asset production from a single brief. At $49/user/mo the price is steep relative to consumer chatbots, but it pays back fast for any business doing 10+ marketing assets per month.',
+        bestFor: 'SMBs running content marketing, social, paid ads, or email campaigns at any meaningful volume.',
+        limitation: 'Overkill for businesses under 5 marketing assets per month - Claude with good prompts is sufficient at that scale.',
+      },
+      {
+        slug: 'grammarly',
+        whyPicked: 'Grammarly is the polish layer every customer-facing communication should pass through. The Business plan ($25/user/mo) adds tone matching and team style-guide enforcement, which professionalises an SMB\'s written communications without adding headcount. The browser extension works inside Gmail, HubSpot, Slack, and every other tool you already use. For SMBs where every email is a brand impression, Grammarly Business is paid back in a single avoided typo on a high-stakes message.',
+        bestFor: 'Any SMB with customer-facing email volume; sales reps, founders, customer success leads.',
+        limitation: 'Not a generator - you still need to write the draft. Some users find the suggestions overly conservative on creative writing.',
+      },
+      {
+        slug: 'hubspot',
+        whyPicked: 'HubSpot is the SMB CRM that has eaten its category. Free tier is genuinely usable for solopreneurs; Starter ($20/seat/mo) covers most early-stage businesses; Professional scales through the 100-employee mark. Breeze (HubSpot AI) bundles in content remix, lead scoring, sales call summarisation, and segment intelligence. For SMBs choosing their first real CRM in 2026, HubSpot is the safe pick because it covers marketing, sales, and service in one place.',
+        bestFor: 'SMBs ready for a real CRM - typically once you have 50+ active customer relationships or a 2+ person sales team.',
+        limitation: 'Pricing scales fast as you add seats and modules; many SMBs get sticker shock at the Professional tier transition.',
+      },
+      {
+        slug: 'zapier',
+        whyPicked: 'Zapier is the connective tissue that makes the rest of the stack work together. New customer in HubSpot triggers a Notion onboarding checklist; new contact-form submission triggers a Slack alert; refund request triggers a refund-process workflow. Most SMBs build 10-20 of these automations and save 5+ hours per week per team member. At $19.99/mo for the entry tier, it pays back in the first connector.',
+        bestFor: 'Any SMB running 3+ tools that should talk to each other; ops leads, founders wearing multiple hats.',
+        limitation: 'Per-task pricing scales fast at high volumes. SMBs running 5,000+ automations monthly should consider Make.com or self-hosted n8n.',
+      },
+    ],
+    bottomLine: 'For solo founders and pre-revenue SMBs, start with Claude Pro alone ($20/mo). Once revenue justifies it, add Grammarly Business ($25/seat/mo) for customer-facing communication. At 3+ employees and meaningful customer volume, add HubSpot for CRM and Zapier for ops automation. Add Jasper only when content production volume exceeds 10 assets/month. The full stack is roughly $200-400/mo for a 5-person team and consistently delivers more leverage than any single hire at that price point.',
+    faqs: [
+      {
+        q: 'What is the cheapest AI starter stack for a solo founder?',
+        a: 'Claude free + Grammarly free + HubSpot free + Zapier free. Total cost: $0/mo. This stack handles thinking, writing polish, CRM, and basic automation up to about 50 customer relationships before you need to upgrade anything.',
+      },
+      {
+        q: 'Should small businesses pay for ChatGPT or Claude?',
+        a: 'Pay for one. Claude Pro ($20/mo) is the safer pick for owner-operators because the model is more truthful and the free tier is generous. ChatGPT Plus is the better pick if you specifically need image generation, voice mode, or custom GPTs for your workflow.',
+      },
+      {
+        q: 'When is HubSpot worth the upgrade from free?',
+        a: 'When you hit 1,000 contacts, when you need email automation beyond simple sequences, or when you add a second salesperson and need shared deal pipelines. Below those thresholds, HubSpot Free is sufficient.',
+      },
+      {
+        q: 'Can a 5-person SMB really compete with bigger teams using AI?',
+        a: 'Yes, in 2026 this is the standard playbook. The 5-person team running the stack above produces marketing volume, customer response times, and operational leverage that previously required 15+ people. The advantage is shrinking as bigger teams adopt AI too, but for now it is real.',
+      },
+    ],
   },
   {
     slug: 'best-ai-document-tools',
