@@ -2286,6 +2286,22 @@ export const TOP10_LISTS: Top10List[] = [
     emoji: '🚔',
     slugs: ['mark43', 'axon-ai', 'tyler-technologies', 'accela', 'opengov'],
   },
+  {
+    slug: 'best-ai-procurement-platforms',
+    title: 'Best AI Procurement Platforms 2026',
+    description: 'The best AI-powered procurement and source-to-pay platforms in 2026 - from enterprise business spend management and autonomous sourcing to modern intake-to-procure tools for high-growth companies.',
+    category: 'Finance',
+    emoji: '🛒',
+    slugs: ['coupa', 'jaggaer', 'ivalua', 'zip-procurement', 'pactum'],
+  },
+  {
+    slug: 'best-ai-spend-management',
+    title: 'Best AI Spend Management Tools 2026',
+    description: 'The best AI-powered spend management and procurement automation tools in 2026 - from team expense control and virtual cards to purchase order workflows and supplier spend analytics.',
+    category: 'Finance',
+    emoji: '💳',
+    slugs: ['spendesk', 'precoro', 'procurify', 'zip-procurement', 'coupa'],
+  },
 ]
 
 export function getList(slug: string): Top10List | undefined {
