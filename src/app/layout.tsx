@@ -80,7 +80,7 @@ const organizationSchema = {
   ],
   foundingDate: '2026-01-01',
   knowsAbout: ['Artificial Intelligence', 'SaaS', 'Software Reviews', 'AI Tools Directory', 'Editorial Methodology'],
-  contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'hello@mytheai.com' },
+  contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', email: 'info@mytheai.com' },
 }
 
 const websiteSchema = {

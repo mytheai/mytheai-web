@@ -43,7 +43,7 @@ const TIERS = [
       'Correct pricing kept up to date',
     ],
     cta: 'Get Verified',
-    href: 'mailto:hello@mytheai.com?subject=Verified Badge Inquiry',
+    href: 'mailto:info@mytheai.com?subject=Verified Badge Inquiry',
     highlight: false,
   },
   {
@@ -59,7 +59,7 @@ const TIERS = [
       'Weekly performance report',
     ],
     cta: 'Book Featured Slot',
-    href: 'mailto:hello@mytheai.com?subject=Featured Boost Inquiry',
+    href: 'mailto:info@mytheai.com?subject=Featured Boost Inquiry',
     highlight: true,
   },
   {
@@ -76,7 +76,7 @@ const TIERS = [
       'Permanent URL - no expiry',
     ],
     cta: 'Inquire About Article',
-    href: 'mailto:hello@mytheai.com?subject=Sponsored Article Inquiry',
+    href: 'mailto:info@mytheai.com?subject=Sponsored Article Inquiry',
     highlight: false,
   },
   {
@@ -92,7 +92,7 @@ const TIERS = [
       'Click-through tracking and report',
     ],
     cta: 'Book Newsletter Slot',
-    href: 'mailto:hello@mytheai.com?subject=Newsletter Sponsorship Inquiry',
+    href: 'mailto:info@mytheai.com?subject=Newsletter Sponsorship Inquiry',
     highlight: false,
   },
 ]
@@ -230,7 +230,7 @@ export default function AdvertisePage() {
           We are open to integration partnerships, co-marketing, and custom editorial programs. Reach out to discuss.
         </p>
         <Link
-          href="mailto:hello@mytheai.com?subject=Partnership Inquiry"
+          href="mailto:info@mytheai.com?subject=Partnership Inquiry"
           className="inline-block px-5 py-2.5 rounded-lg bg-blue-600 text-white text-[13px] font-semibold hover:bg-blue-700 transition-colors"
         >
           Contact Us →

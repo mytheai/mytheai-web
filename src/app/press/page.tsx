@@ -132,12 +132,9 @@ export default function PressPage() {
         <section className="mb-10">
           <h2 className="text-[20px] font-bold text-foreground mb-4">Press contact</h2>
           <div className="rounded-xl border border-border bg-card p-5">
-            <p className="text-[15px] text-foreground mb-2"><strong>John Ethan</strong>, Founder & Editor-in-Chief</p>
+            <p className="text-[15px] text-foreground mb-2"><strong>John P</strong>, Founder & Editor-in-Chief</p>
             <p className="text-[14px] text-muted-foreground mb-1">
-              Press inquiries: <a href="mailto:press@mytheai.com" className="text-blue-600 hover:underline">press@mytheai.com</a>
-            </p>
-            <p className="text-[14px] text-muted-foreground mb-1">
-              General: <a href="mailto:hello@mytheai.com" className="text-blue-600 hover:underline">hello@mytheai.com</a>
+              Email: <a href="mailto:info@mytheai.com" className="text-blue-600 hover:underline">info@mytheai.com</a>
             </p>
             <p className="text-[13px] text-muted-foreground mt-3">Typical response time: 1-2 business days. For urgent fact-check requests, mark email subject [URGENT FACT-CHECK].</p>
           </div>
