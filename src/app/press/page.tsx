@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getSiteStats } from '@/lib/stats'
 
 export const revalidate = 86400
 
@@ -15,11 +16,7 @@ export const metadata: Metadata = {
   },
 }
 
-const FACTS = [
-  { label: 'Tools cataloged', value: '650+' },
-  { label: 'Side-by-side comparisons', value: '300+' },
-  { label: 'Top 10 ranked lists', value: '120+' },
-  { label: 'Editorial articles', value: '67+' },
+const STATIC_FACTS = [
   { label: 'Founded', value: 'January 2026' },
   { label: 'HQ', value: 'Remote' },
   { label: 'Languages supported', value: '5 (EN, 中文, हिन्दी, ES, FR)' },
@@ -34,7 +31,15 @@ const ASSETS = [
   { label: 'OG share image (1200×630)', href: '/api/og/site', desc: 'Auto-generated default site share card' },
 ]
 
-export default function PressPage() {
+export default async function PressPage() {
+  const stats = await getSiteStats()
+  const FACTS = [
+    { label: 'Tools cataloged', value: String(stats.tools) },
+    { label: 'Side-by-side comparisons', value: String(stats.comparisons) },
+    { label: 'Top 10 ranked lists', value: String(stats.top10Lists) },
+    { label: 'Editorial articles', value: String(stats.blogArticles) },
+    ...STATIC_FACTS,
+  ]
   const orgJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
@@ -75,7 +80,7 @@ export default function PressPage() {
           <h2 className="text-[20px] font-bold text-foreground mb-4">Boilerplate (60 words)</h2>
           <div className="rounded-xl border border-border bg-card p-5">
             <p className="text-[14px] text-muted-foreground leading-relaxed">
-              MytheAi is a curated directory of 650+ AI and SaaS tools, with side-by-side comparisons, ranked top 10 lists, and editorial reviews scored on a transparent seven-criteria framework. Rankings are never influenced by affiliate commissions - the team that maintains affiliate relationships is structurally separate from editorial. Founded in January 2026.
+              MytheAi is a curated directory of {stats.tools} AI and SaaS tools, with {stats.comparisons} side-by-side comparisons, {stats.top10Lists} ranked top 10 lists, and editorial reviews scored on a transparent seven-criteria framework. Rankings are never influenced by affiliate commissions - the team that maintains affiliate relationships is structurally separate from editorial. Founded in January 2026.
             </p>
           </div>
         </section>
