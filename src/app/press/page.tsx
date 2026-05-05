@@ -137,7 +137,7 @@ export default async function PressPage() {
         <section className="mb-10">
           <h2 className="text-[20px] font-bold text-foreground mb-4">Press contact</h2>
           <div className="rounded-xl border border-border bg-card p-5">
-            <p className="text-[15px] text-foreground mb-2"><strong>John P</strong>, Founder & Editor-in-Chief</p>
+            <p className="text-[15px] text-foreground mb-2"><strong>John Pham</strong>, Founder & Editor-in-Chief</p>
             <p className="text-[14px] text-muted-foreground mb-1">
               Email: <a href="mailto:info@mytheai.com" className="text-blue-600 hover:underline">info@mytheai.com</a>
             </p>

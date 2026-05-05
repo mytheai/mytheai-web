@@ -99,7 +99,7 @@ pack, do a Q&A, or write a one-screen summary if useful. No PR-spammy stuff;
 this is straight numbers from our own data.
 
 Best,
-John Ethan
+John Pham
 Founder, MytheAi
 ```
 
@@ -121,7 +121,7 @@ vendor).
 Happy to add any terms your audience asks about most.
 
 Best,
-John Ethan
+John Pham
 MytheAi
 ```
 
@@ -147,7 +147,7 @@ Let me know if any of this is useful. Not asking for anything back - just
 sharing in case it helps.
 
 Best,
-John Ethan
+John Pham
 MytheAi
 ```
 
@@ -171,7 +171,7 @@ Could do 25-40 minutes on any of these. Happy to share a one-pager with
 charts in advance so we are talking to the same numbers.
 
 Best,
-John Ethan
+John Pham
 MytheAi
 ```
 
@@ -212,7 +212,7 @@ Outcomes: `link`, `mention`, `social_share`, `interview`, `nope`, `pending`, `bo
 - **Original data with charts** - the State of AI Tools report is built specifically to be linkable. Lean on findings, not aggregate stats.
 - **Concrete tool comparisons** when journalists need a third-party reference - "MytheAi rated A 4.6/5 vs B 4.4/5" is more interesting than "A is better than B".
 - **Glossary references** - cheap link wins because publishers prefer external references to inline definitions.
-- **Personal email** from John Ethan address (not "team@") with one-line context that proves you read the recipient's work.
+- **Personal email** from John Pham address (not "team@") with one-line context that proves you read the recipient's work.
 
 ## Measurement
 
@@ -226,6 +226,6 @@ Aim for 100 sends in 90 days, not 50 perfect ones. The ROI on the 60th decent em
 
 ---
 
-**Owner:** John Ethan (founder)
+**Owner:** John Pham (founder)
 **Cadence:** Weekly review of tracking sheet, daily 30-min outreach block
 **Next review:** August 2026 (90-day mark)
