@@ -1,0 +1,116 @@
+---
+title: "How to Use AI for Pitch Decks in 2026"
+excerpt: "A practical, step-by-step guide for founders and operators using AI to draft, design, and pressure-test pitch decks - without the AI-generated cliche slides every investor recognises in 4 seconds."
+date: "May 5, 2026"
+category: "How-to"
+readTime: "9 min read"
+---
+
+The first wave of AI pitch deck tools (2023-2024) generated decks that every investor learned to spot in 4 seconds: same template, same hockey-stick TAM slide, same faux-Apple typography. By late 2025 those decks became actively negative signal. The investors most active on Twitter started joking about "GPT decks" the way they used to joke about "Comic Sans pitches".
+
+Yet AI for pitch decks is more useful in 2026 than ever - if you use it right. The shift is from "generate the deck" to "use AI as a pressure-testing co-founder". This guide walks through the actual workflow founders in our network use to ship a strong investor deck in 2-3 days using AI.
+
+## Step 1: Use AI to Stress-Test the Story BEFORE Touching Slides
+
+The single biggest mistake is opening a deck tool first. Every deck failure is a story failure. Every story failure compounds when 12 slides try to paper over it.
+
+Spend 60-90 minutes with [Claude](/tools/claude) Pro or [ChatGPT](/tools/chatgpt) Pro running this exact sequence:
+
+1. Paste your one-pager or current deck text. Ask: "Pretend you are a Series A partner at Sequoia. What are the three things you would push back on hardest in a 30-minute meeting based on this story?"
+2. Take the pushbacks and write a 1-paragraph response to each. Paste the responses back. Ask: "Now pretend you are a partner at a16z. What new pushbacks do my responses surface?"
+3. Repeat once more with a hypothetical Index Ventures partner. Different fund, different lens.
+
+After 3 rounds you will have surfaced 6-9 of the strongest objections any investor will raise. These objections, more than any deck design choice, determine whether you raise.
+
+Workflow tip: do this with a real investor in mind only AFTER the AI rounds. AI lets you fail safely; investors will not.
+
+## Step 2: Use AI to Draft Slide Narrative, Not Slide Content
+
+Slides have two layers: the narrative thread that connects them and the content within each. AI is good at the first, mediocre at the second.
+
+Ask Claude or ChatGPT: "Given this story, what is the optimal slide order for a 12-slide pre-seed deck? Use the Sequoia Pitch framework and explain why each slide belongs at that position."
+
+The output you want is a slide-by-slide outline like:
+
+- Slide 1: Headline + tagline (positions the company in 8 seconds)
+- Slide 2: Problem (most acute symptom, with a story)
+- Slide 3: Why now (timing wedge - why this could not have worked 3 years ago)
+- Slide 4: Solution (single screenshot or demo)
+- Slide 5: Why us (founder-market fit, not credentials)
+- ...
+
+Save this outline as a checklist. Every slide you draft must serve its narrative position. Slides that don't serve the position get cut, not redesigned.
+
+## Step 3: Generate Slide Content with Constraints
+
+Now use AI for individual slide content, but with strict constraints. Without constraints AI generates 2024-vintage GPT-deck slop.
+
+For each slide use a prompt template like:
+
+> "Draft slide N. Constraints: max 12 words on the slide. Speaker notes (what I will say verbally) max 60 words. Tone: confident, specific, no jargon. The slide must advance the story toward Slide N+1. NEVER generate hockey-stick TAM data or generic competitive matrices."
+
+The "NEVER generate" line matters. The default generative behaviour for pitch decks is to produce TAM/SAM/SOM triangles, 4-quadrant competitor maps, and team slides with circular headshots. Investors actively pattern-match against these and discount the deck.
+
+[Beautiful.ai](/tools/beautiful-ai) is the pure pitch deck tool with the cleanest AI-assisted flow in 2026. The "smart slides" feature respects the constraints you give it more than [Tome](/tools/tome) does.
+
+[Gamma](/tools/gamma) is the Notion-flavoured option that founders comfortable with markdown prefer. The AI reflow is excellent when you have already written the content in plain text.
+
+[Pitch](/tools/pitch) is the pick for founders who care about design quality and do not mind a slightly steeper learning curve. The collaboration features make it the right call for founders raising with a co-founder or operator.
+
+## Step 4: Use AI for Financial Model Sanity Check
+
+Almost every pre-seed and seed deck has a 3-year financial projection slide. These are universally fictional. Investors know they are fictional. The point is to demonstrate that you have thought rigorously about unit economics.
+
+Use [ChatGPT](/tools/chatgpt) Code Interpreter or [Claude](/tools/claude) (with file upload) to pressure test your model:
+
+1. Upload your financial model spreadsheet
+2. Ask: "What are the most aggressive assumptions in this model? What is the maximum reasonable defence for each?"
+3. Then: "What are the two most likely lines of attack from a Series A investor on this model?"
+
+The output identifies which assumptions to soften, which to defend confidently, and which to remove entirely.
+
+[Julius AI](/tools/julius-ai) is the data-analysis-focused AI that handles spreadsheet pressure-testing better than ChatGPT for complex models. Worth the $20/month for serious fundraisers.
+
+## Step 5: Generate the Demo Section with AI Tools, Not AI Slides
+
+The demo slide should not be a slide at all. It should be a 60-90 second video or live screenshare. Most founders skip this and lose 30% of investor attention as a result.
+
+[Loom](/tools/loom) AI-edited demo videos are the cheapest path. Record 3-5 minutes of unscripted demo, let the AI auto-trim to 90 seconds, embed the resulting link in the deck.
+
+[Descript](/tools/descript) is the right choice if you want polished narration and B-roll. The AI voice cloning means you can re-record narration without screen-recording again.
+
+[Runway](/tools/runway) for product mockup demos when the actual product is not ready. Runway-generated demo videos clearly disclosed as concept videos signal craft and ambition; undisclosed Runway demos signal evasion.
+
+## Step 6: Final Pressure Test with AI Roleplay
+
+Before sending the deck to a single real investor, run a 30-minute roleplay with Claude or ChatGPT:
+
+> "I will paste my deck below. Roleplay as a partner at [target fund]. Ask me 5 questions you would actually ask in a 30-minute pitch meeting. Wait for my answer to each before asking the next."
+
+This roleplay surfaces the "I have not thought through this" moments BEFORE the real meeting. The first 5-10 real investor meetings get spent on those exact questions; the AI roleplay lets you front-load the work.
+
+For higher fidelity, use [ElevenLabs](/tools/elevenlabs) to convert the AI questions to spoken audio. Pitching aloud surfaces different gaps than reading questions on screen.
+
+## What NOT to Do
+
+Hard-learned mistakes from founders in our network 2024-2026:
+
+- Do not use AI to design the deck visually. Beautiful.ai, Gamma, and Pitch all have human-tuned design systems that beat raw AI output. AI for content; tool for design.
+- Do not let AI generate quotes or testimonials. Real customer quotes (with names) signal trust; fabricated AI quotes destroy it instantly when investors check.
+- Do not paste your deck into ChatGPT and ask "make it better". The output is generic and louder than the original. Use AI for diagnosis and slot-by-slot drafting, not bulk improvement.
+- Do not include a "How will you use AI?" slide. This was the 2024 trap. In 2026 every pitch is implicitly AI-aware; the slide signals desperation.
+
+## A 3-Day Pitch Deck Workflow
+
+| Day | Hours | Output |
+|---|---|---|
+| Day 1 morning | 90 min | AI investor stress-test (3 funds) + revised story |
+| Day 1 afternoon | 60 min | AI-generated slide narrative outline |
+| Day 2 morning | 3 hours | Slide-by-slide drafting with constraints |
+| Day 2 afternoon | 2 hours | Design pass in Pitch or Beautiful.ai |
+| Day 3 morning | 90 min | Demo video recording (Loom or Descript) |
+| Day 3 afternoon | 90 min | AI roleplay pressure test + final edits |
+
+Total: ~10 hours over 3 days. Most founders who run this workflow ship a stronger deck in 3 days than they shipped in 3 weeks of solo iteration before AI tools were good enough to be useful collaborators.
+
+The AI revolution for pitch decks is not about generating the deck. It is about pressure-testing the story so the deck has something true to say.
