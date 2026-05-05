@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import SearchDropdown from '@/components/search/SearchDropdown'
-import LanguagePicker from '@/components/layout/LanguagePicker'
 
 export default function Header() {
   const t = useTranslations('Header')
@@ -71,9 +70,6 @@ export default function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-1.5">
-            {/* Language picker */}
-            <LanguagePicker />
-
             {/* Dark mode */}
             <button
               onClick={toggleDark}

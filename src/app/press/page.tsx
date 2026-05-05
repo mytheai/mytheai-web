@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 const STATIC_FACTS = [
   { label: 'Founded', value: 'January 2026' },
   { label: 'HQ', value: 'Remote' },
-  { label: 'Languages supported', value: '5 (EN, 中文, हिन्दी, ES, FR)' },
   { label: 'Editorial policy', value: 'No pay-to-rank' },
+  { label: 'Pricing verification', value: '90-day cycle' },
 ]
 
 const ASSETS = [
