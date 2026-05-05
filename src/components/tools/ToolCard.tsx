@@ -74,7 +74,9 @@ export default function ToolCard({ tool }: { tool: Tool }) {
         <div className="flex items-center gap-1.5">
           <span className="text-[#F59E0B] text-sm">{'★'.repeat(Math.floor(tool.rating))}{'☆'.repeat(5 - Math.floor(tool.rating))}</span>
           <span className="text-[13px] font-semibold text-foreground">{tool.rating}</span>
-          <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k)</span>
+          {tool.review_count > 0 && (
+            <span className="text-[12px] text-muted-foreground">({(tool.review_count / 1000).toFixed(1)}k)</span>
+          )}
         </div>
         <a
           href={`/go/${tool.slug}`}
