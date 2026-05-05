@@ -39,8 +39,7 @@ async function loadIndex(): Promise<CompactTool[]> {
 
 // ── Scoring ────────────────────────────────────────────────────────────────
 // Higher score = better match. Returns 0 for no match.
-// Pure substring + word-boundary scoring. Good enough for 532 tools.
-// Typo tolerance can be added later via Levenshtein for top-N candidates.
+// Substring + word-boundary + Levenshtein fuzzy fallback for typos.
 function scoreMatch(tool: CompactTool, q: string): number {
   const ql = q.toLowerCase()
   const nl = tool.n.toLowerCase()
@@ -76,7 +75,34 @@ function scoreMatch(tool: CompactTool, q: string): number {
     if (matched.length >= terms.length - 1) return 150
   }
 
+  // Fuzzy fallback: Levenshtein on tool name when query is 4-15 chars.
+  // Only triggers when nothing else matched - keeps perf cheap.
+  if (ql.length >= 4 && ql.length <= 15) {
+    const dist = levenshtein(ql, nl.slice(0, Math.min(nl.length, ql.length + 3)))
+    const maxAllowed = ql.length <= 6 ? 1 : 2
+    if (dist <= maxAllowed) return 200 - dist * 30
+  }
+
   return 0
+}
+
+// Levenshtein distance with 2-row DP. Returns small integer.
+function levenshtein(a: string, b: string): number {
+  if (a === b) return 0
+  if (a.length === 0) return b.length
+  if (b.length === 0) return a.length
+  let prev = new Array(b.length + 1)
+  let curr = new Array(b.length + 1)
+  for (let j = 0; j <= b.length; j++) prev[j] = j
+  for (let i = 1; i <= a.length; i++) {
+    curr[0] = i
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1
+      curr[j] = Math.min(curr[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost)
+    }
+    ;[prev, curr] = [curr, prev]
+  }
+  return prev[b.length]
 }
 
 const POPULAR_QUERIES = ['ChatGPT alternatives', 'Free AI tools', 'AI for coding', 'Best SEO tools']
@@ -121,6 +147,7 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
 
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<CompactTool[]>([])
+  const [comparePair, setComparePair] = useState<{ a: CompactTool; b: CompactTool } | null>(null)
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [activeIdx, setActiveIdx] = useState(-1)
@@ -142,10 +169,32 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
   useEffect(() => {
     if (!cachedIndex || !query.trim()) {
       setResults([])
+      setComparePair(null)
       setActiveIdx(-1)
       return
     }
     const q = query.trim().toLowerCase()
+
+    // "X vs Y" detection - if both tokens resolve to known tools, surface compare CTA
+    const vsMatch = q.match(/^(.+?)\s+vs\.?\s+(.+)$/)
+    if (vsMatch && cachedIndex) {
+      const aQuery = vsMatch[1].trim()
+      const bQuery = vsMatch[2].trim()
+      const findBest = (qq: string) => cachedIndex!
+        .map(t => ({ t, s: scoreMatch(t, qq) }))
+        .filter(x => x.s >= 700)
+        .sort((a, b) => b.s - a.s)[0]?.t
+      const a = findBest(aQuery)
+      const b = findBest(bQuery)
+      if (a && b && a.s !== b.s) {
+        setComparePair({ a, b })
+      } else {
+        setComparePair(null)
+      }
+    } else {
+      setComparePair(null)
+    }
+
     const scored = cachedIndex
       .map(tool => ({ tool, score: scoreMatch(tool, q) }))
       .filter(x => x.score > 0)
@@ -192,6 +241,10 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
       if (activeIdx >= 0 && results[activeIdx]) {
         e.preventDefault()
         router.push(`/tools/${results[activeIdx].s}`)
+        closeAndBlur()
+      } else if (comparePair) {
+        e.preventDefault()
+        router.push(`/compare/${comparePair.a.s}-vs-${comparePair.b.s}`)
         closeAndBlur()
       } else if (query.trim()) {
         e.preventDefault()
@@ -312,6 +365,19 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
               </div>
             ) : (
               <div>
+                {comparePair && (
+                  <Link
+                    href={`/compare/${comparePair.a.s}-vs-${comparePair.b.s}`}
+                    onClick={closeAndBlur}
+                    className="flex items-center gap-3 px-4 py-2.5 border-b border-border bg-blue-50/50 dark:bg-blue-950/20 hover:bg-blue-100/50 dark:hover:bg-blue-950/40 transition-colors"
+                  >
+                    <span className="text-[11px] font-bold text-[#2563EB] bg-[#EFF6FF] px-2 py-0.5 rounded">VS</span>
+                    <span className="flex-1 text-[13px] text-foreground">
+                      Compare <strong>{comparePair.a.n}</strong> vs <strong>{comparePair.b.n}</strong>
+                    </span>
+                    <span className="text-[12px] text-blue-600 font-medium">→</span>
+                  </Link>
+                )}
                 <ul className="max-h-[420px] overflow-y-auto" role="presentation">
                   {results.map((tool, i) => (
                     <li key={tool.s} role="presentation">
@@ -414,6 +480,19 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
             </div>
           ) : (
             <div>
+              {comparePair && (
+                <Link
+                  href={`/compare/${comparePair.a.s}-vs-${comparePair.b.s}`}
+                  onClick={closeAndBlur}
+                  className="flex items-center gap-2 px-3 py-2 border-b border-border bg-blue-50/50 dark:bg-blue-950/20 hover:bg-blue-100/50 dark:hover:bg-blue-950/40 transition-colors"
+                >
+                  <span className="text-[10px] font-bold text-[#2563EB] bg-[#EFF6FF] px-1.5 py-0.5 rounded">VS</span>
+                  <span className="flex-1 text-[12px] text-foreground truncate">
+                    Compare <strong>{comparePair.a.n}</strong> vs <strong>{comparePair.b.n}</strong>
+                  </span>
+                  <span className="text-[11px] text-blue-600">→</span>
+                </Link>
+              )}
               <ul className="max-h-[360px] overflow-y-auto" role="presentation">
                 {results.map((tool, i) => (
                   <li key={tool.s} role="presentation">

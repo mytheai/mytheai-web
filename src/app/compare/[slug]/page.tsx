@@ -314,7 +314,7 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
           </h1>
 
           {/* Tool cards side by side */}
-          <div className="flex items-center gap-4 w-full max-w-lg">
+          <div className="flex items-stretch gap-4 w-full max-w-2xl">
             {/* Tool A */}
             <div className="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-card">
               <div className="w-12 h-12 rounded-xl border border-border bg-white flex items-center justify-center overflow-hidden">
@@ -325,10 +325,16 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
                 {PRICING_LABELS[toolA.pricing_type]}
               </span>
               <p className="text-[13px] text-[#F59E0B]">★ {toolA.rating.toFixed(1)}</p>
+              {toolA.use_cases && toolA.use_cases.length > 0 && (
+                <p className="text-[11px] text-muted-foreground text-center leading-snug mt-1">
+                  <span className="font-semibold text-foreground">Best for:</span>{' '}
+                  {toolA.use_cases.slice(0, 2).map(u => u.replace(/\.$/, '').toLowerCase()).join(', ')}
+                </p>
+              )}
             </div>
 
             {/* VS badge */}
-            <div className="flex-shrink-0 text-[18px] font-extrabold text-[#2563EB] bg-[#EFF6FF] px-3 py-1.5 rounded-lg">VS</div>
+            <div className="self-center flex-shrink-0 text-[18px] font-extrabold text-[#2563EB] bg-[#EFF6FF] px-3 py-1.5 rounded-lg">VS</div>
 
             {/* Tool B */}
             <div className="flex-1 flex flex-col items-center gap-2 p-4 rounded-xl border border-border bg-card">
@@ -340,6 +346,12 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
                 {PRICING_LABELS[toolB.pricing_type]}
               </span>
               <p className="text-[13px] text-[#F59E0B]">★ {toolB.rating.toFixed(1)}</p>
+              {toolB.use_cases && toolB.use_cases.length > 0 && (
+                <p className="text-[11px] text-muted-foreground text-center leading-snug mt-1">
+                  <span className="font-semibold text-foreground">Best for:</span>{' '}
+                  {toolB.use_cases.slice(0, 2).map(u => u.replace(/\.$/, '').toLowerCase()).join(', ')}
+                </p>
+              )}
             </div>
           </div>
         </div>

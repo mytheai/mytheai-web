@@ -11,6 +11,12 @@ interface Props {
   toolSlug: string
 }
 
+function formatExternalCount(n: number): string {
+  if (n >= 10000) return `${(n / 1000).toFixed(0)}k`
+  if (n >= 1000) return `${(n / 1000).toFixed(1)}k`
+  return n.toLocaleString()
+}
+
 function MiniBar({ value, max = 5 }: { value: number; max?: number }) {
   const pct = Math.max(0, Math.min(100, (value / max) * 100))
   return (
@@ -91,7 +97,9 @@ export default function TrustStack({
           <div className="h-1 rounded-full bg-border" />
           <p className="text-[11px] text-muted-foreground mt-1.5 leading-relaxed">
             {userReviewCount === 0
-              ? <a href={`#review-form`} className="text-blue-600 hover:underline">Share your experience - reviews appear instantly →</a>
+              ? externalReviewCount > 0
+                ? <>While reviews build here, see <Link href="/methodology" className="text-blue-600 hover:underline">{formatExternalCount(externalReviewCount)} aggregate ratings</Link> from G2, Capterra, Product Hunt above. <a href="#review-form" className="text-blue-600 hover:underline">Add yours →</a></>
+                : <a href="#review-form" className="text-blue-600 hover:underline">Share your experience - reviews appear instantly →</a>
               : <>From verified MytheAi readers</>
             }
           </p>

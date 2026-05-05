@@ -9,8 +9,28 @@ import {
   getQuizTags,
   getBudgetCeiling,
   ROLE_LABELS,
+  ROLE_TAGS,
   type QuizAnswers,
 } from '@/lib/quiz-logic'
+
+const BUDGET_LABELS: Record<string, string> = {
+  free: 'Free only',
+  low: 'Under $25/mo',
+  mid: 'Under $100/mo',
+  unlimited: 'No budget cap',
+}
+
+const SKILL_LABELS: Record<string, string> = {
+  beginner: 'Beginner',
+  intermediate: 'Intermediate',
+  power: 'Power user',
+}
+
+const TEAM_LABELS: Record<string, string> = {
+  solo: 'Solo',
+  small: 'Small team (2-10)',
+  large: 'Large team (10+)',
+}
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
@@ -40,12 +60,53 @@ const PRICING_COLORS: Record<string, string> = {
   ltd: 'bg-[#FEF3C7] text-[#92400E]',
 }
 
+function whyPicked(tool: ToolRow, answers: QuizAnswers, roleTags: string[]): string {
+  const reasons: string[] = []
+
+  // Budget fit (highest weight - it's a hard constraint)
+  if (answers.budget === 'free') {
+    if (tool.pricing_type === 'free') reasons.push('100% free, no paid tier')
+    else if (tool.pricing_free_tier) reasons.push('Has a free tier within your $0 budget')
+  } else if (answers.budget === 'low' && tool.pricing_starting_price != null && tool.pricing_starting_price <= 25) {
+    reasons.push(`Fits your <$25/mo budget at $${tool.pricing_starting_price}`)
+  } else if (answers.budget === 'mid' && tool.pricing_starting_price != null && tool.pricing_starting_price <= 100) {
+    reasons.push(`Fits your <$100/mo budget at $${tool.pricing_starting_price}`)
+  } else if (tool.pricing_free_tier && answers.budget !== 'unlimited') {
+    reasons.push('Has a free tier you can try first')
+  }
+
+  // Tag match against role
+  const matchedTags = (tool.tags ?? []).filter(t => roleTags.includes(t))
+  if (matchedTags.length > 0 && reasons.length < 2) {
+    reasons.push(`Matches ${matchedTags[0].replace(/-/g, ' ')} workflows`)
+  }
+
+  // Rating signal as tiebreaker
+  if (tool.rating >= 4.7 && reasons.length < 2) {
+    reasons.push(`Top-rated at ★ ${tool.rating.toFixed(1)}`)
+  } else if (tool.trending && reasons.length < 2) {
+    reasons.push('Trending pick this month')
+  }
+
+  // Team-size signal
+  if (answers.team === 'solo' && tool.pricing_free_tier && reasons.length < 2) {
+    reasons.push('Solo-friendly free tier')
+  } else if (answers.team === 'large' && tool.review_count >= 1000 && reasons.length < 2) {
+    reasons.push(`Battle-tested across ${(tool.review_count / 1000).toFixed(0)}k+ teams`)
+  }
+
+  if (reasons.length === 0) {
+    reasons.push(`Strong general fit for ${ROLE_LABELS[answers.role].toLowerCase()}`)
+  }
+  return reasons.slice(0, 2).join(' · ')
+}
+
 async function pickTools(answers: QuizAnswers): Promise<ToolRow[]> {
   const supabase = createStaticClient()
   const tags = getQuizTags(answers)
   const ceiling = getBudgetCeiling(answers.budget)
 
-  let q = supabase
+  const q = supabase
     .from('tools')
     .select('slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,pricing_starting_price,rating,review_count,trending,tags')
     .overlaps('tags', tags)
@@ -108,7 +169,7 @@ export default async function QuizResultPage({ searchParams }: { searchParams: P
         <span className="text-foreground font-medium">Your stack</span>
       </nav>
 
-      <div className="mb-10">
+      <div className="mb-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Your AI Stack</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-3">
           Five picks for {role}
@@ -118,9 +179,22 @@ export default async function QuizResultPage({ searchParams }: { searchParams: P
         </p>
       </div>
 
+      {/* Criteria recap - shows what was matched */}
+      <div className="mb-8 p-4 rounded-xl border border-border bg-card">
+        <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground mb-2.5">You picked</p>
+        <div className="flex flex-wrap gap-2">
+          <span className="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-[#EFF6FF] text-[#1E40AF]">{role}</span>
+          <span className="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-[#EFF6FF] text-[#1E40AF]">{BUDGET_LABELS[answers.budget]}</span>
+          <span className="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-[#EFF6FF] text-[#1E40AF]">{SKILL_LABELS[answers.skill]}</span>
+          <span className="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-[#EFF6FF] text-[#1E40AF]">{TEAM_LABELS[answers.team]}</span>
+        </div>
+      </div>
+
       {tools.length > 0 ? (
         <ol className="space-y-4 mb-10">
-          {tools.map((tool, i) => (
+          {tools.map((tool, i) => {
+            const reason = whyPicked(tool, answers, ROLE_TAGS[answers.role])
+            return (
             <li key={tool.slug}>
               <Link
                 href={`/tools/${tool.slug}`}
@@ -143,6 +217,9 @@ export default async function QuizResultPage({ searchParams }: { searchParams: P
                     )}
                   </div>
                   <p className="text-[13px] text-muted-foreground line-clamp-2 mb-2">{tool.tagline}</p>
+                  <p className="text-[12px] text-blue-600 font-semibold mb-2 leading-snug">
+                    ✓ {reason}
+                  </p>
                   <div className="flex items-center gap-3 text-[12px] text-muted-foreground">
                     <span className="text-[#F59E0B] font-semibold">★ {tool.rating.toFixed(1)}</span>
                     <span>{tool.review_count.toLocaleString()} reviews</span>
@@ -152,7 +229,8 @@ export default async function QuizResultPage({ searchParams }: { searchParams: P
                 <span className="text-[13px] text-blue-600 font-medium flex-shrink-0 pt-0.5">Review →</span>
               </Link>
             </li>
-          ))}
+            )
+          })}
         </ol>
       ) : (
         <div className="mb-10 p-6 rounded-xl border border-border bg-card text-center">
