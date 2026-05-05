@@ -2970,6 +2970,210 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Can these grow a LinkedIn following from zero?', a: 'They accelerate but do not replace strategy. AI generates content; humans set positioning, engage in comments, and build network. Most successful LinkedIn creators use these tools as content ops engines on top of clear positioning, not as a replacement for it.' },
     ],
   },
+
+  'aidoc-vs-regard': {
+    bottomLine: 'Aidoc and Regard target the same hospital buyer (clinical AI for inpatient settings) but solve different jobs. Aidoc is the imaging AI leader for radiology - real-time scan analysis flagging stroke, PE, brain bleed, and other time-critical findings before radiologists read them. Regard is the clinical decision support platform that surfaces overlooked diagnoses across the entire patient chart (not just imaging) using natural language reasoning over structured EHR data. Pick Aidoc if your buyer pain is radiology turnaround time. Pick Regard if your hospital wants AI catching missed diagnoses across all clinical data.',
+    whenToPickA: 'You are a radiology department or hospital prioritising imaging-driven AI alerts for time-critical findings. Aidoc (custom enterprise pricing) integrates with PACS systems and surfaces actionable findings on incoming scans within seconds. Best for stroke centres, ED-heavy hospitals, and large imaging volumes.',
+    whenToPickB: 'You are a hospital or health system wanting clinical AI that reads the full patient chart - labs, vitals, notes, imaging - to surface overlooked diagnoses. Regard (custom enterprise pricing) integrates with Epic and Cerner to suggest documentation improvements and catch missed conditions. Best for hospitalist services and inpatient quality programs.',
+    faqs: [
+      { q: 'Are these competing tools?', a: 'They overlap on the buyer (hospital CIOs and clinical leaders) but solve different jobs. Aidoc is imaging-AI specific; Regard is clinical-AI across the chart. Many hospitals deploy both for complementary coverage.' },
+      { q: 'Do these require new IT integration?', a: 'Yes both. Aidoc requires PACS integration plus radiologist workflow changes. Regard requires Epic/Cerner integration plus documentation workflow changes. Implementation is typically 2-6 months for each.' },
+      { q: 'How do they affect physician workflow?', a: 'Aidoc surfaces alerts in radiologist worklist before reads, prioritising critical scans. Regard surfaces suggestions inside Epic during documentation, prompting physicians to consider missed diagnoses. Both add value when adopted; both require change management to drive use.' },
+      { q: 'Pricing transparency?', a: 'Both custom enterprise pricing only - typical hospital deals: Aidoc $200K-$2M+/year depending on imaging volume; Regard $300K-$1.5M+/year depending on bed count. Implementation costs add 20-40% on top.' },
+    ],
+  },
+
+  'civitai-vs-getimg-ai': {
+    bottomLine: 'Civitai and Getimg.ai both serve AI image generation but with different philosophies and audiences. Civitai is the open-model community platform - thousands of free Stable Diffusion checkpoints, LoRAs, and embeddings shared by the community plus generation tools. Getimg.ai is the polished SaaS image generation product with native editor, multiple model providers (Flux, Stable Diffusion XL, Realistic Vision), and editing tools. Pick Civitai if you want maximum model variety and community-driven workflows. Pick Getimg.ai for a clean SaaS experience with built-in editor and consistent quality.',
+    whenToPickA: 'You are a power user who wants access to thousands of community-trained Stable Diffusion models, LoRAs, and embeddings, plus the freedom to mix and match models for niche styles. Civitai (free + paid tiers) is the open-community platform with the largest custom-model library.',
+    whenToPickB: 'You want a polished SaaS image generation tool with native editor, in-painting, out-painting, and consistent commercial-use licensing. Getimg.ai ($12-$199/mo) bundles multiple top-tier models with editing workflow.',
+    faqs: [
+      { q: 'Is Civitai content commercially safe?', a: 'Mixed. Many Civitai models are trained on community data with unclear licensing. For commercial use, verify each model\'s license individually. Getimg.ai provides clearer commercial terms across its bundled models.' },
+      { q: 'Quality comparison?', a: 'Civitai gives access to specialised fine-tuned models that often beat default models on specific styles (anime, photorealistic portraits, architecture). Getimg.ai delivers consistent high quality across general use cases without model-hunting effort.' },
+      { q: 'Pricing?', a: 'Civitai: free tier + paid for faster generation ($5-$50/mo). Getimg.ai: $12-$199/mo by generation count. Civitai cheaper for casual use; Getimg.ai better value for high-volume professional work.' },
+      { q: 'Best for product designers?', a: 'Getimg.ai for consistent commercial-safe output and native editing. Civitai for designers who need specialised styles or unusual aesthetics that default models do not produce.' },
+    ],
+  },
+
+  'deepscribe-vs-ambience-healthcare': {
+    bottomLine: 'DeepScribe and Ambience Healthcare are AI medical scribes that capture physician-patient conversations and generate clinical documentation, but target different deployments. DeepScribe is the established platform with broader specialty coverage and strong outpatient integration across 40+ specialties. Ambience Healthcare is the newer entrant with the deepest LLM-based reasoning, real-time document generation during the visit, and strong adoption at integrated delivery networks. Pick DeepScribe for broad specialty coverage and proven outpatient deployment. Pick Ambience for cutting-edge LLM quality and IDN-scale rollouts.',
+    whenToPickA: 'You are a multi-specialty medical group (40+ specialties), a hospital outpatient network, or any clinical organisation wanting an established AI scribe with broad specialty coverage. DeepScribe (custom enterprise pricing) has the longest production track record.',
+    whenToPickB: 'You are an integrated delivery network, large medical group, or innovation-forward health system willing to bet on cutting-edge LLM-based scribes with strongest reasoning quality. Ambience Healthcare (custom enterprise) ships the most advanced AI documentation in 2026.',
+    faqs: [
+      { q: 'Quality comparison in 2026?', a: 'Ambience has the edge on LLM-based reasoning and document quality for complex cases. DeepScribe has more polished workflow and broader specialty templates. Both produce clinically usable documentation; the differentiation is at the margin.' },
+      { q: 'How much physician time does this save?', a: 'Real customer reports range from 1-3 hours/day saved on documentation, depending on visit volume and specialty. Both platforms reduce after-hours charting (the "pyjama time" problem) significantly.' },
+      { q: 'EHR integration?', a: 'Both integrate with Epic, Cerner, Athenahealth, eClinicalWorks. Ambience has the deeper Epic integration (sync with structured fields); DeepScribe has broader EHR breadth. Verify with your specific EHR before committing.' },
+      { q: 'Pricing transparency?', a: 'Both custom enterprise. Typical deals: $200-$500/provider/month plus implementation. ROI usually positive within 6 months at typical visit volumes - the saved physician hours pay back the subscription cost.' },
+    ],
+  },
+
+  'diffit-vs-conker': {
+    bottomLine: 'Diffit and Conker both serve K-12 educators with AI but solve different problems. Diffit is the differentiation tool that adapts any text or video to multiple reading levels - useful for ESL, special education, and mixed-level classrooms. Conker is the AI question generator that creates differentiated quizzes, exit tickets, and assessments from any content. Pick Diffit if your bottleneck is adapting reading material for diverse learners. Pick Conker if your bottleneck is generating differentiated assessments at scale.',
+    whenToPickA: 'You are a K-12 teacher or instructional coach working with diverse learners (ESL, special education, mixed-grade classrooms) and the bottleneck is adapting reading materials. Diffit (free + paid tiers, often free for educators) generates differentiated text from any source.',
+    whenToPickB: 'You are a K-12 teacher generating frequent quizzes, exit tickets, or assessments and want AI to produce differentiated questions at multiple difficulty levels from your content. Conker (free + paid) specialises in assessment generation.',
+    faqs: [
+      { q: 'Which is more useful for ESL teachers?', a: 'Diffit clearly - the multi-level reading adaptation is the core ESL workflow. Conker can generate differentiated assessments to match but Diffit owns the input-side differentiation.' },
+      { q: 'Are these free for teachers?', a: 'Both have generous free tiers for individual teachers. Premium tiers add features and remove limits but most classroom teachers stay on free tier.' },
+      { q: 'Do they integrate with Google Classroom?', a: 'Both have Google Classroom and Canvas integration in 2026. Output flows directly into LMS assignments, reducing manual copy-paste work.' },
+      { q: 'Best for special education?', a: 'Diffit for adapting reading materials. Pair with MagicSchool or SchoolAI for IEP narrative drafting. Conker for differentiated assessments. Most special-ed teachers use 2-3 tools across the workflow.' },
+    ],
+  },
+
+  'docebo-vs-360learning': {
+    bottomLine: 'Docebo and 360Learning are both modern enterprise LMS but with different philosophies. Docebo is the AI-native top-down LMS with strong skills tagging, content recommendation, and L&D-led course delivery. 360Learning is the collaborative learning platform where peer-driven content creation drives learning at scale - subject-matter experts (not L&D) own course authoring. Pick Docebo for traditional L&D-led learning programs. Pick 360Learning for organisations where domain experts (engineering, sales, product) own content.',
+    whenToPickA: 'You are a traditional L&D-led organisation with dedicated learning specialists owning course content, skills strategy, and learner journeys. Docebo (custom enterprise pricing) ships the AI-native LMS for top-down learning programs.',
+    whenToPickB: 'You are a peer-led learning organisation where subject-matter experts (engineering, product, sales enablement) own content rather than L&D. 360Learning ($8/user/mo + Enterprise) ships the collaborative authoring workflow that enables peer-driven learning at scale.',
+    faqs: [
+      { q: 'Which has stronger AI features?', a: 'Docebo wins on traditional AI features (skills tagging, content recommendation). 360Learning wins on collaborative AI (AI-assisted course authoring for SMEs, peer-feedback summarisation). The strengths track each platform\'s philosophy.' },
+      { q: 'Implementation timeline?', a: 'Both: 2-6 months for mid-market deployment. 360Learning often faster because peer-driven content reduces L&D bottleneck; Docebo deeper because AI tagging requires content structuring upfront.' },
+      { q: 'Pricing comparison?', a: '360Learning: $8/user/mo Team tier + Enterprise. Docebo: custom enterprise (typically $25K-$200K+/year for mid-market). 360Learning lower entry pricing makes it more accessible to growth-stage companies.' },
+      { q: 'Can both work for compliance training?', a: 'Yes both. Docebo more naturally suits top-down compliance training. 360Learning works for compliance via L&D-authored required courses while leveraging peer-driven content for everything else.' },
+    ],
+  },
+
+  'glass-health-vs-corti': {
+    bottomLine: 'Glass Health and Corti are both AI clinical assistants but target different physician workflows. Glass Health is the clinical decision support platform that physicians use as a second-opinion AI for differential diagnosis, treatment recommendations, and clinical reasoning. Corti is the AI ambient scribe and conversation intelligence platform that listens to physician calls (especially emergency dispatch and telehealth) to surface real-time insights and documentation. Pick Glass Health for clinical reasoning support. Pick Corti for voice-driven clinical conversations in dispatch or telehealth contexts.',
+    whenToPickA: 'You are a physician or clinical team wanting AI for differential diagnosis support, treatment planning, and complex clinical reasoning. Glass Health (subscription pricing) provides reasoning-grade AI grounded in medical literature and aligned with physician workflows.',
+    whenToPickB: 'You operate emergency dispatch, telehealth services, or any voice-driven clinical conversation context where AI listening and real-time guidance matters. Corti (custom enterprise) is built specifically for voice-AI in clinical conversations.',
+    faqs: [
+      { q: 'Are these alternatives?', a: 'No - they solve different jobs. Glass for clinical reasoning support; Corti for voice-driven clinical conversation intelligence. Most healthcare orgs that need both deploy them in parallel for different teams.' },
+      { q: 'Is Glass Health for diagnosis?', a: 'Glass is positioned as decision support, not autonomous diagnosis. Physicians retain decision-making authority; Glass surfaces reasoning chains, differential diagnoses, and treatment options grounded in medical evidence.' },
+      { q: 'Where is Corti deployed?', a: 'Emergency medical dispatch (NHS deployments, US municipal EMS), telehealth providers, and call-based clinical operations. Less common in clinic-based outpatient where Aidoc/Regard/Ambience compete.' },
+      { q: 'Pricing comparison?', a: 'Glass Health: subscription pricing per user; consumer + enterprise tiers. Corti: custom enterprise pricing only. They serve different scales - Glass affordable for individual physicians, Corti priced for organisational deployment.' },
+    ],
+  },
+
+  'goodtime-vs-metaview': {
+    bottomLine: 'GoodTime and Metaview both serve recruiting teams with AI but solve different jobs. GoodTime is the AI-driven interview scheduling and orchestration platform that automates the logistics layer of recruiting - candidate scheduling, interviewer load balancing, calendar coordination. Metaview is the AI interview intelligence platform that records, transcribes, and analyses interviews to improve hiring quality and reduce bias. Pick GoodTime if your bottleneck is interview scheduling logistics. Pick Metaview if your bottleneck is interview quality and consistency.',
+    whenToPickA: 'You are a high-volume recruiting team where interview scheduling logistics consume real coordinator time. GoodTime (custom enterprise pricing) automates candidate scheduling, interviewer panel selection, and calendar coordination at scale.',
+    whenToPickB: 'You are a talent acquisition team focused on interview quality and consistency, structured interview programs, or hiring bias reduction. Metaview (custom enterprise) records and analyses interviews to surface quality patterns and bias signals.',
+    faqs: [
+      { q: 'Are these competing tools?', a: 'No - they complement each other. GoodTime owns the scheduling layer; Metaview owns the interview quality layer. Many enterprise TA teams deploy both as part of a serious recruiting tech stack.' },
+      { q: 'Do they integrate with ATS?', a: 'Both integrate with major ATS (Greenhouse, Lever, Workday, SAP). GoodTime sync depth is stronger because scheduling logistics require deep ATS coupling. Metaview integrates for context but works as a layered platform.' },
+      { q: 'How much time does GoodTime save?', a: 'High-volume recruiting teams typically save 30-60% on coordinator time previously spent on scheduling. The ROI is usually positive within months at hiring volumes above 100/quarter.' },
+      { q: 'Pricing?', a: 'Both custom enterprise. Typical deals: GoodTime $25K-$200K+/year depending on hiring volume; Metaview $20K-$100K+/year depending on recruiter count. Both have minimum 12-month contracts.' },
+    ],
+  },
+
+  'longshot-ai-vs-contentatscale': {
+    bottomLine: 'LongShot AI and Content at Scale both target SEO content production but with different positioning. LongShot AI is the AI content generation platform with fact-checking and SEO optimisation features built in - generates blog drafts, fact-checks against current sources, and optimises for SERP-ranking. Content at Scale is the long-form AI content generator specifically positioned to produce content that ranks - automated keyword research, SERP analysis, and full-article generation in 5-10 minutes. Pick LongShot if you value fact-checking and human-in-the-loop optimisation. Pick Content at Scale if you want the most automated end-to-end content production.',
+    whenToPickA: 'You are a content team that values fact-checked, optimised content with human oversight in the loop. LongShot AI ($29-$249/mo) ships AI generation plus FactGPT (fact-checking against live web sources) plus SEO scoring.',
+    whenToPickB: 'You are a content team or SEO agency producing high volume of long-form articles where automation speed matters. Content at Scale ($250-$3,000+/mo) ships keyword-to-published-article workflow in 5-10 minutes per piece.',
+    faqs: [
+      { q: 'Which produces better content?', a: 'LongShot output benefits from human editing for voice but is more accurate due to fact-checking. Content at Scale automates more but content needs more human review for quality. Both produce serviceable first drafts; neither replaces good writers.' },
+      { q: 'Do these rank in Google?', a: 'AI-generated content ranking is mixed in 2026. Both can produce ranking content with editing and added context. Pure auto-generated content increasingly fails Google\'s helpful-content thresholds. Content at Scale aggressive marketing aside, real ranking requires human craft on top of AI drafts.' },
+      { q: 'Pricing comparison?', a: 'LongShot: $29-249/mo (cheaper, per-credit). Content at Scale: $250-3,000+/mo (per article). For 5-10 articles/mo: LongShot ~$50-150 cost; Content at Scale ~$1,000-2,000 cost. LongShot wins on per-article economics.' },
+      { q: 'Best for SEO agencies?', a: 'Most agencies use specialist SEO tools (Surfer SEO, Frase) plus AI writers (Jasper, ChatGPT) rather than these end-to-end platforms. The end-to-end automation pitch is cleaner but real SEO content workflows still benefit from tool specialisation.' },
+    ],
+  },
+
+  'nearpod-vs-classpoint': {
+    bottomLine: 'Nearpod and ClassPoint both bring interactivity to classrooms but with different platforms. Nearpod is the standalone interactive lesson platform with built-in quizzes, polls, video, simulations, and slides plus AI lesson generation. ClassPoint is the PowerPoint-based interactivity layer that turns existing PowerPoint slides into interactive lessons with quizzes, polls, and AI-generated questions. Pick Nearpod for standalone interactive lesson workflow. Pick ClassPoint if your teachers already live in PowerPoint and want interactivity layered on.',
+    whenToPickA: 'You are a school or district adopting a standalone interactive lesson platform with built-in content library, AI lesson generation, and full assessment workflows. Nearpod ($79-$120/teacher/year + district pricing) is the established interactive lesson default.',
+    whenToPickB: 'You are a school or district where teachers already use PowerPoint heavily and want an interactivity layer rather than switching tools. ClassPoint ($96/teacher/year + free tier) extends PowerPoint with interactive features.',
+    faqs: [
+      { q: 'Which has better AI features?', a: 'Nearpod has broader AI feature surface (lesson generation, AI-driven differentiation, AI question generation). ClassPoint AI is more focused (AI question generation from slide content). Nearpod wins on breadth; ClassPoint on integration with existing PowerPoint workflows.' },
+      { q: 'Are these alternatives to Pear Deck or Kahoot?', a: 'Yes - both compete with Pear Deck (similar PowerPoint-style integration) and Kahoot (similar interactivity). Nearpod overlaps Pear Deck and Kahoot more directly; ClassPoint is closest to Pear Deck.' },
+      { q: 'Pricing comparison?', a: 'ClassPoint: free tier + $96/teacher/year (cheapest). Nearpod: $79-120/teacher/year + district enterprise. For individual teachers: ClassPoint or Nearpod free tier sufficient. For districts: enterprise pricing varies.' },
+      { q: 'Best for higher-ed?', a: 'Both work in higher-ed. Nearpod has broader content library aimed at K-12 but features adapt. ClassPoint is more PowerPoint-aligned which suits higher-ed lecture-based teaching.' },
+    ],
+  },
+
+  'outerbase-vs-seek-ai': {
+    bottomLine: 'Outerbase and Seek AI both apply AI to SQL workflows but for different audiences. Outerbase is the modern database interface that lets engineers and analysts query databases via natural language, with built-in dashboards, schema exploration, and collaboration. Seek AI is the business-user-focused natural-language analytics tool that lets non-technical users query enterprise data warehouses without writing SQL. Pick Outerbase if your users are engineers or technical analysts wanting AI-augmented database work. Pick Seek AI if your users are business stakeholders needing self-serve analytics on warehouse data.',
+    whenToPickA: 'You are an engineering or technical analytics team wanting AI-augmented database workflows - schema exploration, SQL generation, dashboarding, and collaboration. Outerbase (free + paid tiers) is the modern AI-native database interface.',
+    whenToPickB: 'Your users are non-technical business stakeholders (sales, marketing, finance) needing self-serve analytics on the data warehouse without learning SQL. Seek AI (custom enterprise) provides natural-language analytics for business users.',
+    faqs: [
+      { q: 'Are these competing?', a: 'They overlap on natural-language SQL but target different users. Outerbase for engineers and technical analysts; Seek AI for business stakeholders. The user persona is the deciding factor.' },
+      { q: 'Database support?', a: 'Outerbase: PostgreSQL, MySQL, BigQuery, Snowflake, MongoDB, and more. Seek AI: enterprise data warehouses primarily (Snowflake, BigQuery, Databricks). Outerbase broader; Seek AI deeper on enterprise warehouses.' },
+      { q: 'Pricing comparison?', a: 'Outerbase: free tier + $19-99/user/mo. Seek AI: custom enterprise (typically $50K-$300K+/year). Outerbase accessible for individual developers; Seek AI priced for enterprise data teams.' },
+      { q: 'Alternatives?', a: 'Outerbase alternatives: Hex, Mode, MotherDuck. Seek AI alternatives: ThoughtSpot, Sigma, Tableau Pulse. Both categories are evolving fast in 2026 with AI features competing across vendors.' },
+    ],
+  },
+
+  'polymer-vs-gigasheet': {
+    bottomLine: 'Polymer and Gigasheet both work with spreadsheet-like data but solve different problems. Polymer turns spreadsheets into interactive dashboards with AI-driven insights and visualisations - aimed at marketing and sales analysts wanting fast dashboarding. Gigasheet handles billion-row datasets that Excel cannot open, with AI for natural-language queries against massive files - aimed at security analysts, data engineers, and anyone with too-big-for-Excel files. Pick Polymer for fast dashboard creation from CSV. Pick Gigasheet for analysing massive datasets.',
+    whenToPickA: 'You are a marketing analyst, sales ops user, or business analyst wanting fast dashboard creation from CSV files or live data sources. Polymer ($50-$1,000+/mo) turns spreadsheets into interactive dashboards with AI insights.',
+    whenToPickB: 'You are a security analyst, threat hunter, data engineer, or analyst handling massive datasets that exceed Excel capacity. Gigasheet ($0-$95/user/mo) handles billion-row CSVs with AI-powered queries.',
+    faqs: [
+      { q: 'Are these competing?', a: 'No - different jobs. Polymer for dashboard visualisation. Gigasheet for raw data wrangling at massive scale. Some teams use both - Gigasheet to clean and explore raw data, Polymer to dashboard the cleaned output.' },
+      { q: 'Best alternative to each?', a: 'Polymer alternatives: Looker Studio (free Google), Tableau, Power BI. Gigasheet alternatives: Pandas (Python), DuckDB, command-line CSV tools. Polymer competes on no-code ease; Gigasheet competes on scale plus no-code.' },
+      { q: 'Pricing?', a: 'Gigasheet: $0-95/user/mo (free tier available). Polymer: $50-1,000+/mo. Gigasheet cheaper for individual analysts; Polymer pricing scales with team size and data volume.' },
+      { q: 'Best for security teams?', a: 'Gigasheet clearly - the billion-row CSV handling matches threat-hunting and log-analysis workflows. Polymer is for business analytics, not security analytics.' },
+    ],
+  },
+
+  'predis-ai-vs-contentstudio': {
+    bottomLine: 'Predis AI and ContentStudio both serve social media content creation but from different angles. Predis AI is the AI-first content creation tool that generates complete posts (image, caption, hashtags) from a single prompt or website URL. ContentStudio is the broader social media management platform with content discovery, scheduling, and AI-assisted content creation across all major platforms. Pick Predis AI when AI-driven creation is the bottleneck. Pick ContentStudio when you also need scheduling, listening, and multi-account management.',
+    whenToPickA: 'You are a solopreneur, ecommerce seller, or time-constrained creator wanting AI to handle most of the creative production - generate complete posts (image plus caption plus hashtags) in 60 seconds. Predis AI ($32-$130/mo) leads on AI-first content generation.',
+    whenToPickB: 'You are a marketing team or agency needing comprehensive social media management - content discovery, scheduling, multi-platform publishing, listening, and AI-assisted content. ContentStudio ($25-$199/mo) covers the full social workflow with AI features layered on.',
+    faqs: [
+      { q: 'Which has better AI?', a: 'Predis AI has stronger end-to-end AI content generation (image plus caption plus hashtags from one prompt). ContentStudio AI is more focused (caption rewrites, content suggestions). Predis wins on AI-first workflow; ContentStudio wins on platform integration.' },
+      { q: 'Are these alternatives to Buffer or Hootsuite?', a: 'ContentStudio competes more directly with Buffer/Hootsuite - similar feature surface at lower pricing. Predis AI is a content-creation specialist that pairs with any social manager. Most teams use ContentStudio (or similar) plus Predis AI as a content engine.' },
+      { q: 'Pricing comparison?', a: 'ContentStudio: $25-199/mo (cheaper at entry). Predis AI: $32-130/mo. For teams needing both creation and management: ContentStudio + occasional Predis AI usage. For solo creators only needing AI content: Predis AI alone.' },
+      { q: 'Best for ecommerce social?', a: 'Predis AI for ecommerce-tuned product post generation. ContentStudio for the broader social management workflow. Many ecommerce teams use both - Predis for product-focused content, ContentStudio for community engagement and scheduling.' },
+    ],
+  },
+
+  'rapidely-vs-predis-ai': {
+    bottomLine: 'Rapidely and Predis AI both target social media content creation with AI but with different strengths. Rapidely focuses on viral-content creation and social media planning with AI-driven trend detection and post generation. Predis AI is the broader AI-first content generator with image plus caption plus hashtags from one prompt, plus brand voice training and competitor analysis. Pick Rapidely if trend-driven viral content is your goal. Pick Predis AI for systematic content production at volume.',
+    whenToPickA: 'You are a creator or social marketer prioritising viral-content potential and trend-driven posts. Rapidely ($25-$99/mo) ships trend detection, viral content templates, and post generation aligned with current social momentum.',
+    whenToPickB: 'You are a solopreneur or small team running systematic content production at volume. Predis AI ($32-$130/mo) ships full post generation (image plus caption plus hashtags), brand voice training, and competitor analysis.',
+    faqs: [
+      { q: 'Which has better AI quality?', a: 'Both produce competitive AI output. Rapidely\'s trend integration adds momentum signal. Predis AI\'s broader features (brand voice, competitor analysis) add systematic structure. The choice tracks workflow philosophy: trend-driven vs systematic.' },
+      { q: 'Pricing comparison?', a: 'Rapidely: $25-99/mo (cheaper at entry). Predis AI: $32-130/mo. Both fit solopreneur budgets; Rapidely slightly cheaper for occasional users.' },
+      { q: 'Are they alternatives to Taplio?', a: 'Both can serve LinkedIn-focused workflows but Taplio is LinkedIn-specialised with deeper LinkedIn-specific features (lead enrichment, viral inspiration). For multi-platform: Rapidely or Predis AI. For LinkedIn-only: Taplio.' },
+      { q: 'Best for visual content?', a: 'Predis AI generates fuller visual content (images plus carousels) more consistently. Rapidely focus is on trend-aligned post types. For brands prioritising visual quality: Predis AI; for trend-aligned reach: Rapidely.' },
+    ],
+  },
+
+  'schoolai-vs-curipod': {
+    bottomLine: 'SchoolAI and Curipod both bring AI to K-12 classrooms but with different platforms. SchoolAI is the comprehensive AI platform for K-12 with student-facing AI tutors, teacher tools for lesson generation, and admin dashboards for monitoring AI use. Curipod is the interactive lesson platform with AI-generated quizzes, polls, and word clouds - faster to deploy lesson by lesson but narrower scope. Pick SchoolAI for district-wide AI adoption. Pick Curipod for individual teachers wanting fast interactive lessons.',
+    whenToPickA: 'You are a school or district adopting AI at scale with student-facing tutors, teacher AI tools, and admin oversight. SchoolAI (free for teachers + district pricing) ships comprehensive K-12 AI infrastructure with FERPA/COPPA compliance.',
+    whenToPickB: 'You are an individual K-12 teacher or coach wanting fast AI-generated interactive lessons (quizzes, polls, brainstorming activities). Curipod (free + premium tiers) generates interactive lessons in seconds.',
+    faqs: [
+      { q: 'Which is better for student AI tutoring?', a: 'SchoolAI clearly - it ships student-facing AI tutors with teacher-set guardrails and oversight. Curipod is teacher-facing for lesson activities, not student-facing for tutoring.' },
+      { q: 'FERPA/COPPA compliance?', a: 'Both designed for K-12 with FERPA awareness. SchoolAI has stronger admin oversight features for district-level governance. For district adoption, SchoolAI is the more defensible choice.' },
+      { q: 'Pricing?', a: 'Both have free tiers for individual teachers. SchoolAI district enterprise pricing varies; Curipod premium tiers $5-15/teacher/mo. For teacher-paid: Curipod cheaper. For district adoption: SchoolAI more comprehensive.' },
+      { q: 'Are these alternatives to MagicSchool or Brisk?', a: 'They overlap but serve different niches. MagicSchool: comprehensive teacher productivity AI. Brisk Teaching: Chrome extension for grading and feedback. SchoolAI: student-facing tutors plus teacher tools. Curipod: interactive lessons. Most schools use 2-3 of these complementarily.' },
+    ],
+  },
+
+  'skilljar-vs-learnupon': {
+    bottomLine: 'Skilljar and LearnUpon both serve customer education but with different focuses. Skilljar is the customer education platform purpose-built for B2B SaaS - extensive course-builder features, native Salesforce integration, and analytics tied to product adoption. LearnUpon is the multi-portal LMS for customer plus partner plus internal training, with strong white-label capabilities and broader extended-enterprise scope. Pick Skilljar if customer education is your primary use case. Pick LearnUpon if you train customers, partners, and employees on one platform.',
+    whenToPickA: 'You are a B2B SaaS company running dedicated customer education programs - certifications, onboarding training, advanced courses. Skilljar (custom enterprise pricing) is purpose-built for customer education with deep Salesforce/CRM integration.',
+    whenToPickB: 'You are an organisation training multiple audiences (internal employees, customers, partners, resellers) and want one platform with multi-portal management. LearnUpon (custom enterprise) ships strong white-label and per-portal features.',
+    faqs: [
+      { q: 'Are these alternatives to Docebo?', a: 'Both are credible alternatives for customer-education-focused use cases. Docebo is broader workforce LMS; Skilljar and LearnUpon are more specialised. For pure customer education: Skilljar deepest. For mixed audiences: LearnUpon. For workforce learning primarily: Docebo.' },
+      { q: 'Salesforce integration?', a: 'Skilljar has the deepest native Salesforce integration in customer-education category - certifications sync to contact records, course completion drives renewal/expansion plays. LearnUpon integrates but Skilljar depth is greater.' },
+      { q: 'Pricing transparency?', a: 'Both custom enterprise. Typical deals: Skilljar $30K-$200K+/year for B2B SaaS customer education. LearnUpon $20K-$150K+/year for mid-market multi-audience training.' },
+      { q: 'Best for partner training?', a: 'LearnUpon for partner training - white-label per-partner portals are a core feature. Skilljar can do partner training but customer-focus is the primary use case.' },
+    ],
+  },
+
+  'viz-ai-vs-aidoc': {
+    bottomLine: 'Viz.ai and Aidoc both lead in radiology AI but with different scope. Viz.ai pioneered the time-critical care coordination model - AI flagging stroke and PE on CT scans plus orchestration platform that connects radiologists, neurologists, and surgeons in real-time. Aidoc is the broader radiology AI platform covering more body regions and pathologies (chest, abdomen, brain) with deeper integration into the standard radiology workflow. Pick Viz.ai if your stroke/PE care coordination is the priority. Pick Aidoc for broader radiology AI coverage.',
+    whenToPickA: 'You are a stroke centre, ED-heavy hospital, or health system prioritising time-critical neurovascular care coordination. Viz.ai (custom enterprise) combines AI detection with care-team orchestration - the workflow is the differentiator, not just detection.',
+    whenToPickB: 'You are a radiology department wanting broader AI coverage across body regions and pathologies. Aidoc (custom enterprise) ships AI for stroke, PE, brain bleed, plus chest, abdomen, and other body regions in one platform.',
+    faqs: [
+      { q: 'Are these competing?', a: 'They overlap on stroke and PE detection but Viz.ai\'s differentiator is care coordination workflow, not just AI detection. Some hospitals deploy both: Aidoc for radiology breadth, Viz.ai for stroke/PE care coordination.' },
+      { q: 'How does care coordination work?', a: 'Viz.ai connects radiologists, neurologists, and surgeons via mobile app the moment AI detects a critical finding. Specialists view scans, communicate, and coordinate transfer or treatment in minutes vs hours of traditional paging workflows.' },
+      { q: 'Implementation timeline?', a: 'Both 2-6 months. Viz.ai requires more change management because care coordination workflow affects multiple specialties; Aidoc primarily affects radiology workflow.' },
+      { q: 'Pricing?', a: 'Both custom enterprise. Typical deals: Viz.ai $200K-$2M+/year depending on specialty modules and care coordination scope; Aidoc $200K-$2M+/year depending on imaging volume and module breadth.' },
+    ],
+  },
+
+  'voiceflow-vs-dify': {
+    bottomLine: 'Voiceflow and Dify are both LLM application platforms but with different focuses. Voiceflow is the conversational AI platform for designing chatbots and voice agents across channels (web, WhatsApp, voice, SMS) with visual flow builder. Dify is the LLM ops platform for building any LLM-powered application - agents, chatbots, RAG systems, workflow automations - with visual builder plus code-friendly extensions. Pick Voiceflow if you are building customer-facing chatbots and voice agents. Pick Dify if you need a broader LLM application platform supporting multiple use cases.',
+    whenToPickA: 'You are building customer-facing chatbots or voice agents that need to deploy across multiple channels (web widget, WhatsApp, voice, SMS). Voiceflow ($50-$500+/mo + LLM costs) ships the conversational-AI-specific visual flow builder and channel deployment.',
+    whenToPickB: 'You are building broader LLM applications - agents, RAG systems, workflow automations - that go beyond conversational AI. Dify (free open-source + cloud tiers) is the broader LLM ops platform with visual builder, code extensions, and deployment flexibility.',
+    faqs: [
+      { q: 'Are these competing?', a: 'They overlap at the chatbot use case but Dify is broader LLM application platform while Voiceflow is conversational-AI-specific. For chatbot-only use cases either works; for diverse LLM apps Dify is more flexible.' },
+      { q: 'Open source?', a: 'Dify is open-source (self-host or cloud). Voiceflow is closed-source SaaS. For teams worried about lock-in or wanting self-hosting: Dify. For teams wanting polished SaaS: Voiceflow.' },
+      { q: 'Pricing comparison?', a: 'Dify: free open-source + cloud $59-249+/mo. Voiceflow: $50-500+/mo. Self-hosted Dify cheapest. Cloud Dify and Voiceflow comparable; Voiceflow more polished, Dify more flexible.' },
+      { q: 'Best for production deployment?', a: 'Voiceflow has more mature production-deployment for conversational AI. Dify has more flexibility but requires more engineering capacity to deploy at scale. For teams with engineering resources: Dify wins on flexibility. For teams wanting turnkey: Voiceflow.' },
+    ],
+  },
 }
 
 export function getCompareEnrichment(slug: string): CompareEnrichment | null {
