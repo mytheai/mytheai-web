@@ -80,7 +80,8 @@ export default function ToolCard({ tool }: { tool: Tool }) {
           href={`/go/${tool.slug}`}
           target="_blank"
           rel="noopener noreferrer sponsored"
-          className="relative z-10 text-[12px] font-semibold text-blue-600 hover:text-blue-700"
+          className="relative z-10 text-[12px] font-semibold text-blue-600 hover:text-blue-700 plausible-event-name=Outbound plausible-event-tool=card"
+          data-tool={tool.slug}
         >
           {t('visit')} →
         </a>

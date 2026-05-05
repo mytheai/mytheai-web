@@ -109,7 +109,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Footer />
           <StickyMobileBar />
           <Script
-            src="https://plausible.io/js/script.outbound-links.file-downloads.js"
+            src="https://plausible.io/js/script.outbound-links.file-downloads.tagged-events.js"
             data-domain="mytheai.com"
             strategy="afterInteractive"
             defer

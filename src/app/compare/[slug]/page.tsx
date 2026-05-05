@@ -422,7 +422,8 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
                 href={`/go/${cmp.winner}`}
                 target="_blank"
                 rel="noopener noreferrer sponsored"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[14px] transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[14px] transition-colors plausible-event-name=Outbound plausible-event-tool=compare-winner"
+                data-tool={cmp.winner}
               >
                 Try {cmp.winner === cmp.tool_a_slug ? toolA.name : toolB.name} - editor's pick →
               </a>
@@ -470,11 +471,13 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
         {/* CTAs */}
         <div className="flex flex-wrap gap-3 mb-10">
           <a href={`/go/${toolA.slug}`} target="_blank" rel="noopener noreferrer sponsored"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[14px] transition-colors">
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[14px] transition-colors plausible-event-name=Outbound plausible-event-tool=compare-cta-a"
+            data-tool={toolA.slug}>
             Try {toolA.name} →
           </a>
           <a href={`/go/${toolB.slug}`} target="_blank" rel="noopener noreferrer sponsored"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border bg-card hover:border-blue-300 text-foreground font-medium text-[14px] transition-colors">
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border bg-card hover:border-blue-300 text-foreground font-medium text-[14px] transition-colors plausible-event-name=Outbound plausible-event-tool=compare-cta-b"
+            data-tool={toolB.slug}>
             Try {toolB.name} →
           </a>
         </div>

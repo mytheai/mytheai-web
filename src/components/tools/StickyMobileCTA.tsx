@@ -44,7 +44,8 @@ export default function StickyMobileCTA({ slug, name, pricingType, pricingFreeTi
         href={`/go/${slug}`}
         target="_blank"
         rel="noopener noreferrer sponsored"
-        className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[13px] transition-colors flex-shrink-0 whitespace-nowrap"
+        className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[13px] transition-colors flex-shrink-0 whitespace-nowrap plausible-event-name=Outbound plausible-event-tool=sticky-mobile"
+        data-tool={slug}
       >
         Visit →
       </a>
