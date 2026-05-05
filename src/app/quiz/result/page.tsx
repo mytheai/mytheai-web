@@ -3,6 +3,7 @@ import Link from 'next/link'
 import LogoImage from '@/components/ui/LogoImage'
 import NewsletterForm from '@/components/newsletter/NewsletterForm'
 import { createStaticClient } from '@/lib/supabase'
+import { getSiteStats } from '@/lib/stats'
 import {
   decodeAnswers,
   getQuizTags,
@@ -90,7 +91,7 @@ export default async function QuizResultPage({ searchParams }: { searchParams: P
   const answers = stack ? decodeAnswers(stack) : null
   if (!answers) redirect('/quiz')
 
-  const tools = await pickTools(answers)
+  const [tools, stats] = await Promise.all([pickTools(answers), getSiteStats()])
   const role = ROLE_LABELS[answers.role]
   const shareUrl = `https://mytheai.com/quiz/result?stack=${stack}`
   const tweetText = encodeURIComponent(`I just got my personalized AI stack on MytheAi - 5 tools picked for my workflow. Take the 60s quiz: `)
@@ -192,12 +193,12 @@ export default async function QuizResultPage({ searchParams }: { searchParams: P
           href="/tools"
           className="text-[13px] text-blue-600 hover:underline font-medium"
         >
-          Browse all 569 tools →
+          Browse all {stats.tools} tools →
         </Link>
       </div>
 
       <div className="text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
-        <strong>How we picked:</strong> We filtered our 569-tool directory by tags matching {role.toLowerCase()} workflows, applied your budget ceiling, then sorted by editorial rating and review volume. <Link href="/methodology" className="text-blue-600 hover:underline">Full methodology</Link>.
+        <strong>How we picked:</strong> We filtered our {stats.tools}-tool directory by tags matching {role.toLowerCase()} workflows, applied your budget ceiling, then sorted by editorial rating and review volume. <Link href="/methodology" className="text-blue-600 hover:underline">Full methodology</Link>.
       </div>
 
     </div>
