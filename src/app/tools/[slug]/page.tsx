@@ -409,7 +409,15 @@ export default async function ToolPage({
                 </span>
               )}
             </div>
-            <p className="text-[16px] text-muted-foreground mb-3">{tool.tagline}</p>
+            <p className="text-[16px] text-muted-foreground mb-2">{tool.tagline}</p>
+            {tool.use_cases && tool.use_cases.length > 0 && (
+              <p className="text-[13.5px] mb-3">
+                <span className="font-semibold text-foreground">Best for:</span>{' '}
+                <span className="text-muted-foreground">
+                  {tool.use_cases.slice(0, 2).map(u => u.replace(/\.$/, '').toLowerCase()).join(', ')}
+                </span>
+              </p>
+            )}
             <div className="flex flex-wrap items-center gap-4">
               <Stars rating={tool.rating} />
               <Link href="/methodology" className="text-[13px] text-muted-foreground hover:text-blue-600 hover:underline" title="Aggregate score from third-party review platforms (G2, Capterra, Product Hunt) and editorial testing. See methodology.">

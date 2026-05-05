@@ -30,3 +30,16 @@ export function createStaticClient() {
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
   )
 }
+
+// Service-role client - bypasses RLS. Use ONLY in server-side route handlers
+// for trusted writes (e.g. moderated review insert with status='approved').
+// Never import this into a client component.
+export function createServiceClient() {
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!key) {
+    throw new Error('SUPABASE_SERVICE_ROLE_KEY missing - add to .env.local from Supabase dashboard > Settings > API')
+  }
+  return createBaseClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, key, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  })
+}

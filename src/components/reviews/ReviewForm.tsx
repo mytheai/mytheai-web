@@ -14,8 +14,10 @@ export default function ReviewForm({ toolSlug, toolName }: ReviewFormProps) {
   const [limitation, setLimitation] = useState('')
   const [authorName, setAuthorName] = useState('')
   const [authorRole, setAuthorRole] = useState('')
+  const [hp, setHp] = useState('')
+  const [mountedAt] = useState(() => Date.now())
   const [submitting, setSubmitting] = useState(false)
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState<'approved' | 'pending' | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   async function handleSubmit(e: React.FormEvent) {
@@ -29,7 +31,16 @@ export default function ReviewForm({ toolSlug, toolName }: ReviewFormProps) {
       const r = await fetch('/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug: toolSlug, rating, bestFor, limitation, authorName, authorRole }),
+        body: JSON.stringify({
+          slug: toolSlug,
+          rating,
+          bestFor,
+          limitation,
+          authorName,
+          authorRole,
+          _hp: hp,
+          _t: Date.now() - mountedAt,
+        }),
       })
       const data = await r.json()
       if (!r.ok) {
@@ -37,7 +48,7 @@ export default function ReviewForm({ toolSlug, toolName }: ReviewFormProps) {
         setSubmitting(false)
         return
       }
-      setSuccess(true)
+      setSuccess(data.status === 'approved' ? 'approved' : 'pending')
     } catch {
       setError('Network error - try again')
       setSubmitting(false)
@@ -48,13 +59,31 @@ export default function ReviewForm({ toolSlug, toolName }: ReviewFormProps) {
     return (
       <div className="p-5 rounded-xl border border-green-200 bg-green-50 dark:border-green-900/40 dark:bg-green-950/20">
         <p className="text-[14px] font-semibold text-green-800 dark:text-green-300 mb-1">Thanks for reviewing {toolName}</p>
-        <p className="text-[13px] text-green-700 dark:text-green-400">Your review is pending moderation and will appear here once approved (usually within 24h).</p>
+        <p className="text-[13px] text-green-700 dark:text-green-400">
+          {success === 'approved'
+            ? 'Your review is live. Refresh the page to see it in the list below.'
+            : 'Your review is queued for a quick quality check and will appear here shortly.'}
+        </p>
       </div>
     )
   }
 
   return (
     <form onSubmit={handleSubmit} className="p-5 rounded-xl border border-border bg-card">
+      {/* Honeypot - bots fill all inputs; real users + screen readers skip aria-hidden + tabIndex=-1 */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', top: '-9999px', height: 0, width: 0, overflow: 'hidden' }}>
+        <label>
+          Website (leave blank)
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={hp}
+            onChange={e => setHp(e.target.value)}
+          />
+        </label>
+      </div>
       <p className="text-[15px] font-bold text-foreground mb-1">Have you used {toolName}?</p>
       <p className="text-[13px] text-muted-foreground mb-4">Share a 30-second review. No account needed.</p>
 

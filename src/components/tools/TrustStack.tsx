@@ -91,7 +91,7 @@ export default function TrustStack({
           <div className="h-1 rounded-full bg-border" />
           <p className="text-[11px] text-muted-foreground mt-1.5 leading-relaxed">
             {userReviewCount === 0
-              ? <a href={`#review-form`} className="text-blue-600 hover:underline">Be the first to review →</a>
+              ? <a href={`#review-form`} className="text-blue-600 hover:underline">Share your experience - reviews appear instantly →</a>
               : <>From verified MytheAi readers</>
             }
           </p>
