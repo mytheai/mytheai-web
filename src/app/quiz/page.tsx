@@ -31,6 +31,12 @@ export default function QuizPage() {
     const next = { ...answers, [key]: value }
     setAnswers(next)
 
+    if (typeof window !== 'undefined') {
+      const w = window as { plausible?: (event: string, options?: { props: Record<string, string | number> }) => void }
+      if (step === 1) w.plausible?.('QuizStart', { props: { firstAnswer: String(value) } })
+      else if (step === total) w.plausible?.('QuizSubmit', { props: { step: total } })
+    }
+
     if (step === total) {
       const finalAnswers = next as QuizAnswers
       router.push(`/quiz/result?stack=${encodeAnswers(finalAnswers)}`)

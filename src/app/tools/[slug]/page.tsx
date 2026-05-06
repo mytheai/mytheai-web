@@ -12,6 +12,7 @@ import SourcesBlock from '@/components/tools/SourcesBlock'
 import VerifyExternalBlock from '@/components/tools/VerifyExternalBlock'
 import EmbedBadge from '@/components/tools/EmbedBadge'
 import TrustStack from '@/components/tools/TrustStack'
+import WishlistButton from '@/components/tools/WishlistButton'
 import AuthorBio from '@/components/layout/AuthorBio'
 import { getAuthorJsonLd } from '@/data/authors'
 import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidence } from '@/lib/scoring'
@@ -463,6 +464,7 @@ export default async function ToolPage({
               Official site ↗
             </a>
           )}
+          <WishlistButton slug={tool.slug} name={tool.name} />
         </div>
 
         {/* Editor's verdict (auto-generated from data signals) */}

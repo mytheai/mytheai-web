@@ -2,14 +2,23 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const STORAGE_KEY = 'mytheai-newsletter-dismissed'
 const DISMISS_DAYS = 7
 
+// Pages with their own sticky mobile CTA - never show the newsletter bar there
+// to avoid bottom-of-screen z-40 collision.
+const PATHS_WITH_OWN_STICKY = [/^\/tools\/[^/]+$/]
+
 export default function StickyMobileBar() {
   const [hidden, setHidden] = useState(true)
+  const pathname = usePathname()
 
   useEffect(() => {
+    if (pathname && PATHS_WITH_OWN_STICKY.some(re => re.test(pathname))) {
+      return
+    }
     try {
       const raw = localStorage.getItem(STORAGE_KEY)
       if (raw) {
@@ -23,7 +32,7 @@ export default function StickyMobileBar() {
     }
     const t = window.setTimeout(() => setHidden(false), 4000)
     return () => window.clearTimeout(t)
-  }, [])
+  }, [pathname])
 
   function dismiss() {
     setHidden(true)

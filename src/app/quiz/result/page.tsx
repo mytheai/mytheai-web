@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import LogoImage from '@/components/ui/LogoImage'
 import NewsletterForm from '@/components/newsletter/NewsletterForm'
+import QuizCompleteTracker from '@/components/quiz/QuizCompleteTracker'
 import { createStaticClient } from '@/lib/supabase'
 import { getSiteStats } from '@/lib/stats'
 import {
@@ -160,6 +161,8 @@ export default async function QuizResultPage({ searchParams }: { searchParams: P
 
   return (
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
+
+      <QuizCompleteTracker role={answers.role} budget={answers.budget} toolCount={tools.length} />
 
       <nav className="flex items-center gap-1.5 text-[13px] text-muted-foreground mb-8">
         <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
