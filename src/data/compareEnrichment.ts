@@ -197,7 +197,7 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'slack-vs-teams': {
+  'slack-vs-microsoft-teams': {
     bottomLine: 'Slack and Microsoft Teams are the two leading workplace messaging platforms in 2026. Slack remains the better product on UX, integrations, and developer-friendly features (slash commands, workflow builder, custom bots). Teams is bundled with Microsoft 365, includes video conferencing without an upgrade, and is free for organisations already paying for Office. Pick Slack if your team values software quality, frequently uses third-party integrations, and chat is the core collaboration surface. Pick Teams if your organisation is already on Microsoft 365 and the bundled price (often $0 effective) outweighs the UX gap. Most large enterprises run Teams; most startups and tech-forward SMBs run Slack.',
     whenToPickA: 'You want the best chat-first collaboration tool with thousands of native integrations and a developer-friendly platform. Slack continues to lead on user experience and search quality. Best for tech companies, startups, and teams where chat is the primary work surface.',
     whenToPickB: 'Your organisation runs on Microsoft 365 and you want collaboration tools bundled with email, Office, and storage. Teams is free with most M365 subscriptions and includes video, file sharing, and chat in one app. Best for enterprises and large traditional organisations.',
@@ -593,18 +593,6 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'play-ht-vs-elevenlabs': {
-    bottomLine: 'Play.ht and ElevenLabs are leading AI voice generation platforms. ElevenLabs is the quality leader with the most realistic emotional range, multilingual support, and a real-time API used by AI phone agents. Play.ht is competitive on quality with broader stock voice library and a stronger team workflow for podcasters. ElevenLabs costs $5-$330/mo. Play.ht costs $0-$99/mo. ElevenLabs wins on raw voice quality and real-time use cases. Play.ht wins on stock voice variety and team collaboration features.',
-    whenToPickA: 'You produce podcasts, audiobooks, or videos with stock voices and want a polished team workflow. Play.ht has 800+ stock voices and a clean editor for long-form audio production. Best for podcasters, audiobook narrators, and team-based audio production.',
-    whenToPickB: 'You need the most realistic voice quality, voice cloning, real-time API, or multilingual support. ElevenLabs is the quality leader and the standard for AI phone agents, audiobook production, and creator voice work. Best for premium audio creators and AI app developers.',
-    faqs: [
-      { q: 'Which has more realistic voices?', a: 'ElevenLabs, in late 2026. The emotional range, breath sounds, and natural pacing are best in the category. Play.ht is competitive on neutral narration but lags on expressive voice work.' },
-      { q: 'Does Play.ht have voice cloning?', a: 'Yes. Play.ht Voice Cloning is similar in capability to ElevenLabs Instant Voice Cloning. Quality favours ElevenLabs slightly; Play.ht is faster to set up. For team-based podcast production, Play.ht workflow wins.' },
-      { q: 'Which is cheaper?', a: 'Roughly equivalent. Play.ht Free is more generous (12,500 chars/mo) than ElevenLabs Free (10K chars/mo). Top-tier pricing is similar. Pick based on use case fit, not cost.' },
-      { q: 'Can either generate voice in real time?', a: 'ElevenLabs has the more mature real-time API used by Vapi, Synthflow, Bland AI, and many production voice agents. Play.ht real-time is competitive but newer with smaller production deployment. For voice agents, ElevenLabs is the safer choice.' },
-    ],
-  },
-
   'capcut-vs-veed-io': {
     bottomLine: 'CapCut and VEED are video editors at different positioning. CapCut is mobile-first, owned by ByteDance, optimised for TikTok-style short video with massive template library and AI features. VEED is browser-based, professional-friendly with team collaboration, captions, and AI features. CapCut is free for individual mobile use; VEED costs $0-$30/mo. CapCut wins for mobile creators and TikTok-volume short-form. VEED wins for browser-based collaborative editing and longer-form content.',
     whenToPickA: 'You edit short video on mobile (TikTok, Reels, Shorts) and want the largest template library plus AI features at zero cost. CapCut is the standard tool for short-form social creators. Best for TikTok creators, mobile-first SMM teams, and casual users.',
@@ -737,7 +725,7 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'cursor-vs-github-copilot': {
+  'cursor-vs-copilot-microsoft': {
     bottomLine: 'Cursor and GitHub Copilot are the two most-used AI coding tools in 2026 and they target different jobs. Cursor is a full VS Code fork built around AI: agent mode that edits files autonomously, multi-file context, Composer for big refactors, and the strongest UX for AI-native coding. GitHub Copilot is the inline assistant inside VS Code, JetBrains, Neovim, and Visual Studio: tab autocomplete, Copilot Chat, and Copilot Workspace for issue-to-PR flows. Cursor costs $20/mo Pro; GitHub Copilot is $10/mo Individual or $19/mo Business. Most experienced engineers in 2026 pair them: Copilot for fast inline completions across daily work, Cursor for big refactors and agent-driven tasks. Pick Cursor if you want one tool optimised end-to-end for AI coding. Pick GitHub Copilot if you want strong autocomplete plus tight GitHub and JetBrains integration.',
     whenToPickA: 'You want AI as the primary coding modality, not a sidebar. Cursor agent mode can refactor across files, run terminal commands, and execute multi-step tasks. The Composer flow is unmatched for spec-to-code work. Best for engineers comfortable abandoning VS Code marketplace plugins and willing to live in a fork.',
     whenToPickB: 'You want strong autocomplete plus broad IDE coverage and tight GitHub workflow integration. Copilot is excellent in JetBrains products, Visual Studio, and inside the GitHub web editor. Best for teams already on GitHub Enterprise, JetBrains shops, and engineers who prefer their AI as augmentation rather than the main interface.',
@@ -749,7 +737,7 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'codeium-vs-github-copilot': {
+  'codeium-vs-copilot-microsoft': {
     bottomLine: 'Codeium and GitHub Copilot solve the same job (AI autocomplete plus chat in your IDE) at very different price points. Codeium is free for individual use with no quota cap on basic completions; the paid Pro tier is $15/mo. GitHub Copilot is $10/mo Individual after a 30-day trial. Quality is closer than the price suggests: Copilot has a longer track record and tighter VS Code integration; Codeium has aggressively closed the gap and now ships agent features, multi-IDE support (40+ editors including JetBrains, Vim, Eclipse, Xcode), and stronger free-tier limits. Pick Codeium if you want a genuinely free assistant or use a less common IDE. Pick Copilot if you are already in the GitHub ecosystem or value the larger user community for prompt patterns.',
     whenToPickA: 'You want a free or low-cost AI assistant with strong autocomplete and a generous chat tier. Codeium also wins on IDE breadth (Xcode, Eclipse, less common editors) and is the standard pick for teams that cannot justify per-seat Copilot fees. Best for students, hobbyists, indie devs, and Java or iOS shops with mixed IDEs.',
     whenToPickB: 'You live in VS Code or JetBrains, work with private GitHub repos, and want the most-tested AI assistant. Copilot has the largest user base, the most prompt-engineering content, and the smoothest GitHub PR review flow. Best for teams already on GitHub Enterprise.',
@@ -782,18 +770,6 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Is Gemini Advanced really bundled with Google One?', a: 'Yes. Google One AI Premium ($19.99/mo) includes 2TB Drive storage, Gemini Advanced (1.5 Pro / 2.0), and Gemini for Workspace inside Gmail, Docs, and Sheets. If you already pay for cloud storage, the AI is effectively free.' },
       { q: 'Which is better for coding?', a: 'Claude. Independent coding benchmarks (HumanEval, SWE-bench) consistently show Claude leading Gemini on code generation and refactoring tasks. Gemini is competitive but Claude is the default choice for engineers in 2026.' },
       { q: 'Does Gemini have better web search than Claude?', a: 'Yes. Gemini grounds responses in live Google Search with inline citations, which is a clear advantage for current-events queries. Claude added web search in 2025 but uses a smaller corpus. For "what is happening now" research, Gemini wins.' },
-    ],
-  },
-
-  'notion-vs-airtable': {
-    bottomLine: 'Notion and Airtable are both flexible workspace tools but optimise for different shapes of work. Notion is doc-first: pages, wikis, and notes that can hold lightweight databases. Airtable is database-first: powerful relational tables with views, automations, and a real backend you can query via API. Notion costs $0-20/user/mo with AI as a $10/user/mo add-on. Airtable costs $0-24/user/mo with Pro adding scripting, automations, and large-record limits. Most teams pick based on whether the primary work is documents (Notion) or structured data (Airtable). Sophisticated teams sometimes run both: Notion for the wiki and meeting notes, Airtable for the project tracker, CRM, or content calendar.',
-    whenToPickA: 'Your team writes a lot and wants the wiki, docs, meeting notes, and lightweight databases in one place. Notion default UX is unbeatable for unstructured knowledge work. Best for content teams, engineering wikis, startup docs, and teams under 50 where docs dominate the workflow.',
-    whenToPickB: 'Your work is structured data: project trackers, content calendars, CRM, inventory, applicant tracking. Airtable views (grid, kanban, calendar, gallery, gantt) and relational links are far more capable than Notion databases. Best for marketing teams, ops teams, and any workflow where you need API access to your data.',
-    faqs: [
-      { q: 'Can Notion replace Airtable as a database?', a: 'For light use yes, for serious data work no. Notion databases handle a few hundred records well but slow at scale, lack true relational features, and have weaker formula language. Airtable handles 50K+ records on standard plans and offers proper rollups, lookups, and synced tables.' },
-      { q: 'Can Airtable replace Notion for docs?', a: 'No. Airtable extension blocks include some doc features but the editing experience is far behind Notion. For wiki and long-form notes, Notion is the better tool by a wide margin.' },
-      { q: 'Which is cheaper?', a: 'Notion. Notion Plus is $10/user/mo and includes most workspace features. Airtable Team is $24/user/mo. For document-heavy use cases, Notion is roughly half the cost. For data-heavy use cases, the price gap is justified.' },
-      { q: 'Does either offer AI features?', a: 'Both. Notion AI ($10/user/mo) handles writing, summarisation, and database autofill. Airtable AI (included in higher tiers in 2026) generates field values, summaries, and translations across rows. Notion AI is stronger for prose; Airtable AI is stronger for structured data enrichment.' },
     ],
   },
 
@@ -869,7 +845,7 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'microsoft-365-copilot-vs-notion-ai': {
+  'copilot-microsoft-vs-notion-ai': {
     bottomLine: 'Microsoft 365 Copilot and Notion AI are AI assistants embedded in their parent workspaces, and the choice mostly tracks the choice of workspace. Microsoft 365 Copilot integrates into Word, Excel, PowerPoint, Outlook, and Teams, anchored on your Microsoft Graph (emails, files, calendar, chats). Notion AI integrates into Notion pages and databases, anchored on your wiki and project content. Microsoft 365 Copilot is $30/user/mo on top of an existing Microsoft 365 subscription. Notion AI is $10/user/mo on top of a Notion subscription. Pick Microsoft 365 Copilot if you are an enterprise on Microsoft 365 with Excel, PowerPoint, and Outlook at the centre of work. Pick Notion AI if your team works in Notion and your knowledge lives there.',
     whenToPickA: 'You work in Word, Excel, PowerPoint, and Outlook every day, and the most valuable context lives in your Microsoft Graph. Copilot summarising long Outlook threads, generating PowerPoint decks from a Word brief, or analysing an Excel sheet against your enterprise data is its core value. Best for enterprises 1000+ on Microsoft 365 E3 or E5.',
     whenToPickB: 'Your team writes, plans, and tracks work in Notion. Notion AI summarises long pages, autofills database fields, drafts content from prompts, and answers questions across the workspace. The integration is tight because the wiki is the context. Best for SaaS startups, knowledge-work teams, and any company that has chosen Notion as the source of truth.',
@@ -902,18 +878,6 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Does Jasper handle grammar correction?', a: 'Lightly. Jasper has spell check and basic grammar but is not the right tool to catch errors as you type across all your apps. Many writers run both: Jasper for generation, Grammarly for daily writing across email and docs.' },
       { q: 'Which has better brand voice control?', a: 'Jasper, by a clear margin. Brand Voice training in Jasper takes a few writing samples and conditions output to match. Grammarly Style Guide enforces basic brand rules but does not generate in voice. For multi-piece content campaigns, Jasper wins.' },
       { q: 'Can I use both?', a: 'Yes, and most marketing teams do. Jasper to draft, then Grammarly to polish across the rest of daily work (email, Slack, docs). Combined cost is around $50-75/seat/mo which is justifiable for content-heavy roles.' },
-    ],
-  },
-
-  'todoist-vs-ticktick': {
-    bottomLine: 'Todoist and TickTick are the two most popular cross-platform task managers and the choice usually comes down to preferred UI plus one or two key features. Todoist is the cleaner, slightly more polished tool with the best natural-language input ("Submit report Friday at 3pm") and a strong ecosystem of integrations. TickTick is the feature-rich underdog with built-in pomodoro timer, calendar view, habit tracker, and a more generous free tier. Todoist Pro is $5/mo. TickTick Premium is $35.99/year (about $3/mo). For most users, both work well; TickTick wins on price and built-in features, Todoist wins on polish and integrations.',
-    whenToPickA: 'You value polish, natural-language input, and a clean cross-platform experience. Todoist Karma, productivity dashboards, and integrations with Google Calendar, Slack, Outlook, and Zapier are best in class. Best for people who already use task managers and want the most refined option.',
-    whenToPickB: 'You want pomodoro, habit tracking, calendar view, and Eisenhower matrix all built in without paying for separate apps. TickTick free tier is more generous than Todoist free, and Premium is roughly half the price. Best for budget-conscious users and people who want one tool to cover tasks plus time tracking.',
-    faqs: [
-      { q: 'Which has better natural-language task entry?', a: 'Todoist, by a clear margin. Type "Call mom tomorrow at 6pm every Sunday p1" and Todoist parses date, recurrence, and priority correctly. TickTick handles dates and recurrence but is not as forgiving with phrasing.' },
-      { q: 'Does TickTick really include a pomodoro timer?', a: 'Yes, built in. Tap a task to start a focus session with configurable work/break intervals. The integration is tight: focus stats roll up into your productivity dashboard. To match this on Todoist, you need a separate timer app like Forest or Be Focused.' },
-      { q: 'Which has better calendar integration?', a: 'Todoist, marginally. Todoist two-way sync with Google Calendar is the cleaner of the two. TickTick has a built-in calendar view that some users prefer over toggling to Google Calendar.' },
-      { q: 'Is either really free for serious use?', a: 'TickTick free tier covers 99 active tasks plus 9 lists and is genuinely usable for solo work. Todoist free tier limits you to 5 active projects, which gets restrictive fast. For free use, TickTick is the practical pick.' },
     ],
   },
 
@@ -1025,18 +989,6 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'phind-vs-perplexity': {
-    bottomLine: 'Phind and Perplexity are AI search engines with different audiences. Phind is laser-focused on developer queries (code, error messages, framework docs) with a custom code-tuned model and direct integration with technical content. Perplexity is the broader consumer answer engine for research, news, and general questions. Phind is free with optional $20/mo Pro. Perplexity Pro is $20/mo. Pick Phind for any technical or coding query. Pick Perplexity for general research, news, and non-dev knowledge work.',
-    whenToPickA: 'You search for code, debugging, framework documentation, or technical comparisons. Phind ranking favours official docs, GitHub, and Stack Overflow, and the answer style includes code blocks and version-aware syntax. Best for developers and DevOps engineers.',
-    whenToPickB: 'You search for general knowledge, news, product comparisons, or any non-technical research. Perplexity broader coverage and polished answer composition is better for everyday research. Best for analysts, students, and knowledge workers.',
-    faqs: [
-      { q: 'Is Phind really better than Perplexity for coding?', a: 'Yes, by a noticeable margin in 2026. Phind training tunes for code retrieval and the custom Phind-405B model is competitive with frontier general models on coding benchmarks. For "how do I do X in Rust" or "what does this Python error mean", Phind answers tend to be more precise.' },
-      { q: 'Which has the larger free tier?', a: 'Phind, slightly. Phind Free includes most search functionality with rate limits; Perplexity Free is also usable but caps Pro Search and model choice. For developers, Phind Free covers daily work.' },
-      { q: 'Can Perplexity match Phind on dev queries?', a: 'Pretty close on many queries. Perplexity routes to GPT-4o or Claude and these models are strong at coding. The gap is mostly that Perplexity does not bias retrieval toward technical sources the way Phind does.' },
-      { q: 'Should I use both?', a: 'Many engineers do. Phind for in-IDE-style technical search; Perplexity for broader research and product comparisons. Combined cost is $40/mo which is justified for heavy users.' },
-    ],
-  },
-
   'wrike-vs-asana': {
     bottomLine: 'Wrike and Asana are both established work management platforms competing for mid-market and enterprise teams in 2026. Asana is the cleaner, design-led tool with the strongest list and timeline views and broad SaaS adoption. Wrike is the more enterprise-flavoured option: deeper customisation, request forms, proofing for creative teams, and stronger Gantt and resource management. Asana Starter is $10.99/user/mo. Wrike Team is $9.80/user/mo. Pick Asana when team UX and adoption matter most. Pick Wrike for complex workflows, Gantt-heavy projects, or creative agency use.',
     whenToPickA: 'Your team values a clean UX, fast onboarding, and broad ecosystem. Asana adoption inside organisations is consistently faster because the UI is less intimidating. Best for SaaS companies, marketing teams, and any group where adoption rate matters more than feature depth.',
@@ -1097,7 +1049,7 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'notion-ai-vs-mem': {
+  'notion-ai-vs-mem-ai': {
     bottomLine: 'Notion AI and Mem take different sides of the AI-notes question. Notion AI bolts AI onto the popular all-in-one Notion workspace: write, summarise, autofill databases, ask the wiki. Mem is an AI-native notes app where AI is the foundation: every note auto-tags, auto-links, and is searchable by meaning rather than folder. Notion AI is a $10/user/mo add-on to Notion. Mem X is $15/user/mo. Pick Notion AI when your team is already on Notion and you want AI added to that. Pick Mem if you want a notes-first tool where AI organises your second brain automatically.',
     whenToPickA: 'Your team already runs on Notion and you want AI assistance for writing, summarising, and asking the wiki. Notion AI integration into the existing workspace is the path of least resistance for most teams. Best for SaaS teams already standardised on Notion.',
     whenToPickB: 'You want a personal notes app where AI is the organising principle, not a feature. Mem auto-linking, daily review, and meaning-based search are unique. Best for power note-takers, researchers, and individuals building a second brain.',
@@ -1397,18 +1349,6 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'chorus-vs-modjo': {
-    bottomLine: 'Chorus (now part of ZoomInfo) and Modjo are conversation intelligence tools that compete with Gong at different scales. Chorus is the broader, more enterprise tool with deep ZoomInfo integration, sales coaching, and pipeline intelligence. Modjo is the European-rooted alternative with strong multi-language support, GDPR-friendly architecture, and lower entry pricing. Both run enterprise custom pricing. Modjo entry is around $80/user/mo; Chorus is typically higher. Pick Chorus for ZoomInfo-integrated US-centric enterprise sales. Pick Modjo for European teams or multi-language conversation analysis.',
-    whenToPickA: 'You are a US enterprise already on ZoomInfo and want conversation intelligence integrated into the same data stack. Chorus and ZoomInfo combined produce a strong revenue intelligence picture. Best for established enterprise sales orgs with US-centric customer base.',
-    whenToPickB: 'You are a European company or have multi-language sales calls (English, French, German, Spanish, Italian). Modjo language support and GDPR architecture are genuinely better for European needs. Best for European sales teams and multi-region operations.',
-    faqs: [
-      { q: 'Which has better English conversation analysis?', a: 'Roughly equivalent in 2026 with Chorus marginally ahead on coaching depth. Both produce accurate transcripts, summaries, and deal warnings. The gap on English is small.' },
-      { q: 'How does Modjo handle multi-language?', a: 'Modjo native support covers French, German, Spanish, Italian, Dutch, and Portuguese with quality comparable to English. Chorus multi-language support is more recent and less polished. For European sales orgs, Modjo is the practical pick.' },
-      { q: 'Which is cheaper?', a: 'Modjo, generally. Entry around $80/user/mo vs Chorus often $120-160/user/mo at small scale. Negotiation matters at both - quoted prices rarely match published.' },
-      { q: 'Should I use Gong instead?', a: 'For most US enterprise sales orgs, Gong is still the default leader on conversation intelligence. Chorus is the alternative for ZoomInfo customers; Modjo is the alternative for European teams.' },
-    ],
-  },
-
   'colossyan-vs-heygen': {
     bottomLine: 'Colossyan and HeyGen are both AI avatar video tools that target corporate training, learning content, and marketing video. HeyGen is the more polished consumer-and-creator tool with the broadest avatar library, voice clones, and aggressive product velocity. Colossyan is the corporate-focused tool with translation features (auto-dub videos into 70+ languages), video templates for L&D, and team management. HeyGen Creator is $24/mo. Colossyan Starter is $27/mo. Pick HeyGen for the broadest avatar tool. Pick Colossyan for corporate training and multi-language learning content.',
     whenToPickA: 'You produce avatar videos for marketing, social, or general creator use. HeyGen avatar quality, voice clones, and template library are unmatched in 2026. Best for marketers, creators, and SMBs producing avatar-based content at scale.',
@@ -1493,18 +1433,6 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
     ],
   },
 
-  'seekout-vs-eightfold': {
-    bottomLine: 'SeekOut and Eightfold both target AI-driven talent acquisition but at different scales. Eightfold is the comprehensive AI talent intelligence platform with deep learning models for matching, internal mobility, and DEI analytics - used by large enterprises managing global talent pools. SeekOut is the AI-powered sourcing and recruitment tool focused on diverse candidate sourcing across the open web with strong signal-driven filters. Both run enterprise custom pricing typically $10K-$100K+ annually. Pick Eightfold for enterprise talent intelligence at scale. Pick SeekOut for AI-driven candidate sourcing with diverse-candidate focus.',
-    whenToPickA: 'You are an enterprise unifying talent acquisition, internal mobility, and workforce planning under one AI platform. Eightfold breadth and deep-learning matching are unmatched at scale. Best for Fortune 500 talent ops and global enterprises.',
-    whenToPickB: 'Your primary need is AI-driven candidate sourcing with diverse-candidate filters and signal-rich filtering across the open web. SeekOut sourcing is purpose-built and the diversity-recruitment workflow is genuinely differentiated. Best for in-house recruiting teams and agencies focused on hard-to-fill roles.',
-    faqs: [
-      { q: 'Are these substitutes or complements?', a: 'Increasingly substitutes at the enterprise level since Eightfold has expanded into sourcing. For primarily-sourcing use, SeekOut remains stronger. For talent-intelligence breadth, Eightfold wins.' },
-      { q: 'How does pricing compare?', a: 'Both run enterprise custom pricing. Eightfold tends to be more expensive at the same employee count because the platform is broader. SeekOut focused scope often translates to lower TCO for sourcing-heavy use.' },
-      { q: 'Which has better diversity sourcing?', a: 'SeekOut, by a clear margin. The diversity filters across open-web profiles are purpose-built and produce noticeably more diverse candidate slates. Eightfold has diversity analytics but the sourcing surface is less specialised.' },
-      { q: 'Should I look at Greenhouse or Lever instead?', a: 'Those are ATS (applicant tracking) tools - different category. SeekOut and Eightfold are sourcing and intelligence; ATS handles the pipeline once candidates apply. Most enterprises run both an ATS and one of these intelligence tools.' },
-    ],
-  },
-
   'talentlms-vs-absorb-lms': {
     bottomLine: 'TalentLMS and Absorb LMS are both well-rated learning management systems but target different organisation sizes. TalentLMS is the SMB-friendly LMS with a clean UX, generous free tier (up to 5 users), and predictable per-user pricing - widely adopted by SMB and mid-market. Absorb LMS is the enterprise-positioned platform with deep customisation, branded learner experience, advanced analytics, and Salesforce-grade integrations. TalentLMS Starter is $89/mo (40 users). Absorb LMS pricing is custom and typically starts $20K+/year. Pick TalentLMS for SMB with predictable per-user cost. Pick Absorb LMS for enterprise with brand customisation and deep analytics.',
     whenToPickA: 'You are SMB or mid-market deploying training without an enterprise budget. TalentLMS UX is genuinely simple, the free tier is usable, and pricing scales linearly. Best for SMB compliance training, customer education, and partner enablement.',
@@ -1538,18 +1466,6 @@ export const COMPARE_ENRICHMENT: Record<string, CompareEnrichment> = {
       { q: 'Which has better booker experience?', a: 'SavvyCal, by a clear margin. The overlay-calendar feature lets the booker see their own calendar alongside yours, ranked times de-emphasises the choice, and the UX is consistently rated as the best in the category.' },
       { q: 'Should I just use Calendly?', a: 'Calendly remains the broad default and is fine for most users. Cal.com is the open-source alternative; SavvyCal is the premium polish alternative. Pick based on whether self-hosting or booker experience is the priority.' },
       { q: 'Which has better team features?', a: 'Cal.com, by a clear margin. Round-robin, collective scheduling, and routing form workflows are more developed. SavvyCal team features are growing but less mature.' },
-    ],
-  },
-
-  'clockwise-vs-reclaim-ai': {
-    bottomLine: 'Clockwise and Reclaim AI both auto-manage your calendar with AI but at different angles. Clockwise focuses on creating focus time across teams by intelligently shuffling meetings to maximise contiguous deep-work blocks. Reclaim AI is the broader smart-scheduling tool that auto-blocks time for tasks, habits, 1:1s, and meetings on top of intelligent scheduling. Clockwise Teams is $9.75/user/mo. Reclaim AI Lite is free; Pro is $10/user/mo. Pick Clockwise for team-wide focus-time optimisation. Pick Reclaim AI for personal smart scheduling and task time-blocking.',
-    whenToPickA: 'You manage a team of knowledge workers and want to maximise team-wide focus time by intelligently shuffling meetings. Clockwise team-coordination is unmatched and the focus-time analytics are useful for managers. Best for engineering teams, design teams, and any group where deep work is critical.',
-    whenToPickB: 'You want personal smart scheduling that auto-blocks tasks, habits, and 1:1s on top of meetings, plus intelligent rescheduling when conflicts hit. Reclaim feature breadth covers more of the personal calendar workflow. Best for individuals managing complex personal calendars.',
-    faqs: [
-      { q: 'Are these substitutes?', a: 'They overlap but solve different primary jobs. Clockwise is team focus-time optimisation. Reclaim AI is personal smart scheduling. Some users run both - Clockwise at the team level, Reclaim AI for personal task blocking.' },
-      { q: 'Which has the better free tier?', a: 'Reclaim AI, clearly. Reclaim Lite is free with smart-scheduling and task-blocking. Clockwise has a free tier but caps focus-time features.' },
-      { q: 'Which has better Google Calendar integration?', a: 'Roughly equivalent in 2026. Both work natively with Google Calendar and Outlook. Reclaim integration with task tools (Asana, Linear, Todoist) is broader.' },
-      { q: 'Should I use Motion instead?', a: 'Motion is comparable to Reclaim AI but more aggressive on full task management plus calendar. For personal smart scheduling at lower cost, Reclaim wins; for full all-in-one task and calendar, Motion competes.' },
     ],
   },
 
