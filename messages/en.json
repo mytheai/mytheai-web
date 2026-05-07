@@ -1,6 +1,7 @@
 {
   "Header": {
     "tools": "Tools",
+    "tasks": "Tasks",
     "compare": "Compare",
     "top10": "Top 10",
     "byRole": "By Role",

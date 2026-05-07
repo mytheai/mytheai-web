@@ -14,7 +14,7 @@ export const revalidate = 86400
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createStaticClient()
 
-  const [{ data: toolsData }, { data: comparisonsData }, { data: altToolsData }] = await Promise.all([
+  const [{ data: toolsData }, { data: comparisonsData }, { data: altToolsData }, { data: tasksData }] = await Promise.all([
     supabase.from('tools').select('slug,updated_at'),
     supabase.from('comparisons').select('slug,updated_at'),
     supabase
@@ -22,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .select('slug,updated_at')
       .or('trending.eq.true,featured.eq.true,editor_pick.eq.true')
       .limit(150),
+    supabase.from('tasks').select('slug,updated_at').eq('status', 'published'),
   ])
 
   const toolUrls: MetadataRoute.Sitemap = (toolsData ?? []).map(t => ({
@@ -69,6 +70,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const useCaseUrls: MetadataRoute.Sitemap = USE_CASES.map(u => ({
     url: `https://mytheai.com/use-case/${u.slug}`,
     lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.75,
+  }))
+
+  const taskUrls: MetadataRoute.Sitemap = (tasksData ?? []).map(t => ({
+    url: `https://mytheai.com/tasks/${t.slug}`,
+    lastModified: new Date(t.updated_at),
     changeFrequency: 'weekly',
     priority: 0.75,
   }))
@@ -126,6 +134,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     { url: 'https://mytheai.com/glossary', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
     { url: 'https://mytheai.com/use-case', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.75 },
+    { url: 'https://mytheai.com/tasks', lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
     ...toolUrls,
     ...compareUrls,
     ...alternativesUrls,
@@ -134,6 +143,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...blogUrls,
     ...glossaryUrls,
     ...useCaseUrls,
+    ...taskUrls,
     ...authorUrls,
   ]
 }
