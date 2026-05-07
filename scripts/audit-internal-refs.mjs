@@ -1,5 +1,6 @@
 // S109 IRIA: audit /tools/[slug] references across blog MDX, top10.ts, compareEnrichment.ts
 // against the live tools table. Reports broken refs in JSON + summary.
+// S123: extended to also audit hardcoded /top-10/, /categories/, /blog/ hrefs in src + content.
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -8,6 +9,8 @@ import { Client } from 'pg'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const WEB_ROOT = path.join(__dirname, '..')
 const BLOG_DIR = path.join(WEB_ROOT, 'content', 'blog')
+const SRC_DIR = path.join(WEB_ROOT, 'src')
+const MOCK_PATH = path.join(WEB_ROOT, 'src', 'data', 'mock.ts')
 const TOP10_PATH = path.join(WEB_ROOT, 'src', 'data', 'top10.ts')
 const COMPARE_PATH = path.join(WEB_ROOT, 'src', 'data', 'compareEnrichment.ts')
 
@@ -101,6 +104,53 @@ while ((km = keyRe.exec(compareTxt)) !== null) {
   if (!live.has(b)) compareBroken.push({ pair: key, slug: b, role: 'B' })
 }
 
+// 4. Scan src/**/*.{tsx,ts} + content/blog/**/*.mdx for HARDCODED literal hrefs
+//    /top-10/<slug>, /categories/<slug>, /blog/<slug>. Skip template literals (slug followed by `$`).
+const validTop10 = new Set(
+  [...top10Txt.matchAll(/^    slug:\s*'([^']+)'/gm)].map(m => m[1])
+)
+const mockTxt = await fs.readFile(MOCK_PATH, 'utf-8')
+const validCategories = new Set(
+  [...mockTxt.matchAll(/slug:\s*'([^']+)'/g)].map(m => m[1])
+)
+const validBlogs = new Set(blogFiles.map(f => f.replace(/\.mdx$/, '')))
+
+const hrefBroken = { top10: [], category: [], blog: [] }
+
+async function walk(dir) {
+  const entries = await fs.readdir(dir, { withFileTypes: true })
+  for (const e of entries) {
+    const p = path.join(dir, e.name)
+    if (e.isDirectory()) {
+      if (e.name === 'node_modules' || e.name === '.next' || e.name === '.archive') continue
+      await walk(p)
+    } else if (/\.(tsx|ts|mdx)$/.test(e.name)) {
+      const txt = await fs.readFile(p, 'utf-8')
+      const lines = txt.split('\n')
+      lines.forEach((ln, i) => {
+        const scan = (re, validSet, bucket) => {
+          let m
+          while ((m = re.exec(ln)) !== null) {
+            const slug = m[1]
+            // Skip if next char is `$` (template literal continuation)
+            const nextIdx = m.index + m[0].length
+            if (ln[nextIdx] === '$') continue
+            if (!validSet.has(slug)) {
+              bucket.push({ file: path.relative(WEB_ROOT, p), line: i + 1, slug })
+            }
+          }
+        }
+        // Slash must be preceded by quote/paren/whitespace/bracket - excludes template-literal continuations
+        scan(/[\s"'(\[]\/top-10\/([a-z0-9][a-z0-9-]*)/g, validTop10, hrefBroken.top10)
+        scan(/[\s"'(\[]\/categories\/([a-z0-9][a-z0-9-]*)/g, validCategories, hrefBroken.category)
+        scan(/[\s"'(\[]\/blog\/([a-z0-9][a-z0-9-]*)/g, validBlogs, hrefBroken.blog)
+      })
+    }
+  }
+}
+await walk(SRC_DIR)
+await walk(BLOG_DIR)
+
 // Output
 const report = {
   blogs_scanned: blogFiles.length,
@@ -109,26 +159,46 @@ const report = {
   top10_broken: top10Broken,
   compare_broken: compareBroken,
   compare_chains_skipped: compareChains,
+  href_broken_top10: hrefBroken.top10,
+  href_broken_categories: hrefBroken.category,
+  href_broken_blogs: hrefBroken.blog,
   live_tool_count: live.size,
+  top10_list_count: validTop10.size,
+  categories_count: validCategories.size,
 }
 
 console.log('=== Internal Refs Audit ===')
 console.log(`Blogs scanned: ${blogFiles.length} (${blogAllRefs.size} distinct slugs referenced)`)
-console.log(`Live tools: ${live.size}`)
+console.log(`Live tools: ${live.size} | Top10 lists: ${validTop10.size} | Categories: ${validCategories.size}`)
 console.log()
-console.log(`Blog broken refs: ${blogBroken.length}`)
+console.log(`Blog broken /tools/ refs: ${blogBroken.length}`)
 blogBroken.slice(0, 30).forEach(b => console.log(`  ${b.file.padEnd(50)} -> /tools/${b.slug}`))
 if (blogBroken.length > 30) console.log(`  ...(${blogBroken.length - 30} more)`)
 console.log()
-console.log(`Top10 broken refs: ${top10Broken.length}`)
+console.log(`Top10 broken /tools/ refs: ${top10Broken.length}`)
 top10Broken.forEach(t => console.log(`  ${t.listSlug.padEnd(40)} (${t.kind}) -> ${t.slug}`))
 console.log()
-console.log(`Compare broken refs: ${compareBroken.length}`)
+console.log(`Compare broken /tools/ refs: ${compareBroken.length}`)
 compareBroken.forEach(c => console.log(`  ${c.pair.padEnd(40)} (${c.role}) -> ${c.slug}`))
 console.log()
 console.log(`Compare 3+ way chains skipped (manual review if needed): ${compareChains.length}`)
 compareChains.forEach(c => console.log(`  ${c}`))
+console.log()
+console.log(`Hardcoded /top-10/ broken refs: ${hrefBroken.top10.length}`)
+hrefBroken.top10.forEach(b => console.log(`  ${b.file}:${b.line} -> /top-10/${b.slug}`))
+console.log(`Hardcoded /categories/ broken refs: ${hrefBroken.category.length}`)
+hrefBroken.category.forEach(b => console.log(`  ${b.file}:${b.line} -> /categories/${b.slug}`))
+console.log(`Hardcoded /blog/ broken refs: ${hrefBroken.blog.length}`)
+hrefBroken.blog.forEach(b => console.log(`  ${b.file}:${b.line} -> /blog/${b.slug}`))
 
 // Write JSON for record
 await fs.writeFile(path.join(WEB_ROOT, 'audit-internal-refs.json'), JSON.stringify(report, null, 2))
 console.log('\nFull report -> audit-internal-refs.json')
+
+const totalBroken = blogBroken.length + top10Broken.length + compareBroken.length
+  + hrefBroken.top10.length + hrefBroken.category.length + hrefBroken.blog.length
+if (totalBroken > 0) {
+  console.error(`\nFAIL: ${totalBroken} broken internal refs across all dimensions.`)
+  process.exit(1)
+}
+console.log('\nPASS: 0 broken internal refs.')

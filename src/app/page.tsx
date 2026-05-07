@@ -274,7 +274,7 @@ export default async function HomePage() {
               { href: '/alternatives/chatgpt', label: tHero('popularChip1') },
               { href: '/tools?pricing=free', label: tHero('popularChip2') },
               { href: '/categories/code-ai', label: tHero('popularChip3') },
-              { href: '/top-10/best-seo-ai-tools', label: tHero('popularChip4') },
+              { href: '/top-10/best-ai-seo-tools', label: tHero('popularChip4') },
             ].map(p => (
               <Link
                 key={p.href}
