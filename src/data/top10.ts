@@ -3214,11 +3214,11 @@ export const TOP10_LISTS: Top10List[] = [
   {
     slug: 'best-workflow-automation-tools',
     title: 'Best AI Workflow Automation Tools 2026',
-    description: 'The top workflow automation platforms to connect your apps and eliminate repetitive tasks in 2026 - from no-code tools for business teams to developer-first platforms for building custom AI pipelines.',
+    description: 'The top workflow automation platforms to connect your apps and eliminate repetitive tasks in 2026 - from no-code tools for business teams to open-source developer platforms like n8n for building custom AI pipelines.',
     category: 'Automation',
     emoji: '🔗',
-    slugs: ['zapier', 'make-com', 'activepieces', 'pipedream', 'workato', 'bardeen', 'integrately', 'tray-io', 'albato'],
-    intro: 'Workflow automation tools in 2026 fall into two buckets: no-code platforms for business users connecting SaaS apps (Zapier, Make, Bardeen) and developer-focused platforms with programmability and AI agent steps (Pipedream, n8n, Workato). The line between them is blurring as no-code tools add code blocks and developer tools improve their visual builders. Pick the tool that matches who will build and maintain the automations, not just the use case.',
+    slugs: ['zapier', 'make-com', 'activepieces', 'n8n', 'pipedream', 'workato', 'bardeen', 'integrately', 'tray-io', 'albato'],
+    intro: 'Workflow automation tools in 2026 fall into two buckets: no-code platforms for business users connecting SaaS apps (Zapier, Make, Bardeen) and developer-focused platforms with programmability and AI agent steps (n8n, Pipedream, Workato). The line between them is blurring as no-code tools add code blocks and developer tools improve their visual builders. n8n in particular has emerged as the most popular open-source option, bridging both worlds with a polished visual builder, native JavaScript nodes, and first-class AI Agent and LangChain integrations. Pick the tool that matches who will build and maintain the automations, not just the use case.',
     methodology: 'We rank workflow automation tools on six criteria: integration breadth (number of connected apps), reliability of executions at scale, debugging and observability, AI capabilities (LLM steps, agent nodes, AI-generated workflows), developer customisability, and pricing transparency for small to mid-sized teams.',
     picks: [
       {
@@ -3240,6 +3240,12 @@ export const TOP10_LISTS: Top10List[] = [
         limitation: 'Smaller integration catalog (200+) than commercial platforms; self-hosting requires DevOps skills.',
       },
       {
+        slug: 'n8n',
+        whyPicked: 'The most popular open-source workflow automation tool in 2026, sitting between Activepieces (no-code self-host) and Pipedream (developer SaaS). n8n combines a polished visual builder with native JavaScript code nodes, 400+ integrations, and first-class AI Agent and LangChain nodes for building AI-powered workflows. Self-hostable for free under a fair-code license, plus a managed cloud tier for teams who do not want to run their own infrastructure. The community edition is genuinely production-ready, not a stripped-down demo.',
+        bestFor: 'Developer-leaning ops teams and AI engineers who want self-hosting plus a polished visual builder, and anyone building AI agent workflows that mix LLM steps with traditional integrations.',
+        limitation: 'Fair-code license restricts certain commercial reselling scenarios; learning curve sits between Zapier and Pipedream; cloud tier execution limits on lower plans can surprise teams who scale fast.',
+      },
+      {
         slug: 'pipedream',
         whyPicked: 'The developer-first workflow platform. Pipedream lets you mix visual workflow nodes with custom code in Node.js, Python, and Go. Most flexible for developers who need custom logic or integrations not covered by no-code tools.',
         bestFor: 'Developers building custom automations that mix code with SaaS integrations.',
@@ -3258,7 +3264,7 @@ export const TOP10_LISTS: Top10List[] = [
         limitation: 'Browser-bound automations lock to one user\'s machine; not built for server-side workflows.',
       },
     ],
-    bottomLine: 'Pick Zapier if you want the simplest no-code automation with the most integrations. Pick Make if you outgrow Zapier and need branching logic. Pick Activepieces if you want self-hosted open-source automation. Pick Pipedream if you are a developer who wants code in your workflows. Pick Workato if you are enterprise IT building production integrations. Pick Bardeen if your work is browser-heavy and you want one-click automations on web pages.',
+    bottomLine: 'Pick Zapier if you want the simplest no-code automation with the most integrations. Pick Make if you outgrow Zapier and need branching logic. Pick Activepieces if you want a Zapier-style self-hosted experience. Pick n8n if you want the best open-source option for AI workflows with a polished visual builder and JavaScript escape hatch. Pick Pipedream if you are a developer who wants full code in your workflows. Pick Workato if you are enterprise IT building production integrations. Pick Bardeen if your work is browser-heavy and you want one-click automations on web pages.',
     faqs: [
       {
         q: 'Is Zapier or Make cheaper at scale?',
@@ -3266,7 +3272,7 @@ export const TOP10_LISTS: Top10List[] = [
       },
       {
         q: 'Do these tools support AI agents?',
-        a: 'Yes, all six. Zapier, Make, Pipedream, n8n, Workato, and Activepieces have all added LLM-powered nodes and (in some cases) full agent capabilities through 2024-2026. The depth varies: Zapier and Make have the most polished AI Builder UIs; Pipedream and n8n offer the most flexibility for engineers.',
+        a: 'Yes, all seven. Zapier, Make, Activepieces, n8n, Pipedream, Workato, and Bardeen have all added LLM-powered nodes and (in some cases) full agent capabilities through 2024-2026. The depth varies: Zapier and Make have the most polished AI Builder UIs; n8n and Pipedream offer the most flexibility for engineers (n8n in particular has dedicated AI Agent and LangChain nodes built into the visual canvas).',
       },
       {
         q: 'Can I self-host any of these?',
