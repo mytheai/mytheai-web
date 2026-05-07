@@ -13,9 +13,9 @@ Run through this list right before deploying the final pre-pause version. ~45 mi
 
 Open production URL in incognito mode. Open DevTools → Network → filter "plausible". Then:
 
-- [ ] Click any tool's "Visit →" on homepage Editor's Picks → see `event=Outbound, props.tool=card` POST to plausible.io/api/event
+- [ ] Open `/tools` directory → click any tool card's "Visit →" → see `event=Outbound, props.tool=card` POST to plausible.io/api/event (homepage Editor's Picks intentionally route to `/tools/[slug]` detail, NOT direct Outbound — brand-positioning is decision-first)
 - [ ] Open `/tools/chatgpt` → click hero "Visit ChatGPT →" → see `event=Outbound, props.tool=detail-hero`
-- [ ] Open `/compare/chatgpt-vs-claude` → click winner "Visit" → see `event=Outbound, props.tool=compare-winner`
+- [ ] Open `/compare/chatgpt-vs-claude` → click winner "Visit" → see `event=Outbound, props.tool=compare-cta-a` or `compare-cta-b` (live emits cta-a/b, spec said winner — cosmetic naming drift, both fire correctly)
 - [ ] Open `/quiz` → answer first question → see `event=QuizStart`
 - [ ] Complete the quiz to `/quiz/result` → see `event=QuizComplete` with role + budget props
 - [ ] **NEW (S110 wave 2):** Open `/tools/notion-ai` → click ♡ Save → see `event=WishlistAdd, props.tool=notion-ai`. Click again → `WishlistRemove`.
