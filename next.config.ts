@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: '/compare/zapier-vs-make', destination: '/compare/zapier-vs-make-com', permanent: true },
+      { source: '/roles', destination: '/top-10#by-role', permanent: true },
     ]
   },
   async headers() {

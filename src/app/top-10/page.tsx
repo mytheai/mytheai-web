@@ -2,6 +2,7 @@ import { TOP10_LISTS } from '@/data/top10'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import Top10Grid from './Top10Grid'
+import ByRoleSection from '@/components/top10/ByRoleSection'
 import type { Metadata } from 'next'
 
 export const revalidate = 604800
@@ -12,9 +13,9 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://mytheai.com/top-10' },
 }
 
-// Filter: /top-10 hub shows USE-CASE lists only.
-// Role/persona/context-bound lists (best-ai-tools-for-X) live on /roles instead.
-// Direct URLs (/top-10/best-ai-tools-for-marketers) still resolve - only hub surfacing changes.
+// Filter: /top-10 hub shows USE-CASE lists only at the bottom grid.
+// Role/persona views render via <ByRoleSection /> at the top, sourced from /data/roles.ts.
+// Direct URLs (/top-10/best-ai-tools-for-marketers) still resolve.
 const USE_CASE_LISTS = TOP10_LISTS.filter(l => !l.slug.startsWith('best-ai-tools-for-'))
 
 // Featured use cases at the top - matches the 12 core categories.
@@ -61,14 +62,7 @@ export default async function Top10HubPage() {
         </p>
       </div>
 
-      <div className="mb-8 flex items-center gap-2 p-4 rounded-xl border border-blue-200 bg-blue-50/50 dark:bg-blue-900/10 dark:border-blue-800/40">
-        <span className="text-xl flex-shrink-0" aria-hidden="true">👤</span>
-        <p className="text-[13.5px] text-foreground">
-          Looking for tools by professional role?{' '}
-          <Link href="/roles" className="text-blue-600 font-semibold hover:underline">Browse by role →</Link>
-          <span className="text-muted-foreground"> (developer, marketer, designer, founder, student, sales, support, content creator)</span>
-        </p>
-      </div>
+      <ByRoleSection />
 
       {FEATURED_LISTS.length > 0 && (
         <section className="mb-10">

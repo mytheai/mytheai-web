@@ -411,7 +411,7 @@ export default async function HomePage() {
 
         {/* FIND TOOLS FOR YOUR ROLE */}
         <section aria-label="Find tools by role">
-          <SectionHeader eyebrow={tSection('rolesEyebrow')} title={tSection('rolesTitle')} viewAll={`${tSection('rolesViewAll')} →`} viewAllHref="/roles" />
+          <SectionHeader eyebrow={tSection('rolesEyebrow')} title={tSection('rolesTitle')} viewAll={`${tSection('rolesViewAll')} →`} viewAllHref="/top-10#by-role" />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {ROLE_KEYS.map(role => (
               <Link

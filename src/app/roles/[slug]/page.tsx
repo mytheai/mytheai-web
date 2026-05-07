@@ -100,7 +100,7 @@ function buildJsonLd(role: Role, tools: ToolRow[]) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
-      { '@type': 'ListItem', position: 2, name: 'By Role', item: 'https://mytheai.com/roles' },
+      { '@type': 'ListItem', position: 2, name: 'By Role', item: 'https://mytheai.com/top-10#by-role' },
       { '@type': 'ListItem', position: 3, name: role.title, item: `https://mytheai.com/roles/${role.slug}` },
     ],
   }
@@ -146,7 +146,7 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
         <nav className="flex items-center gap-1.5 text-[13px] text-muted-foreground mb-8">
           <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
           <span>/</span>
-          <Link href="/roles" className="hover:text-blue-600 transition-colors">By Role</Link>
+          <Link href="/top-10#by-role" className="hover:text-blue-600 transition-colors">By Role</Link>
           <span>/</span>
           <span className="text-foreground font-medium">{role.title}</span>
         </nav>
@@ -263,7 +263,7 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
         )}
 
         <div className="text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
-          See also: <Link href="/roles" className="text-blue-600 hover:underline">All roles</Link>
+          See also: <Link href="/top-10#by-role" className="text-blue-600 hover:underline">All roles</Link>
           <span className="mx-2">·</span>
           <Link href="/top-10" className="text-blue-600 hover:underline">Top 10 by use case</Link>
           <span className="mx-2">·</span>
