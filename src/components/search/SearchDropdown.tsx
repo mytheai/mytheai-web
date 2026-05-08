@@ -349,7 +349,7 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
               </div>
             ) : isLoading ? (
               <div className="p-6 text-center text-[13px] text-muted-foreground">
-                Loading 500+ tools...
+                Loading 585+ tools...
               </div>
             ) : results.length === 0 ? (
               <div className="p-6 text-center">
@@ -444,7 +444,7 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
           onChange={e => setQuery(e.target.value)}
           onFocus={() => { setIsOpen(true); ensureIndex() }}
           onKeyDown={handleKey}
-          placeholder="Search 500+ tools..."
+          placeholder="Search 585+ tools..."
           autoComplete="off"
           aria-label="Search AI tools"
           aria-expanded={dropdownVisible}

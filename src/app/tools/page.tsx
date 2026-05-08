@@ -4,13 +4,14 @@ import { getTranslations } from 'next-intl/server'
 import ToolCard from '@/components/tools/ToolCard'
 import SearchFilterBar from '@/components/tools/SearchFilterBar'
 import { createClient } from '@/lib/supabase'
+import { STATIC_TOOL_COUNT_DISPLAY } from '@/lib/stats'
 import type { Tool } from '@/types'
 
 export const revalidate = 3600
 
 export const metadata = {
-  title: 'All AI & SaaS Tools 2026 - Browse 500+ Tools | MytheAi',
-  description: 'Browse and filter 500+ AI & SaaS tools by category, pricing, and rating. Find the right tool for your workflow.',
+  title: `All AI & SaaS Tools 2026 - Browse ${STATIC_TOOL_COUNT_DISPLAY} Tools | MytheAi`,
+  description: `Browse and filter ${STATIC_TOOL_COUNT_DISPLAY} AI & SaaS tools by category, pricing, and rating. Find the right tool for your workflow.`,
 }
 
 const PAGE_SIZE = 24

@@ -9,12 +9,13 @@ import type { Tool } from '@/types'
 import NewsletterForm from '@/components/newsletter/NewsletterForm'
 import SearchDropdown from '@/components/search/SearchDropdown'
 import { computeWeightedScore, isValidScores, type ToolScores } from '@/lib/scoring'
+import { STATIC_TOOL_COUNT_DISPLAY } from '@/lib/stats'
 
 export const revalidate = 21600
 
 export const metadata: Metadata = {
   title: 'MytheAi - The Clearest Way to Choose AI Tools in 2026',
-  description: 'A decision-first directory of 500+ AI & SaaS tools. Editorial scores you can audit, side-by-side comparisons that pick a winner, verified pricing. No pay-to-rank.',
+  description: `A decision-first directory of ${STATIC_TOOL_COUNT_DISPLAY} AI & SaaS tools. Editorial scores you can audit, side-by-side comparisons that pick a winner, verified pricing. No pay-to-rank.`,
   alternates: { canonical: 'https://mytheai.com/' },
   openGraph: {
     title: 'MytheAi - The Clearest Way to Choose AI Tools',
@@ -41,7 +42,7 @@ const jsonLd = {
       '@id': 'https://mytheai.com/#website',
       name: 'MytheAi',
       url: 'https://mytheai.com',
-      description: 'Discover and compare 500+ AI & SaaS tools with honest reviews and side-by-side comparisons.',
+      description: `Discover and compare ${STATIC_TOOL_COUNT_DISPLAY} AI & SaaS tools with honest reviews and side-by-side comparisons.`,
       potentialAction: {
         '@type': 'SearchAction',
         target: {
@@ -144,6 +145,19 @@ async function getDirectoryStats() {
   }
 }
 
+async function getCategoryCounts(): Promise<Record<string, number>> {
+  const supabase = createStaticClient()
+  const counts: Record<string, number> = {}
+  await Promise.all(mockCategories.map(async cat => {
+    const { count } = await supabase
+      .from('tools')
+      .select('*', { count: 'exact', head: true })
+      .contains('tags', [cat.slug])
+    counts[cat.slug] = count ?? 0
+  }))
+  return counts
+}
+
 async function getTrending(): Promise<ToolRow[]> {
   const supabase = createStaticClient()
   const { data } = await supabase
@@ -216,12 +230,13 @@ function SectionHeader({ eyebrow, eyebrowColor = '#2563EB', title, viewAll, view
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function HomePage() {
-  const [editorPicks, trending, top10Data, stats, recentlyAdded, tHero, tTrust, tSection, tRoles] = await Promise.all([
+  const [editorPicks, trending, top10Data, stats, recentlyAdded, categoryCounts, tHero, tTrust, tSection, tRoles] = await Promise.all([
     getEditorPicks(),
     getTrending(),
     getTop10Data(),
     getDirectoryStats(),
     getRecentlyAdded(),
+    getCategoryCounts(),
     getTranslations('Hero'),
     getTranslations('TrustBar'),
     getTranslations('HomeSections'),
@@ -325,7 +340,7 @@ export default async function HomePage() {
                 <span className="text-2xl flex-shrink-0" aria-hidden="true">{cat.emoji}</span>
                 <div className="min-w-0">
                   <div className="text-[13px] font-semibold text-foreground truncate">{cat.name}</div>
-                  <div className="text-[12px] text-muted-foreground">{tSection('toolCount', { count: cat.tool_count })}</div>
+                  <div className="text-[12px] text-muted-foreground">{tSection('toolCount', { count: categoryCounts[cat.slug] ?? 0 })}</div>
                 </div>
               </Link>
             ))}

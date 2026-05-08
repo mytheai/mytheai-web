@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { createStaticClient } from '@/lib/supabase'
+import { getSiteStats } from '@/lib/stats'
 import type { Metadata } from 'next'
 import TasksHubSearch from '@/components/tasks/TasksHubSearch'
 
@@ -48,7 +49,7 @@ async function getAllTasks(): Promise<TaskRow[]> {
 }
 
 export default async function TasksHub() {
-  const tasks = await getAllTasks()
+  const [tasks, stats] = await Promise.all([getAllTasks(), getSiteStats()])
 
   const grouped = new Map<string, TaskRow[]>()
   for (const t of tasks) {
@@ -120,7 +121,7 @@ export default async function TasksHub() {
       )}
 
       <div className="mt-16 text-[12px] text-muted-foreground border border-border rounded-lg p-4 bg-card">
-        Don&apos;t see your task? <Link href="/tools" className="text-blue-600 hover:underline">Browse all 549 tools</Link> or <Link href="/quiz" className="text-blue-600 hover:underline">take the 90-second quiz</Link>.
+        Don&apos;t see your task? <Link href="/tools" className="text-blue-600 hover:underline">Browse all {stats.tools} tools</Link> or <Link href="/quiz" className="text-blue-600 hover:underline">take the 90-second quiz</Link>.
       </div>
 
     </div>

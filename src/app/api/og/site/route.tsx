@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   const title = searchParams.get('title') ?? 'MytheAi - Best AI & SaaS Tools 2026'
   const desc =
     searchParams.get('desc') ??
-    'Discover and compare 500+ AI & SaaS tools. Honest reviews, verified pricing. No pay-to-rank.'
+    'Discover and compare 585+ AI & SaaS tools. Honest reviews, verified pricing. No pay-to-rank.'
 
   return new ImageResponse(
     (

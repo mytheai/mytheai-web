@@ -313,7 +313,9 @@ export default async function ToolPage({
     } : undefined,
   }
 
-  // Editorial review JSON-LD with Person author for E-E-A-T
+  // Editorial review JSON-LD with Person author for E-E-A-T.
+  // positiveNotes/negativeNotes use schema.org ItemList → Google rich result
+  // surfaces pros/cons under SERP review snippets (supported since 2023).
   const editorialReviewJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Review',
@@ -321,6 +323,7 @@ export default async function ToolPage({
       '@type': 'SoftwareApplication',
       name: tool.name,
       applicationCategory: 'WebApplication',
+      operatingSystem: 'Web',
       url: `https://mytheai.com/tools/${slug}`,
     },
     reviewRating: {
@@ -330,7 +333,7 @@ export default async function ToolPage({
       worstRating: 1,
     },
     name: `${tool.name} editorial review`,
-    reviewBody: tool.tagline,
+    reviewBody: buildEditorVerdict(tool),
     author: getAuthorJsonLd(),
     publisher: {
       '@type': 'Organization',
@@ -339,6 +342,26 @@ export default async function ToolPage({
     },
     datePublished: tool.updated_at,
     dateModified: tool.updated_at,
+    ...(tool.pros && tool.pros.length > 0 ? {
+      positiveNotes: {
+        '@type': 'ItemList',
+        itemListElement: tool.pros.map((pro, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: pro,
+        })),
+      },
+    } : {}),
+    ...(tool.cons && tool.cons.length > 0 ? {
+      negativeNotes: {
+        '@type': 'ItemList',
+        itemListElement: tool.cons.map((con, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: con,
+        })),
+      },
+    } : {}),
   }
 
   const faqJsonLd = {

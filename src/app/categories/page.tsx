@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { mockCategories } from '@/data/mock'
+import { createStaticClient } from '@/lib/supabase'
 import type { Metadata } from 'next'
 
-export const revalidate = 604800
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'AI Tool Categories: Browse by Type | MytheAi',
@@ -15,9 +16,26 @@ export const metadata: Metadata = {
   },
 }
 
+// Real per-category counts from DB tags. mockCategories.tool_count is stale and ignored.
+async function getCategoryCounts(): Promise<Record<string, number>> {
+  const supabase = createStaticClient()
+  const counts: Record<string, number> = {}
+  await Promise.all(mockCategories.map(async cat => {
+    const { count } = await supabase
+      .from('tools')
+      .select('*', { count: 'exact', head: true })
+      .contains('tags', [cat.slug])
+    counts[cat.slug] = count ?? 0
+  }))
+  return counts
+}
+
 export default async function CategoriesPage() {
-  const t = await getTranslations('MiscPages')
-  const tSection = await getTranslations('HomeSections')
+  const [t, tSection, counts] = await Promise.all([
+    getTranslations('MiscPages'),
+    getTranslations('HomeSections'),
+    getCategoryCounts(),
+  ])
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
@@ -41,7 +59,7 @@ export default async function CategoriesPage() {
             <span className="text-3xl flex-shrink-0">{cat.emoji}</span>
             <div className="min-w-0 flex-1">
               <p className="text-[15px] font-bold text-foreground group-hover:text-blue-600 transition-colors">{cat.name}</p>
-              <p className="text-[13px] text-muted-foreground">{tSection('toolCount', { count: cat.tool_count })}</p>
+              <p className="text-[13px] text-muted-foreground">{tSection('toolCount', { count: counts[cat.slug] ?? 0 })}</p>
             </div>
             <span className="text-muted-foreground text-[13px] flex-shrink-0">→</span>
           </Link>

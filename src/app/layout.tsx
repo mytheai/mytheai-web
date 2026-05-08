@@ -7,6 +7,7 @@ import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import StickyMobileBar from '@/components/newsletter/StickyMobileBar'
+import { STATIC_TOOL_COUNT_DISPLAY } from '@/lib/stats'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -16,7 +17,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'MytheAi - Best AI & SaaS Tools 2026 | Reviews, Comparisons & Rankings',
-  description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, side-by-side comparisons, verified pricing - no pay-to-rank. Updated weekly.',
+  description: `Discover, compare and review ${STATIC_TOOL_COUNT_DISPLAY} AI & SaaS tools. Honest rankings, side-by-side comparisons, verified pricing - no pay-to-rank. Updated weekly.`,
   metadataBase: new URL('https://mytheai.com'),
   alternates: { canonical: '/' },
   openGraph: {
@@ -25,13 +26,13 @@ export const metadata: Metadata = {
     siteName: 'MytheAi',
     locale: 'en_US',
     title: 'MytheAi - Best AI & SaaS Tools 2026 | Reviews, Comparisons & Rankings',
-    description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, side-by-side comparisons, verified pricing - no pay-to-rank.',
+    description: `Discover, compare and review ${STATIC_TOOL_COUNT_DISPLAY} AI & SaaS tools. Honest rankings, side-by-side comparisons, verified pricing - no pay-to-rank.`,
     images: [{ url: '/api/og/site', width: 1200, height: 630, alt: 'MytheAi - AI & SaaS Tools Directory' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'MytheAi - Best AI & SaaS Tools 2026',
-    description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, verified pricing - no pay-to-rank.',
+    description: `Discover, compare and review ${STATIC_TOOL_COUNT_DISPLAY} AI & SaaS tools. Honest rankings, verified pricing - no pay-to-rank.`,
     images: ['/api/og/site'],
   },
   manifest: '/manifest.json',
@@ -72,7 +73,7 @@ const organizationSchema = {
     width: 512,
     height: 512,
   },
-  description: 'Discover, compare and review 500+ AI & SaaS tools. Honest rankings, verified pricing - no pay-to-rank.',
+  description: `Discover, compare and review ${STATIC_TOOL_COUNT_DISPLAY} AI & SaaS tools. Honest rankings, verified pricing - no pay-to-rank.`,
   sameAs: [
     'https://twitter.com/mytheai',
     'https://www.linkedin.com/company/mytheai',
