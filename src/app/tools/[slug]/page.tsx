@@ -49,6 +49,10 @@ interface ToolRow {
   use_cases: string[] | null
   scores: ToolScores | null
   scores_evidence: ToolScoresEvidence | null
+  tested_by: string | null
+  last_tested_at: string | null
+  hands_on_notes: string | null
+  avoid_if: string | null
   updated_at: string
 }
 
@@ -497,6 +501,41 @@ export default async function ToolPage({
             {buildEditorVerdict(tool)}
           </p>
         </div>
+
+        {/* Hands-on review block - rendered only when editorial team has tested + written notes */}
+        {tool.tested_by && tool.hands_on_notes && (
+          <section className="mb-10 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-900/40 bg-emerald-50/40 dark:bg-emerald-950/10">
+            <div className="flex flex-wrap items-center gap-3 mb-4 pb-4 border-b border-emerald-200/60 dark:border-emerald-900/40">
+              <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-emerald-800 dark:text-emerald-300">
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fillRule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7 7a1 1 0 01-1.4 0l-3-3a1 1 0 111.4-1.4L9 11.6l6.3-6.3a1 1 0 011.4 0z" clipRule="evenodd" />
+                </svg>
+                Hands-on review
+              </span>
+              <span className="text-[12px] text-muted-foreground">
+                Tested by <strong className="text-foreground">{tool.tested_by}</strong>
+              </span>
+              {tool.last_tested_at && (
+                <span className="text-[12px] text-muted-foreground">
+                  · Last tested {new Date(tool.last_tested_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                </span>
+              )}
+            </div>
+
+            {tool.hands_on_notes.split('\n\n').filter(Boolean).map((para, i) => (
+              <p key={i} className="text-[15px] text-foreground leading-relaxed mb-4 last:mb-0">
+                {para}
+              </p>
+            ))}
+
+            {tool.avoid_if && (
+              <div className="mt-5 pt-5 border-t border-emerald-200/60 dark:border-emerald-900/40">
+                <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-amber-700 dark:text-amber-400 mb-2">Avoid if</p>
+                <p className="text-[14px] text-muted-foreground leading-relaxed">{tool.avoid_if}</p>
+              </div>
+            )}
+          </section>
+        )}
 
         <div className="grid md:grid-cols-3 gap-8">
 
