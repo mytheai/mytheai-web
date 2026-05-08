@@ -27,6 +27,14 @@ const nextConfig: NextConfig = {
       { source: '/top-10/best-workflow-automation-tools', destination: '/best/automation', permanent: true },
       { source: '/top-10/best-ai-sales-tools', destination: '/best/sales', permanent: true },
       { source: '/top-10/best-ai-customer-service-tools', destination: '/best/customer-support', permanent: true },
+      // S142 money page expansion: 7 more verticals
+      { source: '/top-10/best-ai-legal-tools', destination: '/best/legal', permanent: true },
+      { source: '/top-10/best-ai-tools-for-finance', destination: '/best/finance', permanent: true },
+      { source: '/top-10/best-ai-healthcare-tools', destination: '/best/healthcare', permanent: true },
+      { source: '/top-10/best-ai-marketing-tools', destination: '/best/marketing', permanent: true },
+      { source: '/top-10/best-ai-design-tools', destination: '/best/design', permanent: true },
+      { source: '/top-10/best-ai-research-tools', destination: '/best/research', permanent: true },
+      { source: '/top-10/best-ai-productivity-tools', destination: '/best/productivity', permanent: true },
     ]
   },
   async headers() {

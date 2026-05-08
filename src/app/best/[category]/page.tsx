@@ -20,6 +20,13 @@ const CATEGORY_TO_TOP10_SLUG: Record<string, string> = {
   automation: 'best-workflow-automation-tools',
   sales: 'best-ai-sales-tools',
   'customer-support': 'best-ai-customer-service-tools',
+  legal: 'best-ai-legal-tools',
+  finance: 'best-ai-tools-for-finance',
+  healthcare: 'best-ai-healthcare-tools',
+  marketing: 'best-ai-marketing-tools',
+  design: 'best-ai-design-tools',
+  research: 'best-ai-research-tools',
+  productivity: 'best-ai-productivity-tools',
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -32,6 +39,13 @@ const CATEGORY_LABELS: Record<string, string> = {
   automation: 'Automation',
   sales: 'Sales',
   'customer-support': 'Customer Support',
+  legal: 'Legal',
+  finance: 'Finance',
+  healthcare: 'Healthcare',
+  marketing: 'Marketing',
+  design: 'Design',
+  research: 'Research',
+  productivity: 'Productivity',
 }
 
 interface ToolRow {

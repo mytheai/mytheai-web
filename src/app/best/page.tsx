@@ -14,15 +14,22 @@ const CATEGORIES = [
   { slug: 'automation', label: 'Automation', emoji: '⚡', tagline: 'Best workflow automation platforms for SaaS connectivity and ops' },
   { slug: 'sales', label: 'Sales', emoji: '💼', tagline: 'Best AI tools for sales outreach, CRM intelligence, and pipeline ops' },
   { slug: 'customer-support', label: 'Customer Support', emoji: '🎧', tagline: 'Best AI tools for support inboxes, ticket deflection, and helpdesk ops' },
+  { slug: 'legal', label: 'Legal', emoji: '⚖️', tagline: 'Best AI tools for contract review, legal research, and compliance workflows' },
+  { slug: 'finance', label: 'Finance', emoji: '💰', tagline: 'Best AI tools for accounting, bookkeeping, expense tracking, and financial ops' },
+  { slug: 'healthcare', label: 'Healthcare', emoji: '🏥', tagline: 'Best AI tools for clinical documentation, medical scribes, and healthcare ops' },
+  { slug: 'marketing', label: 'Marketing', emoji: '📣', tagline: 'Best AI tools for marketing automation, campaigns, and content production' },
+  { slug: 'design', label: 'Design', emoji: '🎨', tagline: 'Best AI tools for UI design, prototyping, and brand asset generation' },
+  { slug: 'research', label: 'Research', emoji: '🔬', tagline: 'Best AI tools for academic research, literature review, and data synthesis' },
+  { slug: 'productivity', label: 'Productivity', emoji: '⚙️', tagline: 'Best AI tools for note-taking, task management, and personal productivity' },
 ]
 
 export const metadata: Metadata = {
-  title: 'Best AI Tools 2026: Hand-Tested Picks Across 9 Categories | MytheAi',
-  description: 'Editorial money pages with hand-tested picks across writing, coding, SEO, video, image, agents, automation, sales, and customer support. Tested by John Pham, no pay-to-rank.',
+  title: 'Best AI Tools 2026: Hand-Tested Picks Across 16 Categories | MytheAi',
+  description: 'Editorial money pages with hand-tested picks across writing, coding, SEO, video, image, agents, automation, sales, customer support, legal, finance, healthcare, marketing, design, research, and productivity. Tested by John Pham, no pay-to-rank.',
   alternates: { canonical: 'https://mytheai.com/best' },
   openGraph: {
     title: 'Best AI Tools 2026: Hand-Tested Picks | MytheAi',
-    description: 'Editorial money pages with hand-tested picks across 9 AI tool categories.',
+    description: 'Editorial money pages with hand-tested picks across 16 AI tool categories.',
     url: 'https://mytheai.com/best',
   },
 }
@@ -53,7 +60,7 @@ export default async function BestHubPage() {
           Best AI Tools, Tested by John Pham
         </h1>
         <p className="text-[15px] md:text-[16px] text-muted-foreground leading-relaxed max-w-2xl mb-3">
-          Editorial money pages with hand-tested picks across 9 AI tool categories. Each pick passes a real testing benchmark before it shows up in this directory. No pay-to-rank, no affiliate-influenced ordering.
+          Editorial money pages with hand-tested picks across 16 AI tool categories. Each pick passes a real testing benchmark before it shows up in this directory. No pay-to-rank, no affiliate-influenced ordering.
         </p>
         {handsOnCount > 0 && (
           <p className="inline-flex items-center gap-1.5 text-[13px] font-medium text-emerald-700 dark:text-emerald-400">

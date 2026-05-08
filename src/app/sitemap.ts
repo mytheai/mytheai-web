@@ -57,6 +57,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     'best-ai-writing-tools', 'best-code-ai-tools', 'best-ai-seo-tools',
     'best-ai-video-tools', 'best-ai-image-generators', 'best-ai-agent-tools',
     'best-workflow-automation-tools', 'best-ai-sales-tools', 'best-ai-customer-service-tools',
+    'best-ai-legal-tools', 'best-ai-tools-for-finance', 'best-ai-healthcare-tools',
+    'best-ai-marketing-tools', 'best-ai-design-tools', 'best-ai-research-tools',
+    'best-ai-productivity-tools',
   ])
   const top10Urls: MetadataRoute.Sitemap = TOP10_LISTS
     .filter(list => !REDIRECTED_TOP10_SLUGS.has(list.slug))
@@ -69,6 +72,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const bestCategoryUrls: MetadataRoute.Sitemap = [
     'writing','coding','seo','video','image','agents','automation','sales','customer-support',
+    'legal','finance','healthcare','marketing','design','research','productivity',
   ].map(c => ({
     url: `https://mytheai.com/best/${c}`,
     lastModified: new Date(),
