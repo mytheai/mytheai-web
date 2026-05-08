@@ -28,12 +28,29 @@ if (!apiKey) {
   process.exit(1)
 }
 
-const fetchPlausible = async (params) => {
+const fetchPlausible = async (params, attempt = 1) => {
   const qs = new URLSearchParams({ site_id: siteId, ...params }).toString()
   const url = `https://plausible.io/api/v1/stats/breakdown?${qs}`
-  const res = await fetch(url, { headers: { Authorization: `Bearer ${apiKey}` } })
-  if (!res.ok) throw new Error(`Plausible ${res.status}: ${await res.text()}`)
-  return res.json()
+  try {
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${apiKey}` } })
+    if (!res.ok) {
+      const status = res.status
+      const text = await res.text()
+      // Retry transient 5xx (Plausible infra timeouts) up to 3x with backoff
+      if (attempt < 3 && status >= 500) {
+        await new Promise(r => setTimeout(r, 800 * attempt))
+        return fetchPlausible(params, attempt + 1)
+      }
+      throw new Error(`Plausible ${status}: ${text.slice(0, 120)}`)
+    }
+    return res.json()
+  } catch (e) {
+    if (attempt < 3 && /fetch failed|ETIMEDOUT|ECONNRESET/i.test(e.message)) {
+      await new Promise(r => setTimeout(r, 600 * attempt))
+      return fetchPlausible(params, attempt + 1)
+    }
+    throw e
+  }
 }
 
 const periods = ['day', '7d']
@@ -52,7 +69,8 @@ for (const period of periods) {
       continue
     }
     events.results.forEach(r => {
-      console.log(`  ${r.name.padEnd(30)} visitors=${r.visitors}  events=${r.events}`)
+      const name = (r.name ?? '(unnamed)').toString()
+      console.log(`  ${name.padEnd(30)} visitors=${r.visitors}  events=${r.events}`)
     })
 
     // Outbound by tool surface
@@ -65,7 +83,9 @@ for (const period of periods) {
     })
     if (surfaces.results && surfaces.results.length > 0) {
       surfaces.results.forEach(r => {
-        console.log(`    ${r.name.padEnd(28)} visitors=${r.visitors}  events=${r.events}`)
+        // Plausible prop-breakdown returns the prop name as the key (e.g., r.tool), not r.name
+        const name = (r.tool ?? r.name ?? '(no tool prop)').toString()
+        console.log(`    ${name.padEnd(28)} visitors=${r.visitors}  events=${r.events}`)
       })
     } else {
       console.log('    (no outbound events)')
