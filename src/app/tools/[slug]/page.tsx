@@ -504,7 +504,7 @@ export default async function ToolPage({
 
         {/* Hands-on review block - rendered only when editorial team has tested + written notes */}
         {tool.tested_by && tool.hands_on_notes && (
-          <section className="mb-10 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-900/40 bg-emerald-50/40 dark:bg-emerald-950/10">
+          <section id="hands-on" className="mb-10 p-6 rounded-xl border-2 border-emerald-200 dark:border-emerald-900/40 bg-emerald-50/40 dark:bg-emerald-950/10 scroll-mt-24">
             <div className="flex flex-wrap items-center gap-3 mb-4 pb-4 border-b border-emerald-200/60 dark:border-emerald-900/40">
               <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-emerald-800 dark:text-emerald-300">
                 <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

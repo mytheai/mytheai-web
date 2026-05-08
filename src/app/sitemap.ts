@@ -53,11 +53,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  const top10Urls: MetadataRoute.Sitemap = TOP10_LISTS.map(list => ({
-    url: `https://mytheai.com/top-10/${list.slug}`,
+  const REDIRECTED_TOP10_SLUGS = new Set([
+    'best-ai-writing-tools', 'best-code-ai-tools', 'best-ai-seo-tools',
+    'best-ai-video-tools', 'best-ai-image-generators', 'best-ai-agent-tools',
+    'best-workflow-automation-tools', 'best-ai-sales-tools', 'best-ai-customer-service-tools',
+  ])
+  const top10Urls: MetadataRoute.Sitemap = TOP10_LISTS
+    .filter(list => !REDIRECTED_TOP10_SLUGS.has(list.slug))
+    .map(list => ({
+      url: `https://mytheai.com/top-10/${list.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }))
+
+  const bestCategoryUrls: MetadataRoute.Sitemap = [
+    'writing','coding','seo','video','image','agents','automation','sales','customer-support',
+  ].map(c => ({
+    url: `https://mytheai.com/best/${c}`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
-    priority: 0.7,
+    priority: 0.85,
   }))
 
   const glossaryUrls: MetadataRoute.Sitemap = GLOSSARY.map(g => ({
@@ -134,6 +150,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: 'https://mytheai.com/glossary', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
     { url: 'https://mytheai.com/use-case', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.75 },
     { url: 'https://mytheai.com/tasks', lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
+    { url: 'https://mytheai.com/best', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.85 },
+    ...bestCategoryUrls,
     ...toolUrls,
     ...compareUrls,
     ...alternativesUrls,

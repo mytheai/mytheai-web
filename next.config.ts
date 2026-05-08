@@ -17,6 +17,16 @@ const nextConfig: NextConfig = {
     return [
       { source: '/compare/zapier-vs-make', destination: '/compare/zapier-vs-make-com', permanent: true },
       { source: '/roles', destination: '/top-10#by-role', permanent: true },
+      // Money page consolidation: /top-10/best-* → /best/[category] (308 permanent)
+      { source: '/top-10/best-ai-writing-tools', destination: '/best/writing', permanent: true },
+      { source: '/top-10/best-code-ai-tools', destination: '/best/coding', permanent: true },
+      { source: '/top-10/best-ai-seo-tools', destination: '/best/seo', permanent: true },
+      { source: '/top-10/best-ai-video-tools', destination: '/best/video', permanent: true },
+      { source: '/top-10/best-ai-image-generators', destination: '/best/image', permanent: true },
+      { source: '/top-10/best-ai-agent-tools', destination: '/best/agents', permanent: true },
+      { source: '/top-10/best-workflow-automation-tools', destination: '/best/automation', permanent: true },
+      { source: '/top-10/best-ai-sales-tools', destination: '/best/sales', permanent: true },
+      { source: '/top-10/best-ai-customer-service-tools', destination: '/best/customer-support', permanent: true },
     ]
   },
   async headers() {
