@@ -21,7 +21,7 @@ const envText = await fs.readFile(path.join(__dirname, '..', '.env.local'), 'utf
 const env = Object.fromEntries(envText.split('\n').filter(l => l.includes('=')).map(l => { const [k, ...r] = l.split('='); return [k.trim(), r.join('=').trim()] }))
 
 const apiKey = env.PLAUSIBLE_API_KEY
-const siteId = env.PLAUSIBLE_SITE_ID || 'mytheai.io'
+const siteId = env.PLAUSIBLE_SITE_ID || 'mytheai.com'
 if (!apiKey) {
   console.error('Missing PLAUSIBLE_API_KEY in .env.local')
   console.error('Get one at: https://plausible.io/settings/personal/api-keys')
