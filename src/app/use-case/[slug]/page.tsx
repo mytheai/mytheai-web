@@ -206,7 +206,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
                           href={`/go/${t.slug}`}
                           target="_blank"
                           rel="noopener noreferrer sponsored"
-                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[12px] transition-colors whitespace-nowrap"
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[12px] transition-colors whitespace-nowrap plausible-event-name=Outbound plausible-event-tool=use-case"
                         >
                           Try {t.name} →
                         </a>

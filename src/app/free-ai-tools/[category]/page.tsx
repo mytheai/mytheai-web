@@ -289,7 +289,7 @@ export default async function FreeAIToolsPage({ params }: { params: Promise<{ ca
                       href={`/go/${tool.slug}`}
                       target="_blank"
                       rel="noopener noreferrer sponsored"
-                      className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-[12px] transition-colors flex-shrink-0 whitespace-nowrap self-center"
+                      className="inline-flex items-center justify-center px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-[12px] transition-colors flex-shrink-0 whitespace-nowrap self-center plausible-event-name=Outbound plausible-event-tool=free-ai-tools"
                     >
                       Try free →
                     </a>

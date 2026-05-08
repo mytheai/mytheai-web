@@ -287,7 +287,7 @@ export default async function AlternativesPage({ params }: { params: Promise<{ s
                           href={`/go/${alt.slug}`}
                           target="_blank"
                           rel="noopener noreferrer sponsored"
-                          className="inline-flex items-center px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[12px] transition-colors"
+                          className="inline-flex items-center px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[12px] transition-colors plausible-event-name=Outbound plausible-event-tool=alternatives"
                         >
                           Try {alt.name} →
                         </a>
