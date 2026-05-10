@@ -6,11 +6,13 @@ Created: 2026-05-10 (S161 freeze prep). Founder: John Pham.
 
 ---
 
-## Daily check (30 seconds, optional)
+## Daily check (none required)
 
-Open https://mytheai.com in a browser. If it loads and looks normal: done. If 5xx / blank / "Application error": jump to relevant scenario below.
+A GitHub Actions cron job (`.github/workflows/uptime-monitor.yml`) probes production every 5 minutes. On any failure it opens a GitHub Issue in this repo, and GitHub emails you (as the repo owner). If your inbox stays quiet, production is healthy.
 
-If you set up UptimeRobot per env-backup-2026-05-10.txt instructions, you do not need this manual check — alerts will email you.
+Monitor dashboard: https://github.com/mytheai/mytheai-web/actions/workflows/uptime-monitor.yml
+
+To pause monitoring (e.g. during planned maintenance): edit the workflow file and comment out the `schedule:` block, then push.
 
 ---
 
