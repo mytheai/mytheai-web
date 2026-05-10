@@ -28,18 +28,29 @@ Most likely cause: **Vercel env vars wiped** (this happened 2026-05-10, see CLAU
 
 ### Restore env vars
 
-1. Open `C:\Users\Admin\.claude\projects\d--MytheAi\env-backup-2026-05-10.txt` (or wherever you backed it up — 1Password recommended).
+**Source-of-truth:** all 6 env vars can be retrieved from their respective service dashboards. There is no plaintext backup file — pull values fresh each time to avoid stale-key drift.
+
+1. Open the source dashboards in 6 tabs and grab each value:
+
+   | Env var | Where to get it |
+   |---|---|
+   | `NEXT_PUBLIC_SUPABASE_URL` | https://supabase.com/dashboard/project/_/settings/api → Project URL |
+   | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Same page → Project API keys → `anon public` |
+   | `SUPABASE_SERVICE_ROLE_KEY` | Same page → Project API keys → `service_role` (CRITICAL — bypasses RLS, never log) |
+   | `DATABASE_URL` | https://supabase.com/dashboard/project/_/settings/database → Connection string → URI mode (replace `[YOUR-PASSWORD]` with the DB password from your Supabase signup) |
+   | `INDEXNOW_KEY` | https://www.bing.com/indexnow → existing key (or regenerate + re-upload `/public/<key>.txt`) |
+   | `PLAUSIBLE_API_KEY` | https://plausible.io/settings/api-keys |
+
 2. Open https://vercel.com/account/tokens, generate a 1-day token (label "incident-fix").
 3. In a terminal at `D:\MytheAi\web`:
    ```bash
    export VERCEL_TOKEN=<paste token>
    vercel link --project project-71zh9 --scope mytheais-projects --yes
    ```
-4. For each of the 6 env vars in the backup file:
+4. For each of the 6 env vars:
    ```bash
    echo "<VALUE>" | vercel env add <NAME> production
    ```
-   Run for: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `DATABASE_URL`, `INDEXNOW_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `PLAUSIBLE_API_KEY`.
 5. Redeploy: `vercel --prod`
 6. Wait ~30s, then verify: `curl -sI https://mytheai.com` returns `HTTP/2 200`.
 7. **Revoke the 1-day token** at https://vercel.com/account/tokens.
