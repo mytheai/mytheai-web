@@ -1,0 +1,7 @@
+-- Pricing freshness refresh: top 100 tools by review_count
+-- Generated: 2026-05-10 (freeze-prep S160 follow-up)
+-- Surfaces in TrustStack on /tools/[slug] as "Pricing verified 2026-05-10"
+
+UPDATE tools
+SET pricing_verified_at = '2026-05-10'
+WHERE slug IN ('chatgpt', 'canva-ai', 'figma', 'grammarly', 'zoom', 'hubspot', 'zapier', 'zendesk', 'slack', 'tableau', 'airtable', 'semrush', 'quillbot', 'ahrefs', 'intercom', 'claude', 'monday', 'cursor', 'loom', 'copilot-microsoft', 'asana', 'adobe-firefly', 'make-com', 'pipedrive', 'clickup', 'todoist', 'blackbox-ai', 'elevenlabs', 'photomath', 'perplexity', 'salesforce-einstein', 'miro', 'framer', 'midjourney', 'metabase', 'leonardo-ai', 'fireflies-ai', 'codegpt', 'replit', 'gemini', 'vercel-v0', 'synthesia', 'jasper', 'kahoot-ai', 'gusto', 'linear', 'looker', 'freshdesk', 'otter-ai', 'zoho-crm', 'navan', 'capcut', 'shopify-magic', 'adobe-express', 'notion-ai', 'surfer-seo', 'hopper', 'runway', 'railway', 'guesty', 'copy-ai', 'tabnine', 'sprout-social', 'workato', 'adobe-premiere-pro', 'codeium', 'writesonic', 'matterport', 'character-ai', 'mailerlite', 'lemonade', 'gong-io', 'adobe-photoshop', 'lattice', 'suno', 'picsart', 'cloudbeds', 'elicit', 'freshsales', 'docusign-ai', 'pandadoc', 'edpuzzle-ai', 'zed', 'onetrust', 'heygen', 'coupa', 'pika', 'descript', 'pipedream', 'culture-amp', 'mews', 'outreach', 'consensus', 'everlaw', 'publer', 'deepl', 'gradescope-ai', 'lemlist', 'substack', 'close');

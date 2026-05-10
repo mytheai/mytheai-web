@@ -53,3 +53,6 @@ scripts/final-audit-report.json
 scripts/final-audit-suspects.md
 scripts/dead-tools-report.json
 scripts/false-positives-suspects.md
+audit-internal-refs.json
+
+.vercel
