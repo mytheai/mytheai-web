@@ -37,6 +37,8 @@ const MANUAL_DEAD_SLUGS = [
   // S86b final audit 2026-05-04 (verified by reading body HTML):
   'chorus',          // chorus.ai serves redirect stub to zoominfo.com (absorbed product)
   'pyn',             // pyn.com returns "WordPress > Error" (acquired by Sana 2024, abandoned)
+  // S162 final pre-freeze 2026-05-10 (verified by reading body HTML):
+  'spiff',           // spiff.com redirects post-Salesforce-acquisition; spiff.io is "Spifftastic" personal blog (not the SaaS)
   // add more here after manual verification
 ]
 
