@@ -3,6 +3,8 @@
 // Schema.org Person JSON-LD is emitted from this data so search engines
 // see individual bylines instead of organization-level attribution.
 
+import { STATIC_TOOL_COUNT_DISPLAY } from '@/lib/stats-display'
+
 export interface Author {
   slug: string
   name: string
@@ -20,7 +22,7 @@ export const AUTHORS: Record<string, Author> = {
     slug: 'john-ethan',
     name: 'John Pham',
     role: 'Founder & Editor-in-Chief',
-    bio: 'Founder of MytheAi. Tracking and reviewing AI and SaaS tools since January 2026. Built MytheAi out of frustration with pay-to-rank listicles and SEO-driven AI directories that prioritize ad revenue over honest guidance. Hands-on testing across 585+ tools to date.',
+    bio: `Founder of MytheAi. Tracking and reviewing AI and SaaS tools since January 2026. Built MytheAi out of frustration with pay-to-rank listicles and SEO-driven AI directories that prioritize ad revenue over honest guidance. Hands-on testing across ${STATIC_TOOL_COUNT_DISPLAY} tools to date.`,
     url: 'https://mytheai.com/authors/john-ethan',
   },
 }

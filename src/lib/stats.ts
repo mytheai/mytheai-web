@@ -11,12 +11,14 @@ export interface SiteStats {
   tasks: number
 }
 
-// Display constants for static metadata exports (cannot resolve async data at build time).
-// Update once per quarter to match real catalog. Reads stale until next build.
-// Real-time numbers come from getSiteStats() in any server component that can await.
-export const STATIC_TOOL_COUNT_DISPLAY = '585+'
-export const STATIC_COMPARISON_COUNT_DISPLAY = '250+'
-export const STATIC_TASK_COUNT_DISPLAY = '500+'
+// Re-export display constants so existing server-side imports keep working.
+// New imports from client components or edge runtimes should pull directly
+// from './stats-display' to avoid bundling fs/path.
+export {
+  STATIC_TOOL_COUNT_DISPLAY,
+  STATIC_COMPARISON_COUNT_DISPLAY,
+  STATIC_TASK_COUNT_DISPLAY,
+} from './stats-display'
 
 export async function getSiteStats(): Promise<SiteStats> {
   const supabase = createStaticClient()

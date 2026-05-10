@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { NextRequest } from 'next/server'
+import { STATIC_TOOL_COUNT_DISPLAY } from '@/lib/stats-display'
 
 export const runtime = 'edge'
 
@@ -8,7 +9,7 @@ export async function GET(request: NextRequest) {
   const title = searchParams.get('title') ?? 'MytheAi - Best AI & SaaS Tools 2026'
   const desc =
     searchParams.get('desc') ??
-    'Discover and compare 585+ AI & SaaS tools. Honest reviews, verified pricing. No pay-to-rank.'
+    `Discover and compare ${STATIC_TOOL_COUNT_DISPLAY} AI & SaaS tools. Honest reviews, verified pricing. No pay-to-rank.`
 
   return new ImageResponse(
     (

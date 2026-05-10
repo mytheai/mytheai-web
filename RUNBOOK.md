@@ -145,7 +145,7 @@ Symptom: you committed + pushed but the change is not live after 5 minutes.
 After freeze prep (2026-05-10), expected baseline:
 - mytheai.com homepage: HTTP 200, ~0.5s response time
 - Sitemap: 1684 URLs
-- Tools in DB: 585
+- Tools in DB: 584
 - Tasks in DB: 506
 - Hands-on reviews (`tested_by IS NOT NULL`): 95
 - Money pages /best/[category]: 16 routes

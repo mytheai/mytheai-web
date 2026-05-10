@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import LogoImage from '@/components/ui/LogoImage'
+import { STATIC_TOOL_COUNT_DISPLAY } from '@/lib/stats-display'
 
 // Compact shape returned by /api/search-index
 interface CompactTool {
@@ -349,7 +350,7 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
               </div>
             ) : isLoading ? (
               <div className="p-6 text-center text-[13px] text-muted-foreground">
-                Loading 585+ tools...
+                Loading {STATIC_TOOL_COUNT_DISPLAY} tools...
               </div>
             ) : results.length === 0 ? (
               <div className="p-6 text-center">
@@ -444,7 +445,7 @@ export default function SearchDropdown({ variant, popular = POPULAR_QUERIES }: P
           onChange={e => setQuery(e.target.value)}
           onFocus={() => { setIsOpen(true); ensureIndex() }}
           onKeyDown={handleKey}
-          placeholder="Search 585+ tools..."
+          placeholder={`Search ${STATIC_TOOL_COUNT_DISPLAY} tools...`}
           autoComplete="off"
           aria-label="Search AI tools"
           aria-expanded={dropdownVisible}
