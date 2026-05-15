@@ -30,17 +30,37 @@ const recentDays = recentIdx >= 0 ? parseInt(args[recentIdx + 1] || '30', 10) : 
 
 let urls = []
 
+async function fetchSitemapEntries(sitemapUrl) {
+  const res = await fetch(sitemapUrl)
+  if (!res.ok) throw new Error(`sitemap fetch failed HTTP ${res.status} for ${sitemapUrl}`)
+  const xml = await res.text()
+  // Detect sitemap index: contains <sitemap><loc>...</loc></sitemap> entries
+  if (/<sitemapindex[\s>]/.test(xml)) {
+    const subSitemaps = [...xml.matchAll(/<sitemap>\s*<loc>([^<]+)<\/loc>/g)].map(m => m[1])
+    console.log(`  index has ${subSitemaps.length} sub-sitemap(s)`)
+    const all = []
+    for (const sub of subSitemaps) {
+      console.log(`  fetching ${sub}...`)
+      const subEntries = await fetchSitemapEntries(sub)
+      all.push(...subEntries)
+    }
+    return all
+  }
+  // Standard urlset
+  return [...xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>(?:\s*<lastmod>([^<]+)<\/lastmod>)?/g)]
+    .map(m => ({ loc: m[1], lastmod: m[2] }))
+}
+
 if (allFlag || recentDays !== null) {
   console.log(`Fetching sitemap ${SITEMAP_URL}...`)
-  const sitemapRes = await fetch(SITEMAP_URL)
-  if (!sitemapRes.ok) {
-    console.error(`ERROR: sitemap fetch failed HTTP ${sitemapRes.status}`)
+  let entries
+  try {
+    entries = await fetchSitemapEntries(SITEMAP_URL)
+  } catch (e) {
+    console.error(`ERROR: ${e.message}`)
     process.exit(1)
   }
-  const xml = await sitemapRes.text()
-  const entries = [...xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>(?:\s*<lastmod>([^<]+)<\/lastmod>)?/g)]
   urls = entries
-    .map(m => ({ loc: m[1], lastmod: m[2] }))
     .filter(e => {
       if (recentDays === null) return true
       if (!e.lastmod) return false

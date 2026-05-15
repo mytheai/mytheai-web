@@ -47,7 +47,15 @@ export const metadata: Metadata = {
     ],
     shortcut: '/favicon.ico',
   },
-  verification: { google: 'v1XXmGzPAUqEJsSXb3F1bl3TipZYYKmIObnmRK8N2oc' },
+  verification: {
+    google: 'v1XXmGzPAUqEJsSXb3F1bl3TipZYYKmIObnmRK8N2oc',
+    ...(process.env.NEXT_PUBLIC_YANDEX_VERIFICATION
+      ? { yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_BING_VERIFICATION
+      ? { other: { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION } }
+      : {}),
+  },
   robots: {
     index: true,
     follow: true,
@@ -114,6 +122,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             strategy="afterInteractive"
             defer
           />
+          {process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID && (
+            <Script
+              id="clarity-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID}");`,
+              }}
+            />
+          )}
         </NextIntlClientProvider>
       </body>
     </html>

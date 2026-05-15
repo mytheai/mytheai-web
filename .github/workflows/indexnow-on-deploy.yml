@@ -1,0 +1,61 @@
+name: IndexNow on Deploy
+
+# Auto-ping IndexNow (Bing + Yandex + Naver + Seznam) with recent URLs after every
+# production deploy. Speeds up Bing/Yahoo/DuckDuckGo indexing for fresh content.
+#
+# Trigger: push to master (= Vercel production build).
+# Behavior: wait 3 minutes for Vercel deploy + ISR refresh, then ping URLs modified
+# in the last 7 days. Manual workflow_dispatch supports "all URLs" fallback.
+#
+# Set up: 2026-05-15 SEO push S163.
+# Requires: INDEXNOW_KEY repo secret (matches /public/<KEY>.txt content).
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Ping scope'
+        required: true
+        default: 'recent'
+        type: choice
+        options:
+          - recent
+          - all
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Wait for Vercel deploy + ISR refresh
+        if: github.event_name == 'push'
+        run: sleep 180
+
+      - name: Write INDEXNOW_KEY to .env.local
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          if [ -z "$INDEXNOW_KEY" ]; then
+            echo "ERROR: INDEXNOW_KEY repo secret not set. Add at Settings → Secrets → Actions."
+            exit 1
+          fi
+          echo "INDEXNOW_KEY=$INDEXNOW_KEY" > .env.local
+
+      - name: Ping IndexNow (recent 7d)
+        if: github.event_name == 'push' || github.event.inputs.mode == 'recent'
+        run: node --env-file=.env.local scripts/indexnow-ping.mjs --recent 7
+
+      - name: Ping IndexNow (all URLs)
+        if: github.event.inputs.mode == 'all'
+        run: node --env-file=.env.local scripts/indexnow-ping.mjs --all
