@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import AuthorBio from '@/components/layout/AuthorBio'
 import { getSiteStats } from '@/lib/stats'
+import { getAuthorJsonLd, getAuthor } from '@/data/authors'
 
 export const revalidate = 86400
 
@@ -17,8 +18,46 @@ export const metadata: Metadata = {
 
 export default async function AboutPage() {
   const stats = await getSiteStats()
+  const founder = getAuthor('john-ethan')
+  // Person schema with stable @id so Organization.founder in layout.tsx can
+  // reference the same entity (cross-page entity graph). Bing entity-based
+  // search + Yandex IKS both weight Person + Organization linking heavily.
+  const founderPersonJsonLd = {
+    '@context': 'https://schema.org',
+    ...getAuthorJsonLd('john-ethan'),
+    '@id': 'https://mytheai.com/about#john-pham',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'MytheAi',
+      url: 'https://mytheai.com',
+    },
+    knowsAbout: [
+      'Artificial Intelligence tools',
+      'SaaS evaluation',
+      'Hands-on software testing',
+      'Editorial methodology',
+      'Affiliate disclosure standards',
+    ],
+  }
+  // ProfilePage wraps the Person so Google/Bing know /about is the canonical
+  // author profile page (Search Console Author profile signal since 2023).
+  const profilePageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    name: `${founder.name} - ${founder.role}, MytheAi`,
+    url: 'https://mytheai.com/about',
+    mainEntity: { '@id': 'https://mytheai.com/about#john-pham' },
+  }
   return (
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(founderPersonJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
+      />
 
       {/* Header */}
       <div className="mb-10">

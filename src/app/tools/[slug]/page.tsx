@@ -318,8 +318,20 @@ export default async function ToolPage({
   }
 
   // Editorial review JSON-LD with Person author for E-E-A-T.
+  // When hands_on_notes present (145/585 tools tested by John Pham), the full
+  // 1750-2800 char hands-on narrative becomes reviewBody - converts unique
+  // editorial depth from UI-only into machine-readable schema for Bing
+  // "Reviewed By" rich result + Yandex IKS E-A-T scoring. Falls back to
+  // auto-derived editor verdict for tools without hands-on testing.
   // positiveNotes/negativeNotes use schema.org ItemList → Google rich result
   // surfaces pros/cons under SERP review snippets (supported since 2023).
+  const hasHandsOn = Boolean(tool.tested_by && tool.hands_on_notes)
+  const reviewBodyText = hasHandsOn ? (tool.hands_on_notes as string) : buildEditorVerdict(tool)
+  // Map free-text tested_by to author slug. Currently always John Pham.
+  const reviewAuthor = getAuthorJsonLd(
+    tool.tested_by === 'John Pham' ? 'john-ethan' : undefined
+  )
+  const reviewDate = hasHandsOn && tool.last_tested_at ? tool.last_tested_at : tool.updated_at
   const editorialReviewJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Review',
@@ -336,16 +348,16 @@ export default async function ToolPage({
       bestRating: 5,
       worstRating: 1,
     },
-    name: `${tool.name} editorial review`,
-    reviewBody: buildEditorVerdict(tool),
-    author: getAuthorJsonLd(),
+    name: hasHandsOn ? `${tool.name} hands-on review by ${tool.tested_by}` : `${tool.name} editorial review`,
+    reviewBody: reviewBodyText,
+    author: reviewAuthor,
     publisher: {
       '@type': 'Organization',
       name: 'MytheAi',
       url: 'https://mytheai.com',
     },
-    datePublished: tool.updated_at,
-    dateModified: tool.updated_at,
+    datePublished: reviewDate,
+    dateModified: reviewDate,
     ...(tool.pros && tool.pros.length > 0 ? {
       positiveNotes: {
         '@type': 'ItemList',
