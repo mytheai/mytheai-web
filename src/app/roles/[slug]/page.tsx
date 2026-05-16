@@ -75,6 +75,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 function buildJsonLd(role: Role, tools: ToolRow[]) {
+  // Each pick wrapped in Review with Person author (matches /top-10/[slug]
+  // schema pattern). Without this, /roles items had no E-A-T attribution -
+  // unlike money pages and top10 lists which credit John Pham per pick. Bing
+  // entity-based search + Yandex IKS both weight Review.author=Person heavily.
   const itemList = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -86,12 +90,26 @@ function buildJsonLd(role: Role, tools: ToolRow[]) {
       position: i + 1,
       url: `https://mytheai.com/tools/${t.slug}`,
       item: {
-        '@type': 'SoftwareApplication',
-        name: t.name,
-        description: t.tagline,
-        applicationCategory: 'WebApplication',
-        operatingSystem: 'Web',
-        offers: { '@type': 'Offer', price: t.pricing_starting_price ?? 0, priceCurrency: 'USD' },
+        '@type': 'Review',
+        name: `${t.name} as a pick for ${role.title.toLowerCase()}s`,
+        itemReviewed: {
+          '@type': 'SoftwareApplication',
+          name: t.name,
+          description: t.tagline,
+          applicationCategory: 'WebApplication',
+          operatingSystem: 'Web',
+          url: `https://mytheai.com/tools/${t.slug}`,
+          offers: { '@type': 'Offer', price: t.pricing_starting_price ?? 0, priceCurrency: 'USD' },
+        },
+        reviewRating: t.rating > 0 ? {
+          '@type': 'Rating',
+          ratingValue: t.rating,
+          bestRating: 5,
+          worstRating: 1,
+        } : undefined,
+        reviewBody: `${t.tagline} Curated as part of the ${role.title} AI stack on MytheAi.`,
+        author: getAuthorJsonLd(),
+        publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
       },
     })),
   }
