@@ -16,6 +16,7 @@ export default function Header() {
     { href: '/tasks', label: t('tasks') },
     { href: '/compare', label: t('compare') },
     { href: '/top-10', label: t('top10') },
+    { href: '/best', label: t('best') },
     { href: '/blog', label: t('blog') },
   ]
 
