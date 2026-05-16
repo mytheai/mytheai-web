@@ -123,9 +123,19 @@ export default async function ComparePage({
     publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
   }
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
+      { '@type': 'ListItem', position: 2, name: 'Compare', item: 'https://mytheai.com/compare' },
+    ],
+  }
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
         <div className="mb-8">
           <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">{t('compareEyebrow')}</p>

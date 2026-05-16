@@ -44,7 +44,18 @@ export default async function BestHubPage() {
   const handsOnCount = await getHandsOnCount()
   const year = new Date().getFullYear()
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
+      { '@type': 'ListItem', position: 2, name: 'Best AI Tools', item: 'https://mytheai.com/best' },
+    ],
+  }
+
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     <div className="max-w-5xl mx-auto px-4 md:px-5 py-10 md:py-14">
       <nav className="flex items-center gap-1.5 text-[13px] text-muted-foreground mb-8">
         <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
@@ -99,5 +110,6 @@ export default async function BestHubPage() {
         </p>
       </div>
     </div>
+    </>
   )
 }

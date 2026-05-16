@@ -146,7 +146,18 @@ export default async function ToolsPage({
   const from = total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1
   const to = Math.min(page * PAGE_SIZE, total)
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
+      { '@type': 'ListItem', position: 2, name: 'All Tools', item: 'https://mytheai.com/tools' },
+    ],
+  }
+
   return (
+    <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-8">
@@ -222,5 +233,6 @@ export default async function ToolsPage({
       </div>
 
     </div>
+    </>
   )
 }

@@ -45,11 +45,21 @@ const collectionSchema = {
   publisher: { '@type': 'Organization', name: 'MytheAi', url: 'https://mytheai.com' },
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://mytheai.com' },
+    { '@type': 'ListItem', position: 2, name: 'Top 10 Lists', item: 'https://mytheai.com/top-10' },
+  ],
+}
+
 export default async function Top10HubPage() {
   const t = await getTranslations('HubPages')
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
     <div className="max-w-7xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
       <div className="mb-10">

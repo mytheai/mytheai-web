@@ -194,11 +194,27 @@ export default async function TaskPage({ params }: { params: Promise<{ slug: str
     })),
   }
 
+  const howToJsonLd = tools.length >= 3 ? {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: task.title,
+    description: task.intro.split('.').slice(0, 2).join('.').slice(0, 300).trim() + '.',
+    totalTime: 'PT15M',
+    step: tools.slice(0, 10).map((t, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: `Try ${t.name}`,
+      text: t.tagline,
+      url: `https://mytheai.com/tools/${t.slug}`,
+    })),
+  } : null
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      {howToJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />}
 
       <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
