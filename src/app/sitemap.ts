@@ -152,6 +152,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     })),
     { url: 'https://mytheai.com/glossary', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
+    { url: 'https://mytheai.com/sitemap', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.5 },
     { url: 'https://mytheai.com/use-case', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.75 },
     { url: 'https://mytheai.com/tasks', lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
     { url: 'https://mytheai.com/best', lastModified: new Date(), changeFrequency: 'weekly', priority: 0.85 },
