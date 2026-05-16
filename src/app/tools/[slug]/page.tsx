@@ -70,6 +70,88 @@ interface RelatedTop10 {
   emoji: string
 }
 
+interface RelatedTask {
+  slug: string
+  title: string
+  emoji: string | null
+}
+
+// Maps tool tag → /best/[category] money page slug. Subset of S140
+// CATEGORY_TO_TOP10_SLUG keys in src/app/best/[category]/page.tsx. Only
+// includes mappings where a money page exists; tools whose first tag has
+// no /best/[category] match render no pill (silent fall-through).
+const TAG_TO_BEST_CATEGORY: Record<string, string> = {
+  'writing': 'writing',
+  'writing-ai': 'writing',
+  'copywriting': 'writing',
+  'coding': 'coding',
+  'code': 'coding',
+  'code-ai': 'coding',
+  'developer-tools': 'coding',
+  'seo': 'seo',
+  'seo-marketing': 'seo',
+  'video': 'video',
+  'video-ai': 'video',
+  'video-generation': 'video',
+  'image': 'image',
+  'image-ai': 'image',
+  'image-generation': 'image',
+  'agents': 'agents',
+  'ai-agents': 'agents',
+  'automation': 'automation',
+  'workflow-automation': 'automation',
+  'no-code': 'automation',
+  'sales': 'sales',
+  'crm': 'sales',
+  'customer-support': 'customer-support',
+  'customer-service': 'customer-support',
+  'legal': 'legal',
+  'legal-ai': 'legal',
+  'finance': 'finance',
+  'accounting': 'finance',
+  'healthcare': 'healthcare',
+  'healthcare-ai': 'healthcare',
+  'marketing': 'marketing',
+  'social-media': 'marketing',
+  'design': 'design',
+  'ux-design': 'design',
+  'ui-design': 'design',
+  'research': 'research',
+  'research-ai': 'research',
+  'productivity': 'productivity',
+  'project-management': 'productivity',
+  'note-taking': 'productivity',
+  'meeting': 'productivity',
+}
+
+const BEST_CATEGORY_LABELS: Record<string, string> = {
+  writing: 'Writing',
+  coding: 'Coding',
+  seo: 'SEO',
+  video: 'Video',
+  image: 'Image generation',
+  agents: 'AI agents',
+  automation: 'Automation',
+  sales: 'Sales',
+  'customer-support': 'Customer support',
+  legal: 'Legal',
+  finance: 'Finance',
+  healthcare: 'Healthcare',
+  marketing: 'Marketing',
+  design: 'Design',
+  research: 'Research',
+  productivity: 'Productivity',
+}
+
+function getBestCategory(tags: string[] | null | undefined): string | null {
+  if (!tags || tags.length === 0) return null
+  for (const tag of tags) {
+    const norm = tag.toLowerCase().trim()
+    if (TAG_TO_BEST_CATEGORY[norm]) return TAG_TO_BEST_CATEGORY[norm]
+  }
+  return null
+}
+
 // --- Data fetching ---
 
 async function getTool(slug: string): Promise<ToolRow | null> {
@@ -123,6 +205,46 @@ function getRelatedTop10(slug: string): RelatedTop10[] {
     .filter(l => l.slugs.includes(slug))
     .slice(0, 6)
     .map(l => ({ slug: l.slug, title: l.title, emoji: l.emoji }))
+}
+
+// Surfaces 3-5 task pages relevant to this tool. Priority:
+// (1) tasks where this slug appears in picked_slugs (direct "use X for this"
+//     editorial pick), then (2) tasks with primary_tags overlapping tool.tags.
+// Opens /tools/[slug] -> /tasks/[slug] crawl path for Bing/Yandex topical
+// clustering. 506 task pages benefit from inbound from 585 tool details.
+async function getRelatedTasks(slug: string, tags: string[] | null, limit = 5): Promise<RelatedTask[]> {
+  if (!tags || tags.length === 0) return []
+  const supabase = await createClient()
+  const [directRes, tagRes] = await Promise.all([
+    supabase
+      .from('tasks')
+      .select('slug,title,emoji')
+      .eq('status', 'published')
+      .contains('picked_slugs', [slug])
+      .limit(limit),
+    supabase
+      .from('tasks')
+      .select('slug,title,emoji')
+      .eq('status', 'published')
+      .overlaps('primary_tags', tags)
+      .limit(limit * 2),
+  ])
+  const direct = (directRes.data ?? []) as RelatedTask[]
+  const tagged = (tagRes.data ?? []) as RelatedTask[]
+  const seen = new Set<string>()
+  const merged: RelatedTask[] = []
+  for (const r of direct) {
+    if (seen.has(r.slug)) continue
+    seen.add(r.slug)
+    merged.push(r)
+  }
+  for (const r of tagged) {
+    if (merged.length >= limit) break
+    if (seen.has(r.slug)) continue
+    seen.add(r.slug)
+    merged.push(r)
+  }
+  return merged.slice(0, limit)
 }
 
 export async function generateStaticParams() {
@@ -240,12 +362,14 @@ export default async function ToolPage({
   const tool = await getTool(slug)
   if (!tool) notFound()
 
-  const [alternatives, userReviews, relatedCompares] = await Promise.all([
+  const [alternatives, userReviews, relatedCompares, relatedTasks] = await Promise.all([
     getAlternatives(slug, tool.tags ?? []),
     getApprovedReviews(slug),
     getRelatedCompares(slug),
+    getRelatedTasks(slug, tool.tags),
   ])
   const relatedTop10 = getRelatedTop10(slug)
+  const bestCategory = getBestCategory(tool.tags)
   const year = new Date().getFullYear()
   const updatedDate = new Date(tool.updated_at).toLocaleDateString('en-US', {
     month: 'long', year: 'numeric',
@@ -741,6 +865,15 @@ export default async function ToolPage({
               <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-muted-foreground mb-2">
                 Decision shortcuts
               </p>
+              {bestCategory && (
+                <Link
+                  href={`/best/${bestCategory}`}
+                  className="flex items-center justify-between text-[13px] font-medium text-foreground hover:text-emerald-600 transition-colors"
+                >
+                  <span>Hand-tested top picks for {BEST_CATEGORY_LABELS[bestCategory] ?? bestCategory}</span>
+                  <span className="text-muted-foreground">→</span>
+                </Link>
+              )}
               <Link
                 href={`/alternatives/${tool.slug}`}
                 className="flex items-center justify-between text-[13px] text-foreground hover:text-blue-600 transition-colors"
@@ -785,13 +918,13 @@ export default async function ToolPage({
         {/* Embeddable "Featured on MytheAi" badge - generates contextual backlinks when vendors embed */}
         <EmbedBadge slug={tool.slug} name={tool.name} />
 
-        {/* Related comparisons + Top 10 lists - internal linking */}
-        {(relatedCompares.length > 0 || relatedTop10.length > 0) && (
+        {/* Related comparisons + Top 10 lists + Tasks - internal linking */}
+        {(relatedCompares.length > 0 || relatedTop10.length > 0 || relatedTasks.length > 0) && (
           <section className="mt-12 pt-8 border-t border-border">
             <h2 className="text-[18px] font-bold text-foreground mb-4">
               {tool.name} on MytheAi
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {relatedCompares.length > 0 && (
                 <div className="p-5 rounded-xl border border-border bg-card">
                   <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-3">
@@ -836,6 +969,22 @@ export default async function ToolPage({
                       <li key={l.slug}>
                         <Link href={`/top-10/${l.slug}`} className="text-[13px] text-foreground hover:text-blue-600 hover:underline">
                           <span className="mr-1.5">{l.emoji}</span>{l.title} →
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {relatedTasks.length > 0 && (
+                <div className="p-5 rounded-xl border border-border bg-card">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-emerald-600 mb-3">
+                    Use {tool.name} for ({relatedTasks.length})
+                  </p>
+                  <ul className="space-y-2">
+                    {relatedTasks.map(task => (
+                      <li key={task.slug}>
+                        <Link href={`/tasks/${task.slug}`} className="text-[13px] text-foreground hover:text-emerald-600 hover:underline">
+                          {task.emoji && <span className="mr-1.5">{task.emoji}</span>}{task.title} →
                         </Link>
                       </li>
                     ))}
