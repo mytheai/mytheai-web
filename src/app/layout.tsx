@@ -86,6 +86,7 @@ const organizationSchema = {
     'https://twitter.com/mytheai',
     'https://www.linkedin.com/company/mytheai',
     'https://www.producthunt.com/@mytheai',
+    'https://github.com/johnpham-mytheai',
   ],
   foundingDate: '2026-01-01',
   founder: {

@@ -24,6 +24,9 @@ export const AUTHORS: Record<string, Author> = {
     role: 'Founder & Editor-in-Chief',
     bio: `Founder of MytheAi. Tracking and reviewing AI and SaaS tools since January 2026. Built MytheAi out of frustration with pay-to-rank listicles and SEO-driven AI directories that prioritize ad revenue over honest guidance. Hands-on testing across ${STATIC_TOOL_COUNT_DISPLAY} tools to date.`,
     url: 'https://mytheai.com/authors/john-ethan',
+    twitter: 'https://twitter.com/mytheai',
+    linkedin: 'https://www.linkedin.com/in/john-pham-mytheai',
+    github: 'https://github.com/johnpham-mytheai',
   },
 }
 
