@@ -4,6 +4,7 @@ import LogoImage from '@/components/ui/LogoImage'
 import AuthorBio from '@/components/layout/AuthorBio'
 import { getAuthorJsonLd } from '@/data/authors'
 import { createStaticClient } from '@/lib/supabase'
+import { metaDescription } from '@/lib/meta-description'
 import type { Metadata } from 'next'
 
 export const revalidate = 604800
@@ -123,7 +124,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const year = new Date().getFullYear()
   const pickCount = task.picked_slugs?.length ?? 0
   const title = `${task.title} (${year}) - ${pickCount} Top Picks Reviewed | MytheAi`
-  const description = task.intro.split('.').slice(0, 2).join('.').slice(0, 155).trim() + '.'
+  const description = metaDescription(
+    task.intro.split('.').slice(0, 2).join('.'),
+    `${pickCount} hand-picked tools compared on price and features for ${year}`
+  )
   return {
     title,
     description,

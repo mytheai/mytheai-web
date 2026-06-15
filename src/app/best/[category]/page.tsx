@@ -3,6 +3,7 @@ import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
 import { createStaticClient } from '@/lib/supabase'
 import { getList } from '@/data/top10'
+import { metaDescription } from '@/lib/meta-description'
 import AuthorBio from '@/components/layout/AuthorBio'
 import { getAuthorJsonLd } from '@/data/authors'
 import ScrollNewsletter from '@/components/newsletter/ScrollNewsletter'
@@ -90,20 +91,24 @@ export async function generateMetadata({ params }: { params: Promise<{ category:
   const label = CATEGORY_LABELS[category]
   const title = `Best AI ${label} Tools ${year}: Hand-Tested Top ${list.slugs.length} Picks | MytheAi`
   const ogImage = `https://mytheai.com/api/og/blog?title=${encodeURIComponent(`Best AI ${label} Tools ${year}`)}&category=${encodeURIComponent('Money Page')}`
+  const description = metaDescription(
+    list.description,
+    `Hand-tested by John Pham. Updated ${year} with pricing, free tier flags, pros and cons`
+  )
   return {
     title,
-    description: list.description,
+    description,
     alternates: { canonical: `https://mytheai.com/best/${category}` },
     openGraph: {
       title,
-      description: list.description,
+      description,
       url: `https://mytheai.com/best/${category}`,
       images: [{ url: ogImage, width: 1200, height: 630, alt: `Best AI ${label} Tools ${year}` }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
-      description: list.description,
+      description,
       images: [ogImage],
     },
   }

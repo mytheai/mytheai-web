@@ -19,6 +19,7 @@ import { isValidScores, isValidEvidence, type ToolScores, type ToolScoresEvidenc
 import { linkGlossary } from '@/lib/glossary-linker'
 import { getToolFreeCategory, FREE_CATEGORY_LABELS } from '@/lib/related-seo'
 import { TOP10_LISTS } from '@/data/top10'
+import { metaDescription } from '@/lib/meta-description'
 import type { Metadata } from 'next'
 
 export const revalidate = 86400
@@ -263,10 +264,10 @@ export async function generateMetadata(
   if (!tool) return { title: 'Tool not found | MytheAi' }
 
   const year = new Date().getFullYear()
-  const baseDesc = tool.tagline ?? ''
-  const description = baseDesc.length < 80
-    ? `${baseDesc}. Read our ${year} review: pricing, features, pros, cons, and best alternatives.`
-    : baseDesc
+  const description = metaDescription(
+    tool.tagline ?? '',
+    `Read our ${year} review: pricing, features, pros, cons, and best alternatives`
+  )
   const ogImageUrl = `https://mytheai.com/api/og?name=${encodeURIComponent(tool.name)}&tagline=${encodeURIComponent(tool.tagline)}&rating=${tool.rating}${tool.logo_url ? `&logo=${encodeURIComponent(tool.logo_url)}` : ''}`
   return {
     title: `${tool.name} Review ${year}: Pricing, Features & Alternatives | MytheAi`,

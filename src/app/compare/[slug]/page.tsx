@@ -11,6 +11,7 @@ import {
   parsePairSlug,
   type AutoTool,
 } from '@/lib/auto-compare'
+import { metaDescription } from '@/lib/meta-description'
 import type { Metadata } from 'next'
 
 export const revalidate = 86400
@@ -98,7 +99,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!a || !b) return { title: 'Comparison not found | MytheAi' }
   const year = new Date().getFullYear()
   const title = `${a.name} vs ${b.name} (${year}): Full Comparison | MytheAi`
-  const description = result?.cmp.summary?.slice(0, 155) ?? `${a.name} vs ${b.name}: side-by-side feature and pricing comparison.`
+  const description = metaDescription(
+    result?.cmp.summary ?? `${a.name} vs ${b.name}: side-by-side feature and pricing comparison`,
+    `Independent ${year} review, no pay-to-rank`
+  )
 
   const ogUrl = new URL('https://mytheai.com/api/og/compare')
   ogUrl.searchParams.set('nameA', a.name)
