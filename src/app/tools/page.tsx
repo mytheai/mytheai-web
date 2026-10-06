@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import ToolCard from '@/components/tools/ToolCard'
 import SearchFilterBar from '@/components/tools/SearchFilterBar'
-import { createClient } from '@/lib/supabase'
+import { createStaticClient } from '@/lib/supabase'
 import { STATIC_TOOL_COUNT_DISPLAY } from '@/lib/stats'
 import type { Tool } from '@/types'
 
@@ -50,7 +50,7 @@ async function getTools(
   filters: ToolsFilters, page = 1
 ): Promise<{ tools: Tool[]; total: number }> {
   const { category, pricing, q, sort, budget, freeTier, integration } = filters
-  const supabase = await createClient()
+  const supabase = createStaticClient()
   let query = supabase.from('tools').select('*', { count: 'exact' })
 
   if (sort === 'newest') {

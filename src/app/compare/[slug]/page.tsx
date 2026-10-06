@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import LogoImage from '@/components/ui/LogoImage'
 import Link from 'next/link'
-import { createClient, createStaticClient } from '@/lib/supabase'
+import { createStaticClient } from '@/lib/supabase'
 import { getCompareEnrichment } from '@/data/compareEnrichment'
 import { getAuthorJsonLd } from '@/data/authors'
 import { linkGlossary } from '@/lib/glossary-linker'
@@ -56,7 +56,7 @@ interface ToolRow {
 // --- Data fetching ---
 
 async function getComparison(slug: string) {
-  const supabase = await createClient()
+  const supabase = createStaticClient()
   const [{ data: cmp }, { data: criteria }] = await Promise.all([
     supabase.from('comparisons').select('*').eq('slug', slug).single(),
     supabase.from('comparison_criteria').select('*').eq('comparison_slug', slug).order('sort_order'),
@@ -66,7 +66,7 @@ async function getComparison(slug: string) {
 }
 
 async function getTool(slug: string): Promise<ToolRow | null> {
-  const supabase = await createClient()
+  const supabase = createStaticClient()
   const { data } = await supabase.from('tools')
     .select('slug,name,tagline,logo_url,website_url,pricing_type,pricing_free_tier,pricing_starting_price,rating,review_count,pros,cons,use_cases,integrations,tags')
     .eq('slug', slug).single()

@@ -3,7 +3,7 @@ import LogoImage from '@/components/ui/LogoImage'
 import ToolScreenshot from '@/components/ui/ToolScreenshot'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
-import { createClient, createStaticClient } from '@/lib/supabase'
+import { createStaticClient } from '@/lib/supabase'
 import ReviewForm from '@/components/reviews/ReviewForm'
 import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
 import ScoringTable from '@/components/tools/ScoringTable'
@@ -156,7 +156,7 @@ function getBestCategory(tags: string[] | null | undefined): string | null {
 // --- Data fetching ---
 
 async function getTool(slug: string): Promise<ToolRow | null> {
-  const supabase = await createClient()
+  const supabase = createStaticClient()
   const { data, error } = await supabase
     .from('tools')
     .select('*')
@@ -180,7 +180,7 @@ interface AltTool {
 
 async function getAlternatives(currentSlug: string, tags: string[]): Promise<AltTool[]> {
   if (!tags || tags.length === 0) return []
-  const supabase = await createClient()
+  const supabase = createStaticClient()
   const { data } = await supabase
     .from('tools')
     .select('id, slug, name, tagline, logo_url, website_url, pricing_type, rating')
@@ -192,7 +192,7 @@ async function getAlternatives(currentSlug: string, tags: string[]): Promise<Alt
 }
 
 async function getRelatedCompares(slug: string): Promise<RelatedCompare[]> {
-  const supabase = await createClient()
+  const supabase = createStaticClient()
   const { data } = await supabase
     .from('comparisons')
     .select('slug, tool_a_slug, tool_b_slug, winner, summary')
@@ -215,7 +215,7 @@ function getRelatedTop10(slug: string): RelatedTop10[] {
 // clustering. 506 task pages benefit from inbound from 585 tool details.
 async function getRelatedTasks(slug: string, tags: string[] | null, limit = 5): Promise<RelatedTask[]> {
   if (!tags || tags.length === 0) return []
-  const supabase = await createClient()
+  const supabase = createStaticClient()
   const [directRes, tagRes] = await Promise.all([
     supabase
       .from('tasks')
