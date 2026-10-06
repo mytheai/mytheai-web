@@ -1,0 +1,22 @@
+# Netlify deployment config for MytheAi
+# Created 2026-10-06 (migration off Vercel Hobby, which forced Pro upgrade due to commercial affiliate use)
+# Reference: https://docs.netlify.com/build/frameworks/framework-setup-guides/nextjs/overview/
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Node 20 matches .github/workflows/* and Next.js 16 requirements.
+  # Netlify default drifts over time; pin to avoid surprise breakage.
+  NODE_VERSION = "20"
+
+# Netlify auto-installs @netlify/plugin-nextjs (OpenNext adapter) at build time.
+# Explicit pinning is NOT recommended per Netlify docs - leave adapter auto-managed.
+#
+# Features handled by the adapter automatically:
+# - App Router + Server Components + Server Actions
+# - ISR / SSG / SSR (next.config.ts revalidate values honored)
+# - redirects() and headers() in next.config.ts converted to Netlify primitives
+# - next/image via Netlify Image CDN
+# - next-intl middleware via Netlify Edge Functions
