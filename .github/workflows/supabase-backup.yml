@@ -1,0 +1,121 @@
+name: Weekly Supabase Backup
+
+# Snapshots the Supabase catalog (tools, tasks, comparisons, approved reviews) to
+# git-tracked JSON files every Sunday. Provides disaster recovery if Supabase
+# project is deleted beyond the 7-day auto-pause window (free tier deletes after
+# 90 days paused with no restore).
+#
+# Set up: 2026-10-07 Day 1-2 infra hardening Task 3 (post-S194 migration).
+#
+# Backups land at: backups/YYYY-MM-DD/{tools,tasks,comparisons,tool_reviews}.json
+# Commit message includes [skip netlify] to avoid triggering unnecessary rebuild.
+#
+# What is NOT backed up (handled elsewhere or PII):
+# - newsletter_subscribers (PII - rely on Supabase native backup + Resend audience)
+# - Blog MDX files (already git-tracked in web/content/blog/)
+# - top10 lists (already git-tracked in src/data/top10.ts)
+#
+# Required repo secrets:
+# - SUPABASE_URL              (same as keepalive)
+# - SUPABASE_PUBLISHABLE_KEY  (same as keepalive)
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'  # Sunday 03:00 UTC = 10:00 Vietnam time
+  workflow_dispatch: {}
+
+permissions:
+  contents: write  # needed to commit backup files
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch catalog tables + commit
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_KEY" ]; then
+            echo "ERROR: SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY repo secret missing."
+            exit 1
+          fi
+
+          DATE=$(date -u +%Y-%m-%d)
+          BACKUP_DIR="backups/${DATE}"
+          mkdir -p "$BACKUP_DIR"
+
+          # Fetch each public table (limit 10000 to overshoot current counts).
+          # If table size exceeds 10000, bump limit here + file an issue to paginate.
+          declare -A TABLES=(
+            ["tools"]="*"
+            ["tasks"]="*"
+            ["comparisons"]="*"
+          )
+
+          for table in "${!TABLES[@]}"; do
+            SELECT="${TABLES[$table]}"
+            echo "Backing up ${table}..."
+            HTTP=$(curl -sS -w "%{http_code}" -o "${BACKUP_DIR}/${table}.json" \
+              --max-time 120 \
+              "${SUPABASE_URL}/rest/v1/${table}?select=${SELECT}&limit=10000" \
+              -H "apikey: ${SUPABASE_KEY}" \
+              -H "Authorization: Bearer ${SUPABASE_KEY}")
+
+            if [ "$HTTP" != "200" ]; then
+              echo "ERROR: ${table} returned HTTP ${HTTP}"
+              cat "${BACKUP_DIR}/${table}.json" | head -c 500
+              exit 1
+            fi
+
+            ROWS=$(node -e "console.log(JSON.parse(require('fs').readFileSync('${BACKUP_DIR}/${table}.json','utf8')).length)")
+            SIZE=$(wc -c < "${BACKUP_DIR}/${table}.json")
+            echo "  ${table}: ${ROWS} rows, ${SIZE} bytes"
+
+            if [ "$ROWS" -lt 1 ]; then
+              echo "ERROR: ${table} returned 0 rows - likely Supabase paused or RLS blocking"
+              exit 1
+            fi
+          done
+
+          # Approved reviews only (strip PII: ip_hash, email_hash never selected)
+          echo "Backing up tool_reviews (approved only)..."
+          HTTP=$(curl -sS -w "%{http_code}" -o "${BACKUP_DIR}/tool_reviews.json" \
+            --max-time 60 \
+            "${SUPABASE_URL}/rest/v1/tool_reviews?select=id,tool_slug,rating,best_for,limitation,status,created_at&status=eq.approved&limit=10000" \
+            -H "apikey: ${SUPABASE_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_KEY}")
+
+          if [ "$HTTP" = "200" ]; then
+            REVIEWS=$(node -e "console.log(JSON.parse(require('fs').readFileSync('${BACKUP_DIR}/tool_reviews.json','utf8')).length)")
+            echo "  tool_reviews: ${REVIEWS} rows"
+          else
+            # tool_reviews may not exist yet or have different columns - log warning not error
+            echo "  WARN: tool_reviews returned HTTP ${HTTP} - skipping"
+            rm -f "${BACKUP_DIR}/tool_reviews.json"
+          fi
+
+          # Manifest with totals + schema version marker (built via node to avoid heredoc indent issues)
+          TABLES_JSON=$(ls "${BACKUP_DIR}"/*.json 2>/dev/null | grep -v MANIFEST | xargs -I{} basename {} .json | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>console.log(JSON.stringify(d.trim().split(/\s+/).filter(Boolean))))")
+          node -e "require('fs').writeFileSync('${BACKUP_DIR}/MANIFEST.json', JSON.stringify({backup_date:'${DATE}',generated_by:'.github/workflows/supabase-backup.yml',supabase_url:'${SUPABASE_URL}',tables_backed_up:${TABLES_JSON},notes:'Catalog snapshot for disaster recovery. See .github/workflows/supabase-backup.yml for restore procedure.'}, null, 2))"
+
+          echo "---SUMMARY---"
+          ls -la "${BACKUP_DIR}"
+          du -sh "${BACKUP_DIR}"
+
+          # Commit + push (skip Netlify rebuild via commit marker)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "${BACKUP_DIR}/"
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit (backup already exists for today)"
+            exit 0
+          fi
+
+          git commit -m "Weekly Supabase backup ${DATE} [skip netlify]"
+          git push
+          echo "Backup committed and pushed."
