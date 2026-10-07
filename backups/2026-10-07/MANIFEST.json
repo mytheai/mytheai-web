@@ -1,0 +1,12 @@
+{
+  "backup_date": "2026-10-07",
+  "generated_by": ".github/workflows/supabase-backup.yml",
+  "supabase_url": "https://amonzprhauwjndymeiua.supabase.co",
+  "tables_backed_up": [
+    "comparisons",
+    "tasks",
+    "tool_reviews",
+    "tools"
+  ],
+  "notes": "Catalog snapshot for disaster recovery. See .github/workflows/supabase-backup.yml for restore procedure."
+}
