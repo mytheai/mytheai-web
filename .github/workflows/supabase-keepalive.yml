@@ -1,0 +1,69 @@
+name: Supabase Keep-Alive
+
+# Prevents Supabase free tier auto-pause (triggers after 7 days of API inactivity).
+# Runs daily at 02:00 UTC (09:00 Vietnam time) to maintain project active status.
+# Daily cadence = 7x safety buffer vs the 7-day pause window.
+#
+# Set up: 2026-10-07 after S194 migration incident (Supabase project was auto-paused
+# during 4-month Vercel outage, causing all /tools/[slug] routes to 404 on first
+# Netlify deploy until user manually unpaused via dashboard).
+#
+# Required repo secrets:
+# - SUPABASE_URL              → https://amonzprhauwjndymeiua.supabase.co
+# - SUPABASE_PUBLISHABLE_KEY  → sb_publishable_... (anon-equivalent, safe for public use)
+#
+# On failure: workflow exits non-zero, GitHub emails repo owner.
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # daily 02:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Query Supabase tools table
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_KEY" ]; then
+            echo "ERROR: SUPABASE_URL or SUPABASE_PUBLISHABLE_KEY repo secret missing."
+            echo "Add at: Settings → Secrets and variables → Actions → New repository secret"
+            exit 1
+          fi
+
+          HTTP_STATUS=$(curl -sS -w "%{http_code}" -o /tmp/supabase-response.json \
+            --max-time 30 \
+            "${SUPABASE_URL}/rest/v1/tools?select=slug,name&limit=3" \
+            -H "apikey: ${SUPABASE_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_KEY}")
+
+          echo "HTTP status: $HTTP_STATUS"
+
+          if [ "$HTTP_STATUS" != "200" ]; then
+            echo "ERROR: Supabase returned HTTP $HTTP_STATUS (expected 200)."
+            echo "Response body:"
+            cat /tmp/supabase-response.json
+            echo ""
+            echo "Likely causes:"
+            echo "  1. Project auto-paused despite daily ping (check Supabase dashboard)"
+            echo "  2. Publishable key rotated (regenerate + update GitHub secret)"
+            echo "  3. Supabase outage (check https://status.supabase.com)"
+            exit 1
+          fi
+
+          ROW_COUNT=$(grep -o '"slug"' /tmp/supabase-response.json | wc -l)
+          if [ "$ROW_COUNT" -lt 1 ]; then
+            echo "ERROR: Response contained no rows. Tools table may be empty or RLS blocking reads."
+            cat /tmp/supabase-response.json
+            exit 1
+          fi
+
+          echo "SUCCESS: Supabase healthy, $ROW_COUNT sample rows returned."
+          head -c 300 /tmp/supabase-response.json

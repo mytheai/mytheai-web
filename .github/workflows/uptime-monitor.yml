@@ -1,8 +1,8 @@
 name: Uptime Monitor
 
-# Production health check — runs every 5 minutes during founder pause.
+# Production health check — runs every 5 minutes.
 # On failure: opens a GitHub Issue (founder gets email via GitHub notifications).
-# Set up: 2026-05-10 freeze prep S161. Replaces UptimeRobot manual setup.
+# Set up: 2026-05-10 freeze prep S161. Updated 2026-10-07 post-Netlify migration (S194).
 #
 # To pause monitoring temporarily: comment out the schedule trigger below.
 # To change check interval: edit the cron expression (5-minute minimum on free GitHub Actions).
@@ -65,14 +65,48 @@ jobs:
             echo "best_failed=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Probe Supabase data route
+        id: supabase
+        continue-on-error: true
+        run: |
+          STATUS=$(curl -s -o /tmp/search.json -w "%{http_code}" --max-time 30 https://mytheai.com/api/search-index)
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          echo "Search index HTTP $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "supabase_failed=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          BYTES=$(wc -c < /tmp/search.json)
+          if [ "$BYTES" -lt 1000 ]; then
+            echo "Search index returned $BYTES bytes — likely empty, Supabase paused?"
+            echo "supabase_failed=true" >> $GITHUB_OUTPUT
+          else
+            echo "supabase_failed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Probe affiliate redirect
+        id: affiliate
+        continue-on-error: true
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 https://mytheai.com/go/claude)
+          echo "status=$STATUS" >> $GITHUB_OUTPUT
+          echo "Affiliate redirect HTTP $STATUS (expect 307)"
+          if [ "$STATUS" != "307" ] && [ "$STATUS" != "302" ]; then
+            echo "affiliate_failed=true" >> $GITHUB_OUTPUT
+          else
+            echo "affiliate_failed=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Open issue on failure
-        if: steps.homepage.outputs.homepage_failed == 'true' || steps.tool.outputs.tool_failed == 'true' || steps.best.outputs.best_failed == 'true'
+        if: steps.homepage.outputs.homepage_failed == 'true' || steps.tool.outputs.tool_failed == 'true' || steps.best.outputs.best_failed == 'true' || steps.supabase.outputs.supabase_failed == 'true' || steps.affiliate.outputs.affiliate_failed == 'true'
         uses: actions/github-script@v7
         with:
           script: |
             const home = '${{ steps.homepage.outputs.status }}';
             const tool = '${{ steps.tool.outputs.status }}';
             const best = '${{ steps.best.outputs.status }}';
+            const supabase = '${{ steps.supabase.outputs.status }}';
+            const affiliate = '${{ steps.affiliate.outputs.status }}';
             const date = new Date().toISOString();
 
             // Check for existing open uptime issue (avoid duplicates within same outage)
@@ -89,7 +123,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                body: `Still failing at ${date}\n\n- Homepage: HTTP ${home}\n- /tools/claude: HTTP ${tool}\n- /best/coding: HTTP ${best}`,
+                body: `Still failing at ${date}\n\n- Homepage: HTTP ${home}\n- /tools/claude: HTTP ${tool}\n- /best/coding: HTTP ${best}\n- /api/search-index: HTTP ${supabase}\n- /go/claude: HTTP ${affiliate}`,
               });
               console.log(`Updated existing issue #${issue.number}`);
               return;
@@ -102,13 +136,16 @@ jobs:
               `- https://mytheai.com — HTTP ${home}`,
               `- https://mytheai.com/tools/claude — HTTP ${tool}`,
               `- https://mytheai.com/best/coding — HTTP ${best}`,
+              `- https://mytheai.com/api/search-index — HTTP ${supabase} (data pipe to Supabase)`,
+              `- https://mytheai.com/go/claude — HTTP ${affiliate} (expect 307)`,
               ``,
-              `**Likely cause:** Vercel env vars wiped (see CLAUDE.md S159 incident, RUNBOOK.md Scenario 1).`,
+              `**Likely causes (post-Netlify migration S194):**`,
+              `1. **Supabase auto-paused** — most common. Open https://supabase.com/dashboard/project/amonzprhauwjndymeiua → click "Restore project" if banner shows.`,
+              `2. **Netlify build failing** — open https://app.netlify.com/projects/mytheai-web-241/deploys → check latest deploy log for errors.`,
+              `3. **Netlify env vars missing** — Site configuration → Environment variables → verify NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY + SUPABASE_SERVICE_ROLE_KEY present.`,
+              `4. **DNS pointing elsewhere** — \`nslookup mytheai.com\` must return \`75.2.60.5\` (Netlify). If different, check Hostinger DNS panel.`,
               ``,
-              `**Quick fix:**`,
-              `1. Open https://vercel.com/mytheais-projects/project-71zh9/deployments`,
-              `2. If latest deploy failed with "supabaseUrl is required" → restore env vars per RUNBOOK.md Scenario 1`,
-              `3. If latest deploy ready but site still 5xx → check Supabase status at https://status.supabase.com`,
+              `See RUNBOOK.md for detailed scenarios.`,
               ``,
               `This issue will be closed automatically when the next health check passes.`,
             ].join('\n');
@@ -123,7 +160,7 @@ jobs:
             console.log(`Opened issue #${created.data.number}`);
 
       - name: Auto-close uptime issues on recovery
-        if: steps.homepage.outputs.homepage_failed != 'true' && steps.tool.outputs.tool_failed != 'true' && steps.best.outputs.best_failed != 'true'
+        if: steps.homepage.outputs.homepage_failed != 'true' && steps.tool.outputs.tool_failed != 'true' && steps.best.outputs.best_failed != 'true' && steps.supabase.outputs.supabase_failed != 'true' && steps.affiliate.outputs.affiliate_failed != 'true'
         uses: actions/github-script@v7
         with:
           script: |
@@ -151,5 +188,5 @@ jobs:
             }
 
       - name: Fail workflow if any probe failed
-        if: steps.homepage.outputs.homepage_failed == 'true' || steps.tool.outputs.tool_failed == 'true' || steps.best.outputs.best_failed == 'true'
+        if: steps.homepage.outputs.homepage_failed == 'true' || steps.tool.outputs.tool_failed == 'true' || steps.best.outputs.best_failed == 'true' || steps.supabase.outputs.supabase_failed == 'true' || steps.affiliate.outputs.affiliate_failed == 'true'
         run: exit 1
