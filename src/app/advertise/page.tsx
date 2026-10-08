@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import { getSiteStats } from '@/lib/stats'
 
-export const revalidate = 604800
+export const revalidate = 86400
 
 export const metadata: Metadata = {
   title: 'Advertise on MytheAi: Reach 50,000+ AI Tool Buyers | MytheAi',
@@ -120,7 +121,8 @@ const FAQS = [
   },
 ]
 
-export default function AdvertisePage() {
+export default async function AdvertisePage() {
+  const stats = await getSiteStats()
   return (
     <div className="max-w-3xl mx-auto px-4 md:px-5 py-10 md:py-14">
 
@@ -128,20 +130,20 @@ export default function AdvertisePage() {
       <div className="mb-12">
         <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-1">Advertise</p>
         <h1 className="text-[28px] md:text-[36px] font-extrabold tracking-tight text-foreground mb-3">
-          Reach 50,000+ AI tool buyers
+          Reach AI tool buyers at the decision moment
         </h1>
         <p className="text-[16px] text-muted-foreground leading-relaxed max-w-2xl">
-          MytheAi is where professionals research, compare, and decide on AI and SaaS tools. Sponsorship puts your tool in front of an audience that is actively evaluating options in your category.
+          MytheAi is where professionals research, compare, and decide on AI and SaaS tools. Sponsorship puts your tool in front of an audience that is actively evaluating options in your category - not casual scrollers.
         </p>
       </div>
 
-      {/* Trust bar */}
+      {/* Trust bar - live catalog counts from Supabase */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
         {[
-          { stat: '50K+', label: 'Monthly visitors' },
-          { stat: '400+', label: 'Tools reviewed' },
-          { stat: '200+', label: 'Head-to-head comparisons' },
-          { stat: '68+', label: 'Top 10 ranking lists' },
+          { stat: `${stats.tools}+`, label: 'Tools reviewed' },
+          { stat: `${stats.comparisons}+`, label: 'Head-to-head comparisons' },
+          { stat: `${stats.tasks}+`, label: 'Use case guides' },
+          { stat: `${stats.top10Lists}`, label: 'Top 10 ranking lists' },
         ].map(item => (
           <div key={item.stat} className="border border-border rounded-xl p-4 bg-card text-center">
             <p className="text-[22px] font-extrabold text-foreground">{item.stat}</p>

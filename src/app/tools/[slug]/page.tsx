@@ -6,6 +6,7 @@ import { getTranslations } from 'next-intl/server'
 import { createStaticClient } from '@/lib/supabase'
 import ReviewForm from '@/components/reviews/ReviewForm'
 import ReviewList, { getApprovedReviews } from '@/components/reviews/ReviewList'
+import NewsletterInlineForm from '@/components/newsletter/NewsletterInlineForm'
 import ScoringTable from '@/components/tools/ScoringTable'
 import StickyMobileCTA from '@/components/tools/StickyMobileCTA'
 import SourcesBlock from '@/components/tools/SourcesBlock'
@@ -1034,6 +1035,11 @@ export default async function ToolPage({
           </div>
           <ReviewList toolSlug={tool.slug} />
         </div>
+
+        {/* Newsletter capture at highest-trust moment: user just finished reviews + hands-on,
+            about to see alternatives. Positioning catches users who are "researching but not
+            ready to buy this specific tool" - offer owned-audience subscription in exchange. */}
+        <NewsletterInlineForm context="tool-detail" />
 
         {/* Alternatives */}
         {alternatives.length > 0 && (

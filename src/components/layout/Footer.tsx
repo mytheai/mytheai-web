@@ -27,6 +27,7 @@ export default function Footer() {
     { href: '/about', label: t('about') },
     { href: '/methodology', label: t('howWeRank') },
     { href: '/transparency', label: t('transparency') },
+    { href: '/advertise', label: 'Advertise' },
     { href: '/press', label: 'Press' },
     { href: '/sitemap', label: 'Sitemap' },
     { href: '/about#affiliate', label: t('affiliateDisclosure') },
