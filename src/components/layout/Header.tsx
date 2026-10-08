@@ -13,10 +13,8 @@ export default function Header() {
 
   const NAV_LINKS = [
     { href: '/tools', label: t('tools') },
-    { href: '/tasks', label: t('tasks') },
+    { href: '/discover', label: t('discover') },
     { href: '/compare', label: t('compare') },
-    { href: '/top-10', label: t('top10') },
-    { href: '/best', label: t('best') },
     { href: '/blog', label: t('blog') },
   ]
 

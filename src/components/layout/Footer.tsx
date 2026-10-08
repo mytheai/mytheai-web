@@ -6,9 +6,12 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   const discoverLinks = [
+    { href: '/discover', label: 'Discover hub' },
     { href: '/tools', label: t('tools') },
-    { href: '/categories', label: t('categories') },
+    { href: '/tasks', label: 'Tasks' },
+    { href: '/best', label: 'Best in category' },
     { href: '/top-10', label: t('top10') },
+    { href: '/categories', label: t('categories') },
     { href: '/deals', label: t('deals') },
     { href: '/tools?filter=free', label: t('freeTools') },
   ]
