@@ -447,27 +447,48 @@ export default async function ComparePage({ params }: { params: Promise<{ slug: 
           </section>
         )}
 
-        {/* When to pick A/B (enriched, or auto when-to-pick) */}
+        {/* When to pick A/B (enriched, or auto when-to-pick). Each box has inline Visit CTA
+            right at the decision moment - captures intent without forcing scroll back up. */}
         {enrichment ? (
           <section className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 rounded-xl border border-border bg-card">
+            <div className="p-5 rounded-xl border border-border bg-card flex flex-col">
               <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-2">Pick {toolA.name}</p>
-              <p className="text-[14px] text-muted-foreground leading-relaxed">{enrichment.whenToPickA}</p>
+              <p className="text-[14px] text-muted-foreground leading-relaxed mb-4 flex-1">{enrichment.whenToPickA}</p>
+              <a href={`/go/${toolA.slug}`} target="_blank" rel="noopener noreferrer sponsored"
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-blue-600 hover:text-blue-700 hover:underline self-start plausible-event-name=Outbound plausible-event-tool=compare-pick-a"
+                data-tool={toolA.slug}>
+                Try {toolA.name} →
+              </a>
             </div>
-            <div className="p-5 rounded-xl border border-border bg-card">
+            <div className="p-5 rounded-xl border border-border bg-card flex flex-col">
               <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-2">Pick {toolB.name}</p>
-              <p className="text-[14px] text-muted-foreground leading-relaxed">{enrichment.whenToPickB}</p>
+              <p className="text-[14px] text-muted-foreground leading-relaxed mb-4 flex-1">{enrichment.whenToPickB}</p>
+              <a href={`/go/${toolB.slug}`} target="_blank" rel="noopener noreferrer sponsored"
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-blue-600 hover:text-blue-700 hover:underline self-start plausible-event-name=Outbound plausible-event-tool=compare-pick-b"
+                data-tool={toolB.slug}>
+                Try {toolB.name} →
+              </a>
             </div>
           </section>
         ) : autoWhenToPick && (
           <section className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 rounded-xl border border-border bg-card">
+            <div className="p-5 rounded-xl border border-border bg-card flex flex-col">
               <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-2">Pick {toolA.name}</p>
-              <p className="text-[14px] text-muted-foreground leading-relaxed">{autoWhenToPick.whenA}</p>
+              <p className="text-[14px] text-muted-foreground leading-relaxed mb-4 flex-1">{autoWhenToPick.whenA}</p>
+              <a href={`/go/${toolA.slug}`} target="_blank" rel="noopener noreferrer sponsored"
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-blue-600 hover:text-blue-700 hover:underline self-start plausible-event-name=Outbound plausible-event-tool=compare-pick-a"
+                data-tool={toolA.slug}>
+                Try {toolA.name} →
+              </a>
             </div>
-            <div className="p-5 rounded-xl border border-border bg-card">
+            <div className="p-5 rounded-xl border border-border bg-card flex flex-col">
               <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-600 mb-2">Pick {toolB.name}</p>
-              <p className="text-[14px] text-muted-foreground leading-relaxed">{autoWhenToPick.whenB}</p>
+              <p className="text-[14px] text-muted-foreground leading-relaxed mb-4 flex-1">{autoWhenToPick.whenB}</p>
+              <a href={`/go/${toolB.slug}`} target="_blank" rel="noopener noreferrer sponsored"
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-blue-600 hover:text-blue-700 hover:underline self-start plausible-event-name=Outbound plausible-event-tool=compare-pick-b"
+                data-tool={toolB.slug}>
+                Try {toolB.name} →
+              </a>
             </div>
           </section>
         )}

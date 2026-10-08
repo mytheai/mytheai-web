@@ -674,6 +674,31 @@ export default async function ToolPage({
           </section>
         )}
 
+        {/* Inline CTA post-hands-on: captures intent right after reader finishes John's verdict. */}
+        {tool.tested_by && tool.hands_on_notes && (
+          <div className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-xl border border-blue-200 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-950/20">
+            <div className="min-w-0">
+              <p className="text-[14.5px] font-semibold text-foreground mb-0.5">
+                {tool.tested_by}&apos;s verdict after hands-on testing
+              </p>
+              <p className="text-[13px] text-muted-foreground">
+                Ready to try {tool.name}?
+                {tool.pricing_free_tier ? ' Free tier available - no signup to test.' : ''}
+                {tool.last_tested_at ? ` Pricing verified ${new Date(tool.last_tested_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}.` : ''}
+              </p>
+            </div>
+            <a
+              href={`/go/${tool.slug}`}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[14px] transition-colors whitespace-nowrap flex-shrink-0 plausible-event-name=Outbound plausible-event-tool=inline-handson"
+              data-tool={tool.slug}
+            >
+              Try {tool.name} →
+            </a>
+          </div>
+        )}
+
         <div className="grid md:grid-cols-3 gap-8">
 
           {/* Main content */}
@@ -1026,24 +1051,59 @@ export default async function ToolPage({
             </div>
             <div className="grid sm:grid-cols-3 gap-3">
               {alternatives.map(alt => (
-                <Link
+                <article
                   key={alt.slug}
-                  href={`/tools/${alt.slug}`}
                   className="flex items-start gap-3 p-4 rounded-xl border border-border bg-card hover:border-blue-300 transition-colors"
                 >
-                  <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    <LogoImage src={alt.logo_url} websiteUrl={alt.website_url} name={alt.name} size={28} letterClassName="text-[13px] font-bold text-gray-400" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[13px] font-semibold text-foreground truncate">{alt.name}</p>
-                    <p className="text-[12px] text-muted-foreground line-clamp-2">{alt.tagline}</p>
-                    <p className="text-[11px] text-[#F59E0B] mt-1">★ {alt.rating.toFixed(1)}</p>
-                  </div>
-                </Link>
+                  <Link
+                    href={`/tools/${alt.slug}`}
+                    className="flex items-start gap-3 flex-1 min-w-0"
+                  >
+                    <div className="w-9 h-9 rounded-lg border border-border bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+                      <LogoImage src={alt.logo_url} websiteUrl={alt.website_url} name={alt.name} size={28} letterClassName="text-[13px] font-bold text-gray-400" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[13px] font-semibold text-foreground truncate">{alt.name}</p>
+                      <p className="text-[12px] text-muted-foreground line-clamp-2">{alt.tagline}</p>
+                      <p className="text-[11px] text-[#F59E0B] mt-1">★ {alt.rating.toFixed(1)}</p>
+                    </div>
+                  </Link>
+                  <a
+                    href={`/go/${alt.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    className="text-[11.5px] font-semibold text-blue-600 hover:text-blue-700 hover:underline whitespace-nowrap flex-shrink-0 self-start plausible-event-name=Outbound plausible-event-tool=alt-mini"
+                    data-tool={alt.slug}
+                  >
+                    Try →
+                  </a>
+                </article>
               ))}
             </div>
           </div>
         )}
+
+        {/* Inline CTA post-alternatives: last conversion checkpoint before FAQ/footer. */}
+        <div className="mt-10 p-6 rounded-xl border-2 border-blue-100 dark:border-blue-900/40 bg-blue-50/50 dark:bg-blue-950/20 text-center">
+          <p className="text-[16px] font-bold text-foreground mb-1">
+            Decided on {tool.name}?
+          </p>
+          <p className="text-[13.5px] text-muted-foreground mb-4">
+            {tool.pricing_free_tier
+              ? 'Free tier available - no credit card required to start.'
+              : 'Transparent pricing on the official site.'}
+            {' '}1-click away.
+          </p>
+          <a
+            href={`/go/${tool.slug}`}
+            target="_blank"
+            rel="noopener noreferrer sponsored"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-[15px] transition-colors plausible-event-name=Outbound plausible-event-tool=inline-footer"
+            data-tool={tool.slug}
+          >
+            Try {tool.name} →
+          </a>
+        </div>
 
         {/* FAQ */}
         <div className="mt-12 pt-8 border-t border-border">
